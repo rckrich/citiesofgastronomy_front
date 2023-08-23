@@ -1,0 +1,192 @@
+
+body{background-color: #000;color:#fff;margin-top: 140px;}
+.min-h-100{min-height: 100vh;}
+.min-h-80{min-height: 80vh;}
+
+/*FONTS*/
+@font-face {
+    font-family: "Helvetica LT Std Bold Cond";
+    src: url('../assets/fonts/HelveticaLTStd/HelveticaLTStd-BoldCond.otf') format("truetype");
+}
+@font-face {
+    font-family: "Helvetica LT Std Black";
+    src: url('../assets/fonts/HelveticaLTStd/HelveticaLTStd-Blk.otf') format("truetype");
+}
+@font-face {
+    font-family: "Helvetica LT Std";
+    src: url('../assets/fonts/HelveticaLTStd/HelveticaLTStd-Cond.otf') format("truetype");
+}
+@font-face {
+    font-family: "Helvetica LT Std Roman";
+    src: url('../assets/fonts/HelveticaLTStd/HelveticaLTStd-Roman.otf') format("truetype");
+}
+@font-face {
+    font-family: "Calibri";
+    src: url('../assets/fonts/Calibri/CALIBRI.TTF') format("truetype");
+}
+
+.title-lg,.title-md,.title-sm{font-family: 'Helvetica LT Std Black';}
+.title-xl{font-size: 84px;font-family: 'Helvetica LT Std Bold Cond';}
+.title-lg{font-size: 50px;}
+.title-md{font-size: 48px;}
+.title-sm{font-size: 40px;}
+.title-xs,.card-title{font-size: 30px;}
+.title-xs{font-family: 'Calibri'}
+p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: 'Calibri'}
+.date{font: normal normal bold 16px/19px 'Calibri';font-family: 'Calibri'}
+
+#newsletter .nav-link{font-family: 'Helvetica LT Std Roman'; font-size: 14px;}
+#calendar .title-lg, #newsletter .title-xs,.card-title{font-family: 'Helvetica LT Std Black';}
+#newsletter .title-xs{font-size: 16px;}
+.text-orange,.btn-link{color: #D87C16!important;}
+.text-blue,.date{color: #5479FA;}
+.text-yellow{color: #D7D308;}
+.text-yellow2{color: #FFFC65;}
+.text-ocean{color: #354E57;}
+
+.bg-orange{background-color: #D87C16;}
+.bg-blue{background-color: #5479FA;}
+.bg-black{background-color: #000;}
+.bg-dark-gray{background-color: #131416;}
+
+/*LINES AND BORDERS*/
+.br-9{border-radius: 9px;}
+.be-gray{border-right: 1px solid #D7CCDD}
+
+
+/*BOOTSTRAP OVERRIDE--------------------------*/
+
+/*BUTTONS*/
+.btn{
+    border-radius: 2px!important;
+    font-size: 16px;font-family: 'Helvetica LT Std Black';
+    display: inline-block;
+    text-align: center;
+}
+.btn-link{font: normal normal bold 21px/20px 'Calibri'; text-decoration: none;}
+
+.btn-primary{width:230px;height:70px;line-height: 50px!important;}
+.btn-secondary,.btn-outline-primary{width:124px;height:40px;line-height: 25px!important;}
+.btn-primary,.btn-secondary{background-color: #D87C16!important;color: #F8F8F8!important; border-color: transparent!important; font: normal normal 900 16px/20px 'Trade Gothic';}
+.btn-primary:hover{background-color: #fff!important;color: #D87C16!important;}
+.btn-secondary:hover{background-color: #5479FA!important;color: #fff!important;}
+
+.btn-outline-primary{background-color: transparent!important;color: #F8F8F8!important; border-color: #fff!important; font: normal normal 900 16px/20px 'Trade Gothic';}
+.btn-outline-primary:hover{background-color: #fff!important;color: #D87C16!important;}
+
+
+/*NAVBAR*/
+.navbar{background-color: #0D0D0D; color: #fff;height: 140px;}
+#navbarLogo{width: 287px;height: 76px;}
+.nav-link{font: normal normal normal 17px/21px Helvetica LT Std;}
+.nav-link:hover{text-decoration: underline; color: #FEA561;}
+.nav-link:active,.nav-link.active{color: #FEA561;}
+
+/*CARDS*/
+.card{border: none;}
+#contact-cards .card-group:nth-child(odd) .card-body{
+    background-color: #D87C16!important;color:#fff
+}
+#contact-cards .card-group:nth-child(even) .card-body{
+    background-color: #5479FA!important;color:#fff
+}
+
+/*--------------------------*/
+
+/*LIST GROUPS*/
+.list-group-horizontal>.list-group-item:first-child:not(:last-child) {
+    background: #5479FA 0% 0% no-repeat padding-box; 
+    border:none;   
+}
+.list-group-horizontal>.list-group-item{
+    border: 1px solid #707070;
+    background-color: transparent;
+    border-radius: 0px!important;
+    color: #fff;
+    margin: 0px 5px;
+}
+
+/*IMAGE BANNERS*/
+.banner-title,.banner-title-overlay{
+    background-repeat: no-repeat!important;
+    background-position: center!important;
+    background-size: cover!important;
+    width: 100%;
+    height: 480px;
+    text-align: center;   
+    padding: 0;   
+
+}
+.banner-title-overlay{
+    background: url('../assets/img/gradient.svg') no-repeat;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;  
+    padding: 8rem;
+}
+.banner-img-overlay{
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding: var(--bs-card-img-overlay-padding);
+}
+:not(#num_stats)>.banner-title .title-lg{font: normal normal bold 100px/60px 'Helvetica LT Std';}
+#num_stats>.banner-title{
+   background: url('../assets/img/Home/Container-benefit.png');
+}
+
+
+#page_cities>.banner-title{
+    background: transparent url('../assets/img/Cities_of_Gastronomy/image.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+#page_about>.banner-title{
+    background: url('../assets/img/About/image-1.png');
+}
+#page_news>.banner-title{
+    background: url('../assets/img/News/image.png');
+}
+#page_events>.banner-title{
+    background: url('../assets/img/Events/image.png');
+}
+#page_open_calls>.banner-title{
+    background: url('../assets/img/Open_Calls/image.png');
+}
+#page_projects>.banner-title{
+    background: url('../assets/img/Projects/image.png');
+}
+#page_stats>.banner-title{
+   background: url('../assets/img/Home/Container-benefit.png');
+}
+#page_calendar>.banner-title{
+   background: url('../assets/img/Home/Container-benefit.png');
+}
+#page_contact>.banner-title{
+   background-color: #18191D;
+}
+
+
+/*NEWSLETTER*/
+#newsletter{background-color: #CE663C; color: #fff;}
+
+/*FOOTER*/
+footer{font-size:17px;font-family: 'Helvetica LT Std Roman';background-color: #131416; color: #fff;}
+footer a{color: #fff;}
+
+@media screen and (min-width: 1536px){
+.container{
+    max-width: 100rem !important;
+}
+}
+@media (min-width: 992px){
+    .g-5 .col-lg-auto{
+        flex: 0 0 auto!important;
+        width: 20%!important;
+    }
+}
