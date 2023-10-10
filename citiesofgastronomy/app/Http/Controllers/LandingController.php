@@ -31,6 +31,16 @@ class LandingController extends Controller
     {
         return view('landing.about');
     }
+    public function initiatives()
+    {
+        return view('landing.initiatives');
+    }
+    public function tastier_life()
+    {
+        return view('landing.tastier_life');
+    }
+
+
     public function news()
     {
         return view('landing.news');
@@ -47,6 +57,8 @@ class LandingController extends Controller
     {
         return view('landing.projects');
     }
+
+
     public function stats()
     {
         return view('landing.stats');

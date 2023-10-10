@@ -5,13 +5,19 @@ return [
     'nav_index' => 'Home',
     'nav_cities' => 'Cities of Gastronomy',
     'nav_about' => 'About',
+    'nav_initiatives' => 'Initiatives',
+    'nav_tastier_life' => 'Tastier Life',
+
     'nav_news' => 'News',
     'nav_events' => 'Events',
     'nav_opencalls' => 'Open Calls',
     'nav_projects' => 'Projects',
+
     'nav_stats' => 'Number and stats',
     'nav_calendar' => 'Calendar',
     'nav_contact' => 'Contact',
+    
+    'search' => 'Search',
 
     'newsletter' => [
         'description' => 'Suscribe to our newsletter',
@@ -25,6 +31,7 @@ return [
     'copyright' => 'COPYRIGHT © 2023 CITIES OF GASTRONOMY',
     'privacy_policy' => 'Privacy Policy',
     'terms_of_use' => 'Terms of Use',
+
 
     'btn_subscribe' => 'Subscribe',
 

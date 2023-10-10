@@ -33,13 +33,13 @@ body{background-color: #000;color:#fff;margin-top: 140px;}
 .title-xs,.card-title{font-size: 30px;}
 .title-xs{font-family: 'Calibri'}
 p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: 'Calibri'}
-.date{font: normal normal bold 16px/19px 'Calibri';font-family: 'Calibri'}
+.activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
 
 #newsletter .nav-link{font-family: 'Helvetica LT Std Roman'; font-size: 14px;}
 #calendar .title-lg, #newsletter .title-xs,.card-title{font-family: 'Helvetica LT Std Black';}
 #newsletter .title-xs{font-size: 16px;}
 .text-orange,.btn-link{color: #D87C16!important;}
-.text-blue,.date{color: #5479FA;}
+.text-blue{color: #5479FA;}
 .text-yellow{color: #D7D308;}
 .text-yellow2{color: #FFFC65;}
 .text-ocean{color: #354E57;}
@@ -52,6 +52,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 /*LINES AND BORDERS*/
 .br-9{border-radius: 9px;}
 .be-gray{border-right: 1px solid #D7CCDD}
+.b-gray{border: 1px solid #707070;}
 
 
 /*BOOTSTRAP OVERRIDE--------------------------*/
@@ -63,11 +64,11 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
     display: inline-block;
     text-align: center;
 }
-.btn-link{font: normal normal bold 21px/20px 'Calibri'; text-decoration: none;}
+.btn-link{font: normal normal bold 21px/20px 'Helvetica LT Std Black'; text-decoration: none;}
 
 .btn-primary{width:230px;height:70px;line-height: 50px!important;}
 .btn-secondary,.btn-outline-primary{width:124px;height:40px;line-height: 25px!important;}
-.btn-primary,.btn-secondary{background-color: #D87C16!important;color: #F8F8F8!important; border-color: transparent!important; font: normal normal 900 16px/20px 'Trade Gothic';}
+.btn-primary,.btn-secondary{background-color: #D87C16!important;color: #F8F8F8!important; border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
 .btn-primary:hover{background-color: #fff!important;color: #D87C16!important;}
 .btn-secondary:hover{background-color: #5479FA!important;color: #fff!important;}
 
@@ -81,20 +82,28 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 .nav-link{font: normal normal normal 17px/21px Helvetica LT Std;}
 .nav-link:hover{text-decoration: underline; color: #FEA561;}
 .nav-link:active,.nav-link.active{color: #FEA561;}
+.navbar .input-group{width: 200px;}
+.navbar .form-control,.navbar .input-group-text{background-color: #1D1D1D;border: none;color: #fff;}
+.navbar .form-control:focus{box-shadow: 0 0 0 0.25rem rgba(35, 35, 35, 0.25);}
 
 /*CARDS*/
 .card{border: none;}
-#contact-cards .card-group:nth-child(odd) .card-body{
-    background-color: #D87C16!important;color:#fff
-}
-#contact-cards .card-group:nth-child(even) .card-body{
-    background-color: #5479FA!important;color:#fff
-}
+#contact-cards .card-group:nth-child(odd) .card-body{background-color: #D87C16!important;color:#fff}
+#contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
+
+/*ACCORDION*/
+.accordion-button:not(.collapsed)::after{background-image: url('../assets/icons/expand.svg');transform: rotate(90deg);}
+.accordion-button::after{background-image: url('../assets/icons/expand.svg');height: 4rem;background-size: contain;}
+.accordion-button,.accordion-item{background-color: transparent!important; color: #fff!important;}
+.accordion-button{padding: 10px 0;font: normal normal bold 35px/60px "Helvetica LT Std";}
+.accordion-button,.accordion-item,.accordion-button:focus,.accordion-button:not(.collapsed),.accordion-collapse{border: none!important;box-shadow: none;}
+.accordion-body{padding: 16px 0;font: normal normal normal 18px/21px "Calibri";}
+
 
 /*--------------------------*/
 
 /*LIST GROUPS*/
-.list-group-horizontal>.list-group-item:first-child:not(:last-child) {
+/*.list-group-horizontal>.list-group-item:first-child:not(:last-child) {
     background: #5479FA 0% 0% no-repeat padding-box; 
     border:none;   
 }
@@ -104,7 +113,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
     border-radius: 0px!important;
     color: #fff;
     margin: 0px 5px;
-}
+}*/
 
 /*IMAGE BANNERS*/
 .banner-title,.banner-title-overlay{
@@ -149,6 +158,13 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 #page_about>.banner-title{
     background: url('../assets/img/About/image-1.png');
 }
+#page_initiatives>.banner-title{
+    background: url('../assets/img/News/image.png');
+}
+#page_tastier_life>.banner-title{
+    background: url('../assets/img/News/image.png');
+}
+
 #page_news>.banner-title{
     background: url('../assets/img/News/image.png');
 }
@@ -161,6 +177,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 #page_projects>.banner-title{
     background: url('../assets/img/Projects/image.png');
 }
+
 #page_stats>.banner-title{
    background: url('../assets/img/Home/Container-benefit.png');
 }
@@ -171,22 +188,119 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
    background-color: #18191D;
 }
 
+/*MAP*/
+#map svg{position: absolute;z-index: 12;}
+#map .pin{z-index: 14;}
+.map-title-overlay{
+    position: absolute;
+    top: 250px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;  
+    padding: 1rem;
+    width: 100%;
+    text-align: center;   
+}
+.pin:hover{transform: scale(1.2);}
+
+/*ABOUT - TIMELINE*/
+.timeline-item{height: 67px;}
+.timeline-col{border: 1px solid #707070;height: 100%; display: flex; align-items: center;}
+.timeline-title{font: normal normal normal 26px/31px "Helvetica LT Std";}
+.timeline-date{font: normal normal normal 22px/26px "Helvetica LT Std";}
+#timeline-list .bl-blue{border-left: 20px solid #5479FA;}
+#timeline-list .bl-orange{border-left: 20px solid #FEA561;}
+#timeline-list .bl-yellow{border-left: 20px solid #D7D308;}
+/*.timeline-item >.timeline-col:nth-child(1){}*/
 
 /*NEWSLETTER*/
 #newsletter{background-color: #CE663C; color: #fff;}
+#newsletter .form-control{background-color: transparent; border-radius: 0;height: 40px; color: #fff;}
+#newsletter ::placeholder{color: #fff;}
 
 /*FOOTER*/
 footer{font-size:17px;font-family: 'Helvetica LT Std Roman';background-color: #131416; color: #fff;}
 footer a{color: #fff;}
+
+/*SHARE BUTTONS ON HIGHLIGHT----------------*/
+#share-btns {
+    color: #56b8f5;
+    background-color: #0D0D0D;
+    cursor: pointer;
+    border: 2px solid #56b8f5;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+    transition: color 0.2s, background-color 0.2s ease-in-out;
+  }
+  #linkedin-share-btn,#facebook-share-btn,#twitter-share-btn{
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+    color: #fff;
+    background-color: #5479FA;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+    transition: color 0.2s, background-color 0.2s ease-in-out;
+  }
+  #linkedin-share-btn:hover,#facebook-share-btn:hover,#twitter-share-btn:hover{
+    color: #fff;
+    background-color: #CE663C;
+  }
+  #twitter-share-btn img {
+    pointer-events: none;
+  }
+  .btnEntrance {
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+    animation-name: btnEntrance;
+  }
+  @keyframes btnEntrance { /* zoomIn */
+    0% {
+      opacity: 0;
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+    100% {
+      opacity: 1;
+    }    
+  }
+/*------------------------------------*/
 
 @media screen and (min-width: 1536px){
 .container{
     max-width: 100rem !important;
 }
 }
+@media (min-width: 1420px){
+    .nav-item {
+        padding-right: 1rem!important;
+        padding-left: 1rem!important;
+    }
+}
+@media screen and (min-width: 1190px) and (max-width:1269px){
+    #navbarLogo{width: 250px!important;height: 66px!important;}
+}
+@media screen and (min-width: 992px) and (max-width:1189px){
+    #navbarLogo{width: 150px!important;height: 39px!important;}
+}
 @media (min-width: 992px){
     .g-5 .col-lg-auto{
         flex: 0 0 auto!important;
         width: 20%!important;
     }
+}
+@media (max-width: 767px){
+    footer p{text-align: center!important;}
+    footer .offset-3{margin-left: auto!important;}
+   /* footer .col-auto{margin-left: auto!important;margin-right: auto!important;}*/
 }

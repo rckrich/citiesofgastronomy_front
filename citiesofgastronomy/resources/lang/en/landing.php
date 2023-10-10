@@ -1,24 +1,35 @@
 <?php
 
 return [
+    'map'=>[
+        'title' => 'DISCOVER YOUR CITY',
+    ],
     'about'=>[
-        'title' => 'Gastronomic cities',
+        'title' => 'Cities of Gastronomy ',
         'subtitle' => 'About',
     ],
     'stats'=>[
         'title' => 'NUMBER AND STATS',
-        'subtitle_1' => 'Benefits of becoming a CoG',
-        'subtitle_2' => 'Do you want to become a CoG?',
+        'subtitle_1' => 'Benefits of becoming a Creative Cities of Gastronomy',
+        'subtitle_2' => 'Do you want to become a Creative Cities of Gastronomy?',
+    ],
+    'initiatives'=>[
+        'title' => 'Recent initiatives',
+        'lorem_activity' => 'Communication, Studies & Research & Evaluations.',
     ],
     'news'=>[
         'title' => 'News',
+        'lorem_activity' => 'News',
     ],
     'open_calls'=>[
         'title' => 'Open Calls',
+        'lorem_activity' => 'Open Call',
     ],
     'calendar'=>[
         'title' => 'CALENDAR OF UPCOMING EVENTS',
     ],
+
+    'activity_type' => 'Type of Activity:',
 
     'btn_learn' => 'LEARN MORE',
     'btn_explore' => 'EXPLORE MORE',
@@ -27,7 +38,7 @@ return [
     'btn_calendar' => 'See Calendar',    
     
     
-    'lorem_title' => 'New Title. Lorem Ipsum is simply dummy text',    
+    'lorem_title' => 'Name',    
     'lorem' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos',
 
 ];

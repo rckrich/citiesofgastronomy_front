@@ -52,7 +52,7 @@
         </div>
         
         <div class="container p-5">
-            <div class="row align-items-center mb-5">
+            <div class="row align-items-center mb-5 pt-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.faq.title')}}</h1>
                 </div>
@@ -61,52 +61,46 @@
                 
                 <div class="col-12">
                     
-                <div class="accordion" id="accordionExample">
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                    <div class="accordion" id="accordionFAQ">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                                {{__('about.faq.subtitle',['city'=>'City'])}}
                             </button>
-                        </h2>
+                            </h2>
+                            <div id="collapse-1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                {{__('about.lorem')}}                        
+                            </div>
+                            </div>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                            {{__('about.lorem')}}
-                        </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
+                                {{__('about.faq.subtitle',['city'=>'City'])}}
                             </button>
-                        </h2>
+                            </h2>
+                            <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                {{__('about.lorem')}}                        
+                            </div>
+                            </div>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                            {{__('about.lorem')}}
-                        </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            {{__('about.faq.subtitle',['city'=>'City'])}}
-                            </button>
-                        </h2>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        <div class="card-body">
-                            {{__('about.lorem')}}
-                        </div>
-                        </div>
-                    </div>
-                    </div>
 
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
+                                {{__('about.faq.subtitle',['city'=>'City'])}}
+                            </button>
+                            </h2>
+                            <div id="collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                {{__('about.lorem')}}                        
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                
             </div>
@@ -118,17 +112,45 @@
                     <h1 class="title-xl">{{__('about.timeline.title')}}</h1>
                 </div>
             </div>
-            <div class="row">
-                
-                <div class="col-12">
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item"></li>
-                        <li class="list-group-item flex-fill">Title</li>
-                        <li class="list-group-item ">A second item</li>
-                        <li class="list-group-item flex-fill">14.Jan.2024</li>
-                    </ul>
+            <div class="row align-items-center">
+                <div id="timeline-list" class="px-0">
+                    <div class="timeline-item row align-items-center mx-auto my-3">
+                        <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
+                            <div class="w-100 timeline-title ps-3 text-left">Title</div>
+                        </div>
+                        <div class="timeline-col px-0 mx-2 col-lg-1 col-md-1 col-sm-1 col-auto text-center">
+                            <div class="w-100"><img class="mx-auto" src="{{asset('assets/icons/visibility.svg')}}" width="38"height="26"/></div>
+                        </div>
+                        <div class="timeline-col px-0 mx-2 col-lg-3 col-md-3 col-sm-3 col-auto text-center">
+                            <div class="w-100 timeline-date">12. Jan.2024 - 14.Jan.2024</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item row align-items-center mx-auto my-3">
+                        <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
+                            <div class="w-100 timeline-title ps-3 text-left">Title</div>
+                        </div>
+                        <div class="timeline-col px-0 mx-2 col-lg-1 col-md-1 col-sm-1 col-auto text-center">
+                            <div class="w-100"><img class="mx-auto" src="{{asset('assets/icons/visibility_off.svg')}}" width="38"height="26"/></div>
+                        </div>
+                        <div class="timeline-col px-0 mx-2 col-lg-3 col-md-3 col-sm-3 col-auto text-center">
+                            <div class="w-100 timeline-date">14.Dec.2023</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item row align-items-center mx-auto my-3">
+                        <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
+                            <div class="w-100 timeline-title ps-3 text-left">Title</div>
+                        </div>
+                        <div class="timeline-col px-0 mx-2 col-lg-1 col-md-1 col-sm-1 col-auto text-center">
+                            <div class="w-100"><img class="mx-auto" src="{{asset('assets/icons/visibility.svg')}}" width="38"height="26"/></div>
+                        </div>
+                        <div class="timeline-col px-0 mx-2 col-lg-3 col-md-3 col-sm-3 col-auto text-center">
+                            <div class="w-100 timeline-date">14.Nov.2023</div>
+                        </div>
+                    </div>
+
                 </div>
-               
             </div>
         </div>
 

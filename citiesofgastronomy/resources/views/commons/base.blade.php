@@ -25,8 +25,8 @@
         <button id="OpenMenu" class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav text-center">
                 <li id="nav_index" class="nav-item {{ request()->routeIs('landing.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.index')}}">{{__('general.nav_index')}}</a>
                 </li>
@@ -36,7 +36,13 @@
                 <li id="nav_about" class="nav-item {{ request()->routeIs('landing.about') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.about')}}">{{__('general.nav_about')}}</a>
                 </li>
-                <li id="nav_news" class="nav-item {{ request()->routeIs('landing.news') ? 'active' : '' }}">
+                <li id="nav_initiatives" class="nav-item {{ request()->routeIs('landing.initiatives') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('landing.initiatives')}}">{{__('general.nav_initiatives')}}</a>
+                </li>
+                <li id="nav_initiatives" class="nav-item {{ request()->routeIs('landing.tastier_life') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('landing.tastier_life')}}">{{__('general.nav_tastier_life')}}</a>
+                </li>
+                <!--li id="nav_news" class="nav-item {{ request()->routeIs('landing.news') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.news')}}">{{__('general.nav_news')}}</a>
                 </li>
                 <li id="nav_events" class="nav-item {{ request()->routeIs('landing.events') ? 'active' : '' }}">
@@ -47,7 +53,7 @@
                 </li>
                 <li id="nav_projects" class="nav-item {{ request()->routeIs('landing.projects') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.projects')}}">{{__('general.nav_projects')}}</a>
-                </li>
+                </li-->
                 <li id="nav_stats" class="nav-item {{ request()->routeIs('landing.stats') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.stats')}}">{{__('general.nav_stats')}}</a>
                 </li>
@@ -58,10 +64,23 @@
                     <a class="nav-link" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                 </li>
             </ul>
+            <form class="d-flex" role="search">
+                <div class="input-group px-2">
+                    <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search.svg')}}"/></span>
+                    <input class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
+                </div>
+            </form>
+            
         </div>
     </nav>
     <div class="">
         @yield('content')
+        <!--div id="share-btns" class="">
+            <button id="linkedin-share-btn" class="px-2"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="21" width="21"/></button>
+            <button id="facebook-share-btn" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></button>
+            <button id="twitter-share-btn" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></button>
+        </div-->
+        <button id="twitter-share-btn"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></button>
     </div>
     <section id="newsletter">
         <div class="container p-5">
@@ -87,10 +106,12 @@
                             <a class="nav-link py-1" href="{{route('landing.index')}}">{{__('general.nav_index')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.cities')}}">{{__('general.nav_cities')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.about')}}">{{__('general.nav_about')}}</a>
-                            <a class="nav-link py-1" href="{{route('landing.news')}}">{{__('general.nav_news')}}</a>
+                            <a class="nav-link py-1" href="{{route('landing.initiatives')}}">{{__('general.nav_initiatives')}}</a>
+                            <a class="nav-link py-1" href="{{route('landing.tastier_life')}}">{{__('general.nav_tastier_life')}}</a>
+                            <!--a class="nav-link py-1" href="{{route('landing.news')}}">{{__('general.nav_news')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.events')}}">{{__('general.nav_events')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.open_calls')}}">{{__('general.nav_opencalls')}}</a>
-                            <a class="nav-link py-1" href="{{route('landing.projects')}}">{{__('general.nav_projects')}}</a>
+                            <a class="nav-link py-1" href="{{route('landing.projects')}}">{{__('general.nav_projects')}}</a-->
                             <a class="nav-link py-1" href="{{route('landing.stats')}}">{{__('general.nav_stats')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.calendar')}}">{{__('general.nav_calendar')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
@@ -121,11 +142,12 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 align-self-end">
-                    <div class="row align-items-end ">
-                        <div class="col-auto  ms-lg-auto ms-md-auto ms-sm-0 ms-0 my-lg-0 my-md-0 my-sm-4 my-4">
+                    <div class="row align-items-end">
+                        <div class="col-auto me-lg-0 me-md-0 me-sm-auto mx-auto my-lg-0 my-md-0 my-sm-4 my-4">
+                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/tiktok.svg')}}" height="19" width="23"/></a>
+                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
                             <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
                             <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
-                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
                             <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/youtube.svg')}}" height="21" width="21"/></a>
                         </div>
                     </div>

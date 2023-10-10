@@ -6,62 +6,47 @@
     <section id="map">
     <div>
         <div class="d-block">
-            <div class="">
+            <div class="row align-items-center mx-0 px-0">
+
                 <!-- el viewBox 450 cambia el tamaño de la vista del heigth de la imagen con los botones -->
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" 
                 viewBox="0 0 1056 450" style="enable-background:new 0 0 1056 816;" xml:space="preserve"
-                style="position:absolute;vertical-align:middle">
-                    <rect x="47" y="163" class="getData st0" id="21A" width="120" height="60" onclick="Depa21A(); resetDropdown(); plantaAlta();"/>
-                    <rect x="35" y="38" class="getData st0" id="31A" width="132" height="125" onclick="Depa31A(); resetDropdown(); plantaAlta();"/>
-                    
-                    <rect x="171" y="163" class="getData st0" id="22A" width="115" height="60" onclick="Depa22A(); resetDropdown(); plantaAlta();"/>
-                    <rect x="171" y="38" class="getData st0" id="32A" width="115" height="125" onclick="Depa32A(); resetDropdown(); plantaAlta();"/>
-                    
-                    <rect x="290" y="163" class="getData st0" id="23A" width="114" height="60" onclick="Depa23A(); resetDropdown(); plantaAlta();"/>
-                    <rect x="290" y="38" class="getData st0" id="33A" width="114" height="125" onclick="Depa33A(); resetDropdown(); plantaAlta();"/>
-                    
-                    <rect x="408" y="163" class="getData st0" id="24A" width="114" height="60" onclick="Depa24A(); resetDropdown(); plantaAlta();"/>
-                    <rect x="408" y="38" class="getData st0" id="34A" width="114" height="125" onclick="Depa34A(); resetDropdown(); plantaAlta();"/>
-
-                    <rect x="526" y="163" class="getData st0" id="25A" width="114" height="60" onclick="Depa25A(); resetDropdown(); plantaAlta();"/>   
-                    <rect x="526" y="38" class="getData st0" id="35A" width="114" height="125" onclick="Depa35A(); resetDropdown(); plantaAlta();"/>  
-                    
-                    <rect x="644" y="163" class="getData st0" id="26A" width="114" height="60" onclick="Depa26A(); resetDropdown(); plantaAlta();"/>   
-                    <rect x="644" y="38" class="getData st0" id="36A" width="114" height="125" onclick="Depa36A(); resetDropdown(); plantaAlta();"/>    
-                    
-                    <rect x="762" y="163" class="getData st0" id="27A" width="114" height="60" onclick="Depa27A(); resetDropdown(); plantaAlta();"/>   
-                    <rect x="762" y="38" class="getData st0" id="37A" width="114" height="125" onclick="Depa37A(); resetDropdown(); plantaAlta();"/> 
-
-                    <rect x="880" y="163" class="getData st0" id="28A" width="123" height="60" onclick="Depa28A(); resetDropdown(); plantaAlta();"/>   
-                    <rect x="880" y="38" class="getData st0" id="38A" width="123" height="125" onclick="Depa38A(); resetDropdown(); plantaAlta();"/>   
-                    
-                    
-                    <text transform="matrix(1 0 0 1 75 205 )" class="getData st1 st2 st3">A-21</text> 
-                    <text transform="matrix(1 0 0 1 70 124 )" class="getData st1 st2 st3">A-31</text>
-                    <text transform="matrix(1 0 0 1 200 205)" class="getData st1 st2 st3">A-22</text>
-                    <text transform="matrix(1 0 0 1 200 124)" class="getData st1 st2 st3">A-32</text>
-                    <text transform="matrix(1 0 0 1 315 205)" class="getData st1 st2 st3">A-23</text>
-                    <text transform="matrix(1 0 0 1 315 124)" class="getData st1 st2 st3">A-33</text>
-                    <text transform="matrix(1 0 0 1 435 205)" class="getData st1 st2 st3">A-24</text>
-                    <text transform="matrix(1 0 0 1 435 124)" class="getData st1 st2 st3">A-34</text>
-                    <text transform="matrix(1 0 0 1 555 205)" class="getData st1 st2 st3">A-25</text>
-                    <text transform="matrix(1 0 0 1 555 124)" class="getData st1 st2 st3">A-35</text>
-                    <text transform="matrix(1 0 0 1 670 205)" class="getData st1 st2 st3">A-26</text>
-                    <text transform="matrix(1 0 0 1 670 124)" class="getData st1 st2 st3">A-36</text>
-                    <text transform="matrix(1 0 0 1 790 205)" class="getData st1 st2 st3">A-27</text>
-                    <text transform="matrix(1 0 0 1 790 124)" class="getData st1 st2 st3">A-37</text>
-                    <text transform="matrix(1 0 0 1 910 205)" class="getData st1 st2 st3">A-28</text>
-                    <text transform="matrix(1 0 0 1 910 124)" class="getData st1 st2 st3">A-38</text>                    
+                style="position:absolute;vertical-align:middle">                    
+                    <svg id="pin-1" class="pin" x="350" y="250"  onclick="openMapModal()" xmlns="http://www.w3.org/2000/svg" width="18.095" height="22.024" viewBox="0 0 18.095 22.024">
+                        <path id="Trazado_17" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#fff"/>
+                    </svg>
+                    <svg id="pin-2" class="pin" x="550" y="250"  onclick="openMapModal()" xmlns="http://www.w3.org/2000/svg" width="18.095" height="22.024" viewBox="0 0 18.095 22.024">
+                        <path id="Trazado_17" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#fff"/>
+                    </svg>   
                 </svg>
-    
-                <img style="width: auto; height: auto; max-width: 100%;vertical-align:middle" src="{{asset('assets/img/map.png')}}">
 
+                <svg id="pin-1" class="pin" x="350" y="250"  onclick="openMapModal()" xmlns="http://www.w3.org/2000/svg" width="18.095" height="22.024" viewBox="0 0 18.095 22.024">
+                    <path id="Trazado_17" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#fff"/>
+                </svg>
+
+                <!--div class="map-title-overlay row align-items-start mx-0">
+                    <h1 class="title-lg text-yellow">{{__('landing.map.title')}}</h1>
+                </div-->
+                <div id="map-card" class="map-title-overlay row align-items-center mx-auto">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-title-overlay row align-items-end mx-0">
+                    <a class="btn btn-primary" href="{{route('landing.cities')}}">{{__('landing.map.title')}}</a>
+                </div>
+                <img id="map-background" class="px-0" style="width: auto; height: auto; max-width: 100%;vertical-align:middle" src="{{asset('assets/img/map.png')}}">
             </div>
         </div>
     </div>
     </section>
 
-    <section id="about" class="container p-5">
+    <section id="about" class="container p-5 selectable-text-area">
         <div class="min-h-100 row px-0 mx-0 align-items-center">
             <h1 class="title-xl text-yellow text-center">{{__('landing.about.title')}}</h1>
             <div class="row text-white">
@@ -79,11 +64,13 @@
 
     </section>
 
-    <section id="num_stats">
+    <section id="num_stats" class="bg-dark-gray selectable-text-area">
         <div class="banner-title ">
+        <div class="banner-title-overlay row align-items-center mx-0">
             <div class="banner-img-overlay">
                 <h1 class="title-lg text-yellow2">{{__('landing.stats.title')}}</h1>
             </div>
+        </div>
         </div>
         <div class="container p-5">
         <div class="min-h-100 row px-0 mx-0 align-items-center">
@@ -109,7 +96,97 @@
         </div>
         </div>
     </section>
-    <section id="news" class="py-5">
+    <section id="initiatives" class="py-5 selectable-text-area">
+        <div class="container py-5">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <h1 class="title-xl">{{__('landing.initiatives.title')}}</h1>
+                </div>
+                <div class="col-auto ms-lg-auto ms-md-auto ms-sm-0 ms-0">
+                    <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
+                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
+                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
+                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
+                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
+                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
+                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
+                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
+                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="news" class="py-5 selectable-text-area">
         <div class="container py-5">
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -124,9 +201,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">13 Jul, 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -135,9 +220,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">13 Jul, 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -146,9 +239,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">13 Jul, 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -157,9 +258,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">13 Jul, 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -167,7 +276,7 @@
             </div>
         </div>
     </section>
-    <section id="open_calls" class="py-5">
+    <section id="open_calls" class="py-5 selectable-text-area">
         <div class="container py-5">
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -182,9 +291,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">Deadline: 31 December 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -193,9 +310,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">Deadline: 31 December 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -204,9 +329,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">Deadline: 31 December 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -215,9 +348,17 @@
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
-                            <h6 class="date mb-2">Deadline: 31 December 2023</h6>
                             <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
                             <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <div class="py-3">
+                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
+                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                            </div>
+                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
+                            <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
                             <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
@@ -225,7 +366,7 @@
             </div>
         </div>
     </section>
-    <section id="calendar" class="bg-white">
+    <section id="calendar" class="bg-white selectable-text-area">
         <div class="container p-4">
         <div class="row align-items-center">
             <div class="col-auto ms-auto be-gray">
