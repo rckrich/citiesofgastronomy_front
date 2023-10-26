@@ -39,25 +39,10 @@ class LandingController extends Controller
     {
         return view('landing.tastier_life');
     }
-
-
-    public function news()
+    public function tours()
     {
-        return view('landing.news');
+        return view('landing.tours');
     }
-    public function events()
-    {
-        return view('landing.events');
-    }
-    public function open_calls()
-    {
-        return view('landing.open_calls');
-    }
-    public function projects()
-    {
-        return view('landing.projects');
-    }
-
 
     public function stats()
     {

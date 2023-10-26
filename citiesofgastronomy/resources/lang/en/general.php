@@ -7,12 +7,7 @@ return [
     'nav_about' => 'About',
     'nav_initiatives' => 'Initiatives',
     'nav_tastier_life' => 'Tastier Life',
-
-    'nav_news' => 'News',
-    'nav_events' => 'Events',
-    'nav_opencalls' => 'Open Calls',
-    'nav_projects' => 'Projects',
-
+    'nav_tours' => 'Tours',
     'nav_stats' => 'Number and stats',
     'nav_calendar' => 'Calendar',
     'nav_contact' => 'Contact',

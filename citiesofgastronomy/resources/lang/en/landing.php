@@ -3,6 +3,7 @@
 return [
     'map'=>[
         'title' => 'DISCOVER YOUR CITY',
+        'btn_cities' => 'DISCOVER ALL THE CITIES',
     ],
     'about'=>[
         'title' => 'Cities of Gastronomy ',

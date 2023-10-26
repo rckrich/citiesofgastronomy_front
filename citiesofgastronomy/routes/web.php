@@ -20,11 +20,7 @@ Route::get('/cities', [LandingController::class, 'cities'])->name('landing.citie
 Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
 Route::get('/initiatives', [LandingController::class, 'initiatives'])->name('landing.initiatives');
 Route::get('/tastier_life', [LandingController::class, 'tastier_life'])->name('landing.tastier_life');
-
-Route::get('/news', [LandingController::class, 'news'])->name('landing.news');
-Route::get('/events', [LandingController::class, 'events'])->name('landing.events');
-Route::get('/open_calls', [LandingController::class, 'open_calls'])->name('landing.open_calls');
-Route::get('/projects', [LandingController::class, 'projects'])->name('landing.projects');
+Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours');
 
 Route::get('/stats', [LandingController::class, 'stats'])->name('landing.stats');
 Route::get('/calendar', [LandingController::class, 'calendar'])->name('landing.calendar');

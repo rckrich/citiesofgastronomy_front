@@ -146,5 +146,14 @@ function facebookShareBtnClick(event) {
 }
 
 function openMapModal(){
-    //alert("hello")
+  var w = window.innerWidth;
+  if(w>992){
+    $('#map-card').removeClass('d-none');
+    $('#map-card').addClass('d-block');
+  }
+
+}
+function closeMapModal(){
+  $('#map-card').addClass('d-none');
+  $('#map-card').removeClass('d-block');
 }

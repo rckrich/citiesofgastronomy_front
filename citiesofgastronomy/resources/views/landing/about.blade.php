@@ -4,14 +4,34 @@
 
 @section('content')
     <section id="page_about">
-        <div class="banner-title">
+
+        <div id="aboutCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" class="mx-2 active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" class="mx-2" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" class="mx-2" aria-label="Slide 3"></button>
+            </div>
+            <div class="banner-title">
             <div class="banner-title-overlay row align-items-center mx-0">
                 <div class="banner-img-overlay">
                     <h1 class="title-lg text-yellow">{{__('about.title')}}</h1>
                 </div>
             </div>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
+                </div>
+                <div class="carousel-item">
+                    <video style="width:100%; height:inherit" controls autoplay>
+                        <source src="{{asset('assets/img/Banners/sampleVideo.mp4')}}" type="video/mp4">
+                    </video>
+                </div>
+            </div>
         </div>
-
 
         <div class="container p-5">
         <div class="my-5 row px-0 mx-0 align-items-start">
@@ -62,44 +82,42 @@
                 <div class="col-12">
                     
                     <div class="accordion" id="accordionFAQ">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                                {{__('about.faq.subtitle',['city'=>'City'])}}
-                            </button>
-                            </h2>
-                            <div id="collapse-1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
-                            <div class="accordion-body">
-                                {{__('about.lorem')}}                        
-                            </div>
-                            </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                        </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            {{__('about.lorem')}}                        
                         </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
-                                {{__('about.faq.subtitle',['city'=>'City'])}}
-                            </button>
-                            </h2>
-                            <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
-                            <div class="accordion-body">
-                                {{__('about.lorem')}}                        
-                            </div>
-                            </div>
                         </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
-                                {{__('about.faq.subtitle',['city'=>'City'])}}
-                            </button>
-                            </h2>
-                            <div id="collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
-                            <div class="accordion-body">
-                                {{__('about.lorem')}}                        
-                            </div>
-                            </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                        </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            {{__('about.lorem')}}                        
                         </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                        </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            {{__('about.lorem')}}                        
+                        </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
                

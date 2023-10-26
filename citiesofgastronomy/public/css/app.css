@@ -69,12 +69,11 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 .btn-primary{width:230px;height:70px;line-height: 50px!important;}
 .btn-secondary,.btn-outline-primary{width:124px;height:40px;line-height: 25px!important;}
 .btn-primary,.btn-secondary{background-color: #D87C16!important;color: #F8F8F8!important; border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
-.btn-primary:hover{background-color: #fff!important;color: #D87C16!important;}
-.btn-secondary:hover{background-color: #5479FA!important;color: #fff!important;}
-
+.btn-primary:hover,.btn-info:hover{background-color: #fff!important;color: #D87C16!important;}
+.btn-secondary:hover,.btn-info{background-color: #5479FA!important;color: #fff!important;border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
 .btn-outline-primary{background-color: transparent!important;color: #F8F8F8!important; border-color: #fff!important; font: normal normal 900 16px/20px 'Trade Gothic';}
 .btn-outline-primary:hover{background-color: #fff!important;color: #D87C16!important;}
-
+.btn-transparent,.btn-transparent:focus,.btn-transparent:active{background-color: transparent!important; border: none!important;box-shadow: none!important;}
 
 /*NAVBAR*/
 .navbar{background-color: #0D0D0D; color: #fff;height: 140px;}
@@ -92,13 +91,11 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 #contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
 
 /*ACCORDION*/
-.accordion-button:not(.collapsed)::after{background-image: url('../assets/icons/expand.svg');transform: rotate(90deg);}
-.accordion-button::after{background-image: url('../assets/icons/expand.svg');height: 4rem;background-size: contain;}
 .accordion-button,.accordion-item{background-color: transparent!important; color: #fff!important;}
-.accordion-button{padding: 10px 0;font: normal normal bold 35px/60px "Helvetica LT Std";}
 .accordion-button,.accordion-item,.accordion-button:focus,.accordion-button:not(.collapsed),.accordion-collapse{border: none!important;box-shadow: none;}
+.accordion-button{padding: 10px 0;font: normal normal bold 35px/60px "Helvetica LT Std";}
 .accordion-body{padding: 16px 0;font: normal normal normal 18px/21px "Calibri";}
-
+.accordion-button::after,.accordion-button:not(.collapsed)::after{background-image: url('../assets/icons/expand_after.png');}
 
 /*--------------------------*/
 
@@ -115,8 +112,30 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
     margin: 0px 5px;
 }*/
 
-/*IMAGE BANNERS*/
-.banner-title,.banner-title-overlay{
+/*IMAGE BANNERS (CAROUSEL)*/
+.carousel-item{    
+    width: 100%;
+    height: 480px;
+    text-align: center;
+}
+.carousel-caption{font: normal normal bold 100px/60px 'Helvetica LT Std';}
+.carousel-indicators{z-index: 11;}
+.carousel-indicators button{opacity: 1 !important;border-radius: 100%!important; width: 12px!important; height: 12px!important; background-color: transparent!important; border: solid 1px #D87C16!important;}
+.carousel-indicators .active {background-color: #D87C16!important;}
+.banner-title-overlay{
+    width: 100%;
+    height: 480px;
+    text-align: center; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 8rem;
+    z-index: 10;
+}
+#num_stats .banner-title-overlay{position: relative!important;}
+#num_stats .banner-title{
     background-repeat: no-repeat!important;
     background-position: center!important;
     background-size: cover!important;
@@ -124,19 +143,8 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
     height: 480px;
     text-align: center;   
     padding: 0;   
-
 }
-.banner-title-overlay{
-    background: url('../assets/img/gradient.svg') no-repeat;
-    position: relative;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 10;  
-    padding: 8rem;
-}
-.banner-img-overlay{
+#num_stats .banner-img-overlay{
     position: relative;
     top: 0;
     right: 0;
@@ -146,51 +154,19 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
     padding: var(--bs-card-img-overlay-padding);
 }
 :not(#num_stats)>.banner-title .title-lg{font: normal normal bold 100px/60px 'Helvetica LT Std';}
+
 #num_stats>.banner-title{
    background: url('../assets/img/Home/Container-benefit.png');
 }
 
-
-#page_cities>.banner-title{
-    background: transparent url('../assets/img/Cities_of_Gastronomy/image.png') 0% 0% no-repeat padding-box;
-    opacity: 1;
-}
-#page_about>.banner-title{
-    background: url('../assets/img/About/image-1.png');
-}
-#page_initiatives>.banner-title{
-    background: url('../assets/img/News/image.png');
-}
-#page_tastier_life>.banner-title{
-    background: url('../assets/img/News/image.png');
-}
-
-#page_news>.banner-title{
-    background: url('../assets/img/News/image.png');
-}
-#page_events>.banner-title{
-    background: url('../assets/img/Events/image.png');
-}
-#page_open_calls>.banner-title{
-    background: url('../assets/img/Open_Calls/image.png');
-}
-#page_projects>.banner-title{
-    background: url('../assets/img/Projects/image.png');
-}
-
-#page_stats>.banner-title{
-   background: url('../assets/img/Home/Container-benefit.png');
-}
-#page_calendar>.banner-title{
-   background: url('../assets/img/Home/Container-benefit.png');
-}
-#page_contact>.banner-title{
-   background-color: #18191D;
-}
-
 /*MAP*/
-#map svg{position: absolute;z-index: 12;}
-#map .pin{z-index: 14;}
+#map #Capa_1{position: absolute;z-index: 12;}
+.pin{z-index: 14;width: 12px;height: 14.16px;position: absolute;}
+.pin:hover{
+    transform: scale(1.2); 
+     /*filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);*/
+   filter: invert(40%) sepia(87%) saturate(1959%) hue-rotate(212deg) brightness(98%) contrast(99%);
+}
 .map-title-overlay{
     position: absolute;
     top: 250px;
@@ -202,7 +178,29 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
     width: 100%;
     text-align: center;   
 }
-.pin:hover{transform: scale(1.2);}
+#map-card{
+    position: absolute;
+    top: 40%;
+    z-index: 15;  
+    width: 100%;
+    text-align: center;   
+}
+#map-card .card-header{background-color: transparent!important; height: 100px; text-align: right;z-index: 10;}
+#map-card .card{background-color: rgba(218, 126, 22, 0.761)!important; color:#fff;border-radius: 25px;}
+#map-card .card-img-top{margin-top: -100px; border-radius: 25px 25px 0 0;}
+#map-card .card-body{text-align: left;}
+
+#mapModal .modal-header{background-color: transparent!important; height: 100px; text-align: right;z-index: 10;border: none;justify-content: flex-end;}
+#mapModal .card-img-top{margin-top: -100px; border-radius: 25px 25px 0 0;}
+#mapModal .modal-content{background-color: rgba(218, 126, 22, 0.761)!important; color:#fff;border-radius: 25px;}
+#mapModal .modal-footer{border: none; justify-content: flex-start;}
+.map-footer{
+    padding: 1rem;
+    text-align: center;
+    margin-top: -140px!important;
+    margin-left: 7vw!important;
+}
+
 
 /*ABOUT - TIMELINE*/
 .timeline-item{height: 67px;}
@@ -299,8 +297,13 @@ footer a{color: #fff;}
         width: 20%!important;
     }
 }
+@media (max-width: 991px){
+    #map-card{display: none!important;}
+    .pin{z-index: 8;} .pin:hover{filter: unset;}
+}
 @media (max-width: 767px){
     footer p{text-align: center!important;}
     footer .offset-3{margin-left: auto!important;}
+
    /* footer .col-auto{margin-left: auto!important;margin-right: auto!important;}*/
 }

@@ -42,18 +42,9 @@
                 <li id="nav_initiatives" class="nav-item {{ request()->routeIs('landing.tastier_life') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.tastier_life')}}">{{__('general.nav_tastier_life')}}</a>
                 </li>
-                <!--li id="nav_news" class="nav-item {{ request()->routeIs('landing.news') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('landing.news')}}">{{__('general.nav_news')}}</a>
+                <li id="nav_tours" class="nav-item {{ request()->routeIs('landing.tours') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('landing.tours')}}">{{__('general.nav_tours')}}</a>
                 </li>
-                <li id="nav_events" class="nav-item {{ request()->routeIs('landing.events') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('landing.events')}}">{{__('general.nav_events')}}</a>
-                </li>
-                <li id="nav_open_calls" class="nav-item {{ request()->routeIs('landing.open_calls') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('landing.open_calls')}}">{{__('general.nav_opencalls')}}</a>
-                </li>
-                <li id="nav_projects" class="nav-item {{ request()->routeIs('landing.projects') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('landing.projects')}}">{{__('general.nav_projects')}}</a>
-                </li-->
                 <li id="nav_stats" class="nav-item {{ request()->routeIs('landing.stats') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.stats')}}">{{__('general.nav_stats')}}</a>
                 </li>
@@ -108,10 +99,7 @@
                             <a class="nav-link py-1" href="{{route('landing.about')}}">{{__('general.nav_about')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.initiatives')}}">{{__('general.nav_initiatives')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.tastier_life')}}">{{__('general.nav_tastier_life')}}</a>
-                            <!--a class="nav-link py-1" href="{{route('landing.news')}}">{{__('general.nav_news')}}</a>
-                            <a class="nav-link py-1" href="{{route('landing.events')}}">{{__('general.nav_events')}}</a>
-                            <a class="nav-link py-1" href="{{route('landing.open_calls')}}">{{__('general.nav_opencalls')}}</a>
-                            <a class="nav-link py-1" href="{{route('landing.projects')}}">{{__('general.nav_projects')}}</a-->
+                            <a class="nav-link py-1" href="{{route('landing.tours')}}">{{__('general.nav_tours')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.stats')}}">{{__('general.nav_stats')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.calendar')}}">{{__('general.nav_calendar')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
