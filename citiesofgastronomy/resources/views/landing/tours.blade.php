@@ -30,5 +30,78 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="container px-5 pt-5 filters">
+        <div class="row g-4 px-5">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-6 me-auto">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option id="filter-" name="filter-" value="0">City</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-6 ms-auto">
+                <button class="btn btn-info w-100 h-100">Filter posts</button>
+            </div>
+        </div>
+        </div>
+
+        <div class="container p-5">
+        <div class="row g-4 px-5">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
+                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
+                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
+                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
+                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
+                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
+                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
+                        <div class="card-body px-0 bg-black text-white">
+                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
+                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
+                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+
+
     </section>
 @endsection

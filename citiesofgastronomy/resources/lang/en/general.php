@@ -13,6 +13,7 @@ return [
     'nav_contact' => 'Contact',
     
     'search' => 'Search',
+    'gallery' => 'Gallery',
 
     'newsletter' => [
         'description' => 'Suscribe to our newsletter',

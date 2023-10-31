@@ -25,12 +25,15 @@ body{background-color: #000;color:#fff;margin-top: 140px;}
     src: url('../assets/fonts/Calibri/CALIBRI.TTF') format("truetype");
 }
 
-.title-lg,.title-md,.title-sm{font-family: 'Helvetica LT Std Black';}
+.title-lg,.title-md,.title-sm, .title-xs b, .subtitle b,.data-sm b{font-family: 'Helvetica LT Std Black';}
 .title-xl{font-size: 84px;font-family: 'Helvetica LT Std Bold Cond';}
 .title-lg{font-size: 50px;}
 .title-md{font-size: 48px;}
 .title-sm{font-size: 40px;}
 .title-xs,.card-title{font-size: 30px;}
+.subtitle{font-size: 25px;}
+.data{font-size: 22px;}
+.data-sm{font-size: 20px;}
 .title-xs{font-family: 'Calibri'}
 p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: 'Calibri'}
 .activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
@@ -47,6 +50,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 .bg-orange{background-color: #D87C16;}
 .bg-blue{background-color: #5479FA;}
 .bg-black{background-color: #000;}
+.bg-gray{background-color: #202020;}
 .bg-dark-gray{background-color: #131416;}
 
 /*LINES AND BORDERS*/
@@ -161,8 +165,9 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 
 /*MAP*/
 #map #Capa_1{position: absolute;z-index: 12;}
-.pin{z-index: 14;width: 12px;height: 14.16px;position: absolute;}
+.pin{z-index: 14;width: 12px;height: 14.16px;position: absolute;filter: invert(99%) sepia(13%) saturate(0%) hue-rotate(259deg) brightness(113%) contrast(100%);}
 .pin:hover{
+    cursor: pointer;
     transform: scale(1.2); 
      /*filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);*/
    filter: invert(40%) sepia(87%) saturate(1959%) hue-rotate(212deg) brightness(98%) contrast(99%);
@@ -214,12 +219,35 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 
 /*NEWSLETTER*/
 #newsletter{background-color: #CE663C; color: #fff;}
-#newsletter .form-control{background-color: transparent; border-radius: 0;height: 40px; color: #fff;}
+    #newsletter .form-control{background-color: transparent; border-radius: 0;height: 40px; color: #fff;}
 #newsletter ::placeholder{color: #fff;}
 
 /*FOOTER*/
 footer{font-size:17px;font-family: 'Helvetica LT Std Roman';background-color: #131416; color: #fff;}
 footer a{color: #fff;}
+
+
+/*FILTER SELECTS*/
+ .filters select.form-control {
+    height: 60px; background-color: transparent!important; border-radius: 0!important;
+    color: #FEA561!important; border: solid 1px #FEA561!important;}
+ .filters select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("../assets/icons/menu-down-custom.png");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 10px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    margin-right: 2rem;
+    padding: 1rem;
+    padding-right: 2rem;
+  }
+  .filters select.form-control, .filters button{font-family: 'Helvetica LT Std Black';font-size: 20px;}
+  .filters button{width: 210px;}
+
 
 /*SHARE BUTTONS ON HIGHLIGHT----------------*/
 #share-btns {
@@ -298,7 +326,8 @@ footer a{color: #fff;}
     }
 }
 @media (max-width: 991px){
-    #map-card{display: none!important;}
+    #map-card,#map_button{display: none!important;visibility: hidden!important;}
+    #map:hover{cursor: pointer;}
     .pin{z-index: 8;} .pin:hover{filter: unset;}
 }
 @media (max-width: 767px){

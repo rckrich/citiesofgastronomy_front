@@ -7,10 +7,6 @@
     <div>
         <div class="d-block">
             <div class="mx-0 px-0">
-                <!-- Button trigger modal -->
-                <button id="country_1" type="button" class="btn btn-link btn-pin pin" data-bs-toggle="modal" data-bs-target="#mapModal" style="top: 75%;left: 50%;">
-                    <img src="{{asset('assets/icons/pin.svg')}}" class="pin"/>
-                </button>
 
                 <!-- el viewBox 450 cambia el tamaño de la vista del heigth de la imagen con los botones -->
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" 
@@ -18,15 +14,11 @@
                 style="position:absolute;vertical-align:middle">   
                     <g>
                         <svg id="pin-1" class="pin" x="350" y="250"  onclick="openMapModal()" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
-                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#fff"/>
-                        </svg>
-                        <svg id="pin-2" class="pin" x="550" y="250"  data-bs-toggle="modal" data-bs-target="#mapModal" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
-                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#fff"/>
-                        </svg>                     
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>                  
                         <svg id="pin-3" class="pin" x="550" y="300"  onclick="openMapModal()" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
-                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#fff"/>
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>                     
-                        <img  x="550" y="250" src="{{asset('assets/icons/pin.svg')}}" class="pin"/>
                     </g>
 
 
@@ -95,7 +87,7 @@
 
             </div>
             <div class="row align-items-end mx-0 map-footer">
-                <a class="btn btn-primary" href="{{route('landing.cities')}}">{{__('landing.map.btn_cities')}}</a>
+                <a id="map_button" class="btn btn-primary" href="{{route('landing.cities')}}">{{__('landing.map.btn_cities')}}</a>
             </div>
         </div>
     </div>
@@ -177,7 +169,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -196,7 +188,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -215,7 +207,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -234,7 +226,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -267,7 +259,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -286,7 +278,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -305,7 +297,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -324,7 +316,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.news.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -357,7 +349,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -376,7 +368,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -395,7 +387,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -414,7 +406,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.open_calls.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>

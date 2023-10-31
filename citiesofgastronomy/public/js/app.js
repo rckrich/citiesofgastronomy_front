@@ -12,6 +12,8 @@ $(document).ready(function () {
         $(this).parent().addClass("active");
         bsCollapse.hide()
     });  
+    $("#map").on("click", function(){toggleMapLink()})
+
 
 });
 
@@ -153,7 +155,16 @@ function openMapModal(){
   }
 
 }
+
 function closeMapModal(){
   $('#map-card').addClass('d-none');
   $('#map-card').removeClass('d-block');
+}
+
+function toggleMapLink(){
+  var w = window.innerWidth;
+  if(w<=991){
+    window.location.pathname = "/cities";
+  }
+
 }

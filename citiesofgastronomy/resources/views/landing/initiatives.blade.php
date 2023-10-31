@@ -31,7 +31,50 @@
             </div>
         </div>
 
-        <div class="p-5">
+        <div class="container px-5 pt-5 filters">
+        <div class="row g-6">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option id="filter-" name="filter-" value="0">Cities</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option id="filter-" name="filter-" value="0">Type of Activity</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option id="filter-" name="filter-" value="0">Topics</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option id="filter-" name="filter-" value="0">SDG</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option id="filter-" name="filter-" value="0">Connection to other creative fields</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+                <button class="btn btn-info w-100 h-100">Filter posts</button>
+            </div>
+        </div>
+        </div>
+
+        <div class="container p-5">
         <div class="row g-4">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
@@ -48,7 +91,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +110,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -86,7 +129,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +148,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -124,7 +167,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="#" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
