@@ -19,13 +19,13 @@
             </div>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bs-interval="4000">
                     <img src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="4000">
                     <img src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="4000">
                     <img src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
                 </div>
             </div>
@@ -34,6 +34,7 @@
         <div class="container py-5">
             <div class="row g-5 py-5 col-12 mx-auto">
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -42,8 +43,11 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
+
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -52,8 +56,10 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -62,8 +68,10 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -72,8 +80,10 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -82,8 +92,10 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -92,8 +104,10 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -102,8 +116,10 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                    <a class="card-link" href="{{route('cities.index')}}">
                     <div class="card h-100">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white text-center">
@@ -112,6 +128,7 @@
                             <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>

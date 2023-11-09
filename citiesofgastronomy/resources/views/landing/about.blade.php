@@ -19,16 +19,17 @@
             </div>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bs-interval="4000">
                     <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="4000">
                     <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
                 </div>
-                <div class="carousel-item">
-                    <video style="width:100%; height:inherit" controls autoplay>
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
+                    <!--video style="width:100%; height:inherit" controls autoplay>
                         <source src="{{asset('assets/img/Banners/sampleVideo.mp4')}}" type="video/mp4">
-                    </video>
+                    </video-->
                 </div>
             </div>
         </div>

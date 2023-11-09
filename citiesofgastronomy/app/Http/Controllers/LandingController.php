@@ -56,4 +56,8 @@ class LandingController extends Controller
     {
         return view('landing.contact');
     }
+    public function search()
+    {
+        return view('landing.search');
+    }
 }

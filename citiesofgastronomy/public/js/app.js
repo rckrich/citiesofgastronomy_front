@@ -13,7 +13,13 @@ $(document).ready(function () {
         bsCollapse.hide()
     });  
     $("#map").on("click", function(){toggleMapLink()})
-
+    $("#search_box").keypress(function (e) {
+      var key = e.which;
+      if(key == 13)  // the enter key code
+       {
+        $("#searchForm").submit();
+      }
+     }); 
 
 });
 
@@ -30,7 +36,7 @@ selectableTextArea.forEach(elem => {
 
 //linkedinShareBtn.addEventListener("click", linkedinShareBtnClick);
 //facebookShareBtn.addEventListener("click", facebookShareBtnClick);
-twitterShareBtn.addEventListener("click", twitterShareBtnClick);
+//twitterShareBtn.addEventListener("click", twitterShareBtnClick);
 
 
 document.addEventListener("mousedown", documentMouseDown);
@@ -145,6 +151,68 @@ function facebookShareBtnClick(event) {
     // const newWindowOptions = "height=400,width=550,top=0,left=0,resizable=yes,scrollbars=yes";
     // window.open(`${twitterShareUrl}?text="${text}"&url=${currentUrl}&hashtags=${hashtags}&via=${via}`, "ShareOnTwitter", newWindowOptions);
   }
+}
+
+
+function shareLinkedIn(url_link){
+    const linkedinShareUrl = "https://api.linkedin.com/v2/ugcPosts";
+    //const linkedinShareUrl = "https://www.linkedin.com/shareArticle";
+    const title = 'Cities of Gastronomy';
+    const summary = '';
+    const text = '';
+    const currentUrl = url_link;
+    //window.open(`${linkedinShareUrl}?mini=true&url=${currentUrl}&title=${title}&summary=${summary}&source=${window.location.host}`);
+
+    $.ajax({
+      url: linkedinShareUrl,
+      type: "POST",
+      data: {
+        "author": "urn:li:person:8675309",
+        "lifecycleState": "PUBLISHED",
+        "specificContent": {
+            "com.linkedin.ugc.ShareContent": {
+                "shareCommentary": {
+                    "text": "Learning more about LinkedIn by reading the LinkedIn Blog!"
+                },
+                "shareMediaCategory": "ARTICLE",
+                "media": [
+                    {
+                        "status": "READY",
+                        "description": {
+                            "text": "Official LinkedIn Blog - Your source for insights and information about LinkedIn."
+                        },
+                        "originalUrl": "https://blog.linkedin.com/",
+                        "title": {
+                            "text": "Official LinkedIn Blog"
+                        }
+                    }
+                ]
+            }
+        },
+        "visibility": {
+            "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
+        }
+      },
+      contentType: "application/json",
+      crossDomain: true,
+      dataType: 'jsonp',
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (response) {
+        console.log(response);
+      }
+    });
+    
+}
+function shareTwitter(url_link){
+    const twitterShareUrl = "https://twitter.com/intent/tweet";
+    const text = '';
+    const currentUrl = encodeURIComponent(url_link);
+    const hashtags = "citiesofgastronomy";
+    const via = "";/*@twitteruser*/
+    window.open(`${twitterShareUrl}?url=${currentUrl}&hashtags=${hashtags}`);
+    
 }
 
 function openMapModal(){

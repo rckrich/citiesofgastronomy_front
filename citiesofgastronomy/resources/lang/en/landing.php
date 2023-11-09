@@ -29,6 +29,9 @@ return [
     'calendar'=>[
         'title' => 'CALENDAR OF UPCOMING EVENTS',
     ],
+    'search'=>[
+        'title' => 'Search results for: ',
+    ],
 
     'activity_type' => 'Type of Activity:',
 

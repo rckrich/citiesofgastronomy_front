@@ -41,11 +41,13 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 #newsletter .nav-link{font-family: 'Helvetica LT Std Roman'; font-size: 14px;}
 #calendar .title-lg, #newsletter .title-xs,.card-title{font-family: 'Helvetica LT Std Black';}
 #newsletter .title-xs{font-size: 16px;}
-.text-orange,.btn-link{color: #D87C16!important;}
+a .text-white{color: #fff!important;}
+.text-orange,.btn-link,a .text-orange, a .text-orange:hover{color: #D87C16!important;}
 .text-blue{color: #5479FA;}
 .text-yellow{color: #D7D308;}
 .text-yellow2{color: #FFFC65;}
 .text-ocean{color: #354E57;}
+.text-right{text-align: right;}
 
 .bg-orange{background-color: #D87C16;}
 .bg-blue{background-color: #5479FA;}
@@ -57,6 +59,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 .br-9{border-radius: 9px;}
 .be-gray{border-right: 1px solid #D7CCDD}
 .b-gray{border: 1px solid #707070;}
+.bb-orange{border-bottom: solid 1px #D87C16;}
 
 
 /*BOOTSTRAP OVERRIDE--------------------------*/
@@ -84,12 +87,13 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 #navbarLogo{width: 287px;height: 76px;}
 .nav-link{font: normal normal normal 17px/21px Helvetica LT Std;}
 .nav-link:hover{text-decoration: underline; color: #FEA561;}
-.nav-link:active,.nav-link.active{color: #FEA561;}
+.nav-link:active,.active .nav-link{color: #FEA561;}
 .navbar .input-group{width: 200px;}
 .navbar .form-control,.navbar .input-group-text{background-color: #1D1D1D;border: none;color: #fff;}
 .navbar .form-control:focus{box-shadow: 0 0 0 0.25rem rgba(35, 35, 35, 0.25);}
 
 /*CARDS*/
+.card-link{text-decoration: none!important;}
 .card{border: none;}
 #contact-cards .card-group:nth-child(odd) .card-body{background-color: #D87C16!important;color:#fff}
 #contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
@@ -138,6 +142,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
     padding: 8rem;
     z-index: 10;
 }
+#show_city .banner-title-overlay{margin-top: 80px;}
 #num_stats .banner-title-overlay{position: relative!important;}
 #num_stats .banner-title{
     background-repeat: no-repeat!important;
