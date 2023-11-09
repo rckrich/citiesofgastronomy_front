@@ -60,10 +60,12 @@
                     <a class="nav-link" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                 </li>
             </ul>
-            <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="get"><!--cambiar a post-->
+            <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
+                @csrf
+                @method('POST')
                 <div class="input-group px-2">
                     <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search.svg')}}"/></span>
-                    <input id="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
+                    <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
                 </div>
             </form>
             

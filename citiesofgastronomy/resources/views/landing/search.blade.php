@@ -1,14 +1,11 @@
-<!-- resources/views/landing/initiatives.blade.php -->
+<!-- resources/views/landing/search.blade.php -->
 
 @extends('commons.base')
 
 @section('content')
-    <section id="page_initiatives">
-
-        
-
+    <section id="search_results">
         <div class="container p-5">
-            <p class="data text-orange">{{__('landing.search.title')}}<b>new search</b></p>
+            <p class="data text-orange">{{__('landing.search.title')}}<b>{{$keyword}}</b></p>
         </div>
         <div class="container p-5">
         <div class="row g-4">

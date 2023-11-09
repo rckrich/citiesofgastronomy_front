@@ -25,7 +25,7 @@ Route::get('/about', [LandingController::class, 'about'])->name('landing.about')
 Route::get('/initiatives', [LandingController::class, 'initiatives'])->name('landing.initiatives');
 Route::get('/tastier_life', [LandingController::class, 'tastier_life'])->name('landing.tastier_life');
 Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours');
-Route::get('/search', [LandingController::class, 'search'])->name('search');//cambiar por post después
+Route::post('/search', [LandingController::class, 'search'])->name('search');
 
 Route::get('/cities/view', [CitiesController::class, 'index'])->name('cities.index');
 Route::get('/initiatives/view', [InitiativesController::class, 'index'])->name('initiatives.index');

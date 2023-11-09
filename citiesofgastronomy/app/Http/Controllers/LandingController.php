@@ -56,8 +56,10 @@ class LandingController extends Controller
     {
         return view('landing.contact');
     }
-    public function search()
+    public function search(Request $request)
     {
-        return view('landing.search');
+        $keyword = $request->input('search_box');
+        return view('landing.search', compact('keyword'));
+
     }
 }
