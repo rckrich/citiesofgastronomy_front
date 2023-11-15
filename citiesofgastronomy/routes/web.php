@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\InitiativesController;
@@ -35,3 +36,20 @@ Route::get('/tours/view', [ToursController::class, 'index'])->name('tours.index'
 Route::get('/stats', [LandingController::class, 'stats'])->name('landing.stats');
 Route::get('/calendar', [LandingController::class, 'calendar'])->name('landing.calendar');
 Route::get('/contact', [LandingController::class, 'contact'])->name('landing.contact');
+
+
+/*ADMIN PANEL*/
+Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('/recover_password', [AdminController::class, 'recover_password'])->name('admin.recover_password');
+
+//Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin/home', function(){return redirect()->route('admin.cities');})->name('admin.index');
+Route::get('/admin/cities', [AdminController::class, 'cities'])->name('admin.cities');
+Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
+Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
+Route::get('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours');
+Route::get('/admin/about', [AdminController::class, 'about'])->name('admin.about');
+Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
+Route::get('/admin/main_site', [AdminController::class, 'main'])->name('admin.main');
+Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');

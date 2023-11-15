@@ -102,6 +102,11 @@
             <a class="col-auto px-2"  onclick="shareLinkedIn(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a>
             <a class="col-auto px-2" href="" onclick="shareTwitter(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
         </div>
+        <!--a href="https://www.instagram.com/?url=https://www.drdrop.co/" target="_blank" rel="noopener">
+            Share on instagram
+        </a-->
+
+
         <div class="py-5 ">
             <p class="data-sm text-orange py-2"><b>{{__('initiatives.view.links')}}</b></p>
             <p class="py-2"><a href="" class="text-link text-white">Lorem ipsum dolor sit amet, consetetur sadipscing</a></p>

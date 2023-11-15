@@ -1,0 +1,35 @@
+body{
+    background-color: #F1F1F1!important;
+    color: #000!important;
+}
+
+/**/
+.admin-title{font-family:'Helvetica LT Std'; }
+.admin-subtitle{font-family:'Calibri';}
+.admin-title b{font-family:'Helvetica LT Std Black';}
+.admin-subtitle b{font-family:'Calibri'; font-weight: bold;}
+
+.admin-title{font-size: 35px;}
+.admin-subtitle{font-size: 28px;}
+
+
+/*MAIN SITE*/
+#pills-tab-cities{background-color: #272727;}
+#pills-tab-cities button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
+#pills-tab-cities button.active{text-decoration: underline;}
+#pills-tab-banner button{background-color: transparent; color: #707070; border:solid 1px #707070; border-radius: 23px; padding:11px 20px; text-decoration: none; font-size: 16px; font-family: 'Calibri';}
+#pills-tab-banner button.active{background-color: #5479FA; color: #fff;border-color: transparent;}
+#pills-tab-bannerContent button{padding: 11px 52px; font-size: 18px;}
+.banner-img{
+    width: 100%!important;
+    height: 430px;
+    max-height: 430px;
+    object-fit: cover;
+    object-position: center;
+    border:solid 1px #BACAD1;
+    border-radius: 0;
+}
+#img_home_about.banner-img{max-width: 590px;}
+.banner-img.new{
+    background-color: #FFFFFF;
+}

@@ -71,7 +71,7 @@
             
         </div>
     </nav>
-    <div class="">
+    <div class="navbar-height-margin">
         @yield('content')
         <!--div id="share-btns" class="">
             <button id="linkedin-share-btn" class="px-2"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="21" width="21"/></button>

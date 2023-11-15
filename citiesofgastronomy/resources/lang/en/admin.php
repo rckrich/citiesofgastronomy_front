@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'admin_title'=>'RCKGames - Panel Administrador',
+    'nav_index' => 'Home',
+    'nav_cities' => 'Cities',
+    'nav_about' => 'About',
+    'nav_initiatives' => 'Initiatives',
+    'nav_tastier_life' => 'Tastier Life',
+    'nav_tours' => 'Tours',
+    'nav_contact' => 'Contact',
+    'nav_main' => 'Main Site Content',
+    'nav_users' => 'Users',
+    'nav_newsletter' => 'Newsletter',
+
+    'main_site'=>[
+        'section_banners'=>'BANNERS & OTHERS',
+        'section_socials'=>'SOCIAL MEDIA',
+        'section_cluster'=>'CLUSTER COORDINATOR',
+        'banners'=>[
+            'home'=>[            
+                'tab_name'=>'Home',
+                'title'=>'BANNER HOME',
+                'img_num_stats'=>'Number and stats (Image or video)',
+                'img_about'=>'Photo Gastronomic Cities (About)',
+            ],
+            'cities'=>[            
+                'tab_name'=>'Cities of Gastronomy',
+                'title'=>'BANNER CITIES OF GASTRONOMY',
+            ],
+            'about'=>[            
+                'tab_name'=>'About',
+                'title'=>'BANNER ABOUT',
+            ],
+            'initiatives'=>[            
+                'tab_name'=>'Initiatives',
+                'title'=>'BANNER INITIATIVES',
+            ],
+            'tastier_life'=>[            
+                'tab_name'=>'Tastier Life',
+                'title'=>'BANNER TASTIER LIFE',
+            ],
+            'tours'=>[            
+                'tab_name'=>'Tour',
+                'title'=>'BANNER TOUR',
+            ],
+            'calendar'=>[            
+                'tab_name'=>'Calendar',
+                'title'=>'BANNER CALENDAR',
+            ],
+            'contact'=>[            
+                'tab_name'=>'Contact',
+                'title'=>'BANNER CONTACT',
+            ],
+            'img_video'=>'(Image)',
+            'btn_img'=>'CHANGE IMAGE',
+            'btn_upload'=>'UPLOAD',
+            'btn_delete'=>'DELETE IMAGE',
+        ],
+        ''=>'',
+    ],
+    ''=>[
+        ''=>'',
+    ],
+    ''=>'',
+];

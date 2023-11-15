@@ -1,5 +1,5 @@
 
-body{background-color: #000;color:#fff;margin-top: 140px;}
+body{background-color: #000;color:#fff;}
 .min-h-100{min-height: 100vh;}
 .min-h-80{min-height: 80vh;}
 
@@ -25,15 +25,17 @@ body{background-color: #000;color:#fff;margin-top: 140px;}
     src: url('../assets/fonts/Calibri/CALIBRI.TTF') format("truetype");
 }
 
-.title-lg,.title-md,.title-sm, .title-xs b, .subtitle b,.data-sm b{font-family: 'Helvetica LT Std Black';}
+.title-lg,.title-md,.title-sm, .title-xs b, .subtitle b,.data-sm b,.nav-link-sm b, .subtitle-md b{font-family: 'Helvetica LT Std Black';}
 .title-xl{font-size: 84px;font-family: 'Helvetica LT Std Bold Cond';}
 .title-lg{font-size: 50px;}
 .title-md{font-size: 48px;}
 .title-sm{font-size: 40px;}
 .title-xs,.card-title{font-size: 30px;}
 .subtitle{font-size: 25px;}
+.subtitle-md{font-size: 24px;}
 .data{font-size: 22px;}
 .data-sm{font-size: 20px;}
+.nav-link-sm{font-size: 14px;}
 .title-xs{font-family: 'Calibri'}
 p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: 'Calibri'}
 .activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
@@ -43,6 +45,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 #newsletter .title-xs{font-size: 16px;}
 a .text-white{color: #fff!important;}
 .text-orange,.btn-link,a .text-orange, a .text-orange:hover{color: #D87C16!important;}
+.text-orange-light,a .text-orange-light, a .text-orange-light:hover{color:#FEA561;}
 .text-blue{color: #5479FA;}
 .text-yellow{color: #D7D308;}
 .text-yellow2{color: #FFFC65;}
@@ -75,15 +78,18 @@ a .text-white{color: #fff!important;}
 
 .btn-primary{width:230px;height:70px;line-height: 50px!important;}
 .btn-secondary,.btn-outline-primary{width:124px;height:40px;line-height: 25px!important;}
-.btn-primary,.btn-secondary{background-color: #D87C16!important;color: #F8F8F8!important; border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
-.btn-primary:hover,.btn-info:hover{background-color: #fff!important;color: #D87C16!important;}
+.btn-primary,.btn-secondary,.btn-primary.inverted:hover{background-color: #D87C16!important;color: #F8F8F8!important; border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
+.btn-primary:hover,.btn-info:hover,.btn-primary.inverted{background-color: #fff!important;color: #D87C16!important;}
 .btn-secondary:hover,.btn-info{background-color: #5479FA!important;color: #fff!important;border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
 .btn-outline-primary{background-color: transparent!important;color: #F8F8F8!important; border-color: #fff!important; font: normal normal 900 16px/20px 'Trade Gothic';}
 .btn-outline-primary:hover{background-color: #fff!important;color: #D87C16!important;}
 .btn-transparent,.btn-transparent:focus,.btn-transparent:active{background-color: transparent!important; border: none!important;box-shadow: none!important;}
+.btn-black{background-color: #070707; color: #fff;}
+.btn-black:hover,.btn-black:active,.btn-black:focus{background-color: #fff; color: #070707;}
 
 /*NAVBAR*/
 .navbar{background-color: #0D0D0D; color: #fff;height: 140px;}
+.navbar-height-margin{margin-top: 140px;}
 #navbarLogo{width: 287px;height: 76px;}
 .nav-link{font: normal normal normal 17px/21px Helvetica LT Std;}
 .nav-link:hover{text-decoration: underline; color: #FEA561;}
@@ -91,6 +97,7 @@ a .text-white{color: #fff!important;}
 .navbar .input-group{width: 200px;}
 .navbar .form-control,.navbar .input-group-text{background-color: #1D1D1D;border: none;color: #fff;}
 .navbar .form-control:focus{box-shadow: 0 0 0 0.25rem rgba(35, 35, 35, 0.25);}
+.nav-link-sm{text-decoration: none;}
 
 /*CARDS*/
 .card-link{text-decoration: none!important;}
