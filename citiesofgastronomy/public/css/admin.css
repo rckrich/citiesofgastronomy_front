@@ -5,13 +5,36 @@ body{
 
 /**/
 .admin-title{font-family:'Helvetica LT Std'; }
-.admin-subtitle{font-family:'Calibri';}
-.admin-title b{font-family:'Helvetica LT Std Black';}
-.admin-subtitle b{font-family:'Calibri'; font-weight: bold;}
+.admin-subtitle, td{font-family:'Calibri';}
+.admin-title b, th,.modal-title{font-family:'Helvetica LT Std Black';}
+.admin-subtitle b,.form-label{font-family:'Calibri'; font-weight: bold;}
 
 .admin-title{font-size: 35px;}
 .admin-subtitle{font-size: 28px;}
+.modal-title{font-size: 30px;}
+.form-label{font-size: 26px; color: #354E57;}
+td,td .btn-link, a .btn-link{font-size: 20px;}
+th{font-size: 18px;}
 
+.btn{min-width: 150px; height: 50px!important; line-height: 30px!important;}
+.btn-outline-primary{background-color: #fff!important; color: #D87C16!important; border: solid 1px #D87C16!important;}
+.btn-outline-primary:hover,.btn-outline-primary:active,.btn-outline-primary:focus{background-color: #D87C16!important; color: #fff!important;}
+
+td .btn-link, a .btn-link{color: #303030!important;font-family:'Calibri'; font-weight: bold;}
+th,td{vertical-align: middle;}
+th{background-color: #18191D!important; color: #fff!important;}
+td{background-color:#fff;color: #707070!important;}
+
+th:first-child,td:first-child{padding-left: 30px;}
+th:last-child,td:last-child{padding-right: 30px;}
+
+.modal-header,.modal-footer{border: none;}
+.modal .form-label{font-size: 16px; color: #354E57;}
+.modal .form-control{font-size: 14px; color: #354E57;}
+.modal .btn:not(.btn-link){width: 150px;}
+
+.input-group-text{background-color: #fff;}
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){border-left: none;}
 
 /*MAIN SITE*/
 #pills-tab-cities{background-color: #272727;}

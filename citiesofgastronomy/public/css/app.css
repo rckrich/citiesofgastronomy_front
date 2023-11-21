@@ -2,6 +2,9 @@
 body{background-color: #000;color:#fff;}
 .min-h-100{min-height: 100vh;}
 .min-h-80{min-height: 80vh;}
+.w-75{width: 75%;}
+.w-60{width: 60%;}
+.w-auto{width: auto;}
 
 /*FONTS*/
 @font-face {
@@ -81,9 +84,11 @@ a .text-white{color: #fff!important;}
 .btn-primary,.btn-secondary,.btn-primary.inverted:hover{background-color: #D87C16!important;color: #F8F8F8!important; border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
 .btn-primary:hover,.btn-info:hover,.btn-primary.inverted{background-color: #fff!important;color: #D87C16!important;}
 .btn-secondary:hover,.btn-info{background-color: #5479FA!important;color: #fff!important;border-color: transparent!important; font: normal normal 900 16px/20px 'Calibri';}
-.btn-outline-primary{background-color: transparent!important;color: #F8F8F8!important; border-color: #fff!important; font: normal normal 900 16px/20px 'Trade Gothic';}
+.btn-outline-primary{background-color: transparent!important;color: #F8F8F8!important; border-color: #fff!important; font: normal normal 900 16px/20px 'Calibri';}
 .btn-outline-primary:hover{background-color: #fff!important;color: #D87C16!important;}
 .btn-transparent,.btn-transparent:focus,.btn-transparent:active{background-color: transparent!important; border: none!important;box-shadow: none!important;}
+.btn-danger{background-color: #BF4949; color: #fff;}
+.btn-danger:hover,.btn-danger:active,.btn-danger:focus{background-color: #fff; color: #BF4949;}
 .btn-black{background-color: #070707; color: #fff;}
 .btn-black:hover,.btn-black:active,.btn-black:focus{background-color: #fff; color: #070707;}
 

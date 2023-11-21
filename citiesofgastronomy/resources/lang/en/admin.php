@@ -13,6 +13,10 @@ return [
     'nav_users' => 'Users',
     'nav_newsletter' => 'Newsletter',
 
+    'btn_save' => 'SAVE',
+    'btn_cancel'=>'Cancel',
+    'btn_create'=>'Create',
+
     'main_site'=>[
         'section_banners'=>'BANNERS & OTHERS',
         'section_socials'=>'SOCIAL MEDIA',
@@ -57,7 +61,56 @@ return [
             'btn_upload'=>'UPLOAD',
             'btn_delete'=>'DELETE IMAGE',
         ],
+        'socials'=>[
+            'title'=>'SOCIAL MEDIA LINKS',
+            'facebook'=>'Facebok:',
+            'twitter'=>'X (Twitter):',
+            'tiktok'=>'Tiktok:',
+            'instagram'=>'Instagram:',
+            'ph'=>'Link',
+        ],
+        'clusters'=>[
+            'title'=>'CLUSTER COORDINATOR INFO.',
+            'coordinator'=>'Coordinator',
+            'coordinator_ph'=>'Link',
+            'mail'=>'Contact Mail',
+            'mail_ph'=>'Link',
+            'cities'=>'Contact Cities',
+            'cities_ph'=>'Link to cities of gastronomy',
+            ''=>'',
+        ],
         ''=>'',
+    ],
+    'cities'=>[
+        'title'=>'Manage Cities',
+        'search_ph'=>'Search City',
+        'btn_add'=>'ADD NEW CITY',        
+        'btn_delete'=>'DELETE',
+
+        'th_name'=>'Name of the city',
+        'btn_edit'=>'Edit basic',
+        'btn_edit_full'=>'Edit deep info',
+
+        'edit_modal_title'=>'Create City',
+        'delete_modal_title'=>'',
+
+        'data_city'=>'City:',
+        'ph_city'=>'City Name',
+        'data_country'=>'Country:',
+        'ph_country'=>'Country Name',
+        'data_continent'=>'Continent:',
+        'ph_continent'=>'Continent Selected',
+        'data_population'=>'Population:',
+        'ph_population'=>'Population Number',
+        'data_locations'=>'Restaurant & Food Stablishments:',
+        'ph_locations'=>'Number of Stablishments',
+        'data_dyear'=>'Designation Year',
+        'ph_dyear'=>'Year of Designation',
+        'data_photo'=>'City Photo:',
+        ''=>'',
+
+        ''=>'',
+
     ],
     ''=>[
         ''=>'',

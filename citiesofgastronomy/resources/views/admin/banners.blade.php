@@ -1,47 +1,47 @@
 <ul class="nav nav-pills mb-3 py-2" id="pills-tab-banner" role="tablist">
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" 
     aria-controls="pills-home" aria-selected="true">
         {{__('admin.main_site.banners.home.tab_name')}}
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link" id="pills-cities-tab" data-bs-toggle="pill" data-bs-target="#pills-cities" type="button" role="tab" 
     aria-controls="pills-cities" aria-selected="true">
         {{__('admin.main_site.banners.cities.tab_name')}}
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" type="button" role="tab" 
     aria-controls="pills-about" aria-selected="true">
         {{__('admin.main_site.banners.about.tab_name')}}
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link" id="pills-initiatives-tab" data-bs-toggle="pill" data-bs-target="#pills-initiatives" type="button" role="tab" 
     aria-controls="pills-initiatives" aria-selected="true">
         {{__('admin.main_site.banners.initiatives.tab_name')}}
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link" id="pills-tastier_life-tab" data-bs-toggle="pill" data-bs-target="#pills-tastier_life" type="button" role="tab" 
     aria-controls="pills-tastier_life" aria-selected="true">
         {{__('admin.main_site.banners.tastier_life.tab_name')}}
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link" id="pills-tours-tab" data-bs-toggle="pill" data-bs-target="#pills-tours" type="button" role="tab" 
     aria-controls="pills-tours" aria-selected="true">
         {{__('admin.main_site.banners.tours.tab_name')}}
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link" id="pills-calendar-tab" data-bs-toggle="pill" data-bs-target="#pills-calendar" type="button" role="tab" 
     aria-controls="pills-calendar" aria-selected="true">
         {{__('admin.main_site.banners.calendar.tab_name')}}
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item py-2 px-3" role="presentation">
     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" 
     aria-controls="pills-contact" aria-selected="true">
         {{__('admin.main_site.banners.contact.tab_name')}}
