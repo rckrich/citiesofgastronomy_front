@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LandingController extends Controller
 {
@@ -21,11 +22,40 @@ class LandingController extends Controller
         $swTypes = SwType::all();
 
         return view('home.index', compact('clients','texts','info','projects','swTypes'));*/
-        return view('landing.home');
+
+        $url = config('app.apiUrl').'home';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        $inputs = [];
+        $inputs["cityList"] = $res["cities"];
+        $inputs["bannerAbout"] = $res["bannerAbout"];
+
+        return view('landing.home', $inputs);
     }
     public function cities()
     {
-        return view('landing.cities');
+        Log::info(config('app.apiUrl'));
+        $url = config('app.apiUrl').'cities';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        $inputs = [];
+        $inputs["cityList"] = $res["cities"];
+        $inputs["banner"] = $res["bannerCities"];
+        return view('landing.cities', $inputs);
     }
     public function about()
     {

@@ -9,6 +9,8 @@ use App\Http\Controllers\TastierLifeController;
 use App\Http\Controllers\ToursController;
 
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Cookie;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +30,7 @@ Route::get('/tastier_life', [LandingController::class, 'tastier_life'])->name('l
 Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours');
 Route::post('/search', [LandingController::class, 'search'])->name('search');
 
-Route::get('/cities/view', [CitiesController::class, 'index'])->name('cities.index');
+Route::get('/cities/view/{id}', [CitiesController::class, 'index']);
 Route::get('/initiatives/view', [InitiativesController::class, 'index'])->name('initiatives.index');
 Route::get('/tastier_life/view', [TastierLifeController::class, 'index'])->name('tastier_life.index');
 Route::get('/tours/view', [ToursController::class, 'index'])->name('tours.index');
