@@ -7,9 +7,12 @@
 
         <div id="citiesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#citiesCarousel" data-bs-slide-to="0" class="mx-2 active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#citiesCarousel" data-bs-slide-to="1" class="mx-2" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#citiesCarousel" data-bs-slide-to="2" class="mx-2" aria-label="Slide 3"></button>
+                <?php $i=0?>
+                @foreach($banners as $banner)
+                <?php $e = $i+1;?>
+                <button type="button" data-bs-target="#citiesCarousel" data-bs-slide-to="<?= $i?>" class="mx-2 <?php if($i == 0){echo 'active';}?>" aria-current="true" aria-label="Slide <?= $e?>"></button>
+                <?php $i = $i+1;?>
+                @endforeach
             </div>
             <div class="banner-title">
             <div class="banner-title-overlay row align-items-center mx-0">
@@ -19,117 +22,38 @@
             </div>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
+                <?php $i=0?>
+                @foreach($banners as $banner)
+                <div class="carousel-item <?php if($i == 0){echo 'active';}?>" data-bs-interval="4000">
+                    <img src="{{config('app.url').$banner['banner']}}"/>
                 </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
-                </div>
+                <?php $i = $i+1;?>
+                @endforeach
             </div>
         </div>
 
         <div class="container py-5">
             <div class="row g-5 py-5 col-12 mx-auto">
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
 
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample_lg')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
+                @foreach($cityList as $city)
+                    <div class="col-lg-auto col-md-4 col-sm-6 col-12">
+                        <a class="card-link" <?php if($city['completeInfo'] == 1){echo ' href="/cities/view/'.$city['id'].'"';}?>>
+                        <div class="card h-100">
+                            @if($city['photo'])
+                            <img src="{{config('app.url').$city['photo']}}" class="card-img-top" alt="...">
+                            @else
+                            <!--<div class="card-img-top">lalala</div>-->
+                            @endif
+                            <div class="card-body px-0 bg-black text-white text-center">
+                                <h5 class="card-title mt-2 mb-4">{{$city["name"]}} </h5>
+                                <p class="card-text mb-2">{{$city["country"]}}</p>
+                                <p class="card-text mb-2">{{$city["continentName"]}}</p>
+                            </div>
                         </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                    <a class="card-link" href="{{route('cities.index')}}">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white text-center">
-                            <h5 class="card-title mt-2 mb-4">{{__('cities.title_sample')}}</h5>
-                            <p class="card-text mb-2">{{__('cities.text_sample')}}</p>
-                            <p class="card-text mb-2">{{__('cities.text_sample2')}}</p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
+                @endforeach
+
             </div>
         </div>
 
