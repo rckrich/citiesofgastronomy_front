@@ -30,12 +30,14 @@ class LandingController extends Controller
         curl_setopt($curl, CURLOPT_HEADER, false);
         $data = curl_exec($curl);
         curl_close($curl);
-
         $res = json_decode( $data, true);
+        //Log::info("DAtta Result-- ::");
 
         $inputs = [];
-        $inputs["cityList"] = $res["cities"];
         $inputs["bannerAbout"] = $res["bannerAbout"];
+        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
+        //Log::info($inputs);
+        $inputs["cityList"] = $res["cities"];
 
         return view('landing.home', $inputs);
     }
@@ -49,12 +51,13 @@ class LandingController extends Controller
         curl_setopt($curl, CURLOPT_HEADER, false);
         $data = curl_exec($curl);
         curl_close($curl);
+        Log::info($data);
 
         $res = json_decode( $data, true);
 
         $inputs = [];
         $inputs["cityList"] = $res["cities"];
-        $inputs["banner"] = $res["bannerCities"];
+        $inputs["banners"] = $res["bannerCities"];
         return view('landing.cities', $inputs);
     }
     public function about()

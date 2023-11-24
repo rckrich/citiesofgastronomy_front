@@ -96,6 +96,10 @@
             @foreach($links as $link)
             <p class="data py-2"><a href="{{$link['image']}}" target="_blank" class="text-link text-orange">{{$link['image']}}</a></p>
             @endforeach
+
+            @foreach($files as $file)
+            <p class="data py-2"><a href="{{config('app.url').$file['file']}}" target="_blank" class="text-link text-orange">{{$file['title']}}</a></p>
+            @endforeach
         </div>
     </div>
 

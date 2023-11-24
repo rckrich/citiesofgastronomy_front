@@ -9,6 +9,9 @@ class CitiesController extends Controller
 {
     public function index($id)
     {
+
+        $inputs = [];
+        $inputs["banners"] = [];
         //Log::info("##hhhh");
         //Log::info(config('app.apiUrl'));
         $url = config('app.apiUrl').'cities/find/'.$id;
@@ -19,13 +22,19 @@ class CitiesController extends Controller
         $data = curl_exec($curl);
         curl_close($curl);
 
-        $res = json_decode( $data, true);
+        if($data){
+            $res = json_decode( $data, true);
+            Log::info("##fff");
+            Log::info($res);
 
-        $inputs = [];
-        $inputs["city"] = $res["cities"];
-        $inputs["banner"] = $res["bannerCities"];
-        $inputs["gallery"] = $res["gallery"];
-        $inputs["links"] = $res["links"];
+            $inputs["city"] = $res["cities"];
+            $inputs["banners"] = $res["bannerCities"];
+            $inputs["gallery"] = $res["gallery"];
+            $inputs["links"] = $res["links"];
+            $inputs["files"] = $res["files"];
+        }else{
+            $inputs = array( "city" => []);
+        };
         return view('cities.show', $inputs);
 
     }

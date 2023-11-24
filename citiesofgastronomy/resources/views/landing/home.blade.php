@@ -13,10 +13,10 @@
                 viewBox="0 0 1056 450" style="enable-background:new 0 0 1056 816;" xml:space="preserve"
                 style="position:absolute;vertical-align:middle">
                     <g>
-                        <svg id="pin-1" class="pin" x="350" y="250"  onclick="openMapModal()" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-1" class="pin" x="350" y="250"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-3" class="pin" x="550" y="300"  onclick="openMapModal()" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-3" class="pin" x="550" y="300"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
                     </g>
@@ -29,7 +29,7 @@
                 <!--div class="map-title-overlay row align-items-start mx-0">
                     <h1 class="title-lg text-yellow">{{__('landing.map.title')}}</h1>
                 </div-->
-                @foreach($cityList as $city)
+
                 <div id="map-card" class="d-none">
                     <div class="row align-items-center px-0 mx-0">
                         <div class="card px-0 mx-auto" style="width: 25rem;">
@@ -39,20 +39,19 @@
                             </button>
                             </div>
 
-                            <img src="{{asset('assets/img/Home/DSC_0278.png')}}" class="card-img-top w-100" alt="...">
+                            <img src="{{asset('assets/img/Home/DSC_0278.png')}}" id="photo" class="card-img-top w-100" alt="...">
                             <div class="card-body p-5">
-                                <h5 class="card-title">Name</h5>
-                                <p class="card-text"><b>Country:</b> Name</p>
-                                <p class="card-text"><b>Continent:</b> Name</p>
-                                <p class="card-text"><b>Population:</b> 152</p>
-                                <p class="card-text"><b>Restaurants & Food Stablishments:</b> 1</p>
-                                <p class="card-text"><b>Designation Year:</b> 1996</p>
-                                <a href="#" class="btn btn-info">{{__('landing.btn_explore')}}</a>
+                                <h5 class="card-title" id="name">Name</h5>
+                                <p class="card-text" id="country"><b>Country:</b> Name</p>
+                                <p class="card-text" id="continentName"><b>Continent:</b> Name</p>
+                                <p class="card-text" id="population"><b>Population:</b> 152</p>
+                                <p class="card-text" id="restaurantFoodStablishments"><b>Restaurants & Food Stablishments:</b> 1</p>
+                                <p class="card-text" id="designationyear"><b>Designation Year:</b> 1996</p>
+                                <a href="#" class="btn btn-info" id="completeInfo">{{__('landing.btn_explore')}}</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
 
 
                 <!-- Modal -->
@@ -105,7 +104,11 @@
                     <a class="btn btn-primary" href="{{route('landing.about')}}">{{__('landing.btn_learn')}}</a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5">
+                    @if($bannerAbout =='')
                     <img src="{{asset('assets/img/Home/sample.png')}}" class="mx-auto my-auto w-100 br-9" alt="...">
+                    @else
+                    <img src="{{config('app.url').$bannerAbout}}" class="mx-auto my-auto w-100 br-9" alt="...">
+                    @endif
                 </div>
 
             </div>
@@ -114,7 +117,9 @@
     </section>
 
     <section id="num_stats" class="bg-dark-gray selectable-text-area">
-        <div class="banner-title ">
+        <div class="banner-title " <?php if($bannerNumberAndStats !=''){
+            echo 'style="    background: url('.config('app.url').$bannerNumberAndStats.');"';
+        };?>>
         <div class="banner-title-overlay row align-items-center mx-0">
             <div class="banner-img-overlay">
                 <h1 class="title-lg text-yellow2">{{__('landing.stats.title')}}</h1>
@@ -428,4 +433,40 @@
         </div>
 
     </section>
+
+    <script>
+        var cities ='<?php echo json_encode($cityList) ?>';
+        var userObj = JSON.parse(cities);
+        function openCity(id){
+            let found = userObj.find((element) => element["id"] == id);
+            if(found){
+
+                document.getElementById("name").innerHTML = found["name"];
+                document.getElementById("country").innerHTML = '<b>Country:</b> '+found["country"];
+                document.getElementById("continentName").innerHTML = '<b>Continent:</b> '+found["continentName"];
+                if(found["population"] != null){document.getElementById("population").innerHTML = '<b>Population: </b>'+found["population"];
+                }else{document.getElementById("population").innerHTML = '<b>Population: </b>';};
+                if(found["restaurantFoodStablishments"] != null){document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments:</b>'+found["restaurantFoodStablishments"];
+                }else{document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>';};
+                if(found["designationyear"] != null){document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>'+found["designationyear"];
+                }else{document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>';};
+
+                if(found["completeInfo"] == 1){
+                    document.getElementById("completeInfo").style.display = 'inline-block';
+                    document.getElementById("completeInfo").href = '/cities/view/'+found["id"];
+                }else{
+                    document.getElementById("completeInfo").style.display = 'none';
+                    document.getElementById("completeInfo").href = '#';
+                };
+
+                if(found["photo"] != null){
+                    document.getElementById("photo").style.display = 'block';
+                    document.getElementById("photo").src = '<?php echo config('app.url')?>'+found["photo"];
+                }else{document.getElementById("photo").style.display = 'none';};
+
+                openMapModal();
+            };
+        }
+
+    </script>
 @endsection
