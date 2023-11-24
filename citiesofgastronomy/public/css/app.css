@@ -4,6 +4,8 @@ body{background-color: #000;color:#fff;}
 .min-h-80{min-height: 80vh;}
 .w-75{width: 75%;}
 .w-60{width: 60%;}
+.w-50{width: 50%;}
+.w-25{width: 25%;}
 .w-auto{width: auto;}
 
 /*FONTS*/

@@ -10,4 +10,8 @@ class CitiesController extends Controller
     {
         return view('cities.show');
     } 
+    public function cities_edit()
+    {
+        return view('cities.edit');
+    } 
 }

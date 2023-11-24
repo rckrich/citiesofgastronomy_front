@@ -44,7 +44,10 @@ Route::get('/recover_password', [AdminController::class, 'recover_password'])->n
 
 //Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/admin/home', function(){return redirect()->route('admin.cities');})->name('admin.index');
+
 Route::get('/admin/cities', [AdminController::class, 'cities'])->name('admin.cities');
+Route::get('/admin/cities/{id}', [CitiesController::class, 'cities_edit'])->name('admin.cities_edit');
+
 Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
 Route::get('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours');

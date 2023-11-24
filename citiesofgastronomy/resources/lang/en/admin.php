@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'admin_title'=>'RCKGames - Panel Administrador',
     'nav_index' => 'Home',
     'nav_cities' => 'Cities',
     'nav_about' => 'About',
@@ -14,8 +13,12 @@ return [
     'nav_newsletter' => 'Newsletter',
 
     'btn_save' => 'SAVE',
-    'btn_cancel'=>'Cancel',
-    'btn_create'=>'Create',
+    'btn_cancel'=>'CANCEL',
+    'btn_create'=>'CREATE',
+    'btn_delete'=>'DELETE',
+    'btn_edit'=>'EDIT',
+    'btn_add'=>'ADD',
+
 
     'main_site'=>[
         'section_banners'=>'BANNERS & OTHERS',
@@ -85,14 +88,14 @@ return [
         'title'=>'Manage Cities',
         'search_ph'=>'Search City',
         'btn_add'=>'ADD NEW CITY',        
-        'btn_delete'=>'DELETE',
 
         'th_name'=>'Name of the city',
         'btn_edit'=>'Edit basic',
         'btn_edit_full'=>'Edit deep info',
 
         'edit_modal_title'=>'Create City',
-        'delete_modal_title'=>'',
+        'delete_modal_title'=>'Do you want to delete?',
+        'delete_modal_desc'=>'Are you sure you want to delete this City? This action can\'t be undone.',
 
         'data_city'=>'City:',
         'ph_city'=>'City Name',
@@ -104,7 +107,7 @@ return [
         'ph_population'=>'Population Number',
         'data_locations'=>'Restaurant & Food Stablishments:',
         'ph_locations'=>'Number of Stablishments',
-        'data_dyear'=>'Designation Year',
+        'data_dyear'=>'Designation Year:',
         'ph_dyear'=>'Year of Designation',
         'data_photo'=>'City Photo:',
         ''=>'',

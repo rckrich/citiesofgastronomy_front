@@ -18,7 +18,9 @@
                     </div>
                 </div>
                 <div class="col-12 px-0 py-2">
+                    <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
                     <button class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#editCityModal">{{__('admin.cities.btn_add')}}</buttton>
+                    </div>
                 </div>
             </div>
             <div class="row mx-0 pt-4">
@@ -38,10 +40,10 @@
                                 <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editCityModal">{{__('admin.cities.btn_edit')}}</button>
                             </td>                            
                             <td class="col-auto my-auto">
-                                <a class=" btn-link">{{__('admin.cities.btn_edit_full')}}</a>
+                                <a class=" btn-link" href="{{route('admin.cities_edit',['id'=>1])}}">{{__('admin.cities.btn_edit_full')}}</a>
                             </td>                            
                             <td class="col-auto my-auto">
-                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteCityModal">{{__('admin.cities.btn_delete')}}
+                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteCityModal">{{__('admin.btn_delete')}}
                             </button></td>
                         </tr>
                         <tr class="align-items-center">
@@ -50,10 +52,10 @@
                                 <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editCityModal">{{__('admin.cities.btn_edit')}}</button>
                             </td>                            
                             <td class="col-auto my-auto">
-                                <a class=" btn-link">{{__('admin.cities.btn_edit_full')}}</a>
+                                <a class=" btn-link" href="{{route('admin.cities_edit',['id'=>1])}}">{{__('admin.cities.btn_edit_full')}}</a>
                             </td>                            
                             <td class="col-auto my-auto">
-                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteCityModal">{{__('admin.cities.btn_delete')}}
+                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteCityModal">{{__('admin.btn_delete')}}
                             </button></td>
                         </tr>
                     </tbody>
@@ -66,7 +68,7 @@
 <div class="modal fade" id="editCityModal" tabindex="-1" aria-labelledby="editCityModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-        <div class="modal-header px-4">
+        <div class="modal-header b-none px-4">
             <h5 class="modal-title" id="editCityModalLabel">{{__('admin.cities.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>            
@@ -96,20 +98,18 @@
                 <label class="form-label" for="data_dyear">{{__('admin.cities.data_dyear')}}</label>
                 <input id="data_dyear" name="data_dyear" class="form-control" placeholder="{{__('admin.cities.ph_dyear')}}"/>
             </div>
-            <div class="form-group py-2">
-                <label class="form-label" for="data_">{{__('admin.cities.data_photo')}}</label>
-                <div id="data_" name="data_" class="">
-                <div class="mt-4 mb-3 row mx-0">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-auto">
-                <img class="" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/></div>
-            </div>
+            <div class="form-group py-2 row mx-0">                
+                <p class="form-label px-0" for="new_city_img">{{__('admin.cities.data_photo')}}</p>
+                <div class="col-6 p-4 load-img h-100 row mx-0 align-items-center text-center">
+                    <label class="custom-file-upload" for="new_city_img">
+                        <img class="mx-auto" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/>
+                    </label>
+                    <input type="file" class="text-center file-input" name="new_city_img" id="new_city_img">
+                </div> 
+            </div>    
         </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer row mx-0">
-            <button type="button" class="col-4 btn btn-outline-primary ms-auto">{{__('admin.btn_cancel')}}</buttton>
+        <div class="modal-footer b-none row mx-0">
+            <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
             <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
         </div>
         </form>
@@ -126,11 +126,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            
+            <p>{{__('admin.cities.delete_modal_desc')}}</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal-footer b-none">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
+        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
