@@ -11,9 +11,12 @@
             </div>
             <div class="col-12 px-0 py-4">                
                 <p class="admin-subtitle"><b>{{__('cities.edit.data_logo')}}</b></p>
-                <img class="my-3 w-25 " src="{{asset('storage/cities/sample.png')}}"></br>
-                <div class="my-3 w-25 banner-img new row mx-0">
-                    <div class="row align-items-center justify-content-center">
+                <div class="my-3 w-25">
+                    <div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"/></div>
+                    <img class="gallery-img w-100" src="{{asset('storage/cities/sample.png')}}"/>
+                </div>
+                <div class="my-3 w-25 load-img row mx-0">
+                    <div class="row mx-0 align-items-center justify-content-center">
                         <div class="col-auto"><img class="" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/></div>
                     </div>
                 </div>
@@ -28,7 +31,15 @@
             </div>
             <div class="col-12 px-0 py-4">
                 <p class="admin-subtitle"><b>{{__('cities.edit.data_banner')}}</b></p>
-                <img class="my-3 w-50" src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/></br>
+                <div class="my-3 w-50">
+                    <div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"/></div>
+                    <img class="gallery-img w-100" src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
+                </div>
+                <div class="my-3 w-50 load-img row mx-0">
+                    <div class="row mx-0 align-items-center justify-content-center">
+                        <div class="col-auto"><img class="" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/></div>
+                    </div>
+                </div>
                 <div class="p-2">
                     <label class="custom-file-upload btn btn-black" for="city_banner">
                     {{__('cities.edit.btn_image')}}
