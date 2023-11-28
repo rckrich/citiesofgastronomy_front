@@ -11,34 +11,36 @@
             </div>
             <div class="col-12 px-0 py-4">                
                 <p class="admin-subtitle"><b>{{__('cities.edit.data_logo')}}</b></p>
+                <!--si existe imagen (solo aplica aquí)-->
                 <div class="my-3 w-25">
                     <div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"/></div>
                     <img class="gallery-img w-100" src="{{asset('storage/cities/sample.png')}}"/>
                 </div>
-                <div class="my-3 w-25 load-img row mx-0">
-                    <div class="row mx-0 align-items-center justify-content-center">
-                        <div class="col-auto"><img class="" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/></div>
-                    </div>
-                </div>
-
                 <div class="p-2">
                     <label class="custom-file-upload btn btn-primary" for="city_logo">
                     {{__('cities.edit.btn_image')}}
                     </label>
                     <input type="file" class="text-center file-input" name="city_logo" id="city_logo">
                 </div> 
+                <!--si no existe imagen (solo aplica aquí)-->
+                <div class="my-3 w-25 load-img row mx-0">
+                    <div class="row mx-0 align-items-center justify-content-center">
+                        <div class="col-auto">
+                            <label class="custom-file-upload" for="new_gallery_img">
+                                <img class="mx-auto" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/>
+                            </label>
+                            <input type="file" class="text-center file-input" name="new_gallery_img" id="new_gallery_img">
+                        </div>
+                    </div>
+                </div>
                 
             </div>
             <div class="col-12 px-0 py-4">
                 <p class="admin-subtitle"><b>{{__('cities.edit.data_banner')}}</b></p>
+                <!--si existe imagen (solo aplica aquí)-->
                 <div class="my-3 w-50">
                     <div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"/></div>
                     <img class="gallery-img w-100" src="{{asset('assets/img/Banners/IMG_Cities.png')}}"/>
-                </div>
-                <div class="my-3 w-50 load-img row mx-0">
-                    <div class="row mx-0 align-items-center justify-content-center">
-                        <div class="col-auto"><img class="" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/></div>
-                    </div>
                 </div>
                 <div class="p-2">
                     <label class="custom-file-upload btn btn-black" for="city_banner">
@@ -46,6 +48,17 @@
                     </label>
                     <input type="file" class="text-center file-input" name="city_banner" id="city_banner">
                 </div> 
+                <!--si no existe imagen (solo aplica aquí)-->
+                <div class="my-3 w-50 load-img row mx-0">
+                    <div class="row mx-0 align-items-center justify-content-center">
+                        <div class="col-auto">
+                            <label class="custom-file-upload" for="new_gallery_img">
+                                <img class="mx-auto" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/>
+                            </label>
+                            <input type="file" class="text-center file-input" name="new_gallery_img" id="new_gallery_img">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="bb-gray my-4"></div>        
@@ -107,11 +120,19 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_description">{{__('cities.edit.section_links')}}</label>
                         <div class="row mx-0 align-items-center">
+                            <!--si es link-->
                             <div class="col-10 px-0 py-2">
                                 <input id="data_description" name="data_description" class="form-control" placeholder="{{__('cities.edit.ph_document')}}"/>
                             </div>
-                            <div class="col-1 p-2 text-right"><img class="mx-auto" width="38" height="38" src="{{asset('assets/icons/edit_file.png')}}"/></div>
+                            <div class="col-1 p-2 text-right hover-pointer"><img class="mx-auto" width="38" height="38" data-bs-toggle="modal" data-bs-target="#uploadLinkModal" src="{{asset('assets/icons/edit_file.png')}}"/></div>
                             <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38" src="{{asset('assets/icons/delete_file.png')}}"/></div>
+                            <!--si es pdf-->
+                            <div class="col-10 px-0 py-2">
+                                <input id="data_description" name="data_description" class="form-control" placeholder="{{__('cities.edit.ph_document')}}"/>
+                            </div>
+                            <div class="col-1 p-2 text-right hover-pointer"><img class="mx-auto" width="38" height="38" data-bs-toggle="modal" data-bs-target="#uploadPDFModal"  src="{{asset('assets/icons/edit_file.png')}}"/></div>
+                            <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38" src="{{asset('assets/icons/delete_file.png')}}"/></div>
+
                             <div class="col-12 px-0 py-2 row mx-0">
                                 <div class="col-auto ps-0"><button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#uploadLinkModal">{{__('cities.edit.btn_link')}}</buttton></div>
                                 <div class="col-auto"><button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#uploadPDFModal">{{__('cities.edit.btn_pdf')}}</buttton></div>
@@ -176,7 +197,7 @@
             <div class="py-2 row mx-0">
                 <p class="form-label px-0" for="new_city_img">{{__('cities.edit.data_pdf')}}</p>
                 <div class="col-12 p-2 h-100 row mx-0 align-items-center text-center load-file">
-                    <label class="custom-file-upload btn btn-dark" for="new_gallery_img">
+                    <label class="custom-file-upload btn btn-dark" for="new_gallery_img" style="width: 150px">
                         <img class="mx-auto" src="{{asset('assets/icons/file.svg')}}" width="20" height="24"/>
                     </label>
                     <input type="file" class="px-0 file-input" name="new_gallery_img" id="new_gallery_img">

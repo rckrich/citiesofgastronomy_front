@@ -25,6 +25,37 @@ return [
         'lorem_locations' => '1387', 
         'more_info' => 'More information about "City"', 
     ],
+    'admin'=>[
+        'title'=>'Manage Cities',
+        'search_ph'=>'Search City',
+        'btn_add'=>'ADD NEW CITY',        
+
+        'th_name'=>'Name of the city',
+        'btn_edit'=>'Edit basic',
+        'btn_edit_full'=>'Edit deep info',
+
+        'edit_modal_title'=>'Create City',
+        'delete_modal_title'=>'Do you want to delete?',
+        'delete_modal_desc'=>'Are you sure you want to delete this City? This action can\'t be undone.',
+
+        'data_city'=>'City:',
+        'ph_city'=>'City Name',
+        'data_country'=>'Country:',
+        'ph_country'=>'Country Name',
+        'data_continent'=>'Continent:',
+        'ph_continent'=>'Continent Selected',
+        'data_population'=>'Population:',
+        'ph_population'=>'Population Number',
+        'data_locations'=>'Restaurant & Food Stablishments:',
+        'ph_locations'=>'Number of Stablishments',
+        'data_dyear'=>'Designation Year:',
+        'ph_dyear'=>'Year of Designation',
+        'data_photo'=>'City Photo:',
+        ''=>'',
+
+        ''=>'',
+
+    ],
     'edit' => [
         'title'=>'Edit city info',
         'data_logo'=>'City Logo:',
