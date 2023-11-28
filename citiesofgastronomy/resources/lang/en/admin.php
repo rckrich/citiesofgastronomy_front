@@ -25,37 +25,37 @@ return [
         'section_socials'=>'SOCIAL MEDIA',
         'section_cluster'=>'CLUSTER COORDINATOR',
         'banners'=>[
-            'home'=>[            
+            'home'=>[
                 'tab_name'=>'Home',
                 'title'=>'BANNER HOME',
                 'img_num_stats'=>'Number and stats (Image or video)',
                 'img_about'=>'Photo Gastronomic Cities (About)',
             ],
-            'cities'=>[            
+            'cities'=>[
                 'tab_name'=>'Cities of Gastronomy',
                 'title'=>'BANNER CITIES OF GASTRONOMY',
             ],
-            'about'=>[            
+            'about'=>[
                 'tab_name'=>'About',
                 'title'=>'BANNER ABOUT',
             ],
-            'initiatives'=>[            
+            'initiatives'=>[
                 'tab_name'=>'Initiatives',
                 'title'=>'BANNER INITIATIVES',
             ],
-            'tastier_life'=>[            
+            'tastier_life'=>[
                 'tab_name'=>'Tastier Life',
                 'title'=>'BANNER TASTIER LIFE',
             ],
-            'tours'=>[            
+            'tours'=>[
                 'tab_name'=>'Tour',
                 'title'=>'BANNER TOUR',
             ],
-            'calendar'=>[            
+            'calendar'=>[
                 'tab_name'=>'Calendar',
                 'title'=>'BANNER CALENDAR',
             ],
-            'contact'=>[            
+            'contact'=>[
                 'tab_name'=>'Contact',
                 'title'=>'BANNER CONTACT',
             ],
@@ -87,13 +87,14 @@ return [
     'cities'=>[
         'title'=>'Manage Cities',
         'search_ph'=>'Search City',
-        'btn_add'=>'ADD NEW CITY',        
+        'btn_add'=>'ADD NEW CITY',
 
         'th_name'=>'Name of the city',
         'btn_edit'=>'Edit basic',
         'btn_edit_full'=>'Edit deep info',
 
-        'edit_modal_title'=>'Create City',
+        'create_modal_title'=>'Create City',
+        'edit_modal_title'=>'Edit City',
         'delete_modal_title'=>'Do you want to delete?',
         'delete_modal_desc'=>'Are you sure you want to delete this City? This action can\'t be undone.',
 
