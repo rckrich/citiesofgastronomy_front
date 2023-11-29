@@ -48,7 +48,7 @@
                                             data-bs-target="#editCityModal">{{__('admin.cities.btn_edit')}}</button>
                             </td>
                             <td class="col-auto my-auto">
-                                <a class=" btn-link" href="{{route('admin.cities_edit',['id'=>1])}}">{{__('admin.cities.btn_edit_full')}}</a>
+                                <a class=" btn-link" href="{{route('admin.cities_edit',['id'=>$city['id']])}}">{{__('admin.cities.btn_edit_full')}}</a>
                             </td>
                             <td class="col-auto my-auto">
                                 <button class="btn btn-danger"  data-bs-toggle="modal"
@@ -82,8 +82,9 @@
                 </tr>
             </table>
         </div>
-        <form action="/admin/store" method="POST" class="">
+        <form action="/admin/store" method="POST" enctype="multipart/form-data" class="">
         @csrf
+        <input type="hidden" id="data_id" name="data_id" >
         <div class="modal-body px-4">
             <div class="form-group py-2">
                 <label class="form-label" for="data_city">{{__('admin.cities.data_city')}}</label>
@@ -122,7 +123,8 @@
         </div>
         <div class="modal-footer b-none row mx-0">
         <button type="button" class="col-4 btn btn-outline-primary ms-auto"  data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto" onclick="this.form.submit();">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto" id="btn_saveData"
+                         onclick="this.form.submit();">{{__('admin.btn_create')}}</buttton>
         </div>
         </form>
     </div>
@@ -161,7 +163,7 @@
 
     // Funcion para que al abrir el modal se coloquen los datos correspondientes
     function modalAddUp(id){
-        console.log("lalala");
+            document.getElementById("data_id").value = '';
             document.getElementById("data_city").value = '';
             document.getElementById("data_country").value = '';
             document.getElementById("data_continent").value = '';
@@ -175,9 +177,11 @@
         if(id==null){
             document.getElementById("loading").style.display = 'none';
             document.getElementById("editCityModalLabel").innerHTML =  "<?php echo __('admin.cities.create_modal_title')?>";
+            document.getElementById("btn_saveData").innerHTML =  "<?php echo __('admin.btn_create')?>";
         }else{
             document.getElementById("loading").style.display = 'block';
             document.getElementById("editCityModalLabel").innerHTML =  "<?php echo __('admin.cities.edit_modal_title')?>";
+            document.getElementById("btn_saveData").innerHTML =  "<?php echo __('admin.btn_save')?>";
 
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
@@ -185,6 +189,7 @@
                 let res = res0["cities"];
                 console.log(":: respuesta fel FIND");
                 console.log(res);
+                document.getElementById("data_id").value = res["id"];
                 document.getElementById("data_city").value = res["name"];
                 document.getElementById("data_country").value = res["country"];
                 document.getElementById("data_continent").value = res["continentId"];

@@ -39,8 +39,30 @@ class CitiesController extends Controller
 
     }
 
-    public function cities_edit()
+    public function cities_edit($id)
     {
-        return view('cities.edit');
+        $inputs = [];
+        $inputs["banners"] = [];
+
+        $url = config('app.apiUrl').'cities/find/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        if($data){
+            $res = json_decode( $data, true);
+
+            $inputs["city"] = $res["cities"];
+            $inputs["banners"] = $res["bannerCities"];
+            $inputs["gallery"] = $res["gallery"];
+            $inputs["links"] = $res["links"];
+            $inputs["files"] = $res["files"];
+        }else{
+            $inputs = array( "city" => []);
+        };
+        return view('cities.edit', $inputs);
     }
 }
