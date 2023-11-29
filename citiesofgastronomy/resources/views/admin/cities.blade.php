@@ -96,7 +96,11 @@
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_continent">{{__('admin.cities.data_continent')}}</label>
-                <input id="data_continent" name="data_continent" class="form-control" placeholder="{{__('admin.cities.ph_continent')}}"/>
+                <select id="data_continent" name="data_continent" class="form-control">
+                    @foreach($continents as $continent)
+                    <option value="{{ $continent['id'] }}">{{ $continent["name"] }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_population">{{__('admin.cities.data_population')}}</label>

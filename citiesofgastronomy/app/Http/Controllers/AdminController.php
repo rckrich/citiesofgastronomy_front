@@ -35,8 +35,10 @@ class AdminController extends Controller
 
         $res = json_decode( $data, true);
 
+
         $inputs = [];
         $inputs["cityList"] = $res["cities"];
+        $inputs["continents"] = $res["continents"];
         return view('admin.cities', $inputs);
     }
     public function citiesFind($id)
