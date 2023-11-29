@@ -117,9 +117,11 @@
     </section>
 
     <section id="num_stats" class="bg-dark-gray selectable-text-area">
-        <div class="banner-title " <?php if($bannerNumberAndStats !=''){
+        <div class="banner-title sss" <?php if($bannerNumberAndStats !=''){
             echo 'style="    background: url('.config('app.url').$bannerNumberAndStats.');"';
-        };?>>
+            }else{
+                echo 'style="    background: url('.asset('assets/img/Home/Container-benefit.png').');"';
+            };?>>
         <div class="banner-title-overlay row align-items-center mx-0">
             <div class="banner-img-overlay">
                 <h1 class="title-lg text-yellow2">{{__('landing.stats.title')}}</h1>
