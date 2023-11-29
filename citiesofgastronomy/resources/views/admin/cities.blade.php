@@ -51,7 +51,7 @@
                                 <a class=" btn-link" href="{{route('admin.cities_edit',['id'=>$city['id']])}}">{{__('admin.cities.btn_edit_full')}}</a>
                             </td>
                             <td class="col-auto my-auto">
-                                <button class="btn btn-danger"  data-bs-toggle="modal"
+                                <button class="btn btn-danger"  data-bs-toggle="modal" onclick="modalDel({{$city['id']}})"
                                                 data-bs-target="#deleteCityModal">{{__('admin.btn_delete')}}
                             </button></td>
                         </tr>
@@ -133,6 +133,7 @@
 
 <!-- Modal DELETE CITY-->
 <div class="modal fade" id="deleteCityModal" tabindex="-1" aria-labelledby="deleteCityModalLabel" aria-hidden="true">
+    <input type="hidden" id="id_del_city">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -144,7 +145,7 @@
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="delCity()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -152,7 +153,13 @@
 
 
 <script>
-
+    function modalDel(id){
+        document.getElementById('id_del_city').value = id;
+    }
+    function delCity(){
+        let id = document.getElementById('id_del_city').value;
+        window.location = '/admin/citiesDelete/'+id;
+    }
     function sel_file(){
         var Element = document.getElementById('data_photo');
         var img = document.getElementById('imgFile');
