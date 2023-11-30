@@ -15,7 +15,7 @@
             <div class="banner-img-overlay">
                 <h1 class="title-lg text-yellow pb-5">{{$city["name"]}}</h1>
                 <h6 class="data py-2"><b class="text-orange">{{$city["country"]}}</b></h6>
-                <h6 class="data py-2 text-orange">{{$city["description"]}}</h6>
+                <h6 class="data py-2 text-orange">City of Gastronomy since {{$city["designationyear"]}}</h6>
 
             </div>
         </div>
