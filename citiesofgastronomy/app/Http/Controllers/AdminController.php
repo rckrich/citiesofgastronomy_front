@@ -82,6 +82,7 @@ class AdminController extends Controller
 
         $inputs = [];
         $inputs["cityList"] = $res["cities"];
+        $inputs["continents"] = $res["continents"];
         return view('admin.cities', $inputs);
     }
 
