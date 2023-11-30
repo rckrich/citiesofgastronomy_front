@@ -50,6 +50,11 @@ Route::get('/admin/home', function(){return redirect()->route('admin.cities');})
 
 Route::get('/admin/cities', [AdminController::class, 'cities'])->name('admin.cities');
 Route::get('/admin/cities/{id}', [CitiesController::class, 'cities_edit'])->name('admin.cities_edit');
+Route::get('/admin/citiesDelete/{id}', [CitiesController::class, 'delete']);
+Route::get('/admin/citiesFind/{id}', [AdminController::class, 'citiesFind']);
+Route::post('/admin/store', [AdminController::class, 'citiesStoreUpdate']);
+Route::post('/admin/completeUpdate', [AdminController::class, 'citiesCompleteUpdate']);
+Route::post('/admin/citiesSearch', [AdminController::class, 'citiesSearch']);
 
 Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
