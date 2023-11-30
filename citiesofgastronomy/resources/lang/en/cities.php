@@ -34,7 +34,8 @@ return [
         'btn_edit'=>'Edit basic',
         'btn_edit_full'=>'Edit deep info',
 
-        'edit_modal_title'=>'Create City',
+        'create_modal_title'=>'Create City',
+        'edit_modal_title'=>'Edit City',
         'delete_modal_title'=>'Do you want to delete?',
         'delete_modal_desc'=>'Are you sure you want to delete this City? This action can\'t be undone.',
 
@@ -63,9 +64,12 @@ return [
         'btn_image'=>'CHANGE IMAGE',
         'section_facts'=>'Facts and Figures',
         'data_city'=>'City Name:',
+        'data_country'=>'Country:',
+        'ph_country'=>'Country Name',
         'data_continent'=>'Continent:',
         'data_population'=>'Population:',
         'data_locations'=>'Restaurant & Food Stablishments:',
+        'data_dyear'=>'Designation Year:',
         'data_description'=>'Description:',
         'ph_city'=>'City Name',
         'ph_continent'=>'Select Continent',
