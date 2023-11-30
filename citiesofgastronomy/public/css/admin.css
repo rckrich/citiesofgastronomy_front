@@ -27,7 +27,7 @@ th{font-size: 18px;}
 
 td .btn-link, a .btn-link{color: #303030!important;font-family:'Calibri'; font-weight: bold;}
 th,td{vertical-align: middle;}
-th{background-color: #18191D!important; color: #fff!important;}
+th{background-color: #18191D!important; color: #fff!important;height: 62px!important;}
 td{background-color:#fff;color: #707070!important;}
 
 th:first-child,td:first-child{padding-left: 30px;}

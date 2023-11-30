@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\CitiesController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InitiativesController;
 use App\Http\Controllers\TastierLifeController;
 use App\Http\Controllers\ToursController;
@@ -54,7 +55,12 @@ Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name(
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
 Route::get('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours');
 Route::get('/admin/about', [AdminController::class, 'about'])->name('admin.about');
+
 Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
+Route::get('/admin/contact/create', [ContactController::class, 'contact_new'])->name('admin.contact_new');
+Route::get('/admin/contact/{id}', [ContactController::class, 'contact_edit'])->name('admin.contact_edit');
+
+
 Route::get('/admin/main_site', [AdminController::class, 'main'])->name('admin.main');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');

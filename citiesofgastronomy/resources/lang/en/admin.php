@@ -18,6 +18,7 @@ return [
     'btn_delete'=>'DELETE',
     'btn_edit'=>'EDIT',
     'btn_add'=>'ADD',
+    'btn_download'=>'DOWNLOAD',
 
 
     'main_site'=>[
@@ -82,6 +83,19 @@ return [
             'cities_ph'=>'Link to cities of gastronomy',
             ''=>'',
         ],
+        ''=>'',
+    ],
+    'newsletter'=>[
+        'title'=>'SUBSCRIBER NEWSLETTER',
+        'btn_download'=>'DOWNLOAD CVS',
+        'th_email'=>'Email',
+        'th_joined'=>'Joined on',
+        'download_modal_title'=>'Download CVS',
+        'data_startdate'=>'Start Date',
+        'data_enddate'=>'End Date',
+        'ph_startdate'=>'mm/dd/yyyy',
+        'ph_enddate'=>'mm/dd/yyyy',
+        ''=>'',
         ''=>'',
     ],
     ''=>[
