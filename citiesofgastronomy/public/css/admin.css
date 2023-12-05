@@ -27,7 +27,7 @@ th{font-size: 18px;}
 
 td .btn-link, a .btn-link{color: #303030!important;font-family:'Calibri'; font-weight: bold;}
 th,td{vertical-align: middle;}
-th{background-color: #18191D!important; color: #fff!important;}
+th{background-color: #18191D!important; color: #fff!important;height: 62px!important;}
 td{background-color:#fff;color: #707070!important;}
 
 th:first-child,td:first-child{padding-left: 30px;}
@@ -36,7 +36,7 @@ th:last-child,td:last-child{padding-right: 30px;}
 .modal-header.b-none,.modal-footer.b-none{border: none;}
 .modal .form-label{font-size: 16px; color: #354E57;}
 .modal .form-control{font-size: 14px; color: #354E57;}
-.modal .btn:not(.btn-link){width: 150px;}
+.modal .btn:not(.btn-link){width: inherit;}
 
 .input-group-text{background-color: #fff;}
 .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){border-left: none;}
@@ -104,3 +104,8 @@ input[type="file"]:active::before {}
     display: inline-block;
     cursor: pointer;
 }
+
+/*ABOUT*/
+#pills-tab-about{background-color: #272727;}
+#pills-tab-about button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
+#pills-tab-about button.active{text-decoration: underline;}

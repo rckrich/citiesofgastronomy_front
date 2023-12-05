@@ -69,6 +69,7 @@ a .text-white{color: #fff!important;}
 .b-gray{border: 1px solid #707070;}
 .bb-orange{border-bottom: solid 1px #D87C16;}
 
+.hover-pointer:hover{cursor: pointer;}
 
 /*BOOTSTRAP OVERRIDE--------------------------*/
 

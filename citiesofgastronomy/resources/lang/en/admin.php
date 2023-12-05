@@ -18,6 +18,7 @@ return [
     'btn_delete'=>'DELETE',
     'btn_edit'=>'EDIT',
     'btn_add'=>'ADD',
+    'btn_download'=>'DOWNLOAD',
 
 
     'main_site'=>[
@@ -84,37 +85,18 @@ return [
         ],
         ''=>'',
     ],
-    'cities'=>[
-        'title'=>'Manage Cities',
-        'search_ph'=>'Search City',
-        'btn_add'=>'ADD NEW CITY',
-
-        'th_name'=>'Name of the city',
-        'btn_edit'=>'Edit basic',
-        'btn_edit_full'=>'Edit deep info',
-
-        'create_modal_title'=>'Create City',
-        'edit_modal_title'=>'Edit City',
-        'delete_modal_title'=>'Do you want to delete?',
-        'delete_modal_desc'=>'Are you sure you want to delete this City? This action can\'t be undone.',
-
-        'data_city'=>'City:',
-        'ph_city'=>'City Name',
-        'data_country'=>'Country:',
-        'ph_country'=>'Country Name',
-        'data_continent'=>'Continent:',
-        'ph_continent'=>'Continent Selected',
-        'data_population'=>'Population:',
-        'ph_population'=>'Population Number',
-        'data_locations'=>'Restaurant & Food Stablishments:',
-        'ph_locations'=>'Number of Stablishments',
-        'data_dyear'=>'Designation Year:',
-        'ph_dyear'=>'Year of Designation',
-        'data_photo'=>'City Photo:',
+    'newsletter'=>[
+        'title'=>'SUBSCRIBER NEWSLETTER',
+        'btn_download'=>'DOWNLOAD CVS',
+        'th_email'=>'Email',
+        'th_joined'=>'Joined on',
+        'download_modal_title'=>'Download CVS',
+        'data_startdate'=>'Start Date',
+        'data_enddate'=>'End Date',
+        'ph_startdate'=>'mm/dd/yyyy',
+        'ph_enddate'=>'mm/dd/yyyy',
         ''=>'',
-
         ''=>'',
-
     ],
     ''=>[
         ''=>'',
