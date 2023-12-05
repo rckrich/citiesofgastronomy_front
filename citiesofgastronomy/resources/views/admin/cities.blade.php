@@ -229,21 +229,39 @@
     }
 
     function paginator(page){
+        let paginatorCant = '<?= $paginator?>';
+        paginatorCant = parseInt(paginatorCant);
         //search_box
-        console.log("-->PAG");
-        document.getElementById('page').value;
+        //console.log("-->PAG");
+        let paginaActual = document.getElementById('page').value;
+        paginaActual= parseInt(paginaActual);
+
         let search = document.getElementById('search').value;
-
+        let nada = '';
         if(page == 'prev' || page == 'next'){
-
+                //console.log("#0");
+            if(page == 'next' && paginaActual != paginatorCant){
+                page = paginaActual + 1;
+                //console.log("#1");
+            }else if(page == 'prev' && paginaActual > 1){
+                page = paginaActual - 1;
+                //console.log("#2");
+            }else{
+                nada = 'si';
+            };
         }else{
+            page= parseInt(page);
+        };
+        //console.log(paginaActual);
+        //console.log(page);
+        if(nada == ''){
             if (search == ''){
                 console.log("#not SERCH");
                 window.location = '/admin/cities/?page='+page;
             }else{
                 console.log("# SERCH");console.log(search);
-                document.getElementById('page').value = page;
-                document.getElementById('formSerch').submit();
+                //document.getElementById('page').value = page;
+                //document.getElementById('formSerch').submit();
             };
         };
     }
