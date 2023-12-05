@@ -17,9 +17,22 @@
 	<link rel="stylesheet" href="{{asset('css/business.css')}}" type="text/css" />
 	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css" />
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+    <style>
+        .inputImage{
+            cursor: pointer;
+            margin: 0;
+            opacity: 0;
+            outline: 0 none;
+            padding: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 80px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top px-5 py-4">
@@ -71,7 +84,7 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </div>
-            
+
         </div>
     </nav>
     <div class="navbar-height-margin min-h-100">
@@ -87,15 +100,15 @@
         <div class="container p-5">
             <div class="row">
                 <div class="col-12 align-self-center text-center">
-                    <div class="row g-2">                  
+                    <div class="row g-2">
                         <p>{{__('general.copyright')}}</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="{{asset('js/app.js')}}"></script> 
-    <script src="{{asset('js/functions.js')}}"></script> 
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/functions.js')}}"></script>
     <script src="{{asset('js/plugins.min.js')}}"></script>
     <script>
 		jQuery(window).on( 'pluginCarouselReady', function(){

@@ -24,8 +24,6 @@ class CitiesController extends Controller
 
         if($data){
             $res = json_decode( $data, true);
-            Log::info("##fff");
-            Log::info($res);
 
             $inputs["city"] = $res["cities"];
             $inputs["banners"] = $res["bannerCities"];
@@ -55,11 +53,13 @@ class CitiesController extends Controller
         if($data){
             $res = json_decode( $data, true);
 
+            $inputs["id"] = $id;
             $inputs["city"] = $res["cities"];
             $inputs["banners"] = $res["bannerCities"];
             $inputs["gallery"] = $res["gallery"];
             $inputs["links"] = $res["links"];
             $inputs["files"] = $res["files"];
+            $inputs["continents"] = $res["continents"];
         }else{
             $inputs = array( "city" => []);
         };
