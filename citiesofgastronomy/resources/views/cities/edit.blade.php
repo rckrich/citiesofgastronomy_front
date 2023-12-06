@@ -20,7 +20,7 @@
                     <img class="gallery-img w-100" src="<?php if($city['photo']){echo config('app.url').$city['photo'];}?>" id="imgFile"/>
                 </div>
                 <div class="p-2">
-                    <label class="custom-file-upload btn btn-primary" for="city_logo">
+                    <label class="custom-file-upload btn btn-primary position-relative" for="city_logo">
                         <input type="file" class="inputImage" name="photo" id="photo"
                                 onChange="sel_file('imgFile', 'photo', 'phototbl', 'block')">
                         <?php if($city['photo']){ echo __('cities.edit.btn_image');}else{echo 'SELECT IMAGE';};?>
@@ -99,7 +99,7 @@
                             <?php $s = $i - 1?>
                             <div class="col-2 py-2 mx-2" id="imageTBL<?= $i?>">
                                 <div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"
-                                        onclick="deletefuncion('<?= $i?>')"/></div>
+                                        onclick="deletefuncion('<?= $i?>', 'imageTBL', 'deleteImage')"/></div>
                                 <img class="gallery-img w-100" src="{{config('app.url').$gallery[$s]['image']}}"/>
                                 <input type="hidden" id="idImage<?= $i?>" name="idImage<?= $i?>" value="{{$gallery[$s]['id']}}">
                                 <input type="hidden" id="deleteImage<?= $i?>" name="deleteImage<?= $i?>">
@@ -112,12 +112,12 @@
                             <div class="col-2 py-2 mx-2 row text-center" id="imageTBL<?= $e?>" style="display:block">
                                 <div class="text-right" id="deleteIcon<?= $e?>" style="display:none">
                                         <img class="delete-img"src="{{asset('assets/icons/delete.png')}}"
-                                        onclick="deletefuncion('<?= $e?>')"/>
+                                        onclick="deletefuncion('<?= $e?>', 'imageTBL', 'deleteImage')"/>
                                 </div>
                                 <img class="gallery-img w-100" id="thumbImage<?= $e?>" style="display:none"/>
-                                <div class="col-12 p-2 load-img h-100 row mx-0 align-items-center">
+                                <div class="col-12 p-2 load-img h-100 row mx-0 align-items-center position-relative"  id="plusIMG<?= $e?>">
                                     <input type="file" class="inputImage" name="image<?= $e?>" id="image<?= $e?>"
-                                            onChange="imageSelection('<?= $e?>')" style="width:100%;    background-size: cover;">
+                                            onChange="imageSelection('<?= $e?>')" style="width:100%;      height: 100%;">
                                     <label class="custom-file-upload" for="new_gallery_img">
                                         <img class="mx-auto" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80"/>
                                     </label>
@@ -146,19 +146,15 @@
                                             src="{{asset('assets/icons/edit_file.png')}}" onclick="editLinkFN('<?= $i?>')"
                                             data-bs-toggle="modal" data-bs-target="#uploadLinkModal"/>
                                         </div>
-                                    <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38" src="{{asset('assets/icons/delete_file.png')}}"/></div>
+                                    <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38"
+                                            onclick="deletefuncion('<?= $i?>', 'linkTBL', 'deleteLink')"
+                                            src="{{asset('assets/icons/delete_file.png')}}"/></div>
                                     <input type="hidden" id="idLink<?= $i?>" name="idLink<?= $i?>" value="{{$links[$s]['id']}}">
                                     <input type="hidden" id="deleteLink<?= $i?>" name="deleteLink<?= $i?>">
                                 </div>
                                 @endfor
                             </div>
                             <input type="hidden" id="cant_links" name="cant_links" value="<?php echo $i - 1?>">
-                            <!--si es pdf-->
-                            <div class="col-10 px-0 py-2">
-                                <input id="data_description" name="data_description" class="form-control" placeholder="{{__('cities.edit.ph_document')}}"/>
-                            </div>
-                            <div class="col-1 p-2 text-right hover-pointer"><img class="mx-auto" width="38" height="38" data-bs-toggle="modal" data-bs-target="#uploadPDFModal"  src="{{asset('assets/icons/edit_file.png')}}"/></div>
-                            <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38" src="{{asset('assets/icons/delete_file.png')}}"/></div>
 
                             <div class="col-12 px-0 py-2 row mx-0">
                                 <div class="col-auto ps-0"><button type="button" class="btn btn-dark w-100" onclick="addLinkFN()"
@@ -276,7 +272,7 @@
                                 <img class="gallery-img w-100" id="thumbImage0" style="display:none"/>
                                 <div class="col-12 p-2 load-img h-100 row mx-0 align-items-center position-relative" id="plusIMG0">
                                     <input type="file" class="inputImage" name="image0" id="image0"
-                                            onChange="imageSelection('0')" style="width:100%;    background-size: cover;">
+                                            onChange="imageSelection('0')" style="width:100%;      height: 100%;">
                                     <label class="custom-file-upload" for="new_gallery_img">
                                         <img class="mx-auto" src="{{asset('assets/icons/add_file.png')}}"
                                          width="80" height="80"/>
@@ -323,7 +319,7 @@ let clonedDiv = $('#imageTBL0').clone();
     padre3[0].name = 'deleteIcon' + nuevovalor;
     padre3[1].id = 'plusIMG' + nuevovalor;
     padre3[1].name = 'plusIMG' + nuevovalor;
-    var jss1 = "deletefuncion('"+nuevovalor+"')";
+    var jss1 = "deletefuncion('"+nuevovalor+"', 'imageTBL', 'deleteImage')";
     padre3[0].setAttribute("onchange", jss1);
 
     let padre4 = document.getElementById(nuevaid).getElementsByTagName("img");
@@ -367,10 +363,10 @@ $(document).ready(function(e){
 //    deepInfoForm
 
 
-function deletefuncion(id){
-    let id1 = "imageTBL"+id ;
+function deletefuncion(id, tabledel, inputDel){
+    let id1 = tabledel+id ;
     document.getElementById(id1).style.display = 'none';
-     id1 = "deleteImage"+id ;
+     id1 = inputDel+id ;
     document.getElementById(id1).value = '1' ;
 }
 
@@ -405,8 +401,10 @@ function saveLink(){
         padre[3].id = 'deleteLink' + nuevovalor;
         padre[3].name = 'deleteLink' + nuevovalor;
 
-        let padre2 = document.getElementById(nuevaid).getElementsByTagName("div");
-        var jss1 = "editLinkFN('"+nuevovalor+"')";
+        let padre2 = document.getElementById(nuevaid).getElementsByTagName("img");
+        let jss1 = "editLinkFN('"+nuevovalor+"')";
+        padre2[0].setAttribute("onclick", jss1);
+        jss1 = "deletefuncion('"+nuevovalor+"', 'linkTBL', 'deleteLink')";
         padre2[1].setAttribute("onclick", jss1);
 
 
