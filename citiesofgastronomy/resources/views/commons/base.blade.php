@@ -51,7 +51,7 @@
                     <a class="nav-link" href="{{route('landing.tours')}}">{{__('general.nav_tours')}}</a>
                 </li>
                 <li id="nav_stats" class="nav-item {{ request()->routeIs('landing.stats') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('landing.stats')}}">{{__('general.nav_stats')}}</a>
+                    <a class="nav-link" target="_blank" href="https://drive.google.com/drive/folders/1b2TV7H4y8SwQZaSuAyAQ_AMn9ovczgIs?usp=drive_link">{{__('general.nav_stats')}}</a>
                 </li>
                 <li id="nav_calendar" class="nav-item {{ request()->routeIs('landing.calendar') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.calendar')}}">{{__('general.nav_calendar')}}</a>

@@ -10,4 +10,12 @@ class InitiativesController extends Controller
     {
         return view('initiatives.show');
     } 
+    public function initiatives_new()
+    {
+        return view('initiatives.new');
+    } 
+    public function initiatives_edit()
+    {
+        return view('initiatives.edit');
+    } 
 }

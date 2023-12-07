@@ -8,7 +8,7 @@ return [
     'nav_initiatives' => 'Initiatives',
     'nav_tastier_life' => 'Tastier Life',
     'nav_tours' => 'Tours',
-    'nav_stats' => 'Number and stats',
+    'nav_stats' => 'Numbers and statistics',
     'nav_calendar' => 'Calendar',
     'nav_contact' => 'Contact',
     

@@ -63,7 +63,7 @@
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
                                 <p class="">{{__('landing.lorem')}}</p>
-                                <a href="#" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
+                                <a target="_blank" href="https://en.unesco.org/creative-cities/" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
                             </div>
                             </div>
                         </div>

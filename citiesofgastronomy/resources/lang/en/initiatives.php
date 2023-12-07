@@ -29,6 +29,19 @@ return [
         'share'=>'Share on: ',
         'links'=>'Related Links:',
     ],
+    'init'=>[
+        'title'=>'Initiatives',
+        'admin_title'=>'Initiatives',
+        'search_ph'=>'Search Initiative',
+        'btn_add'=>'ADD INITIATIVE',
+        'th_name'=>'INITIATIVE',
+        ''=>'',
+    ],
+    'filters'=>[
+        'title'=>'Filters',
+        ''=>'',
+    ],
+    'btn_edit'=>'Edit',  
     ''=>'',  
 
 ];

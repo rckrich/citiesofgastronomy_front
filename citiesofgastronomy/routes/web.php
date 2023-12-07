@@ -31,7 +31,7 @@ Route::get('/tastier_life', [LandingController::class, 'tastier_life'])->name('l
 Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours');
 Route::post('/search', [LandingController::class, 'search'])->name('search');
 
-Route::get('/cities/view/{id}', [CitiesController::class, 'index']);
+Route::get('/cities/view/{id}', [CitiesController::class, 'index'])->name('cities.view');
 Route::get('/initiatives/view', [InitiativesController::class, 'index'])->name('initiatives.index');
 Route::get('/tastier_life/view', [TastierLifeController::class, 'index'])->name('tastier_life.index');
 Route::get('/tours/view', [ToursController::class, 'index'])->name('tours.index');
@@ -57,6 +57,9 @@ Route::post('/admin/completeUpdate', [AdminController::class, 'citiesCompleteUpd
 Route::post('/admin/citiesSearch', [AdminController::class, 'citiesSearch']);
 
 Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
+Route::get('/admin/initiatives/create', [InitiativesController::class, 'initiatives_new'])->name('admin.initiatives_new');
+Route::get('/admin/initiatives/{id}', [InitiativesController::class, 'initiatives_edit'])->name('admin.initiatives_edit');
+
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
 Route::get('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours');
 Route::get('/admin/about', [AdminController::class, 'about'])->name('admin.about');

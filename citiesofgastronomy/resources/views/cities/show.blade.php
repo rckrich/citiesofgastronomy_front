@@ -33,7 +33,7 @@
 
     <div class="container p-5">
         <div class="row">
-            <div class="col-1 py-5">
+            <!--div class="col-1 py-5">
                 <div class="row py-2">
                     <a href="" class="px-2 text-right"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="row py-2">
                     <a href="" class="px-2 text-right"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
                 </div>
-            </div>
+            </div-->
             <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-5">
                 <div class="p-5 title-xs bg-orange text-white text-center">
                     <b>{{__('cities.view.about_title')}}</b>
@@ -62,7 +62,7 @@
                     <p class="py-2 text-white data">{{$city["restaurantFoodStablishments"]}}</p>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-6 col-sm-12 col-12 p-5">
+            <div class="col-lg-8 col-md-6 col-sm-12 col-12 p-5">
                 <p class="py-2 data ">{{$city["completeDescription"]}}</p>
             </div>
         </div>
@@ -91,6 +91,18 @@
     </div>
 
     <div class="container p-5 row align-items-center">
+
+        <div class="row align-items-center data-sm text-orange">
+            <b class="col-auto pe-5">{{__('initiatives.view.share')}}</b>
+            <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
+                <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('cities.view',['id'=>$city['id']])}}">
+                    <img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/>
+                </a>
+            </div>       
+            <a class="col-auto px-2"  onclick="shareLinkedIn(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a>
+            <a class="col-auto px-2" href="" onclick="shareTwitter(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
+        </div>
+
         <div class="text-center" style="margin: 5rem 0">
             <p class="title-md py-5">{{__('cities.view.more_info')}}</p>
             @foreach($links as $link)

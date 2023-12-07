@@ -51,11 +51,11 @@
             <div class="row m-0 p-0">
                 <div class="col-6 form-group py-2 ps-0">
                     <label class="form-label" for="data_startdate">{{__('admin.newsletter.data_startdate')}}</label>
-                    <input id="data_startdate" name="data_startdate" class="form-control" placeholder="{{__('about.timeline.ph_startdate')}}"/>
+                    <input type="date" id="data_startdate" name="data_startdate" class="form-control" placeholder="{{__('about.timeline.ph_startdate')}}"/>
                 </div>
                 <div class="col-6 form-group py-2 pe-0">
                     <label class="form-label" for="data_enddate">{{__('admin.newsletter.data_enddate')}}</label>
-                    <input id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('about.timeline.ph_enddate')}}"/>
+                    <input type="date" id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('about.timeline.ph_enddate')}}"/>
                 </div>
             </div>
         </div>

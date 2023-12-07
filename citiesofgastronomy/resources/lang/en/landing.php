@@ -10,9 +10,9 @@ return [
         'subtitle' => 'About',
     ],
     'stats'=>[
-        'title' => 'NUMBER AND STATS',
-        'subtitle_1' => 'Benefits of becoming a Creative Cities of Gastronomy',
-        'subtitle_2' => 'Do you want to become a Creative Cities of Gastronomy?',
+        'title' => 'NUMBERS AND STATISTICS',
+        'subtitle_1' => 'Benefits of becoming a Creative City of Gastronomy',
+        'subtitle_2' => 'Do you want to become a Creative City of Gastronomy?',
     ],
     'initiatives'=>[
         'title' => 'Recent initiatives',

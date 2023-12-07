@@ -56,4 +56,23 @@
             </div>
         </div>
     </section>
+
+<!-- Modal DELETE CONTACT-->
+<div class="modal fade" id="deleteContactModal" tabindex="-1" aria-labelledby="deleteContactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteContactModalLabel">{{__('contact.admin.delete_modal_title')}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <p>{{__('contact.admin.delete_modal_desc')}}</p>
+      </div>
+      <div class="modal-footer b-none">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
+        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

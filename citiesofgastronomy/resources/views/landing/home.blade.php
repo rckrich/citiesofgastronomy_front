@@ -10,15 +10,42 @@
 
                 <!-- el viewBox 450 cambia el tamaño de la vista del heigth de la imagen con los botones -->
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                viewBox="0 0 1056 450" style="enable-background:new 0 0 1056 816;" xml:space="preserve"
+                viewBox="0 0 1056 500" style="enable-background:new 0 0 1056 816;" xml:space="preserve"
                 style="position:absolute;vertical-align:middle">
                     <g>
-                        <svg id="pin-1" class="pin" x="350" y="250"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-1-AfyonkarahisarTurkiye" class="pin" x="555" y="328"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-2-AlbaItaly" class="pin" x="515" y="318"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-3-ArequipaPeru" class="pin" x="380" y="435"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-4-BelemBrazil" class="pin" x="422" y="416"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-5-BeloHorizonteBrazil" class="pin" x="426" y="443"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-6-BendigoAustralia" class="pin" x="755" y="472"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-7-BergamoItaly" class="pin" x="520" y="314"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-8-BergenNorway" class="pin" x="508" y="395"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <svg id="pin-9-BohiconBenin" class="pin" x="512" y="275"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
+                            <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
+                        </svg>
+                        <!--svg id="pin-1" class="pin" x="350" y="250"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
                         <svg id="pin-3" class="pin" x="550" y="300"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="10.095" height="12.024" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
-                        </svg>
+                        </svg-->
                     </g>
 
 
@@ -144,7 +171,7 @@
                     <div class="card-body text-white">
                         <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
                         <p class="">{{__('landing.lorem')}}</p>
-                        <a href="#" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
+                        <a target="_blank" href="https://en.unesco.org/creative-cities/" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
                     </div>
                     </div>
                 </div>

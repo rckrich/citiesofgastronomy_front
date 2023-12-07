@@ -13,6 +13,8 @@ return [
         'btn_add'=>'ADD CONTACT',   
         'btn_edit'=>'Edit',
 
+        'delete_modal_title'=>'Do you want to delete?',
+        'delete_modal_desc'=>'Are you sure you want to delete this Contact? This action can\'t be undone.',
         ''=>'',
 
     ],
