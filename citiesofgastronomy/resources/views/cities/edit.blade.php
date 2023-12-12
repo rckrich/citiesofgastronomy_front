@@ -3,6 +3,10 @@
 @extends('commons.admin_base')
 
 @section('content')
+
+
+<x-loading />
+
 <section id="admin_cities_edit">
     <form action="/admin/completeUpdate" method="POST" enctype="multipart/form-data"  id="deepInfoForm" class="container p-5">
         <input type="hidden" name="data_id" value="<?= $id?>">
@@ -55,6 +59,7 @@
                         <label class="form-label" for="data_city">{{__('cities.edit.data_city')}}</label>
                         <input id="name" name="name" class="form-control" value="{{ $city['name'] }}"
                             placeholder="{{__('cities.edit.ph_city')}}"/>
+                        <div id="validation_name" class="invalid-feedback">Obligatory field</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_continent">{{__('cities.edit.data_country')}}</label>
@@ -70,6 +75,7 @@
                                 ?>>{{ $continent["name"] }}</option>
                                 @endforeach
                         </select>
+                        <div id="validation_continent" class="invalid-feedback">Obligatory field</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_population">{{__('cities.edit.data_population')}}</label>
@@ -83,8 +89,9 @@
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_locations">{{__('cities.edit.data_dyear')}}</label>
-                        <input id="data_dyear" name="data_dyear" class="form-control" value="{{ $city['designationyear'] }}""
-                        placeholder="{{__('cities.edit.ph_dyear')}}"/>
+                        <input id="data_dyear" name="data_dyear" class="form-control" value="{{ $city['designationyear'] }}"
+                            placeholder="{{__('cities.edit.ph_dyear')}}"/>
+                        <div id="validation_data_dyear" class="invalid-feedback">Obligatory field</div>
                     </div>
                     <div class="bb-gray mt-4 mb-2"></div>
                     <div class="form-group py-2">
@@ -153,20 +160,41 @@
                                     <input type="hidden" id="deleteLink<?= $i?>" name="deleteLink<?= $i?>">
                                 </div>
                                 @endfor
+                                <!--si es files-->
+                                @for($s=1; $s < count($files)+1; $s++)
+                                <?php $y = $s - 1?>
+                                <div class="row mx-0 align-items-center" id="filesTBL<?= $s?>">
+                                    <div class="col-10 px-0 py-2">
+                                        <input id="titlefile<?= $s?>" name="titlefile<?= $s?>" class="form-control"
+                                                value="{{$files[$y]['title']}}" placeholder="{{__('cities.edit.ph_document')}}"/>
+                                        <input type="hidden" id="file<?= $s?>" name="file<?= $s?>" value="{{$files[$y]['file']}}">
+                                    </div>
+                                    <div class="col-1 p-2 text-right"><img class="mx-auto" width="38" height="38"
+                                            src="{{asset('assets/icons/edit_file.png')}}" onclick="editFileFN('<?= $s?>')"/>
+                                        </div>
+                                    <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38"
+                                            onclick="deletefuncion('<?= $s?>', 'filesTBL', 'deleteFile')"
+                                            src="{{asset('assets/icons/delete_file.png')}}"/></div>
+                                    <input type="hidden" id="idFile<?= $s?>" name="idFile<?= $s?>" value="{{$files[$y]['id']}}">
+                                    <input type="hidden" id="deleteFile<?= $s?>" name="deleteFile<?= $s?>">
+                                </div>
+                                @endfor
                             </div>
                             <input type="hidden" id="cant_links" name="cant_links" value="<?php echo $i - 1?>">
+                            <input type="hidden" id="cant_files" name="cant_files" value="<?php echo $s - 1?>">
 
                             <div class="col-12 px-0 py-2 row mx-0">
                                 <div class="col-auto ps-0"><button type="button" class="btn btn-dark w-100" onclick="addLinkFN()"
-                                  data-bs-toggle="modal" data-bs-target="#uploadLinkModal">{{__('cities.edit.btn_link')}}</buttton></div>
-                                <div class="col-auto"><button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#uploadPDFModal">{{__('cities.edit.btn_pdf')}}</buttton></div>
+                                  >{{__('cities.edit.btn_link')}}</buttton></div>
+                                <div class="col-auto"><button type="button" class="btn btn-dark w-100" onclick="editFileFN()"
+                                >{{__('cities.edit.btn_pdf')}}</buttton></div>
                             </div>
                         </div>
                     </div>
                     <div class="row form-group py-5">
                         <div class="col-auto ms-auto"><a href="{{route('admin.cities')}}"
                         class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
-                        <div class="col-auto me-auto"><button onclick="submitForm()"
+                        <div class="col-auto me-auto"><button onclick="submitForm()" id="btnSubmit"
                                 class="btn btn-primary w-100">{{__('admin.btn_edit')}}</buttton></div>
                     </div>
                 </div>
@@ -174,8 +202,10 @@
         </div>
 
 
-    </form action="/admin/store" method="POST" enctype="multipart/form-data" >
+    </form >
 </section>
+
+
 <!--MODAL ADD infinito tabla de link -->
             <div class="row mx-0 align-items-center" id="linkTBL0" style="display:none">
                 <div class="col-10 px-0 py-2">
@@ -210,8 +240,7 @@
                 </div>
             </div>
             <div class="modal-footer b-none row mx-0">
-                <button type="button" class="col-auto btn btn-primary mx-auto" onclick="saveLink()" id="btnsavelink"
-                data-bs-dismiss="modal">{{__('admin.btn_add')}}</buttton>
+                <button type="button" class="col-auto btn btn-primary mx-auto" onclick="saveLink()" id="btnsavelink">{{__('admin.btn_add')}}</buttton>
             </div>
             <input type="hidden" id="idLinkGral">
         </form>
@@ -220,31 +249,41 @@
 </div>
 
 <!-- Modal UPLOAD PDF-->
-<div class="modal fade" id="uploadPDFModal" tabindex="-1" aria-labelledby="uploadPDFModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal fade" tabindex="-1" id="uploadPDFModal" aria-labelledby="uploadPDFModalLabel" aria-hidden="true">
+  <div class="modal-dialog position-relative">
     <div class="modal-content">
         <div class="modal-header b-none px-4">
             <h5 class="modal-title" id="uploadPDFModalLabel">{{__('cities.edit.upload_pdf_title')}}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closePDFModal()"></button>
         </div>
-        <form class="">
+        <form action="/admin/addPDF"  id="uploadPDFForm" method="POST" enctype="multipart/form-data"  id="deepInfoForm">
+            <input type="hidden" id="idFileGral" name="idFileGral">
+            @csrf
+            <input type="hidden" id="itemFile" value="">
+            <input type="hidden" id="idOwner" name="idOwner" value="<?= $id?>">
+            <input type="hidden" id="idSection" name="idSection" value="1">
         <div class="modal-body px-4">
             <div class="form-group py-2">
                 <label class="form-label" for="data_pdf_name">{{__('cities.edit.data_pdf_name')}}</label>
-                <input id="data_pdf_name" name="data_pdf_name" class="form-control" placeholder="{{__('cities.edit.ph_pdf_name')}}"/>
+                <input id="titlePDF" name="titlePDF" class="form-control" placeholder="{{__('cities.edit.ph_pdf_name')}}"/>
+                <div id="validation_PDFtitle" class="invalid-feedback" style="display: none;">Obligatory field</div>
             </div>
             <div class="py-2 row mx-0">
                 <p class="form-label px-0" for="new_city_img">{{__('cities.edit.data_pdf')}}</p>
                 <div class="col-12 p-2 h-100 row mx-0 align-items-center text-center load-file">
-                    <label class="custom-file-upload btn btn-dark" for="new_gallery_img" style="width: 150px">
-                        <img class="mx-auto" src="{{asset('assets/icons/file.svg')}}" width="20" height="24"/>
+                    <label class="custom-file-upload btn btn-dark position-relative" for="new_gallery_img" style="width: 150px">
+                        <input type="file" id="filePDF" name="filePDF" class="inputImage" onchange="filechange()">
+                        <img class="mx-auto" src="{{asset('assets/icons/file.svg')}}" id="fileUpImg" width="20" height="24"/>
                     </label>
-                    <input type="file" class="px-0 file-input" name="new_gallery_img" id="new_gallery_img">
+                    <div id="fileUpTxt" class="fw-lighter font-size-sm text-dark text-start p-0"></div>
+                <div id="validation_PDF" class="invalid-feedback text-start" style="display: none;">Obligatory field</div>
                 </div>
             </div>
         </div>
         <div class="modal-footer b-none row mx-0">
-            <button type="button" class="col-auto btn btn-primary mx-auto">{{__('admin.btn_add')}}</buttton>
+            <!--<button type="button"  onclick="submitFormPDF()" class="col-auto btn btn-primary mx-auto">{{__('admin.btn_add')}}</buttton>-->
+            <input type="submit" class="col-auto btn btn-primary mx-auto" value="{{__('admin.btn_add')}}"
+                     id="btnSubmitPDF">
         </div>
         </form>
     </div>
@@ -331,12 +370,30 @@ document.getElementById("cant_gallery").value = item +1;
 
 }
 </script>
+
+
 <script>
+//PDFModal.show(modalToggle)
+//*/
+</script>
+<script>
+ var PDFModal;var modalToggle;
+ var LinkModal;var linkModalToggle;
+ //PDFModal.hide(modalToggle);
+ //LinkModal.hide(linkModalToggle);
 
 $(document).ready(function(e){
 
 
+    //inicializo el modal PDF en Botstrapp
+    PDFModal = new bootstrap.Modal('#uploadPDFModal', { keyboard: false    });
+    modalToggle = document.getElementById("uploadPDFModal");
 
+    //inicializo el modal links en Botstrapp
+    LinkModal = new bootstrap.Modal('#uploadLinkModal', { keyboard: false    });
+    linkModalToggle = document.getElementById("uploadLinkModal");
+
+//*/
     //file type validation
     $("#file").change(function() {
         var file = this.files[0];
@@ -373,61 +430,89 @@ function deletefuncion(id, tabledel, inputDel){
 function saveLink(){
     let cantidad = document.getElementById("cant_links").value;
     cant_links = parseInt(cantidad);
-    console.log("#"+cant_links);
+
     let nuevovalor = cant_links + 1;
-    console.log("Link #"+cantidad);
-    console.log("Link nuevo #"+nuevovalor);
 
     let dataLinkName = document.getElementById("data_link_name").value;
     let dataLink = document.getElementById("data_link").value;
     let idLinkGral = document.getElementById("idLinkGral").value;
 
-    if(idLinkGral == ''){
-        console.log("#Agrega");
-        let nuevaid = 'linkTBL'+nuevovalor;
-        let clonedDiv = $('#linkTBL0').clone();
-        clonedDiv.attr("id", nuevaid); // Cambio id
-        $('#linkSection').append(clonedDiv);// lo coloco en este div
-
-        let padre = document.getElementById(nuevaid).getElementsByTagName("input");
-        padre[0].id = 'titleLink' + nuevovalor;
-        padre[0].name = 'titleLink' + nuevovalor;
-        padre[0].value = dataLinkName;
-        padre[1].id = 'link' + nuevovalor;
-        padre[1].name = 'link' + nuevovalor;
-        padre[1].value = dataLink;
-        padre[2].id = 'idLink' + nuevovalor;
-        padre[2].name = 'idLink' + nuevovalor;
-        padre[3].id = 'deleteLink' + nuevovalor;
-        padre[3].name = 'deleteLink' + nuevovalor;
-
-        let padre2 = document.getElementById(nuevaid).getElementsByTagName("img");
-        let jss1 = "editLinkFN('"+nuevovalor+"')";
-        padre2[0].setAttribute("onclick", jss1);
-        jss1 = "deletefuncion('"+nuevovalor+"', 'linkTBL', 'deleteLink')";
-        padre2[1].setAttribute("onclick", jss1);
-
-
-        document.getElementById(nuevaid).style.display = '';
-        document.getElementById("cant_links").value =nuevovalor;
-    }else{
-        console.log("#Modifica");
-        console.log(idLinkGral);
-        let id1 = 'titleLink' +idLinkGral;
-        document.getElementById(id1).value = dataLinkName;
-        id1 = 'link' +idLinkGral;
-        document.getElementById(id1).value = dataLink;
+    //si no hay nombre agrego el link en el nombre
+    if(dataLinkName==''){
+        console.log("link SIN NOMBRE");
+        dataLinkName = dataLink;
     };
+
+
+    if(dataLink!=''){
+            if(idLinkGral == ''){
+                console.log("#Agrega");
+                let nuevaid = 'linkTBL'+nuevovalor;
+                let clonedDiv = $('#linkTBL0').clone();
+                clonedDiv.attr("id", nuevaid); // Cambio id
+                $('#linkSection').append(clonedDiv);// lo coloco en este div
+
+                let padre = document.getElementById(nuevaid).getElementsByTagName("input");
+                padre[0].id = 'titleLink' + nuevovalor;
+                padre[0].name = 'titleLink' + nuevovalor;
+                padre[0].value = dataLinkName;
+                padre[1].id = 'link' + nuevovalor;
+                padre[1].name = 'link' + nuevovalor;
+                padre[1].value = dataLink;
+                padre[2].id = 'idLink' + nuevovalor;
+                padre[2].name = 'idLink' + nuevovalor;
+                padre[3].id = 'deleteLink' + nuevovalor;
+                padre[3].name = 'deleteLink' + nuevovalor;
+
+                let padre2 = document.getElementById(nuevaid).getElementsByTagName("img");
+                let jss1 = "editLinkFN('"+nuevovalor+"')";
+                padre2[0].setAttribute("onclick", jss1);
+                jss1 = "deletefuncion('"+nuevovalor+"', 'linkTBL', 'deleteLink')";
+                padre2[1].setAttribute("onclick", jss1);
+
+
+                document.getElementById(nuevaid).style.display = '';
+                document.getElementById("cant_links").value =nuevovalor;
+            }else{
+                console.log("#Modifica");
+                console.log(idLinkGral);
+                let id1 = 'titleLink' +idLinkGral;
+                document.getElementById(id1).value = dataLinkName;
+                id1 = 'link' +idLinkGral;
+                document.getElementById(id1).value = dataLink;
+            };
+            LinkModal.hide(linkModalToggle);
+    }else{
+        console.log("#E-0");
+        let message = "fill out all the data";
+        /*if(dataLinkName==''){
+            console.log("#E-1");
+            document.getElementById("data_link_name").className = 'form-control is-invalid';
+            //document.getElementById('validation_LinkTitle').style.display = 'block';
+        };//*/
+        if(dataLink==''){
+            console.log("#E-1");
+            document.getElementById("data_link").className = 'form-control is-invalid';
+            //document.getElementById('validation_Link').style.display = 'block';
+        };
+        alert(message);
+    }
 }
 
 function addLinkFN(){
+    LinkModal.show(linkModalToggle);
     document.getElementById("data_link_name").value = '';
     document.getElementById("data_link").value = '';
     document.getElementById("idLinkGral").value = '';
     document.getElementById("btnsavelink").innerHTML = '<?php echo __('admin.btn_add')?>';
+    document.getElementById("data_link_name").className = 'form-control';
+            //document.getElementById('validation_LinkTitle').style.display = 'block';
+    document.getElementById("data_link").className = 'form-control';
+            //document.getElementById('validation_Link').style.display = 'block';
 }
 
 function editLinkFN(id){
+    LinkModal.show(linkModalToggle);
 console.log("-->"+id);
     let id1  = 'titleLink'+id;
     document.getElementById("data_link_name").value = document.getElementById(id1).value;
@@ -436,38 +521,216 @@ console.log("-->"+id);
     id1  = 'idLink'+id;
     document.getElementById("idLinkGral").value = id;//document.getElementById(id1).value;
     document.getElementById("btnsavelink").innerHTML = '<?php echo __('admin.btn_edit')?>';
+
+    document.getElementById("data_link_name").className = 'form-control';
+            //document.getElementById('validation_LinkTitle').style.display = 'block';
+    document.getElementById("data_link").className = 'form-control';
+            //document.getElementById('validation_Link').style.display = 'block';
 }
 
 $("#deepInfoForm").on('submit', function(e){
         e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/admin/completeUpdate',
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData:false,
-            beforeSend: function(){
-                $('.submitBtn').attr("disabled","disabled");
-                //$('#fupForm').css("opacity",".5");
-            },
-            success: function(msg){
-                alert("City was successfully saved");
-                /*
-                $('.statusMsg').html('');
-                if(msg == 'ok'){
-                    $('#fupForm')[0].reset();
-                    $('.statusMsg').html('<span style="font-size:18px;color:#34A853">Form data submitted successfully.</span>');
-                }else{
-                    $('.statusMsg').html('<span style="font-size:18px;color:#EA4335">Some problem occurred, please try again.</span>');
-                }
-                //$('#fupForm').css("opacity","");
-                $(".submitBtn").removeAttr("disabled");
-                //*/
-            }
-        });
-    });
-</script>
+        document.getElementById("btnSubmit").disabled = true;
 
+        let city  = document.getElementById("name").value;
+        let continent = document.getElementById("idContinent").value;
+        let designationYear = document.getElementById("data_dyear").value;
+
+        let population = document.getElementById("population").value;
+        let restaurantFoodStablishments = document.getElementById("restaurantFoodStablishments").value;
+        //let data_dyear = document.getElementById("data_dyear").value;
+
+        if(city!='' && continent!='' && designationYear!=''){
+            //saco los cuadros rojos si los hubiera
+                document.getElementById("name").className = 'form-control';
+                document.getElementById('validation_name').style.display = 'none';
+                document.getElementById("idContinent").className = 'form-control';
+                document.getElementById('validation_continent').style.display = 'none';
+                document.getElementById("data_dyear").className = 'form-control';
+                document.getElementById('validation_data_dyear').style.display = 'none';
+            ///////////////////////////////////////
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/completeUpdate',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    beforeSend: function(){
+                        $('.submitBtn').attr("disabled","disabled");
+                        //$('#fupForm').css("opacity",".5");
+                    },
+                    success: function(msg){
+                        alert("City was successfully saved");
+                        document.getElementById("btnSubmit").disabled = false;
+                    }
+                });
+        }else{
+            if(city==''){
+                console.log("no tiene nombre de ciudad");
+                document.getElementById("name").className = 'form-control is-invalid';
+                document.getElementById('validation_name').style.display = 'block';
+            };
+            if(continent==''){
+                console.log("no tiene seleccionado continent");
+                document.getElementById("idContinent").className = 'form-control is-invalid';
+                document.getElementById('validation_continent').style.display = 'block';
+            };
+            if(designationYear==''){
+                console.log("no tiene selecconado designationYear");
+                document.getElementById("data_dyear").className = 'form-control is-invalid';
+                document.getElementById('validation_data_dyear').style.display = 'block';
+            };
+
+            let message = "fill out all the data";
+            alert(message);
+                        document.getElementById("btnSubmit").disabled = false;
+        };
+    });
+
+
+   $("#uploadPDFForm").on('submit', function(e){
+       e.preventDefault();
+
+       $valida = 'no';
+        let PDFform = $("#uploadPDFForm");
+        document.getElementById("loading").style.display = 'block';
+        let idFileGral = document.getElementById("idFileGral").value;
+        let itemFile =  document.getElementById("itemFile").value;
+        let filePDF =  document.getElementById("filePDF").value;
+        let title =  document.getElementById("titlePDF").value;
+        let id1 = '';
+        if(idFileGral !=''&&title!=''){   $valida = 'si'; };
+        if(idFileGral ==''&&filePDF!=''&&title!=''){   $valida = 'si'; };
+
+        //VERIFICO extencion
+        file1 = document.getElementById("filePDF").value;
+        let extencion = file1.split('.').pop();
+        if(extencion!='pdf'){$valida = 'no';};
+
+        if($valida == 'si'){
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/addPDF',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    beforeSend: function(){
+                        //$('.submitBtn').attr("disabled","disabled");
+                        //$('#fupForm').css("opacity",".5");
+                    },
+                    success: function(msg){
+                        let e = JSON.parse(msg);
+                        console.log("el id es :: "+idFileGral);
+                        console.log(msg);
+                        console.log(msg.datta);
+                        if(!idFileGral){
+                            console.log("#si paso");
+                            addFile(e["datta"]["id"], e["datta"]["title"], e["datta"]["file"]);
+                        }else{//titlePDF
+                            id1 = 'titlefile' + itemFile;
+                            document.getElementById(id1).value = e["datta"]["title"];
+                            id1 = 'file' + itemFile;
+                            document.getElementById(id1).value = e["datta"]["file"];
+                        };
+                        alert("PDF was successfully saved");
+                        PDFModal.hide(modalToggle);
+                        document.getElementById("loading").style.display = 'none';
+
+                    }
+                });
+
+        }else{
+            let message = "fill out all the data";
+                        document.getElementById("loading").style.display = 'none';
+                        console.log(extencion);
+                        if(title==''){
+                            console.log("no tiene titulo");
+                            document.getElementById("titlePDF").className = 'form-control is-invalid';
+                            document.getElementById('validation_PDFtitle').style.display = 'block';
+                        };
+                        if(filePDF==''){
+                            document.getElementById('validation_PDF').style.display = 'block';
+                        }else if(extencion!='pdf'){
+                            console.log("NOT PDF");
+                            message = 'wrong file extension, only pdf accepted';
+                        };
+
+                        alert(message);
+        };
+    });
+
+    function closePDFModal(){
+        PDFModal.hide(modalToggle);
+    }
+
+    function addFile(id, title, file){
+        let cantidad = document.getElementById("cant_files").value;
+        cantidad = parseInt(cantidad);
+        let = nuevovalor = cantidad + 1;
+
+        let nuevaid = 'filesTBL'+nuevovalor;
+        let clonedDiv = $('#linkTBL0').clone();
+        clonedDiv.attr("id", nuevaid); // Cambio id
+        $('#linkSection').append(clonedDiv);// lo coloco en este div
+
+        let padre = document.getElementById(nuevaid).getElementsByTagName("input");
+        padre[0].id = 'titlefile' + nuevovalor;
+        padre[0].name = 'titlefile' + nuevovalor;
+        padre[0].value = title;
+        padre[1].id = 'file' + nuevovalor;
+        padre[1].name = 'file' + nuevovalor;
+        padre[1].value = file;
+        padre[2].id = 'idFile' + nuevovalor;
+        padre[2].name = 'idFile' + nuevovalor;
+        padre[2].value = id;
+        padre[3].id = 'deleteLink' + nuevovalor;
+        padre[3].name = 'deleteFile' + nuevovalor;
+
+        let padre2 = document.getElementById(nuevaid).getElementsByTagName("img");
+        let jss1 = "editFileFN('"+nuevovalor+"')";
+        padre2[0].setAttribute("onclick", jss1);
+        padre2[0].setAttribute("data-bs-target", "#uploadPDFModal");
+        jss1 = "deletefuncion('"+nuevovalor+"', 'filesTBL', 'deleteFile')";
+        padre2[1].setAttribute("onclick", jss1);
+
+
+        document.getElementById(nuevaid).style.display = '';
+        document.getElementById("cant_files").value =nuevovalor;
+    }
+
+    function editFileFN(itemNum){
+        //reseteo los mensajes rojos
+        document.getElementById("titlePDF").className = 'form-control ';
+        document.getElementById('validation_PDFtitle').style.display = 'none';
+        document.getElementById('validation_PDF').style.display = 'none';
+
+        if( !itemNum ){// SI ES AGREGAR
+            document.getElementById("titlePDF").value = '';
+            document.getElementById("idFileGral").value = '';
+            document.getElementById("btnSubmitPDF").value = 'ADD';
+        }else{//SI ES MODIFICAR
+            let titlePDF = 'titlefile' + itemNum;
+            let idFileGral = 'idFile' + itemNum;
+            let file = 'file' + itemNum;
+            document.getElementById("titlePDF").value = document.getElementById(titlePDF).value;
+            document.getElementById("idFileGral").value = document.getElementById(idFileGral).value;
+            document.getElementById("itemFile").value = itemNum;
+            //document.getElementById("fileUpTxt").value = file;
+            document.getElementById("btnSubmitPDF").value = 'EDIT';
+        };
+        PDFModal.show(modalToggle);
+    }
+
+    function filechange(){
+        let Element = document.getElementById('filePDF').files[0].name;
+        if(Element != ''){
+            document.getElementById("fileUpTxt").innerHTML = Element;
+        };
+    }
+
+</script>
 
 @endsection

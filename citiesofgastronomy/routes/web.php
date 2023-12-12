@@ -53,8 +53,8 @@ Route::post('/admin/cities', [AdminController::class, 'cities']);
 Route::get('/admin/cities/{id}', [CitiesController::class, 'cities_edit'])->name('admin.cities_edit');
 Route::get('/admin/citiesDelete/{id}', [CitiesController::class, 'delete']);
 Route::get('/admin/citiesFind/{id}', [AdminController::class, 'citiesFind']);
-Route::post('/admin/store', [AdminController::class, 'citiesStoreUpdate']);
-Route::post('/admin/completeUpdate', [AdminController::class, 'citiesCompleteUpdate']);
+Route::post('/admin/store', [CitiesController::class, 'citiesStoreUpdate']);
+Route::post('/admin/completeUpdate', [CitiesController::class, 'citiesCompleteUpdate']);
 
 
 Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
@@ -70,3 +70,6 @@ Route::get('/admin/contact/{id}', [ContactController::class, 'contact_edit'])->n
 Route::get('/admin/main_site', [AdminController::class, 'main'])->name('admin.main');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');
+
+
+Route::post('/admin/addPDF', [AdminController::class, 'addPDF']);

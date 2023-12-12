@@ -84,23 +84,19 @@ class AdminController extends Controller
         return $res;
     }
 
-    public function citiesStoreUpdate(Request $request)
-    {
 
-        $data_id = $request->input("data_id");
 
-        $data_city = $request->input("data_city");
-        $data_country = $request->input("data_country");
-        $data_continent = $request->input("data_continent");
-        $data_population = $request->input("data_population");
-        $data_locations = $request->input("data_locations");
-        $data_dyear = $request->input("data_dyear");
 
-        //$data_photo = $request->data_photo;
-        // Get the UploadedFile object
-        $file =  $request->file('data_photo');
-        $photo='';
+
+    public function addPDF(Request $request){
+        $idOwner =$request->input('idOwner');
+        $idSection =$request->input('idSection');
+        $title =$request->input('titlePDF');
+        $idFileGral =  $request->input("idFileGral");
+        $file =  $request->file("filePDF");
+        $pdf='';
         if($file){
+            //Log::info("Sr configura la imagen - ".$i);
                     // You can store this but should validate it to avoid conflicts
                     $original_name = $file->getClientOriginalName();
 
@@ -110,159 +106,18 @@ class AdminController extends Controller
                     // This would be used for the payload
                     $file_path = $file->getPathName();
 
-                    $photo = new \CURLFile($file_path);
+                    $pdf = new \CURLFile($file_path);
         };
-        if($data_id){
-            $url = config('app.apiUrl').'citiesUpdate';
-        }else{
-            $url = config('app.apiUrl').'citiesStore';
-        };
-        Log::info($url);
-
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'photo' => $photo,
-            'id' => $data_id,
-            'name' => $data_city,
-            'country' => $data_country,
-            'idContinent' => $data_continent,
-            'population' => $data_population,
-            'restaurantFoodStablishments' => $data_locations,
-            'designationyear' => $data_dyear
-        ] );
-        $data = curl_exec($curl);
-        curl_close($curl);
-
-        $res = json_decode( $data, true);
-
-        Log::info(  $res["cities"]   );
-
-        //return redirect( "/admin/cities" );
-        return redirect()->route('admin.cities',['st'=>'1']);
-    }
-
-    public function citiesCompleteUpdate(Request $request)
-    {
-
-        $data_id = $request->input("data_id");
-        $completeInfo = $request->input("completeInfo");
-
-        $data_city = $request->input("name");
-        $data_country = $request->input("country");
-        $data_continent = $request->input("idContinent");
-        $data_population = $request->input("population");
-        $data_locations = $request->input("restaurantFoodStablishments");
-        $data_dyear = $request->input("data_dyear");
-        $data_description = $request->input("description");
-
-        //$data_photo = $request->data_photo;
-        // Get the UploadedFile object
-        $file =  $request->file('photo');
-        $photo='';
-        if($file){
-            //Log::info("Sr configura la imagen");
-                    // You can store this but should validate it to avoid conflicts
-                    $original_name = $file->getClientOriginalName();
-
-                    // You can store this but should validate it to avoid conflicts
-                    $extension = $file->getClientOriginalExtension();
-
-                    // This would be used for the payload
-                    $file_path = $file->getPathName();
-
-                    $photo = new \CURLFile($file_path);
-        };
-
-
-        $file =  $request->file('banner');
-        $banner='';
-        if($file){
-            Log::info("Sr configura la imagen");
-                    // You can store this but should validate it to avoid conflicts
-                    $original_name = $file->getClientOriginalName();
-
-                    // You can store this but should validate it to avoid conflicts
-                    $extension = $file->getClientOriginalExtension();
-
-                    // This would be used for the payload
-                    $file_path = $file->getPathName();
-
-                    $banner = new \CURLFile($file_path);
-        };
-
-
         $arrPOST = [
-            'photo' => $photo,
-            'banner' => $banner,
-            'completeInfo' => $completeInfo,
-            'id' => $data_id,
-            'name' => $data_city,
-            'country' => $data_country,
-            'idContinent' => $data_continent,
-            'population' => $data_population,
-            'restaurantFoodStablishments' => $data_locations,
-            'designationyear' => $data_dyear,
-            'description' => $data_description
+            'id' => $idFileGral,
+            'pdf' => $pdf,
+            'title' => $title,
+            'idOwner' => $idOwner,
+            'idSection' => $idSection,
         ];
 
-        $cant_gallery =$request->input('cant_gallery');
 
-        $arrPOST["cant_gallery"] = $cant_gallery;
-        for($i = 1; $i < $cant_gallery;$i++){
-            $id1 = 'image'.$i;
-            $file =  $request->file($id1);
-            $image='';
-            if($file){
-                //Log::info("Sr configura la imagen - ".$i);
-                        // You can store this but should validate it to avoid conflicts
-                        $original_name = $file->getClientOriginalName();
-
-                        // You can store this but should validate it to avoid conflicts
-                        $extension = $file->getClientOriginalExtension();
-
-                        // This would be used for the payload
-                        $file_path = $file->getPathName();
-
-                        $image = new \CURLFile($file_path);
-            };
-            $arrPOST[$id1] = $image;
-            $id1 = 'idImage'.$i;
-            $idImage =  $request->input($id1);
-            $arrPOST[$id1] = $idImage;
-            $id1 = 'deleteImage'.$i;
-            $deleteImage =  $request->input($id1);
-            $arrPOST[$id1] = $deleteImage;
-        };
-
-
-        $cant_links =$request->input('cant_links');
-        $arrPOST["cant_links"] = $cant_links;
-        for($i = 1; $i < $cant_links + 1;$i++){
-            $id1 = 'link'.$i;
-            $link =  $request->input($id1);
-            $arrPOST[$id1] = $link;
-            $id1 = 'titleLink'.$i;
-            $titleLink =  $request->input($id1);
-            $arrPOST[$id1] = $titleLink;
-            $id1 = 'idLink'.$i;
-            $idLink =  $request->input($id1);
-            $arrPOST[$id1] = $idLink;
-            $id1 = 'deleteLink'.$i;
-            $deleteLink =  $request->input($id1);
-            $arrPOST[$id1] = $deleteLink;
-        };
-
-        Log::info($arrPOST);
-
-        //*/
-        $url = config('app.apiUrl').'cities/updateCompleteInfo/'.$data_id;
-        Log::info("#La URL");
-        Log::info($url);
-        Log::info("-------------");
+        $url = config('app.apiUrl').'addPDF/';
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -274,11 +129,7 @@ class AdminController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
-
-        Log::info(  $res   );
-
-        //return redirect( "/admin/cities" );
-        return redirect()->route('admin.cities',['st'=>'1']);
+        return $data;
     }
 
     public function initiatives()
