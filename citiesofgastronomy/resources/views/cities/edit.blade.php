@@ -79,18 +79,18 @@
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_population">{{__('cities.edit.data_population')}}</label>
-                        <input id="population" name="population" class="form-control" value="{{ $city['population'] }}"
-                        placeholder="{{__('cities.edit.ph_population')}}"/>
+                        <input type=number id="population" name="population" class="form-control" value="{{ $city['population'] }}"
+                        placeholder="{{__('cities.edit.ph_population')}}" type="number" min="0"/>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_locations">{{__('cities.edit.data_locations')}}</label>
                         <input id="restaurantFoodStablishments" name="restaurantFoodStablishments" class="form-control" value="{{ $city['restaurantFoodStablishments'] }}"
-                        placeholder="{{__('cities.edit.ph_locations')}}"/>
+                        placeholder="{{__('cities.edit.ph_locations')}}" type="number" min="0"/>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_locations">{{__('cities.edit.data_dyear')}}</label>
                         <input id="data_dyear" name="data_dyear" class="form-control" value="{{ $city['designationyear'] }}"
-                            placeholder="{{__('cities.edit.ph_dyear')}}"/>
+                            placeholder="{{__('cities.edit.ph_dyear')}}" type="number" min="0"/>
                         <div id="validation_data_dyear" class="invalid-feedback">Obligatory field</div>
                     </div>
                     <div class="bb-gray mt-4 mb-2"></div>
