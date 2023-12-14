@@ -19,15 +19,15 @@
             <div class="col-12 px-0 py-4">
                 <p class="admin-subtitle"><b>{{__('cities.edit.data_logo')}} </b></p>
 
-                <div class="my-3 w-25" id="phototbl" <?php  if(!$city['photo']){echo 'style="display:none"';}?> >
+                <div class="my-3 w-25" id="logotbl" <?php  if(!$city['logo']){echo 'style="display:none"';}?> >
                     <!--<div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"/></div>-->
-                    <img class="gallery-img w-100" src="<?php if($city['photo']){echo config('app.url').$city['photo'];}?>" id="imgFile"/>
+                    <img class="gallery-img w-100" src="<?php if($city['logo']){echo config('app.url').$city['logo'];}?>" id="imgFile"/>
                 </div>
                 <div class="p-2">
                     <label class="custom-file-upload btn btn-primary position-relative" for="city_logo">
-                        <input type="file" class="inputImage" name="photo" id="photo"
-                                onChange="sel_file('imgFile', 'photo', 'phototbl', 'block')">
-                        <?php if($city['photo']){ echo __('cities.edit.btn_image');}else{echo 'SELECT IMAGE';};?>
+                        <input type="file" class="inputImage" name="logo" id="logo"
+                                onChange="sel_file('imgFile', 'logo', 'logotbl', 'block')">
+                        <?php if($city['logo']){ echo __('cities.edit.btn_image');}else{echo 'SELECT IMAGE';};?>
                     </label>
                 </div>
 
@@ -150,8 +150,7 @@
                                         <input type="hidden" id="link<?= $i?>" name="link<?= $i?>" value="{{$links[$s]['image']}}">
                                     </div>
                                     <div class="col-1 p-2 text-right"><img class="mx-auto" width="38" height="38"
-                                            src="{{asset('assets/icons/edit_file.png')}}" onclick="editLinkFN('<?= $i?>')"
-                                            data-bs-toggle="modal" data-bs-target="#uploadLinkModal"/>
+                                            src="{{asset('assets/icons/edit_file.png')}}" onclick="editLinkFN('<?= $i?>')"/>
                                         </div>
                                     <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38"
                                             onclick="deletefuncion('<?= $i?>', 'linkTBL', 'deleteLink')"
@@ -222,29 +221,29 @@
 
 <!-- Modal UPLOAD LINK-->
 <div class="modal fade" id="uploadLinkModal" tabindex="-1" aria-labelledby="uploadLinkModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header b-none px-4">
-            <h5 class="modal-title" id="uploadLinkModalLabel">{{__('cities.edit.upload_link_title')}}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog position-relative">
+        <div class="modal-content">
+            <div class="modal-header b-none px-4">
+                <h5 class="modal-title" id="uploadLinkModalLabel">{{__('cities.edit.upload_link_title')}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="">
+                <div class="modal-body px-4">
+                    <div class="form-group py-2">
+                        <label class="form-label" for="data_link_name">{{__('cities.edit.data_link_name')}}</label>
+                        <input id="data_link_name" name="data_link_name" class="form-control" placeholder="{{__('cities.edit.ph_link_name')}}"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label class="form-label" for="data_link">{{__('cities.edit.data_link')}}</label>
+                        <input id="data_link" name="data_link" class="form-control" placeholder="{{__('cities.edit.ph_link')}}"/>
+                    </div>
+                </div>
+                <div class="modal-footer b-none row mx-0">
+                    <button type="button" class="col-auto btn btn-primary mx-auto" onclick="saveLink()" id="btnsavelink">{{__('admin.btn_add')}}</buttton>
+                </div>
+                <input type="hidden" id="idLinkGral">
+            </form>
         </div>
-        <form class="">
-            <div class="modal-body px-4">
-                <div class="form-group py-2">
-                    <label class="form-label" for="data_link_name">{{__('cities.edit.data_link_name')}}</label>
-                    <input id="data_link_name" name="data_link_name" class="form-control" placeholder="{{__('cities.edit.ph_link_name')}}"/>
-                </div>
-                <div class="form-group py-2">
-                    <label class="form-label" for="data_link">{{__('cities.edit.data_link')}}</label>
-                    <input id="data_link" name="data_link" class="form-control" placeholder="{{__('cities.edit.ph_link')}}"/>
-                </div>
-            </div>
-            <div class="modal-footer b-none row mx-0">
-                <button type="button" class="col-auto btn btn-primary mx-auto" onclick="saveLink()" id="btnsavelink">{{__('admin.btn_add')}}</buttton>
-            </div>
-            <input type="hidden" id="idLinkGral">
-        </form>
-    </div>
   </div>
 </div>
 
@@ -561,7 +560,9 @@ $("#deepInfoForm").on('submit', function(e){
                         //$('#fupForm').css("opacity",".5");
                     },
                     success: function(msg){
-                        alert("City was successfully saved");
+                        localStorage.setItem('message', 'City was successfully edited');
+                        window.location ='/admin/cities/';
+                        //alert("City was successfully saved");
                         document.getElementById("btnSubmit").disabled = false;
                     }
                 });

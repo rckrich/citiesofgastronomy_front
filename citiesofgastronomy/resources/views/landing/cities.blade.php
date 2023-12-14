@@ -42,7 +42,7 @@
                             @if($city['photo'])
                             <img src="{{config('app.url').$city['photo']}}" class="card-img-top" alt="...">
                             @else
-                            <!--<div class="card-img-top">lalala</div>-->
+                            <img src="{{asset('assets/img/default.jpg')}}" class="card-img-top" alt="">
                             @endif
                             <div class="card-body px-0 bg-black text-white text-center">
                                 <h5 class="card-title mt-2 mb-4">{{$city["name"]}} </h5>

@@ -138,10 +138,12 @@ class CitiesController extends Controller
 
         $res = json_decode( $data, true);
 
-        Log::info(  $res["cities"]   );
+        Log::info(  $res  );
+        return json_encode($res );
+        //return response() -> json( [ $res ], 200 );
 
         //return redirect( "/admin/cities" );
-        return redirect()->route('admin.cities',['st'=>'1']);
+        //return redirect()->route('admin.cities',['st'=>'1']);
     }
 
     public function citiesCompleteUpdate(Request $request)
@@ -160,8 +162,8 @@ class CitiesController extends Controller
 
         //$data_photo = $request->data_photo;
         // Get the UploadedFile object
-        $file =  $request->file('photo');
-        $photo='';
+        $file =  $request->file('logo');
+        $logo='';
         if($file){
             //Log::info("Sr configura la imagen");
                     // You can store this but should validate it to avoid conflicts
@@ -173,7 +175,7 @@ class CitiesController extends Controller
                     // This would be used for the payload
                     $file_path = $file->getPathName();
 
-                    $photo = new \CURLFile($file_path);
+                    $logo = new \CURLFile($file_path);
         };
 
 
@@ -195,7 +197,7 @@ class CitiesController extends Controller
 
 
         $arrPOST = [
-            'photo' => $photo,
+            'logo' => $logo,
             'banner' => $banner,
             'completeInfo' => $completeInfo,
             'id' => $data_id,
