@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="{{asset('css/business.css')}}" type="text/css" />
 	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css" />
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 </head>
@@ -60,15 +60,17 @@
                     <a class="nav-link" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                 </li>
             </ul>
-            <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
-                @csrf
-                @method('POST')
-                <div class="input-group px-2">
-                    <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search.svg')}}"/></span>
-                    <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
-                </div>
-            </form>
-            
+            <!--
+                <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
+                    @csrf
+                    @method('POST')
+                    <div class="input-group px-2">
+                        <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search.svg')}}"/></span>
+                        <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
+                    </div>
+                </form>
+            -->
+
         </div>
     </nav>
     <div class="navbar-height-margin">
@@ -86,7 +88,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <img  id="navbarLogo" class="mb-5" src="{{asset('assets/img/logo_white.png')}}" alt="Logo"/>
                     <form>
-                        <div class="row g-2 mb-3">                  
+                        <div class="row g-2 mb-3">
                             <label for="newsletter_email">{{__('general.newsletter.description')}}</label>
                             <div class="col-auto">
                                 <input type="text" id="newsletter_email" class="form-control" placeholder="{{__('general.newsletter.placeholder')}}"/>
@@ -126,7 +128,7 @@
         <div class="container p-5">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 align-self-start">
-                    <div class="row g-2">                  
+                    <div class="row g-2">
                         <p>{{__('general.copyright')}}</p>
                         <div class="col-auto">
                             <a href="">{{__('general.privacy_policy')}}</a>
@@ -150,8 +152,8 @@
             </div>
         </div>
     </footer>
-    <script src="{{asset('js/app.js')}}"></script> 
-    <script src="{{asset('js/functions.js')}}"></script> 
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/functions.js')}}"></script>
     <script src="{{asset('js/plugins.min.js')}}"></script>
     <script>
 		jQuery(window).on( 'pluginCarouselReady', function(){
