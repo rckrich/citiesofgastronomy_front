@@ -94,7 +94,7 @@
         <div class="text-center" style="margin: 5rem 0">
             <p class="title-md py-5">{{__('cities.view.more_info')}}</p>
             @foreach($links as $link)
-            <p class="data py-2"><a href="{{$link['image']}}" target="_blank" class="text-link text-orange">{{$link['image']}}</a></p>
+            <p class="data py-2"><a href="{{$link['image']}}" target="_blank" class="text-link text-orange">{{$link['title']}}</a></p>
             @endforeach
 
             @foreach($files as $file)
