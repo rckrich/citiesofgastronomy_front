@@ -52,8 +52,6 @@ class CitiesController extends Controller
 
         if($data){
             $res = json_decode( $data, true);
-            Log::info("##ñññ->");
-            Log::info($res["files"]);
 
             $inputs["id"] = $id;
             $inputs["city"] = $res["cities"];
@@ -194,7 +192,6 @@ class CitiesController extends Controller
 
                     $banner = new \CURLFile($file_path);
         };
-
 
         $arrPOST = [
             'logo' => $logo,

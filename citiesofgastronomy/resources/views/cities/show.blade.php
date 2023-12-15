@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="col-lg-7 col-md-6 col-sm-12 col-12 p-5">
-                <p class="py-2 data ">{{$city["completeDescription"]}}</p>
+                <p class="py-2 data ">{{$city["description"]}}</p>
             </div>
         </div>
     </div>

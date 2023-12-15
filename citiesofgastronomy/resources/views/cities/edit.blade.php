@@ -97,7 +97,7 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_description">{{__('cities.edit.data_description')}}</label>
                         <textarea id="description" name="description" class="form-control"
-                        placeholder="{{__('cities.edit.ph_description')}}"></textarea>
+                        placeholder="{{__('cities.edit.ph_description')}}">{{ $city['description'] }}</textarea>
                     </div>
                     <div class="row py-2">
                         <p class="form-label"><b>{{__('cities.edit.section_gallery')}}</b></p>
@@ -406,25 +406,9 @@ $(document).ready(function(e){
     });
 });
 
-    function sel_file(destiny, origin, table, displ){
-        let Element = document.getElementById(origin);
-        let img = document.getElementById(destiny);
-        let url = URL.createObjectURL(Element.files[0]);
-            img.src = url;
-        if(table){
-            document.getElementById(table).style.display = displ;
-        };
-    }
 
 //    deepInfoForm
 
-
-function deletefuncion(id, tabledel, inputDel){
-    let id1 = tabledel+id ;
-    document.getElementById(id1).style.display = 'none';
-     id1 = inputDel+id ;
-    document.getElementById(id1).value = '1' ;
-}
 
 function saveLink(){
     let cantidad = document.getElementById("cant_links").value;
@@ -636,7 +620,7 @@ $("#deepInfoForm").on('submit', function(e){
                             id1 = 'file' + itemFile;
                             document.getElementById(id1).value = e["datta"]["file"];
                         };
-                        alert("PDF was successfully saved");
+                        //  alert("PDF was successfully saved");
                         PDFModal.hide(modalToggle);
                         document.getElementById("loading").style.display = 'none';
 
@@ -703,10 +687,11 @@ $("#deepInfoForm").on('submit', function(e){
     }
 
     function editFileFN(itemNum){
-        //reseteo los mensajes rojos
+        //reseteo los mensajes rojos y otros
         document.getElementById("titlePDF").className = 'form-control ';
         document.getElementById('validation_PDFtitle').style.display = 'none';
         document.getElementById('validation_PDF').style.display = 'none';
+        document.getElementById('fileUpTxt').innerHTML = '';
 
         if( !itemNum ){// SI ES AGREGAR
             document.getElementById("titlePDF").value = '';

@@ -128,5 +128,26 @@
 	</script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="d655f07n"></script>
+
+    <script>
+
+    function sel_file(destiny, origin, table, displ){
+        let Element = document.getElementById(origin);
+        let img = document.getElementById(destiny);
+        let url = URL.createObjectURL(Element.files[0]);
+            img.src = url;
+        if(table){
+            document.getElementById(table).style.display = displ;
+        };
+    }
+
+    function deletefuncion(id, tabledel, inputDel){
+        let id1 = tabledel+id ;
+        document.getElementById(id1).style.display = 'none';
+        id1 = inputDel+id ;
+        document.getElementById(id1).value = '1' ;
+    }
+
+    </script>
 </body>
 </html>

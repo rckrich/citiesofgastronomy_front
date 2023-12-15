@@ -22,6 +22,7 @@
                                                 value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
                             </div>
                         </form>
+                        <input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
                     </div>
                 </div>
                 <div class="col-12 px-0 py-2">
@@ -114,7 +115,7 @@
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_continent">{{__('cities.admin.data_continent')}}</label>
-                <select id="data_continent" name="data_continent"  class="form-control">
+                <select id="data_continent" name="data_continent"  class="form-select">
                     @foreach($continents as $continent)
                     <option value="{{ $continent['id'] }}">{{ $continent["name"] }}</option>
                     @endforeach
@@ -148,7 +149,7 @@
                 <p class="form-label px-0" for="new_city_img">{{__('cities.admin.data_photo')}}</p>
                 <div class="col-6 p-4 load-img h-100 row mx-0 align-items-center text-center" style="position:relative">
                     <label class="custom-file-upload" for="new_city_img">
-                    <input type="file" id="data_photo" onChange="sel_file()" name="data_photo"
+                    <input type="file" id="data_photo" onChange="sel_file('imgFile', 'data_photo')" name="data_photo"
                                         style="    cursor: pointer;    margin: 0;    opacity: 0;    outline: 0 none;    padding: 0;    position: absolute;    right: 0;    top: 0;    width: 100%;height: 80px;">
                         <img class="mx-auto" src="{{asset('assets/icons/add_file.png')}}" width="80" height="80" id="imgFile"/>
                     </label>
@@ -236,7 +237,7 @@ $(document).ready(function(e){
                 validate = 0;
             };
             if(data_continent==''){
-                document.getElementById('data_continent').className = 'form-control is-invalid';
+                document.getElementById('data_continent').className = 'form-select is-invalid';
                 document.getElementById('validation_continent').style.display = 'block';
                 validate = 0;
             };
@@ -304,14 +305,18 @@ $(document).ready(function(e){
     //////////////////////////////////////////////
 
     function paginator(page){
+        let search = document.getElementById('search').value;
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
         //search_box
         //console.log("-->PAG");
-        let paginaActual = document.getElementById('page').value;
+        let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
+        if (search != ''){
+            paginaActual = document.getElementById('page').value;
+            paginaActual= parseInt(paginaActual);
+        };
 
-        let search = document.getElementById('search').value;
         let nada = '';
         if(page == 'prev' || page == 'next'){
                 //console.log("#0");
@@ -334,9 +339,10 @@ $(document).ready(function(e){
                 console.log("#not SERCH");
                 window.location = '/admin/cities/?page='+page;
             }else{
+                //window.location = '/admin/cities/?page='+paginaActual;
                 console.log("# SERCH");console.log(search);
-                //document.getElementById('page').value = page;
-                //document.getElementById('formSerch').submit();
+                document.getElementById('page').value = page;
+                document.getElementById('formSerch').submit();
             };
         };
     }
@@ -348,13 +354,7 @@ $(document).ready(function(e){
         let id = document.getElementById('id_del_city').value;
         window.location = '/admin/citiesDelete/'+id;
     }
-    function sel_file(){
-        var Element = document.getElementById('data_photo');
-        var img = document.getElementById('imgFile');
-        var url = URL.createObjectURL(Element.files[0]);
-            img.src = url;
-            //console.log(url);
-    }
+
 
     // Funcion para que al abrir el modal se coloquen los datos correspondientes
     function modalAddUp(id){
@@ -368,12 +368,13 @@ $(document).ready(function(e){
             document.getElementById("data_photo").value = '';
                 document.getElementById('data_city').className = 'form-control';
                 document.getElementById('validation_data_city').style.display = 'none';
-                document.getElementById('data_continent').className = 'form-control';
+                document.getElementById('data_continent').className = 'form-select';
                 document.getElementById('validation_continent').style.display = 'none';
                 document.getElementById('data_dyear').className = 'form-control';
                 document.getElementById('validation_data_year').style.display = 'none';
                 document.getElementById('data_population').className = 'form-control';
                 document.getElementById('validation_population').style.display = 'none';
+                document.getElementById('validation_data_year_num').style.display = 'none';
 
                 document.getElementById("btn_saveData").disabled = false;
 
