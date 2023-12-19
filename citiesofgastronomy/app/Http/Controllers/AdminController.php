@@ -22,25 +22,46 @@ class AdminController extends Controller
         return view('session.recover_password');
     }
 
-    public function cities()
-    {
 
-        $url = config('app.apiUrl').'cities';
+
+    public function cities(Request $request)
+    {
+        $page = $request->input("page");
+
+        if(!$page){ $page=1;   };
+        $st = $request->input("st");
+        $search_box = $request->input("search_box");
+        if($search_box){
+            $fields = array('search' => $search_box, 'page' => $page);
+        }else{
+            $fields = array('page' => $page);
+        };
+        $fields_string = http_build_query($fields);
+
+        $url = config('app.apiUrl').'cities/?'.$page;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
         $data = curl_exec($curl);
         curl_close($curl);
 
         $res = json_decode( $data, true);
 
-
         $inputs = [];
+        $inputs["citiesTotal"] = $res["tot"];
+        $inputs["paginator"] = $res["paginator"];
         $inputs["cityList"] = $res["cities"];
         $inputs["continents"] = $res["continents"];
+        $inputs["search_box"] = $search_box;
+        $inputs["page"] = $page;
+        $inputs["st"] = $st;
         return view('admin.cities', $inputs);
     }
+
+
     public function citiesFind($id)
     {
 
@@ -62,47 +83,20 @@ class AdminController extends Controller
 
         return $res;
     }
-    public function citiesSearch(Request $request)
-    {
-        $search_box = $request->input("search_box");
-        $fields = array('search' => $search_box);
-        $fields_string = http_build_query($fields);
 
-        $url = config('app.apiUrl').'cities';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
-        $data = curl_exec($curl);
-        curl_close($curl);
 
-        $res = json_decode( $data, true);
 
-        $inputs = [];
-        $inputs["cityList"] = $res["cities"];
-        $inputs["continents"] = $res["continents"];
-        return view('admin.cities', $inputs);
-    }
 
-    public function citiesStoreUpdate(Request $request)
-    {
 
-        $data_id = $request->input("data_id");
-
-        $data_city = $request->input("data_city");
-        $data_country = $request->input("data_country");
-        $data_continent = $request->input("data_continent");
-        $data_population = $request->input("data_population");
-        $data_locations = $request->input("data_locations");
-        $data_dyear = $request->input("data_dyear");
-
-        //$data_photo = $request->data_photo;
-        // Get the UploadedFile object
-        $file =  $request->file('data_photo');
-        $photo='';
+    public function addPDF(Request $request){
+        $idOwner =$request->input('idOwner');
+        $idSection =$request->input('idSection');
+        $title =$request->input('titlePDF');
+        $idFileGral =  $request->input("idFileGral");
+        $file =  $request->file("filePDF");
+        $pdf='';
         if($file){
+            //Log::info("Sr configura la imagen - ".$i);
                     // You can store this but should validate it to avoid conflicts
                     $original_name = $file->getClientOriginalName();
 
@@ -112,96 +106,30 @@ class AdminController extends Controller
                     // This would be used for the payload
                     $file_path = $file->getPathName();
 
-                    $photo = new \CURLFile($file_path);
+                    $pdf = new \CURLFile($file_path);
         };
-        if($data_id){
-            $url = config('app.apiUrl').'citiesUpdate';
-        }else{
-            $url = config('app.apiUrl').'citiesStore';
-        };
-        Log::info($url);
+        $arrPOST = [
+            'id' => $idFileGral,
+            'pdf' => $pdf,
+            'title' => $title,
+            'idOwner' => $idOwner,
+            'idSection' => $idSection,
+        ];
+
+
+        $url = config('app.apiUrl').'addPDF/';
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'photo' => $photo,
-            'id' => $data_id,
-            'name' => $data_city,
-            'country' => $data_country,
-            'idContinent' => $data_continent,
-            'population' => $data_population,
-            'restaurantFoodStablishments' => $data_locations,
-            'designationyear' => $data_dyear
-        ] );
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $arrPOST );
         $data = curl_exec($curl);
         curl_close($curl);
 
         $res = json_decode( $data, true);
-
-        Log::info(  $res["cities"]   );
-
-        return redirect( "/admin/cities" );
-    }
-
-    public function citiesCompleteUpdate(Request $request)
-    {
-
-        $data_id = $request->input("data_id");
-
-        $data_city = $request->input("data_city");
-        $data_country = $request->input("data_country");
-        $data_continent = $request->input("data_continent");
-        $data_population = $request->input("data_population");
-        $data_locations = $request->input("data_locations");
-        $data_dyear = $request->input("data_dyear");
-        $data_description = $request->input("data_description");
-
-        //$data_photo = $request->data_photo;
-        // Get the UploadedFile object
-        $file =  $request->file('data_photo');
-        $photo='';
-        if($file){
-                    // You can store this but should validate it to avoid conflicts
-                    $original_name = $file->getClientOriginalName();
-
-                    // You can store this but should validate it to avoid conflicts
-                    $extension = $file->getClientOriginalExtension();
-
-                    // This would be used for the payload
-                    $file_path = $file->getPathName();
-
-                    $photo = new \CURLFile($file_path);
-        };
-
-
-        $url = config('app.apiUrl').'citiesUpdateComplete';
-
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'photo' => $photo,
-            'id' => $data_id,
-            'name' => $data_city,
-            'country' => $data_country,
-            'idContinent' => $data_continent,
-            'population' => $data_population,
-            'restaurantFoodStablishments' => $data_locations,
-            'designationyear' => $data_dyear
-        ] );
-        $data = curl_exec($curl);
-        curl_close($curl);
-
-        $res = json_decode( $data, true);
-
-        Log::info(  $res["cities"]   );
-
-        return redirect( "/admin/cities" );
+        return $data;
     }
 
     public function initiatives()

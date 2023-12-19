@@ -62,8 +62,8 @@
                     <p class="py-2 text-white data">{{$city["restaurantFoodStablishments"]}}</p>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-6 col-sm-12 col-12 p-5">
-                <p class="py-2 data ">{{$city["completeDescription"]}}</p>
+            <div class="col-lg-7 col-md-6 col-sm-12 col-12 p-5">
+                <p class="py-2 data ">{{$city["description"]}}</p>
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@
         <div class="text-center" style="margin: 5rem 0">
             <p class="title-md py-5">{{__('cities.view.more_info')}}</p>
             @foreach($links as $link)
-            <p class="data py-2"><a href="{{$link['image']}}" target="_blank" class="text-link text-orange">{{$link['image']}}</a></p>
+            <p class="data py-2"><a href="{{$link['image']}}" target="_blank" class="text-link text-orange">{{$link['title']}}</a></p>
             @endforeach
 
             @foreach($files as $file)
