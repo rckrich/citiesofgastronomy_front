@@ -109,7 +109,7 @@
                             <a class="nav-link py-1" href="{{route('landing.initiatives')}}">{{__('general.nav_initiatives')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.tastier_life')}}">{{__('general.nav_tastier_life')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.tours')}}">{{__('general.nav_tours')}}</a>
-                            <a class="nav-link py-1" href="{{route('landing.stats')}}">{{__('general.nav_stats')}}</a>
+                            <a class="nav-link py-1" target="_blank" href="https://drive.google.com/drive/folders/1b2TV7H4y8SwQZaSuAyAQ_AMn9ovczgIs?usp=drive_link">{{__('general.nav_stats')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.calendar')}}">{{__('general.nav_calendar')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                         </div>

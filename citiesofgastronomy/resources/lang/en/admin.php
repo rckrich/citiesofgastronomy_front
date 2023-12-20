@@ -29,7 +29,7 @@ return [
             'home'=>[
                 'tab_name'=>'Home',
                 'title'=>'BANNER HOME',
-                'img_num_stats'=>'Number and stats (Image or video)',
+                'img_num_stats'=>'Number and stats (Image)',
                 'img_about'=>'Photo Gastronomic Cities (About)',
             ],
             'cities'=>[
