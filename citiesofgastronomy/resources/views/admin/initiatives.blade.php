@@ -27,10 +27,27 @@
                         </div>
                         </div>
                     </div>
-                    <div class="col-12 px-0 py-2">
+                    <div class="row col-12 px-0 py-2">
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-                        <a class="btn btn-primary mx-auto" href="{{route('admin.initiatives_new')}}">{{__('initiatives.init.btn_add')}}</a>
+                            <a class="btn btn-primary mx-auto" href="{{route('admin.initiatives_new')}}">{{__('initiatives.init.btn_add')}}</a>
                         </div>
+                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                            <select id="select_sdg_filter" class="form-control h-100">
+                                <option>{{__('initiatives.init.select_sdg')}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                            <select id="select_sdg_filter" class="form-control h-100">
+                                <option>{{__('initiatives.init.select_topic')}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                            <select id="select_sdg_filter" class="form-control h-100">
+                                <option>{{__('initiatives.init.select_connection')}}</option>
+                            </select>
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="row mx-0 pt-4">
