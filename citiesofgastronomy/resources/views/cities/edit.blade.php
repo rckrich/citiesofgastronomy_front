@@ -321,6 +321,14 @@
                             </div>
 
 
+
+
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' );
+</script>
+
+
 <script>
 
 
@@ -453,9 +461,9 @@ function saveLink(){
                 jss1 = "deletefuncion('"+nuevovalor+"', 'linkTBL', 'deleteLink')";
                 padre2[1].setAttribute("onclick", jss1);
 
-
                 document.getElementById(nuevaid).style.display = '';
                 document.getElementById("cant_links").value =nuevovalor;
+
             }else{
                 console.log("#Modifica");
                 console.log(idLinkGral);
