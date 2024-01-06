@@ -38,6 +38,8 @@ class LandingController extends Controller
         $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
         //Log::info($inputs);
         $inputs["cityList"] = $res["cities"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
 
         return view('landing.home', $inputs);
     }
