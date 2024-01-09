@@ -62,7 +62,16 @@ Route::get('/admin/initiatives/create', [InitiativesController::class, 'initiati
 Route::get('/admin/initiatives/{id}', [InitiativesController::class, 'initiatives_edit'])->name('admin.initiatives_edit');
 
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
+Route::get('/admin/tastier_life/recipe/create', [TastierLifeController::class, 'recipe_new'])->name('admin.recipe_new');
+Route::get('/admin/tastier_life/recipe/{id}', [TastierLifeController::class, 'recipe_edit'])->name('admin.recipe_edit');
+Route::get('/admin/tastier_life/chef/create', [TastierLifeController::class, 'chef_new'])->name('admin.chef_new');
+Route::get('/admin/tastier_life/chef/{id}', [TastierLifeController::class, 'chef_edit'])->name('admin.chef_edit');
+
+
 Route::get('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours');
+Route::get('/admin/tours/create', [ToursController::class, 'tour_new'])->name('admin.tour_new');
+Route::get('/admin/tours/{id}', [ToursController::class, 'tour_edit'])->name('admin.tour_edit');
+
 Route::get('/admin/about', [AdminController::class, 'about'])->name('admin.about');
 
 Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');

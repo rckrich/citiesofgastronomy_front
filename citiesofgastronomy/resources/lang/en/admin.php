@@ -67,7 +67,7 @@ return [
         ],
         'socials'=>[
             'title'=>'SOCIAL MEDIA LINKS',
-            'facebook'=>'Facebok:',
+            'facebook'=>'Facebook:',
             'twitter'=>'X (Twitter):',
             'tiktok'=>'Tiktok:',
             'instagram'=>'Instagram:',

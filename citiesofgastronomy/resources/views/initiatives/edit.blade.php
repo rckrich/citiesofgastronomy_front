@@ -1,9 +1,9 @@
-<!-- resources/views/initiatives/new.blade.php -->
+<!-- resources/views/initiatives/edit.blade.php -->
 
 @extends('commons.admin_base')
 
 @section('content')
-    <section id="admin_initiative_new">
+    <section id="admin_initiative_edit">
         <div id="" class="container p-5">
             <div class="row mx-0">
                 <div class="col-12 px-0 py-2">
@@ -68,7 +68,7 @@
                         <!--independiente de lo anterior se conserva el botón de carga-->
                         <div class="p-2">
                             <label class="custom-file-upload btn btn-primary" for="city_logo">
-                            {{__('cities.edit.btn_image')}}
+                            {{__('initiatives.edit.btn_image')}}
                             </label>
                             <input type="file" class="text-center file-input" name="city_logo" id="city_logo">
                         </div> 
@@ -184,20 +184,20 @@
                         <div class="col-6 form-group py-2 ps-0">
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="form-label" for="data_startdate">{{__('about.timeline.data_startdate')}}</label>
+                                    <label class="form-label" for="data_startdate">{{__('initiatives.edit.data_startdate')}}</label>
                                 </div>
                                 <div class="col-6">
-                                    <input id="data_startdate" name="data_startdate" class="form-control" placeholder="{{__('about.timeline.ph_startdate')}}"/>
+                                    <input id="data_startdate" name="data_startdate" class="form-control" placeholder="{{__('initiatives.edit.ph_startdate')}}"/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6 form-group py-2 pe-0">
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="form-label" for="data_enddate">{{__('about.timeline.data_enddate')}}</label>
+                                    <label class="form-label" for="data_enddate">{{__('initiatives.edit.data_enddate')}}</label>
                                 </div>
                                 <div class="col-6">
-                                    <input id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('about.timeline.ph_enddate')}}"/>
+                                    <input id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('initiatives.edit.ph_enddate')}}"/>
                                 </div>
                             </div>
                         </div>
@@ -206,15 +206,15 @@
                     <div class="bb-gray mt-4 mb-2"></div>
 
                     <div class="form-group py-2">
-                        <label class="form-label" for="data_description">{{__('cities.edit.data_description')}}</label>
-                        <textarea id="data_description" name="data_description" class="form-control" placeholder="{{__('cities.edit.ph_description')}}"></textarea>
+                        <label class="form-label" for="data_description">{{__('initiatives.edit.data_description')}}</label>
+                        <textarea id="data_description" name="data_description" class="form-control" placeholder="{{__('initiatives.edit.ph_description')}}"></textarea>
                     </div>
                     
                     <div class="bb-gray mt-4 mb-2"></div>
 
 
                     <div class="form-group row py-2">
-                        <p class="form-label"><b>{{__('cities.edit.section_gallery')}}</b></p>
+                        <p class="form-label"><b>{{__('initiatives.edit.section_gallery')}}</b></p>
                         <div class="row py-2">
                             <div class="col-2 py-2 mx-2">
                                 <div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"/></div>
@@ -244,28 +244,28 @@
                         <div class="row mx-0 align-items-center">
                             <!--si es link-->
                             <div class="col-10 px-0 py-2">
-                                <input id="data_description" name="data_description" class="form-control" placeholder="{{__('cities.edit.ph_document')}}"/>
+                                <input id="data_description" name="data_description" class="form-control" placeholder="{{__('initiatives.edit.ph_document')}}"/>
                             </div>
                             <div class="col-1 p-2 text-right hover-pointer"><img class="mx-auto" width="38" height="38" data-bs-toggle="modal" data-bs-target="#uploadLinkModal" src="{{asset('assets/icons/edit_file.png')}}"/></div>
                             <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38" src="{{asset('assets/icons/delete_file.png')}}"/></div>
                             <!--si es pdf-->
                             <div class="col-10 px-0 py-2">
-                                <input id="data_description" name="data_description" class="form-control" placeholder="{{__('cities.edit.ph_document')}}"/>
+                                <input id="data_description" name="data_description" class="form-control" placeholder="{{__('initiatives.edit.ph_document')}}"/>
                             </div>
                             <div class="col-1 p-2 text-right hover-pointer"><img class="mx-auto" width="38" height="38" data-bs-toggle="modal" data-bs-target="#uploadPDFModal"  src="{{asset('assets/icons/edit_file.png')}}"/></div>
                             <div class="col-1 p-2 text-left"><img class="mx-auto" width="38" height="38" src="{{asset('assets/icons/delete_file.png')}}"/></div>
 
                             <div class="col-12 px-0 py-2 row mx-0">
-                                <div class="col-auto ps-0"><button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#uploadLinkModal">{{__('cities.edit.btn_link')}}</buttton></div>
-                                <div class="col-auto"><button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#uploadPDFModal">{{__('cities.edit.btn_pdf')}}</buttton></div>
+                                <div class="col-auto ps-0"><button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#uploadLinkModal">{{__('initiatives.edit.btn_link')}}</buttton></div>
+                                <div class="col-auto"><button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#uploadPDFModal">{{__('initiatives.edit.btn_pdf')}}</buttton></div>
                             </div>
                         </div>
                     </div>
                     
 
                     <div class="row form-group py-5">
-                        <div class="col-auto ms-auto"><a href="{{route('admin.contact')}}" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
-                        <div class="col-auto me-auto"><button class="btn btn-primary w-100">{{__('admin.btn_create')}}</buttton></div>
+                        <div class="col-auto ms-auto"><a href="{{route('admin.initiatives')}}" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
+                        <div class="col-auto me-auto"><button class="btn btn-primary w-100">{{__('admin.btn_edit')}}</buttton></div>
                     </div>
                 </form>
             </div>

@@ -151,7 +151,11 @@
             };?>>
         <div class="banner-title-overlay row align-items-center mx-0">
             <div class="banner-img-overlay">
-                <h1 class="title-lg text-yellow2">{{__('landing.stats.title')}}</h1>
+                <a class="no-underline" target="_blank" href="https://drive.google.com/drive/folders/1b2TV7H4y8SwQZaSuAyAQ_AMn9ovczgIs?usp=drive_link">
+                    <h1 class="title-lg text-yellow2">
+                    {{__('landing.stats.title')}}
+                    </h1>
+                </a>
             </div>
         </div>
         </div>

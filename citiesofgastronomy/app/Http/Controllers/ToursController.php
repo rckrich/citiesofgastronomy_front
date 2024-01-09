@@ -9,5 +9,14 @@ class ToursController extends Controller
     public function index()
     {
         return view('tours.show');
+    }
+    
+    public function tour_new()
+    {
+        return view('tours.new');
     } 
+    public function tour_edit()
+    {
+        return view('tours.edit');
+    }  
 }

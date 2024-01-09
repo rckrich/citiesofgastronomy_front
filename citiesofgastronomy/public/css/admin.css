@@ -109,3 +109,16 @@ input[type="file"]:active::before {}
 #pills-tab-about{background-color: #272727;}
 #pills-tab-about button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
 #pills-tab-about button.active{text-decoration: underline;}
+
+/*INITIATIVES*/
+#pills-tab-initiatives{background-color: #272727;}
+#pills-tab-initiatives button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
+#pills-tab-initiatives button.active{text-decoration: underline;}
+#pills-tab-filters button{background-color: transparent; color: #707070; border:solid 1px #707070; border-radius: 23px; padding:11px 20px; text-decoration: none; font-size: 16px; font-family: 'Calibri';}
+#pills-tab-filters button.active{background-color: #5479FA; color: #fff;border-color: transparent;}
+
+
+/*TASTIER LIFE*/
+#pills-tab-tastierlife{background-color: #272727;}
+#pills-tab-tastierlife button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
+#pills-tab-tastierlife button.active{text-decoration: underline;}

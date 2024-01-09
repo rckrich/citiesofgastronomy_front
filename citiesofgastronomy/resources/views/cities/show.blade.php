@@ -77,9 +77,9 @@
         <div class="row align-items-center mb-5">
         <div class="row mx-0 p-0 max-height-gallery" data-lightbox="gallery">
             @foreach($gallery as $image)
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 p-2">
                 <a class="grid-item" href="{{config('app.url').$image['image']}}" data-lightbox="gallery-item" >
-                    <img src="{{config('app.url').$image['image']}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
+                    <img src="{{config('app.url').$image['image']}}" alt="Gallery Image" class="gallery-img" />
                 </a>
             </div>
             @endforeach

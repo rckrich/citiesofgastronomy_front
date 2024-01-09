@@ -55,6 +55,7 @@ a .text-white{color: #fff!important;}
 .text-yellow{color: #D7D308;}
 .text-yellow2{color: #FFFC65;}
 .text-ocean{color: #354E57;}
+.text-gray{color:#707070}
 .text-right{text-align: right;}
 
 .bg-orange{background-color: #D87C16;}
@@ -70,6 +71,7 @@ a .text-white{color: #fff!important;}
 .bb-orange{border-bottom: solid 1px #D87C16;}
 
 .hover-pointer:hover{cursor: pointer;}
+.no-underline{text-decoration: none!important;}
 
 /*BOOTSTRAP OVERRIDE--------------------------*/
 
@@ -226,6 +228,12 @@ a .text-white{color: #fff!important;}
     margin-left: 7vw!important;
 }
 
+/*Gallery & Cards imgs*/
+.gallery-img,.card-img-top{
+    object-position: center;
+    object-fit: cover;
+    width: 100%;
+    height: 50vh;}
 
 /*ABOUT - TIMELINE*/
 .timeline-item{height: 67px;}
