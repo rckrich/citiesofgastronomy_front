@@ -38,6 +38,8 @@ class LandingController extends Controller
         $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
         //Log::info($inputs);
         $inputs["cityList"] = $res["cities"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
 
         return view('landing.home', $inputs);
     }
@@ -58,39 +60,65 @@ class LandingController extends Controller
         $inputs = [];
         $inputs["cityList"] = $res["cities"];
         $inputs["banners"] = $res["bannerCities"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
         return view('landing.cities', $inputs);
     }
     public function about()
     {
-        return view('landing.about');
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
+        return view('landing.about', $inputs);
     }
     public function initiatives()
     {
-        return view('landing.initiatives');
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
+        return view('landing.initiatives', $inputs);
     }
     public function tastier_life()
     {
-        return view('landing.tastier_life');
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
+        return view('landing.tastier_life', $inputs);
     }
     public function tours()
     {
-        return view('landing.tours');
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
+        return view('landing.tours', $inputs);
     }
 
     public function stats()
     {
-        return view('landing.stats');
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
+        return view('landing.stats', $inputs);
     }
     public function calendar()
     {
-        return view('landing.calendar');
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
+        return view('landing.calendar', $inputs);
     }
     public function contact()
     {
-        return view('landing.contact');
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
+        return view('landing.contact', $inputs);
     }
     public function search(Request $request)
     {
+        $inputs = [];
+        $inputs["SocialNetworkType"] = [];
+        $inputs["info"] = [];
         $keyword = $request->input('search_box');
         return view('landing.search', compact('keyword'));
 

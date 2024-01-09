@@ -115,9 +115,9 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-lg-0 my-md-0 my-sm-3 my-3">
                             <p class="title-xs">{{__('general.newsletter.cluster')}}</p>
-                            <a class="nav-link py-1">{{__('general.newsletter.coordinator')}}</a>
-                            <a class="nav-link py-1">{{__('general.newsletter.mail')}}</a>
-                            <a class="nav-link py-1">{{__('general.newsletter.cities')}}</a>
+                            @for($i=0; $i < count($info); $i++)
+                            <a class="nav-link py-1">{{$info[$i]["value"]}}</a>
+                            @endfor
                         </div>
                     </div>
                 </div>
@@ -141,11 +141,11 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 align-self-end">
                     <div class="row align-items-end">
                         <div class="col-auto me-lg-0 me-md-0 me-sm-auto mx-auto my-lg-0 my-md-0 my-sm-4 my-4">
-                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/tiktok.svg')}}" height="19" width="23"/></a>
-                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
-                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
-                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
-                            <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/youtube.svg')}}" height="21" width="21"/></a>
+                            @for($i=0; $i < count($SocialNetworkType); $i++)
+                            @if($SocialNetworkType[$i]['value']!=NULL && $SocialNetworkType[$i]['value']!='')
+                            <a href="<?= $SocialNetworkType[$i]['value']?>" target="blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/'. $SocialNetworkType[$i]['icon'])}}" height="23" width="23"/></a>
+                            @endif
+                            @endfor
                         </div>
                     </div>
                 </div>

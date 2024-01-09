@@ -30,6 +30,8 @@ class CitiesController extends Controller
             $inputs["gallery"] = $res["gallery"];
             $inputs["links"] = $res["links"];
             $inputs["files"] = $res["files"];
+            $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+            $inputs["info"] = $res["info"];
         }else{
             $inputs = array( "city" => []);
         };

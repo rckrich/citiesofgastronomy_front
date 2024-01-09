@@ -85,3 +85,9 @@ Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('a
 
 
 Route::post('/admin/addPDF', [AdminController::class, 'addPDF']);
+Route::post('/admin/bannerUpdate', [AdminController::class, 'mainBannerUp']);
+Route::post('/admin/bannerDelete', [AdminController::class, 'mainBannerDelete']);
+Route::post('/admin/bannerChange', [AdminController::class, 'mainBannerChange']);
+
+Route::post('/admin/mainSiteContentLinks', [AdminController::class, 'mainLinksSave']);
+Route::post('/admin/mainSiteContentClusterInfo', [AdminController::class, 'mainClusterSave']);
