@@ -440,7 +440,7 @@
 
                 let capit = sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
 
-            if (confirm("Confirm that you want to change the banner") == true) {
+            //if (confirm("Confirm that you want to change the banner") == true) {
                 if(idItem != ''){
 
                     let token = document.getElementsByName("_token")[0].value;
@@ -471,7 +471,7 @@
                     });
                 };
                 //document.getElementById(idtbl).style.display = 'none';
-            };
+            //};
         }
 
         function delBanner(item, sectionName, sectionId, idItem){
