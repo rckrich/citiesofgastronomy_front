@@ -145,9 +145,41 @@ class AdminController extends Controller
     {
         return view('admin.tours');
     }
-    public function about()
+    public function about(Request $request, $page = 1)
     {
-        return view('admin.about');
+        $page = $request->input("page");
+
+        if(!$page){ $page=1;   };
+        $st = $request->input("st");
+        $search_box = $request->input("search_box");
+        if($search_box){
+            $fields = array('search' => $search_box, 'page' => $page);
+        }else{
+            $fields = array('page' => $page);
+        };
+        $fields_string = http_build_query($fields);
+
+        $url = config('app.apiUrl').'about/timeline/list/?'.$page;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+
+        $inputs = [];
+        $inputs["timelineTotal"] = $res["tot"];
+        $inputs["paginator"] = $res["paginator"];
+        $inputs["timeline"] = $res["timeline"];
+        $inputs["search_box"] = $search_box;
+        $inputs["page"] = $page;
+        $inputs["st"] = $st;
+        return view('admin.about', $inputs);
     }
     public function contact()
     {

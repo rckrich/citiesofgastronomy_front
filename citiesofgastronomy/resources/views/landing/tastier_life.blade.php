@@ -19,15 +19,13 @@
             </div>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_TastierLife.png')}}"/>
+                <?php $i=0?>
+                @foreach($banners as $banner)
+                <div class="carousel-item <?php if($i == 0){echo 'active';}?>" data-bs-interval="4000">
+                    <img src="{{config('app.url').$banner['banner']}}"/>
                 </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_TastierLife.png')}}"/>
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_TastierLife.png')}}"/>
-                </div>
+                <?php $i = $i+1;?>
+                @endforeach
             </div>
         </div>
 
@@ -110,9 +108,9 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
+
+
+
             </div>
         </div>
 

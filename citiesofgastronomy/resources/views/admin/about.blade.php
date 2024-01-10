@@ -6,10 +6,12 @@
     <section id="admin_about">
     <ul class="nav nav-pills mb-3 px-5 pt-5 pb-4" id="pills-tab-about" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-timeline-tab" data-bs-toggle="pill" data-bs-target="#pills-timeline" type="button" role="tab" aria-controls="pills-timeline" aria-selected="true">{{__('about.timeline.title')}}</button>
+                <button class="nav-link active" id="pills-timeline-tab" data-bs-toggle="pill" data-bs-target="#pills-timeline"
+                type="button" role="tab" aria-controls="pills-timeline" aria-selected="true">{{__('about.timeline.title')}}</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-faq-tab" data-bs-toggle="pill" data-bs-target="#pills-faq" type="button" role="tab" aria-controls="pills-faq" aria-selected="false">{{__('about.faq.title')}}</button>
+                <button class="nav-link" id="pills-faq-tab" data-bs-toggle="pill" data-bs-target="#pills-faq"
+                type="button" role="tab" aria-controls="pills-faq" aria-selected="false">{{__('about.faq.title')}}</button>
             </li>
         </ul>
         <div class="tab-content px-5" id="pills-tab-aboutContent">
@@ -29,7 +31,7 @@
                         </div>
                         <div class="col-12 px-0 py-2">
                             <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-                            <button class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#editTimelineModal">{{__('about.timeline.btn_add')}}</buttton>
+                            <button class="btn btn-primary mx-auto" onclick="modalAddUp()">{{__('about.timeline.btn_add')}}</buttton>
                             </div>
                         </div>
                     </div>
@@ -43,15 +45,19 @@
                                 </tr>
                             </thead>
                             <tbody class="">
+                                @foreach($timeline as $item)
                                 <tr class="align-items-center">
-                                    <td class="col-8">Timeline tittle event</td>
+                                    <td class="col-8">{{$item["tittle"]}}</td>
                                     <td class="col-auto my-auto">
-                                        <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editTimelineModal">{{__('about.btn_edit')}}</button>
-                                    </td>                             
+                                        <button class="btn btn-link"  onclick="modalAddUp({{$item['id']}})"
+                                            >{{__('about.btn_edit')}}</button>
+                                    </td>
                                     <td class="col-auto my-auto">
-                                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTimelineModal">{{__('admin.btn_delete')}}
+                                        <button class="btn btn-danger"  data-bs-toggle="modal"  onclick="modalDel({{$item['id']}})"
+                                            data-bs-target="#deleteTimelineModal">{{__('admin.btn_delete')}}
                                     </button></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -91,7 +97,7 @@
                                     <td class="col-8">FAQ 1</td>
                                     <td class="col-auto my-auto">
                                         <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editFAQModal">{{__('about.btn_edit')}}</button>
-                                    </td>                             
+                                    </td>
                                     <td class="col-auto my-auto">
                                         <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteFAQModal">{{__('admin.btn_delete')}}
                                     </button></td>
@@ -113,7 +119,7 @@
             <h5 class="modal-title" id="createTimelineModalLabel">{{__('about.timeline.create_modal_title')}}</h5>
             <h5 class="modal-title" id="editTimelineModalLabel">{{__('about.timeline.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
+        </div>
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
@@ -134,7 +140,7 @@
                     <input id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('about.timeline.ph_enddate')}}"/>
                 </div>
             </div>
-   
+
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
@@ -153,7 +159,7 @@
             <h5 class="modal-title" id="createFAQModalLabel">{{__('about.faq.create_modal_title')}}</h5>
             <h5 class="modal-title" id="editFAQModalLabel">{{__('about.faq.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
+        </div>
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
@@ -163,7 +169,7 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_answer">{{__('about.faq.data_answer')}}</label>
                 <textarea id="data_answer" name="data_answer" class="form-control" placeholder="{{__('about.faq.ph_answer')}}"></textarea>
-            </div>   
+            </div>
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
@@ -211,5 +217,14 @@
   </div>
 </div>
 
+<script>
+    $(document).ready(function(e){
+        editModal = new bootstrap.Modal('#editTimelineModal', { keyboard: false    });
+        modalToggle = document.getElementById("editTimelineModal");
+    });
 
+    function modalAddUp(id){
+        editModal.show(modalToggle);
+    }
+</script>
 @endsection

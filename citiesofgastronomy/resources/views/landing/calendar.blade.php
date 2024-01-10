@@ -18,15 +18,13 @@
             </div>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_Calendar.png')}}"/>
+                <?php $i=0?>
+                @foreach($banners as $banner)
+                <div class="carousel-item <?php if($i == 0){echo 'active';}?>" data-bs-interval="4000">
+                    <img src="{{config('app.url').$banner['banner']}}"/>
                 </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_Calendar.png')}}"/>
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_Calendar.png')}}"/>
-                </div>
+                <?php $i = $i+1;?>
+                @endforeach
             </div>
         </div>
 
@@ -50,7 +48,7 @@
                             <div class="w-100 timeline-date">12. Jan.2024 - 14.Jan.2024</div>
                         </div>
                     </div>
-                    
+
                     <div class="timeline-item row align-items-center mx-auto my-3">
                         <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-orange ">
                             <div class="w-100 timeline-title ps-3 text-left">Title</div>

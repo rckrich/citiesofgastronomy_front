@@ -19,18 +19,13 @@
             </div>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
+                <?php $i=0?>
+                @foreach($banners as $banner)
+                <div class="carousel-item <?php if($i == 0){echo 'active';}?>" data-bs-interval="4000">
+                    <img src="{{config('app.url').$banner['banner']}}"/>
                 </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="{{asset('assets/img/Banners/IMG_About.png')}}"/>
-                    <!--video style="width:100%; height:inherit" controls autoplay>
-                        <source src="{{asset('assets/img/Banners/sampleVideo.mp4')}}" type="video/mp4">
-                    </video-->
-                </div>
+                <?php $i = $i+1;?>
+                @endforeach
             </div>
         </div>
 
@@ -71,7 +66,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="container p-5">
             <div class="row align-items-center mb-5 pt-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -79,9 +74,9 @@
                 </div>
             </div>
             <div class="row">
-                
+
                 <div class="col-12">
-                    
+
                     <div class="accordion" id="accordionFAQ">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -91,7 +86,7 @@
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
                         <div class="accordion-body">
-                            {{__('about.lorem')}}                        
+                            {{__('about.lorem')}}
                         </div>
                         </div>
                     </div>
@@ -103,7 +98,7 @@
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
                         <div class="accordion-body">
-                            {{__('about.lorem')}}                        
+                            {{__('about.lorem')}}
                         </div>
                         </div>
                     </div>
@@ -115,13 +110,13 @@
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
                         <div class="accordion-body">
-                            {{__('about.lorem')}}                        
+                            {{__('about.lorem')}}
                         </div>
                         </div>
                     </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
 
@@ -144,7 +139,7 @@
                             <div class="w-100 timeline-date">12. Jan.2024 - 14.Jan.2024</div>
                         </div>
                     </div>
-                    
+
                     <div class="timeline-item row align-items-center mx-auto my-3">
                         <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
                             <div class="w-100 timeline-title ps-3 text-left">Title</div>
@@ -173,8 +168,8 @@
             </div>
         </div>
 
-     
-        
+
+
 
     </section>
 @endsection

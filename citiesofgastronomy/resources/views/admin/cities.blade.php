@@ -208,6 +208,7 @@ $(document).ready(function(e){
         console.log("##message");
         console.log(message);
         if(message){
+            console.log("Local Storage DELETE");
                 localStorage.removeItem('message');
                 document.getElementById('alertMessage').innerHTML = message;
                 document.getElementById('alertMessage').style.display = 'block';
