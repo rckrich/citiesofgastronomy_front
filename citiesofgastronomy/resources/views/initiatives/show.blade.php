@@ -93,18 +93,15 @@
 
     <div class="container p-5 row align-items-center">
         <div class="row align-items-center data-sm text-orange">
-            <b class="col-auto pe-5">{{__('initiatives.view.share')}}</b>
+            <b class="col-auto pe-5">{{__('general.share')}}</b>
             <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
-                <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('initiatives.index')}}">
+                <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('initiatives.view')}}">
                     <img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/>
                 </a>
             </div>       
-            <a class="col-auto px-2"  onclick="shareLinkedIn(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a>
+            <!--a class="col-auto px-2"  onclick="shareLinkedIn(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a-->
             <a class="col-auto px-2" href="" onclick="shareTwitter(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
         </div>
-        <!--a href="https://www.instagram.com/?url=https://www.drdrop.co/" target="_blank" rel="noopener">
-            Share on instagram
-        </a-->
 
 
         <div class="py-5 ">

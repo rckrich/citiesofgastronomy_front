@@ -87,16 +87,6 @@
                         <input id="youtube_link" name="youtube_link" class="form-control" placeholder="{{__('tours.create.ph_youtube')}}"/>
                     </div>
 
-                    <!--NO-->
-                    <div class="form-group py-2">
-                        <label class="form-label" for="twitter_link">{{__('tours.create.data_twitter')}}</label>
-                        <input id="twitter_link" name="twitter_link" class="form-control" placeholder="{{__('tours.create.ph_twitter')}}"/>
-                    </div>
-                    <div class="form-group py-2">
-                        <label class="form-label" for="tiktok_link">{{__('tours.create.data_linkedin')}}</label>
-                        <input id="tiktok_link" name="tiktok_link" class="form-control" placeholder="{{__('tours.create.ph_linkedin')}}"/>
-                    </div>
-
                     <div class="bb-gray mt-4 mb-2"></div>
 
                     <div class="form-group row py-2">

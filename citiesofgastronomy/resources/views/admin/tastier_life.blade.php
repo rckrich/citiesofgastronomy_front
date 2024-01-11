@@ -159,7 +159,7 @@
 
 
     <!-- Modal DELETE RECIPE-->
-<div class="modal fade" id="deleteRecipeModal" tabindex="-1" aria-labelledby="deleteRecipeModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteRecipeModal" tabindex="-1" aria-labelledby="deleteRecipeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -177,7 +177,7 @@
   </div>
 </div>
     <!-- Modal DELETE CHEF-->
-<div class="modal fade" id="deleteChefModal" tabindex="-1" aria-labelledby="deleteChefModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteChefModal" tabindex="-1" aria-labelledby="deleteChefModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -196,7 +196,7 @@
 </div>
 
 <!-- Modal CREATE/EDIT CATEGORY-->
-<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header b-none px-4">
@@ -221,7 +221,7 @@
 </div>
 
     <!-- Modal DELETE CATEGORY-->
-<div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

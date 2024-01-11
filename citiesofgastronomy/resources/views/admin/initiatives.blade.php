@@ -66,7 +66,7 @@
                                     <a class="btn btn-link" href="{{route('admin.initiatives_edit',['id'=>1])}}">{{__('contact.admin.btn_edit')}}</a>
                                 </td>                            
                                 <td class="col-auto my-auto">
-                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTimelineModal">{{__('admin.btn_delete')}}
+                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteInitiativeModal">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
                         </tbody>
@@ -118,4 +118,23 @@
         </div>
     </div>
     </section>
+
+    <!-- Modal DELETE INITIATIVE-->
+<div class="modal fade" id="deleteInitiativeModal" tabindex="-1" aria-labelledby="deleteInitiativeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteInitiativeModalLabel">{{__('initiatives.admin.delete_modal_title')}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <p>{{__('initiatives.admin.delete_modal_desc')}}</p>
+      </div>
+      <div class="modal-footer b-none">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
+        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

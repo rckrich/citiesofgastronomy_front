@@ -93,8 +93,8 @@
                         <input id="twitter_link" name="twitter_link" class="form-control" placeholder="{{__('tours.edit.ph_twitter')}}"/>
                     </div>
                     <div class="form-group py-2">
-                        <label class="form-label" for="tiktok_link">{{__('tours.edit.data_linkedin')}}</label>
-                        <input id="tiktok_link" name="tiktok_link" class="form-control" placeholder="{{__('tours.edit.ph_linkedin')}}"/>
+                        <label class="form-label" for="linkedin_link">{{__('tours.edit.data_linkedin')}}</label>
+                        <input id="linkedin_link" name="linkedin_link" class="form-control" placeholder="{{__('tours.edit.ph_linkedin')}}"/>
                     </div>
 
                     <div class="bb-gray mt-4 mb-2"></div>
