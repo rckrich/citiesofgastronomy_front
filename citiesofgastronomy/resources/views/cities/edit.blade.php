@@ -220,7 +220,7 @@
             </div>
 
 <!-- Modal UPLOAD LINK-->
-<div class="modal fade" id="uploadLinkModal" tabindex="-1" aria-labelledby="uploadLinkModalLabel" aria-hidden="true">
+<div class="modal fade" id="uploadLinkModal" tabindex="-1" aria-labelledby="uploadLinkModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog position-relative">
         <div class="modal-content">
             <div class="modal-header b-none px-4">
@@ -248,7 +248,7 @@
 </div>
 
 <!-- Modal UPLOAD PDF-->
-<div class="modal fade" tabindex="-1" id="uploadPDFModal" aria-labelledby="uploadPDFModalLabel" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="uploadPDFModal" aria-labelledby="uploadPDFModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog position-relative">
     <div class="modal-content">
         <div class="modal-header b-none px-4">

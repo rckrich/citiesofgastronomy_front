@@ -32,9 +32,9 @@ Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours')
 Route::post('/search', [LandingController::class, 'search'])->name('search');
 
 Route::get('/cities/view/{id}', [CitiesController::class, 'index'])->name('cities.view');
-Route::get('/initiatives/view', [InitiativesController::class, 'index'])->name('initiatives.index');
-Route::get('/tastier_life/view', [TastierLifeController::class, 'index'])->name('tastier_life.index');
-Route::get('/tours/view', [ToursController::class, 'index'])->name('tours.index');
+Route::get('/initiatives/view', [InitiativesController::class, 'index'])->name('initiatives.view');
+Route::get('/tastier_life/view', [TastierLifeController::class, 'index'])->name('tastier_life.view');
+Route::get('/tours/view', [ToursController::class, 'index'])->name('tours.view');
 
 Route::get('/stats', [LandingController::class, 'stats'])->name('landing.stats');
 Route::get('/calendar', [LandingController::class, 'calendar'])->name('landing.calendar');

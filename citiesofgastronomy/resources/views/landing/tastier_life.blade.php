@@ -70,7 +70,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.index')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
+                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.index')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
+                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.index')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
+                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.index')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
+                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
                         </div>
                     </div>
                 </div>

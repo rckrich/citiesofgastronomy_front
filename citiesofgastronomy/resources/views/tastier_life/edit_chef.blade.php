@@ -28,12 +28,16 @@
                         <input id="twitter_link" name="twitter_link" class="form-control" placeholder="{{__('tastier_life.chefs.edit.ph_twitter')}}"/>
                     </div>
                     <div class="form-group py-2">
-                        <label class="form-label" for="tiktok_link">{{__('tastier_life.chefs.edit.data_linkedin')}}</label>
-                        <input id="tiktok_link" name="tiktok_link" class="form-control" placeholder="{{__('tastier_life.chefs.edit.ph_linkedin')}}"/>
+                        <label class="form-label" for="linkedin_link">{{__('tastier_life.chefs.edit.data_linkedin')}}</label>
+                        <input id="linkedin_link" name="linkedin_link" class="form-control" placeholder="{{__('tastier_life.chefs.edit.ph_linkedin')}}"/>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="instagram_link">{{__('tastier_life.chefs.edit.data_instagram')}}</label>
                         <input id="instagram_link" name="instagram_link" class="form-control" placeholder="{{__('tastier_life.chefs.edit.ph_instagram')}}"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label class="form-label" for="tiktok_link">{{__('tastier_life.chefs.edit.data_tiktok')}}</label>
+                        <input id="tiktok_link" name="tiktok_link" class="form-control" placeholder="{{__('tastier_life.chefs.edit.ph_tiktok')}}"/>
                     </div>
                     <div class="row form-group py-5">
                         <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life')}}" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>

@@ -26,8 +26,11 @@ return [
     'data_author'=>'Author',  
     'lorem_author'=>'Author 1',  
     'view'=>[
-        'share'=>'Share on: ',
         'links'=>'Related Links:',
+    ],
+    'admin'=>[
+        'delete_modal_title'=>'Do you want to delete?',
+        'delete_modal_desc'=>'Are you sure you want to delete this Initiative? This action can\'t be undone.',
     ],
     'create'=>[
         'title'=>'Create Initiative',

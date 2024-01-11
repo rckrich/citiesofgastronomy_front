@@ -52,7 +52,7 @@
 
 
 <!-- Modal CREATE USER-->
-<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header b-none px-4">
@@ -65,22 +65,10 @@
                 <label class="form-label" for="data_title">{{__('users.data_username')}}</label>
                 <input id="data_title" name="data_title" class="form-control" placeholder="{{__('users.ph_username')}}"/>
             </div>
-
             <div class="form-group py-2">
                 <label class="form-label" for="data_link">{{__('users.data_mail')}}</label>
-                <div class="row m-0 p-0 align-items-center">
-                    <div class="col-8 px-0 form-group py-2">
-                        <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
-                    </div> 
-                    <div class="col-4 px-0">
-                        <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editUserModal">
-                            <img class="p-2" style="background-color:#000" src="{{asset('assets/icons/admin_edit.svg')}}"/>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-            
+                <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
+            </div>  
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
@@ -92,7 +80,7 @@
 </div>
 
 <!-- Modal EDIT USER-->
-<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header b-none px-4">
@@ -107,11 +95,49 @@
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_link">{{__('users.data_mail')}}</label>
-                <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
-            </div>  
+                <div class="row m-0 p-0 align-items-center">
+                    <div class="col-8 px-0 form-group py-2">
+                        <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
+                    </div> 
+                    <div class="col-4 px-0">
+                        <button class="btn btn-secondary" type="button" id="editMailModalBtn" data-bs-toggle="modal" data-bs-target="#editMailModal">
+                            <img class="p-2" style="background-color:#000" src="{{asset('assets/icons/admin_edit.svg')}}"/>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
             <div class="form-group py-2"> 
                 <button class="btn btn-dark w-100">{{__('users.btn_new_password')}}</button>
             </div>   
+        </div>
+        <div class="modal-footer b-none row mx-0">
+            <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_edit')}}</buttton>
+        </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal EDIT MAIL-->
+<div class="modal fade" id="editMailModal" tabindex="-1" aria-labelledby="editMailModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header b-none px-4">
+            <h5 class="modal-title" id="editMailModalLabel">{{__('users.create_modal_title')}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>            
+        <form class="">
+        <div class="modal-body px-4">
+            <div class="form-group py-2">
+                <label class="form-label" for="data_title">{{__('users.data_username')}}</label>
+                <input id="data_title" name="data_title" class="form-control" placeholder="{{__('users.ph_username')}}"/>
+            </div>
+            <div class="form-group py-2">
+                <label class="form-label" for="data_link">{{__('users.data_mail')}}</label>
+                <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
+            </div>  
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
@@ -122,8 +148,9 @@
   </div>
 </div>
 
+
     <!-- Modal DELETE USER-->
-<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

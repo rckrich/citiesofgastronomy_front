@@ -21,15 +21,17 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top px-5 py-4">
-        <div class="row mx-0 col-lg-2 col-md-4 col-sm-4 col-4 ms-lg-auto ms-md-0 ms-sm-0 ms-0">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top py-4">
+        <div class="row mx-0 col-lg-2 col-md-4 col-sm-4 col-4 ms-lg-auto ms-md-0 ms-sm-0 ms-0 ps-5">
             <a class="navbar-brand m-auto" href="{{ route('landing.index') }}">
                 <img id="navbarLogo" class="" src="{{asset('assets/img/logo.png')}}" alt="Logo"/>
             </a>
         </div>
+        <div class="pe-5">
         <button id="OpenMenu" class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
+        </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav text-center">
                 <li id="nav_index" class="nav-item {{ request()->routeIs('landing.index') ? 'active' : '' }}">
@@ -72,6 +74,7 @@
             -->
 
         </div>
+
     </nav>
     <div class="navbar-height-margin">
         @yield('content')

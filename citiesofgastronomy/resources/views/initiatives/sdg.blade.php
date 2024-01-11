@@ -44,7 +44,7 @@
 
 
 <!-- Modal CREATE/EDIT-->
-<div class="modal fade" id="editSDGModal" tabindex="-1" aria-labelledby="editSDGModalLabel" aria-hidden="true">
+<div class="modal fade" id="editSDGModal" tabindex="-1" aria-labelledby="editSDGModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header b-none px-4">
@@ -69,7 +69,7 @@
 </div>
 
 <!-- Modal DELETE-->
-<div class="modal fade" id="deleteSDGModal" tabindex="-1" aria-labelledby="deleteSDGModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteSDGModal" tabindex="-1" aria-labelledby="deleteSDGModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

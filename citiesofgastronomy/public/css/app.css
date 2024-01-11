@@ -98,7 +98,7 @@ a .text-white{color: #fff!important;}
 .btn-black:hover,.btn-black:active,.btn-black:focus{background-color: #fff; color: #070707;}
 
 /*NAVBAR*/
-.navbar{background-color: #0D0D0D; color: #fff;height: 140px;}
+.navbar{background-color: #0D0D0D!important; color: #fff;height: 140px;}
 .navbar-height-margin{margin-top: 140px;}
 #navbarLogo{width: 287px;height: 76px;}
 .nav-link{font: normal normal normal 17px/21px Helvetica LT Std;}
@@ -227,13 +227,24 @@ a .text-white{color: #fff!important;}
     margin-top: -140px!important;
     margin-left: 7vw!important;
 }
+/*MODAL BACKGROUND DUPLICATIONS SOLUTION*/
+
+/*.modal-backdrop:nth-child(2n-1) {
+    opacity : 0;
+}
+.modal-backdrop+.modal-backdrop {
+    opacity : 0;
+  }*/
+  .modal { background: rgba(0, 0, 0, 0.5) !important; } .modal-backdrop { display: none !important; opacity: 0;}
 
 /*Gallery & Cards imgs*/
-.gallery-img,.card-img-top{
+.gallery-img,#page_cities .card-img-top{
     object-position: center;
     object-fit: cover;
     width: 100%;
-    height: 50vh;}
+}
+.gallery-img{height: 50vh;}
+#page_cities .card-img-top{height: 100%;}
 
 /*ABOUT - TIMELINE*/
 .timeline-item{height: 67px;}
@@ -347,6 +358,9 @@ footer a{color: #fff;}
 @media screen and (min-width: 992px) and (max-width:1189px){
     #navbarLogo{width: 150px!important;height: 39px!important;}
 }
+@media screen and (min-width: 992px) and (max-width:1200px){
+    .gallery-img{height: 35vh!important;}
+}
 @media (min-width: 992px){
     .g-5 .col-lg-auto{
         flex: 0 0 auto!important;
@@ -354,13 +368,37 @@ footer a{color: #fff;}
     }
 }
 @media (max-width: 991px){
+    .navbar-collapse{background-color: #0D0D0D!important; padding: 3rem 0 !important;}
     #map-card,#map_button{display: none!important;visibility: hidden!important;}
     #map:hover{cursor: pointer;}
     .pin{z-index: 8;} .pin:hover{filter: unset;}
+    .gallery-img{height: 40vh;}
+
+    .title-xl{font-size: 64px;}
+    .title-lg{font-size: 30px!important;}
+    .title-md{font-size: 28px!important;}
+    .title-sm{font-size: 25px!important;}
+    .title-xs,.card-title{font-size: 20px!important;}
+    .subtitle{font-size: 15px!important;}
+    .subtitle-md{font-size: 14px!important;}
+    .data{font-size: 20px!important;line-height: 25px;}
+    .data-sm{font-size: 10px!important;}
+    :not(#num_stats)>.banner-title .title-lg{font-size:80px!important;line-height: inherit;}
+
 }
 @media (max-width: 767px){
+    .banner-title-overlay{padding: 5rem!important;}
+    :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: inherit;}
     footer p{text-align: center!important;}
     footer .offset-3{margin-left: auto!important;}
 
    /* footer .col-auto{margin-left: auto!important;margin-right: auto!important;}*/
+}
+@media (max-width: 557px){
+    #about,#num_stats .p-5,#initiatives,#news,#open_calls{padding: 1.5rem!important;}
+    #initiatives .container.py-5,#news .container.py-5,#open_calls .container.py-5{padding-top: 1.5rem!important; padding-bottom: 1.5rem!important;}
+    .banner-title-overlay{padding: 3rem!important;}
+    :not(#num_stats)>.banner-title .title-lg{font-size:60px!important;line-height: inherit;}
+    .gallery-img{height: 30vh!important;}
+
 }

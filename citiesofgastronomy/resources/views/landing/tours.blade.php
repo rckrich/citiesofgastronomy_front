@@ -57,7 +57,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
                             <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
                             <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
                             <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
                             <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
                             <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.index')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
                         </div>
                     </div>
                 </div>

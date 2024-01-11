@@ -20,6 +20,10 @@ $(document).ready(function () {
         $("#searchForm").submit();
       }
      }); 
+     
+     $("#editMailModalBtn").on("click", function(){openEditMailModal()})
+    
+
 
 });
 
@@ -235,4 +239,8 @@ function toggleMapLink(){
     window.location.pathname = "/cities";
   }
 
+}
+
+function openEditMailModal(){
+  //function
 }

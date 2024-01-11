@@ -89,7 +89,7 @@
     </section>
 
     <!-- Modal CREATE/EDIT CITY-->
-<div class="modal fade" id="editCityModal" tabindex="-1" aria-labelledby="editCityModalLabel" aria-hidden="true">
+<div class="modal fade" id="editCityModal" tabindex="-1" aria-labelledby="editCityModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -172,7 +172,7 @@
 </div>
 
 <!-- Modal DELETE CITY-->
-<div class="modal fade" id="deleteCityModal" tabindex="-1" aria-labelledby="deleteCityModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteCityModal" tabindex="-1" aria-labelledby="deleteCityModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <input type="hidden" id="id_del_city">
   <div class="modal-dialog">
     <div class="modal-content">

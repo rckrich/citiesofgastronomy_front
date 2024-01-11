@@ -12,7 +12,7 @@
                 <div class="row align-items-start">
                     <div class="col-auto">
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
-                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
+                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/youtube.svg')}}" height="19" width="23"/></a>
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/tiktok.svg')}}" height="19" width="23"/></a>
                     </div>
@@ -66,12 +66,17 @@
 
     <div class="container p-5 row align-items-center">
         <div class="row align-items-center data-sm text-orange pb-5">
-            <b class="col-auto pe-5">{{__('initiatives.view.share')}}</b>
-            <a class="col-auto px-2" href=""><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
-            <a class="col-auto px-2" href=""><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a>
-            <a class="col-auto px-2" href=""><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
+            <b class="col-auto pe-5">{{__('general.share')}}</b>
+            <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
+                <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('tours.view')}}">
+                    <img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/>
+                </a>
+            </div>       
+            <!--a class="col-auto px-2"  onclick="shareLinkedIn(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a-->
+            <a class="col-auto px-2" href="" onclick="shareTwitter(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
         </div>
     </div>
+    
 
 </section>
 @endsection
