@@ -93,7 +93,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('landing.initiatives')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('landing.initiatives')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('landing.initiatives')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('landing.initiatives')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
                             </div>
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.index')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('landing.initiatives')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
