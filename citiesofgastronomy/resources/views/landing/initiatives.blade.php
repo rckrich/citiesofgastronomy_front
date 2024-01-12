@@ -10,7 +10,7 @@
 
             <?php $i=0?>
                 @foreach($banners as $banner)
-                    <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="<?= $i?>" class="mx-2<?php
+                    <button type="button" data-bs-target="#initiativesCarousel" data-bs-slide-to="<?= $i?>" class="mx-2<?php
                     if($i == 0){echo ' active" aria-current="true';}?>" aria-label="Slide <?= $i?>"></button>
                     <?php $i = $i+1;?>
                 @endforeach
