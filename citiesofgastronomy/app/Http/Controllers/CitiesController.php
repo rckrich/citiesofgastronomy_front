@@ -294,13 +294,7 @@ class CitiesController extends Controller
             $arrPOST[$id1] = $deleteLink;
         };
 
-        Log::info($arrPOST);
-
-        //*/
-        //$url = config('app.apiUrl').'cities/updateCompleteInfo/'.$data_id;
-        //Log::info("#La URL");
-        //Log::info($url);
-        Log::info("-------------");
+        $url = config('app.apiUrl').'cities/updateCompleteInfo/'.$data_id;
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
