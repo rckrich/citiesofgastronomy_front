@@ -308,6 +308,16 @@
                     <div class="card-body text-white">
                         <h5 class="title-md"><b>{{__('landing.stats.subtitle_1')}}</b></h5>
                         <p class="">{{__('landing.stats.text_1')}}</p>
+                        <p class="">
+                            <ul>
+                                <li>{{__('landing.stats.text_1_li1')}}</li>
+                                <li>{{__('landing.stats.text_1_li2')}}</li>
+                                <li>{{__('landing.stats.text_1_li3')}}</li>
+                                <li>{{__('landing.stats.text_1_li4')}}</li>
+                                <li>{{__('landing.stats.text_1_li5')}}</li>
+                                <li>{{__('landing.stats.text_1_li6')}}</li>
+                            </ul>
+                        </p>
                     </div>
                     </div>
                 </div>
@@ -316,16 +326,6 @@
                     <div class="card-body text-white">
                         <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
                         <p class="">{{__('landing.stats.text_2')}}</p>
-                        <p class="">
-                            <ul>
-                                <li>{{__('landing.stats.text_2_li1')}}</li>
-                                <li>{{__('landing.stats.text_2_li2')}}</li>
-                                <li>{{__('landing.stats.text_2_li3')}}</li>
-                                <li>{{__('landing.stats.text_2_li4')}}</li>
-                                <li>{{__('landing.stats.text_2_li5')}}</li>
-                                <li>{{__('landing.stats.text_2_li6')}}</li>
-                            </ul>
-                        </p>
                         <a target="_blank" href="https://en.unesco.org/creative-cities/" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
                     </div>
                     </div>

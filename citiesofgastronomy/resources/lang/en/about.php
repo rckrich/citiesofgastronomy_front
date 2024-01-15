@@ -2,6 +2,7 @@
 
 return [
     'title'=>'About',
+    'desc'=>'The UCCN is currently formed by 350 cities and covers seven creative fields: Crafts & Folk Art, Design, Film, Gastronomy, Literature, Music and Media Arts. Since the field was introduced to the UCCN in 2005, the Gastronomy subnetwork has grown to a total of 56 designated Cities of Gastronomy in 34 countries and 68.6 million habitants.',
     'faq'=>[
         'title'=>'FAQ',
         'subtitle'=>'More information about ":City"',

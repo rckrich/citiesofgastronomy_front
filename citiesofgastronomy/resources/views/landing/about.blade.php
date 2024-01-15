@@ -35,7 +35,7 @@
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="my-5 row px-0 mx-0 align-items-start">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <p>{{__('landing.lorem')}}</p>
+                <p>{{__('about.desc')}}</p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5 mt-5">
                 <img src="{{asset('assets/img/Home/sample.png')}}" class="mx-auto my-auto w-100 br-9" alt="...">
@@ -53,6 +53,17 @@
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_1')}}</b></h5>
                                 <p class="">{{__('landing.stats.text_1')}}</p>
+                                <p class="">
+                                    <ul>
+                                        <li>{{__('landing.stats.text_1_li1')}}</li>
+                                        <li>{{__('landing.stats.text_1_li2')}}</li>
+                                        <li>{{__('landing.stats.text_1_li3')}}</li>
+                                        <li>{{__('landing.stats.text_1_li4')}}</li>
+                                        <li>{{__('landing.stats.text_1_li5')}}</li>
+                                        <li>{{__('landing.stats.text_1_li6')}}</li>
+                                    </ul>
+                                </p>
+                                
                             </div>
                             </div>
                         </div>
@@ -61,16 +72,6 @@
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
                                 <p class="">{{__('landing.stats.text_2')}}</p>
-                                <p class="">
-                                    <ul>
-                                        <li>{{__('landing.stats.text_2_li1')}}</li>
-                                        <li>{{__('landing.stats.text_2_li2')}}</li>
-                                        <li>{{__('landing.stats.text_2_li3')}}</li>
-                                        <li>{{__('landing.stats.text_2_li4')}}</li>
-                                        <li>{{__('landing.stats.text_2_li5')}}</li>
-                                        <li>{{__('landing.stats.text_2_li6')}}</li>
-                                    </ul>
-                                </p>
                                 <a target="_blank" href="https://en.unesco.org/creative-cities/" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
                             </div>
                             </div>
