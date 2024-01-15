@@ -131,43 +131,30 @@
             </div>
             <div class="row align-items-center">
                 <div id="timeline-list" class="px-0">
+
+                @foreach($timeline as $time)
+                    <!-- -->
                     <div class="timeline-item row align-items-center mx-auto my-3">
                         <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
-                            <div class="w-100 timeline-title ps-3 text-left">Title</div>
+                            <div class="w-100 timeline-title ps-3 text-left"><?= $time["tittle"]?></div>
                         </div>
                         <div class="timeline-col px-0 mx-2 col-lg-1 col-md-1 col-sm-1 col-auto text-center">
-                            <div class="w-100"><img class="mx-auto" src="{{asset('assets/icons/visibility.svg')}}" width="38"height="26"/></div>
+                            <div class="w-100">
+
+                                <a <?php if($time["link"]){echo 'href="'.$time["link"].'"';};?> target="_blank">
+                                    <img class="mx-auto" src="<?php
+                                    if(!$time["link"]){echo asset('assets/icons/visibility_off.svg');}
+                                    else{echo asset('assets/icons/visibility.svg');};?>" width="38"height="26"/>
+                                </a>
+                            </div>
                         </div>
                         <div class="timeline-col px-0 mx-2 col-lg-3 col-md-3 col-sm-3 col-auto text-center">
-                            <div class="w-100 timeline-date">12. Jan.2024 - 14.Jan.2024</div>
+                            <div class="w-100 timeline-date"><?= $time["startDateFormat"]?> <?php
+                                    if($time["endDateFormat"]){echo ' - '.$time["endDateFormat"];};//14.Jan.2024?></div>
                         </div>
                     </div>
-
-                    <div class="timeline-item row align-items-center mx-auto my-3">
-                        <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
-                            <div class="w-100 timeline-title ps-3 text-left">Title</div>
-                        </div>
-                        <div class="timeline-col px-0 mx-2 col-lg-1 col-md-1 col-sm-1 col-auto text-center">
-                            <div class="w-100"><img class="mx-auto" src="{{asset('assets/icons/visibility_off.svg')}}" width="38"height="26"/></div>
-                        </div>
-                        <div class="timeline-col px-0 mx-2 col-lg-3 col-md-3 col-sm-3 col-auto text-center">
-                            <div class="w-100 timeline-date">14.Dec.2023</div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item row align-items-center mx-auto my-3">
-                        <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
-                            <div class="w-100 timeline-title ps-3 text-left">Title</div>
-                        </div>
-                        <div class="timeline-col px-0 mx-2 col-lg-1 col-md-1 col-sm-1 col-auto text-center">
-                            <div class="w-100"><img class="mx-auto" src="{{asset('assets/icons/visibility.svg')}}" width="38"height="26"/></div>
-                        </div>
-                        <div class="timeline-col px-0 mx-2 col-lg-3 col-md-3 col-sm-3 col-auto text-center">
-                            <div class="w-100 timeline-date">14.Nov.2023</div>
-                        </div>
-                    </div>
-
-                </div>
+                    <!-- -->
+                @endforeach
             </div>
         </div>
 
