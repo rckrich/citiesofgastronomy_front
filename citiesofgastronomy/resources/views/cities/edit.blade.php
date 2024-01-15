@@ -325,7 +325,16 @@
 
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'description' );
+    //CKEDITOR.replace( 'description' );
+    var editor = CKEDITOR.replace( 'description' );
+
+        // The "change" event is fired whenever a change is made in the editor.
+        /*editor.on( 'change', function( evt ) {
+            // getData() returns CKEditor's HTML content.
+            console.log( 'Total bytes: ' + evt.editor.getData().length );
+            console.log( evt.editor.getData() );
+        });//*/
+
 </script>
 
 
@@ -523,6 +532,8 @@ $("#deepInfoForm").on('submit', function(e){
         e.preventDefault();
         document.getElementById("btnSubmit").disabled = true;
 
+
+
         let city  = document.getElementById("name").value;
         let continent = document.getElementById("idContinent").value;
         let designationYear = document.getElementById("data_dyear").value;
@@ -539,11 +550,17 @@ $("#deepInfoForm").on('submit', function(e){
                 document.getElementById('validation_continent').style.display = 'none';
                 document.getElementById("data_dyear").className = 'form-control';
                 document.getElementById('validation_data_dyear').style.display = 'none';
+
+                let description  = editor.getData();//document.getElementById("description").value;
+                console.log("---->description");
+                console.log(description);
             ///////////////////////////////////////
+                    let datos = new FormData(this);
+                    datos.append('description', description);
                 $.ajax({
                     type: 'POST',
                     url: '/admin/completeUpdate',
-                    data: new FormData(this),
+                    data: datos,
                     contentType: false,
                     cache: false,
                     processData:false,
@@ -595,6 +612,9 @@ $("#deepInfoForm").on('submit', function(e){
         let id1 = '';
         if(idFileGral !=''&&title!=''){   $valida = 'si'; };
         if(idFileGral ==''&&filePDF!=''&&title!=''){   $valida = 'si'; };
+
+        ///////////DESCIPTION
+        let description = editor.getData();
 
         //VERIFICO extencion
         file1 = document.getElementById("filePDF").value;

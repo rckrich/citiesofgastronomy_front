@@ -35,6 +35,7 @@ class CitiesController extends Controller
         }else{
             $inputs = array( "city" => []);
         };
+
         return view('cities.show', $inputs);
 
     }
@@ -159,6 +160,9 @@ class CitiesController extends Controller
         $data_locations = $request->input("restaurantFoodStablishments");
         $data_dyear = $request->input("data_dyear");
         $data_description = $request->input("description");
+
+        //Log::info("la descripcion::");
+        //Log::info($data_description);
 
         //$data_photo = $request->data_photo;
         // Get the UploadedFile object
@@ -293,9 +297,9 @@ class CitiesController extends Controller
         Log::info($arrPOST);
 
         //*/
-        $url = config('app.apiUrl').'cities/updateCompleteInfo/'.$data_id;
-        Log::info("#La URL");
-        Log::info($url);
+        //$url = config('app.apiUrl').'cities/updateCompleteInfo/'.$data_id;
+        //Log::info("#La URL");
+        //Log::info($url);
         Log::info("-------------");
 
         $curl = curl_init();

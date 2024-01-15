@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="col-lg-7 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
-                <p class="py-2 data ">{{$city["description"]}}</p>
+                <p class="py-2 data "><?php echo $city["description"]?></p>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
                 <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('cities.view',['id'=>$city['id']])}}">
                     <img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/>
                 </a>
-            </div>       
+            </div>
             <!--a class="col-auto px-2"  onclick="shareLinkedIn(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a-->
             <a class="col-auto px-2" href="" onclick="shareTwitter(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
         </div>

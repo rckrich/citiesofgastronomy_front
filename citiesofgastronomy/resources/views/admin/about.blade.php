@@ -113,6 +113,10 @@
 
 <!-- Modal CREATE/EDIT TIMELINE-->
 <div class="modal fade" id="editTimelineModal" tabindex="-1" aria-labelledby="editTimelineModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+
+<x-loading />
+<input type="hidden" id="data_id" name="data_id" value="">
+
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header b-none px-4">
@@ -120,6 +124,7 @@
             <h5 class="modal-title" id="editTimelineModalLabel">{{__('about.timeline.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
@@ -144,7 +149,7 @@
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
+            <button type="button" id="btnSaveTimeline" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
         </div>
         </form>
     </div>
@@ -218,13 +223,53 @@
 </div>
 
 <script>
+
+var editModal; var modalToggle;
+
     $(document).ready(function(e){
         editModal = new bootstrap.Modal('#editTimelineModal', { keyboard: false    });
         modalToggle = document.getElementById("editTimelineModal");
     });
 
     function modalAddUp(id){
-        editModal.show(modalToggle);
+        console.log("# modal tlup")
+            editModal.show(modalToggle);
+
+            document.getElementById("data_title").value = '';
+            document.getElementById("data_link").value = '';
+            document.getElementById("data_startdate").value = '';
+            document.getElementById("data_enddate").value = '';
+
+        if(id == '' || id == undefined){
+            console.log("CREATE::");
+            document.getElementById('createTimelineModalLabel').style.display = 'block';
+            document.getElementById('editTimelineModalLabel').style.display = 'none';
+        }else{
+            console.log("UPDATE::");
+            console.log(id);
+                document.getElementById("loading").style.display = 'block';
+            document.getElementById('createTimelineModalLabel').style.display = 'none';
+            document.getElementById('editTimelineModalLabel').style.display = 'block';
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                    let res =  JSON.parse(this.responseText);
+                    //let res = res0["cities"];
+                    console.log(":: respuesta fel FIND");
+                    console.log(res);
+
+                    document.getElementById("data_id").value = res["id"];
+                    document.getElementById("data_title").value = res["tittle"];
+                    document.getElementById("data_link").value = res["link"];
+                    document.getElementById("data_startdate").value = res["startDate"];
+                    document.getElementById("data_enddate").value = res["endDate"];
+                    //*/
+                    document.getElementById("loading").style.display = 'none';
+                }
+                xhttp.open("GET", "/admin/timelineFind/"+id, true);
+                xhttp.send();
+                //*/
+        };
     }
 </script>
 @endsection

@@ -403,9 +403,30 @@ class AdminController extends Controller
     {
         return view('admin.users');
     }
-    public function newsletter()
+    public function newsletter(Request $request)
     {
-        return view('admin.newsletter');
+        $page = $request->input("page");
+
+        if(!$page){ $page=1;   };
+
+        $url = config('app.apiUrl').'newsletterAdmin/?'.$page;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        //Log::info("Newsletter :::");
+        //Log::info($res);
+
+        $inputs = [];
+        $inputs["total"] = $res["total"];
+        $inputs["paginator"] = $res["paginator"];
+        $inputs["maillist"] = $res["maillist"];
+        $inputs["page"] = $page;
+        return view('admin.newsletter', $inputs);
     }
 
 }
