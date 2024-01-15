@@ -49,7 +49,7 @@
                 <div class="min-h-80 row px-0 mx-0 align-items-center">
                     <div class="row mt-5 mx-0">
                         <div class="col-lg-6 col-12 mb-5">
-                            <div class="card p-lg-5 p-md-5 p-sm-3 p-3 bg-orange h-100">
+                            <div class="card p-lg-4 p-md-4 p-sm-3 p-3 bg-orange h-100">
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_1')}}</b></h5>
                                 <p class="">{{__('landing.stats.text_1')}}</p>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-12 mb-5">
-                            <div class="card p-lg-5 p-md-5 p-sm-3 p-3 bg-blue h-100">
+                            <div class="card p-lg-4 p-md-4 p-sm-3 p-3 bg-blue h-100">
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
                                 <p class="">{{__('landing.stats.text_2')}}</p>
@@ -152,9 +152,9 @@
                             <div class="w-100">
 
                                 <a <?php if($time["link"]){echo 'href="'.$time["link"].'"';};?> target="_blank">
-                                    <img class="mx-auto" src="<?php
+                                    <img class="mx-auto visible-icon" src="<?php
                                     if(!$time["link"]){echo asset('assets/icons/visibility_off.svg');}
-                                    else{echo asset('assets/icons/visibility.svg');};?>" width="38"height="26"/>
+                                    else{echo asset('assets/icons/visibility.svg');};?>"/>
                                 </a>
                             </div>
                         </div>
