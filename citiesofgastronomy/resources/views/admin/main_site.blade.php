@@ -67,7 +67,7 @@
                             <?php }else if($info[$i]["key"] == 'clusterContactCities'){?>
                                 <div id="validation_clusterurl" class="invalid-feedback" style="display: none;">Incorrect URL format</div>
                             <?php }else if($info[$i]["key"] == 'coordinator'){?>
-                                <div id="validation_clustergeneral" class="invalid-feedback" style="display: none;">Incorrect URL format</div>
+                                <div id="validation_clustergeneral" class="invalid-feedback" style="display: none;">This information is required</div>
                             <?php };?>
                         </div>
                         @endfor
