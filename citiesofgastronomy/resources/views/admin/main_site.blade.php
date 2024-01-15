@@ -55,16 +55,24 @@
             <div class="tab-pane  maincontent" id="pills-clusters" style="display:none">
                 <div class="py-3">
                     <h3 class="admin-title"><b>{{__('admin.main_site.clusters.title')}}</b></h3>
+
                     <div class="pb-5 my-3">
                         @for($i=0; $i < count($info); $i++)
                         <div class="form-group py-2">
                             <label class="form-label" for="<?= $info[$i]["key"]?>"><?php echo $info[$i]["nombre"] ?></label>
                             <input id="<?= $info[$i]["key"]?>" name="<?= $info[$i]["key"]?>" class="form-control"
                                 value="<?php echo $info[$i]["value"] ?>" placeholder="{{__('admin.main_site.clusters.coordinator_ph')}}"/>
+                            <?php if($info[$i]["key"] == 'clusterMail'){?>
+                                <div id="validation_clustermail" class="invalid-feedback" style="display: none;">Incorrect Email format</div>
+                            <?php }else if($info[$i]["key"] == 'clusterContactCities'){?>
+                                <div id="validation_clusterurl" class="invalid-feedback" style="display: none;">Incorrect URL format</div>
+                            <?php }else if($info[$i]["key"] == 'coordinator'){?>
+                                <div id="validation_clustergeneral" class="invalid-feedback" style="display: none;">Incorrect URL format</div>
+                            <?php };?>
                         </div>
                         @endfor
                         <div class="row form-group py-5">
-                            <button class="btn btn-primary mx-auto" onclick="saveclusterInfo()">{{__('admin.btn_save')}}</buttton>
+                            <button class="btn btn-primary mx-auto" id="saveclusterBTN" onclick="saveclusterInfo()">{{__('admin.btn_save')}}</buttton>
                         </div>
                     </div>
                 </div>
@@ -80,21 +88,54 @@
             }
             document.getElementById(showElement).style.display = 'block';
         }
-
+        function isValidUrl(string) {
+        console.log(string);
+            try {     new URL(string);       return true;
+            } catch (err) { return false;        }
+        }
         function saveclusterInfo(){
+            console.log("Save cluster :::");
+
+            document.getElementById("saveclusterBTN").disabled = true;
+
+            document.getElementById("validation_clustergeneral").style.display = 'none';
+                    document.getElementById("validation_clusterurl").style.display = 'none';
+                    document.getElementById("validation_clustermail").style.display = 'none';
+
                     let token = document.getElementsByName("_token")[0].value;
-            let datos = new FormData();
-                    let linkValue = ''; let linkName = '';let coordinator_input= '';
+                    let linkValue = ''; let linkName = '';let coordinator_input= '';let totDatta = 'yes';
+                    let incorrectEmail = '';let incorrectURL = '';
+                    //parametros para email valido
+                    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+                    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+
+
+                    let datos = new FormData();
                     datos.append('_token', token);
                     <?php $indice = '';
                     for($i=0; $i < count($info); $i++){?>
-                    coordinator_input = document.getElementById('<?= $info[$i]["key"]?>').value;
-                    datos.append('<?= $info[$i]["key"]?>', coordinator_input);
-                    <?php
-                        if($i!=0){$indice = $indice.',';};
-                        $indice = $indice.$info[$i]["key"];
-                     } ?>
+                        coordinator_input = document.getElementById('<?= $info[$i]["key"]?>').value;
+                        datos.append('<?= $info[$i]["key"]?>', coordinator_input);
+
+                        //corroborar si el email tiene formato mail
+                        if ('<?= $info[$i]["key"]?>' == 'clusterMail'){
+                            if (emailRegex.test(coordinator_input)) {//alert(" email válido");
+                            } else {incorrectEmail= 'si';/*alert("incorrecto");*/               };
+                        }else if ('<?= $info[$i]["key"]?>' == 'coordinator'){
+                            if(coordinator_input==''){ totDatta= 'missData';};
+                        }else if('<?= $info[$i]["key"]?>' == 'clusterContactCities'){
+                            if( isValidUrl(coordinator_input) ){}else{incorrectURL= 'si';};
+                        };
+                        <?php
+                            if($i!=0){$indice = $indice.',';};      $indice = $indice.$info[$i]["key"];
+                    } ?>
                      datos.append('indice', '<?= $indice?>');
+
+                    console.log(totDatta);
+                    console.log(incorrectURL);
+                    console.log(incorrectEmail);
+                if(totDatta == 'yes' && incorrectURL != 'si' && incorrectEmail != 'si'){
+                    console.log("--SAVE");
                     $.ajax({
                                     type: 'POST',
                                     url: '/admin/mainSiteContentClusterInfo',
@@ -111,8 +152,22 @@
                                         //window.location ='/admin/cities/';
                                         alert("Cluster coordination info was successfully saved");
                                         //document.getElementById("btnSubmit").disabled = false;
+                                        document.getElementById("saveclusterBTN").disabled = false;
                                     }
                     });
+                }else{
+                    document.getElementById("saveclusterBTN").disabled = false;
+                };
+                if(totDatta == 'missData'){
+                    document.getElementById("validation_clustergeneral").style.display = 'block';
+                };
+                if(incorrectURL == 'si'){
+                    document.getElementById("validation_clusterurl").style.display = 'block';
+                };
+                if(incorrectEmail == 'si'){
+                    document.getElementById("validation_clustermail").style.display = 'block';
+                };
+
                     //*/
         }
         function saveLinks(){
