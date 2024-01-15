@@ -90,17 +90,21 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <img  id="navbarLogo" class="mb-5" src="{{asset('assets/img/logo_white.png')}}" alt="Logo"/>
-                    <form>
+                    <!--<form>-->
+                        @csrf
                         <div class="row g-2 mb-3">
                             <label for="newsletter_email">{{__('general.newsletter.description')}}</label>
                             <div class="col-auto">
                                 <input type="text" id="newsletter_email" class="form-control" placeholder="{{__('general.newsletter.placeholder')}}"/>
+                                <div id="validation_emailNews" class="invalid-feedback" style="padding: 5px 10px; background-color:#FFF;
+                                display: none;">Please insert a valid email</div>
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-outline-primary">{{__('general.btn_subscribe')}}</button>
+                                <button type="submit" class="btn btn-outline-primary" id="newsletterBTN"
+                                            onclick="newsletterSave()">{{__('general.btn_subscribe')}}</button>
                             </div>
                         </div>
-                    </form>
+                    <!--</form>-->
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="row">
@@ -176,5 +180,48 @@
 	</script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="d655f07n"></script>
+
+    <script>
+        function newsletterSave(){
+            console.log("-->newlwtter");
+            document.getElementById("validation_emailNews").style.display = "none";
+            document.getElementById("newsletterBTN").disabled = true;
+            let newsletter_email = document.getElementById("newsletter_email").value;
+            let token = document.getElementsByName("_token")[0].value;
+
+            let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+            if (emailRegex.test(newsletter_email)) {
+                //alert(" email válido");
+                    let datos = new FormData();
+                    datos.append('_token', token);
+                     datos.append('newsletter', newsletter_email);
+
+                $.ajax({
+                                        type: 'POST',
+                                        url: '/newslettersave',
+                                        data: datos,
+                                        contentType: false,
+                                        cache: false,
+                                        processData:false,
+                                        beforeSend: function(){
+                                            $('.submitBtn').attr("disabled","disabled");
+                                        },
+                                        success: function(msg){
+                                            //window.location ='/admin/cities/';
+                                            alert("Thanks for subscribing");
+                                            document.getElementById("newsletterBTN").disabled = false;
+                                        }
+                    });
+                    //*/
+            } else {
+                incorrectEmail= 'si';//alert("Please insert a valid email");//*/
+                document.getElementById("validation_emailNews").style.display = "block";
+                document.getElementById("newsletterBTN").disabled = false;
+            };
+
+                    //*/
+        }
+    </script>
 </body>
 </html>

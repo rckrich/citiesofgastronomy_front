@@ -24,14 +24,14 @@
                         </tr>
                     </thead>
                     <tbody class="">
+                        <!-- -->
+                        @foreach($maillist as $mail)
                         <tr class="align-items-center">
-                            <td class="col-9">Email Subscriber</td>
-                            <td class="col-auto my-auto">01 January 2024</td>                            
+                            <td class="col-9"><?= $mail["email"]?></td>
+                            <td class="col-auto my-auto"><?= $mail["SuscribeDate"]?></td>
                         </tr>
-                        <tr class="align-items-center">
-                            <td class="col-9">Email Subscriber</td>
-                            <td class="col-auto my-auto">01 January 2024</td>                            
-                        </tr>
+                        @endforeach
+                        <!-- -->
                     </tbody>
                 </table>
             </div>
@@ -45,7 +45,7 @@
         <div class="modal-header b-none px-4">
             <h5 class="modal-title" id="downloadCVSModalLabel">{{__('admin.newsletter.download_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
+        </div>
         <form class="">
         <div class="modal-body px-4">
             <div class="row m-0 p-0">

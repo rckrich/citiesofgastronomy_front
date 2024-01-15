@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InitiativesController;
 use App\Http\Controllers\TastierLifeController;
 use App\Http\Controllers\ToursController;
+use App\Http\Controllers\AboutController;
 
 
 use Illuminate\Http\Request;
@@ -30,6 +31,8 @@ Route::get('/initiatives', [LandingController::class, 'initiatives'])->name('lan
 Route::get('/tastier_life', [LandingController::class, 'tastier_life'])->name('landing.tastier_life');
 Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours');
 Route::post('/search', [LandingController::class, 'search'])->name('search');
+
+Route::post('/newslettersave', [LandingController::class, 'newsletter']);
 
 Route::get('/cities/view/{id}', [CitiesController::class, 'index'])->name('cities.view');
 Route::get('/initiatives/view', [InitiativesController::class, 'index'])->name('initiatives.view');
@@ -73,6 +76,7 @@ Route::get('/admin/tours/create', [ToursController::class, 'tour_new'])->name('a
 Route::get('/admin/tours/{id}', [ToursController::class, 'tour_edit'])->name('admin.tour_edit');
 
 Route::get('/admin/about', [AdminController::class, 'about'])->name('admin.about');
+Route::get('/admin/timelineFind/{id}', [AboutController::class, 'timelineFind']);
 
 Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
 Route::get('/admin/contact/create', [ContactController::class, 'contact_new'])->name('admin.contact_new');

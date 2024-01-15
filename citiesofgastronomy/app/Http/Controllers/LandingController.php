@@ -77,13 +77,14 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("# ABOUT ::");
-        Log::info($res["banner"]);
+        //Log::info($res["timeline"]);
 
         $inputs = [];
         //$inputs["initiatives"] = $res["initiatives"];
         $inputs["banners"] = $res["banner"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
+        $inputs["timeline"] = $res["timeline"];
 
         return view('landing.about', $inputs);
     }
@@ -219,5 +220,28 @@ class LandingController extends Controller
         $keyword = $request->input('search_box');
         return view('landing.search', compact('keyword'));
 
+    }
+    public function newsletter(Request $request)
+    {
+        $newsletter = $request->input("newsletter");
+        $dattaSend = [
+            'newslettermail' => $newsletter
+        ];
+
+        $url = config('app.apiUrl').'newsletter';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("CONTACT ::");
+        Log::info($res);
+
+        return $res;
     }
 }
