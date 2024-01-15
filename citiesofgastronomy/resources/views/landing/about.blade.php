@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="my-5 row px-0 mx-0 align-items-start">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <p>{{__('landing.lorem')}}</p>
@@ -42,22 +42,32 @@
         </div>
 
         <div class="bg-dark-gray">
-            <div class="container p-5 bg-dark-gray">
+            <div class="container p-lg-5 p-md-5 p-sm-3 p-3 bg-dark-gray">
                 <div class="min-h-80 row px-0 mx-0 align-items-center">
-                    <div class="row mt-5">
+                    <div class="row mt-5 mx-0">
                         <div class="col-lg-6 col-12 mb-5">
-                            <div class="card p-5 bg-orange h-100">
+                            <div class="card p-lg-5 p-md-5 p-sm-3 p-3 bg-orange h-100">
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_1')}}</b></h5>
-                                <p class="">{{__('landing.lorem')}}</p>
+                                <p class="">{{__('landing.stats.text_1')}}</p>
                             </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-12 mb-5">
-                            <div class="card p-5 bg-blue h-100">
+                            <div class="card p-lg-5 p-md-5 p-sm-3 p-3 bg-blue h-100">
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
-                                <p class="">{{__('landing.lorem')}}</p>
+                                <p class="">{{__('landing.stats.text_2')}}</p>
+                                <p class="">
+                                    <ul>
+                                        <li>{{__('landing.stats.text_2_li1')}}</li>
+                                        <li>{{__('landing.stats.text_2_li2')}}</li>
+                                        <li>{{__('landing.stats.text_2_li3')}}</li>
+                                        <li>{{__('landing.stats.text_2_li4')}}</li>
+                                        <li>{{__('landing.stats.text_2_li5')}}</li>
+                                        <li>{{__('landing.stats.text_2_li6')}}</li>
+                                    </ul>
+                                </p>
                                 <a target="_blank" href="https://en.unesco.org/creative-cities/" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
                             </div>
                             </div>
@@ -67,7 +77,7 @@
             </div>
         </div>
 
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row align-items-center mb-5 pt-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.faq.title')}}</h1>
@@ -120,7 +130,7 @@
             </div>
         </div>
 
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.timeline.title')}}</h1>

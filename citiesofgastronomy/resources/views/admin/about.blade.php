@@ -16,7 +16,7 @@
         </ul>
         <div class="tab-content px-5" id="pills-tab-aboutContent">
             <div class="tab-pane fade show active" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">
-                <div id="" class="container p-5">
+                <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                     <div class="row mx-0">
                         <div class="col-12 px-0 py-2">
                             <h3 class="admin-title"><b>{{__('about.timeline.admin_title')}}</b></h3>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-faq" role="tabpanel" aria-labelledby="pills-faq-tab">
-                <div id="" class="container p-5">
+                <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                     <div class="row mx-0">
                         <div class="col-12 px-0 py-2">
                             <h3 class="admin-title"><b>{{__('about.faq.admin_title')}}</b></h3>

@@ -8,7 +8,7 @@
 <x-loading />
 
 <section id="admin_cities_edit">
-    <form action="/admin/completeUpdate" method="POST" enctype="multipart/form-data"  id="deepInfoForm" class="container p-5">
+    <form action="/admin/completeUpdate" method="POST" enctype="multipart/form-data"  id="deepInfoForm" class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <input type="hidden" name="data_id" value="<?= $id?>">
         <input type="hidden" name="completeInfo" value="1">
         @csrf

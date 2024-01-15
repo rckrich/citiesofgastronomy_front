@@ -4,7 +4,7 @@
 
 @section('content')
 <section id="show_initiative">
-    <div class="container p-5">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="my-5 row px-0 mx-0 align-items-start">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h5 class="title-sm mb-4">{{__('initiatives.lorem_title')}}</h5>
@@ -18,13 +18,13 @@
         </div>
     </div>
 
-    <div class="container p-5">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-5">
-                <div class="p-5 title-xs bg-orange text-white text-center">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
+                <div class="p-lg-5 p-md-5 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('initiatives.about_title')}}</b>
                 </div>
-                <div class="p-5 bg-gray text-left">
+                <div class="p-lg-5 p-md-5 p-sm-3 p-3 bg-gray text-left">
                     <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_type')}}</b></p>
                     <p class="py-2 text-white data">{{__('initiatives.lorem_type')}}</p>
                     <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_topics')}}</b></p>
@@ -46,7 +46,7 @@
                     <p class="py-2 text-white data">{{__('initiatives.lorem_author')}}</p>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-6 col-sm-12 col-12 p-5">
+            <div class="col-lg-8 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
                 <p class="py-2 data ">{{__('initiatives.lorem_text0')}}</p>
                 <p class="py-2 data ">{{__('initiatives.lorem_text1')}}</p>
                 <p class="py-2 data ">{{__('initiatives.lorem_text2')}}</p>
@@ -55,7 +55,7 @@
         </div>
     </div>
     
-    <div class="container p-5">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row align-items-center mb-5">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h1 class="title-xl">{{__('general.gallery')}}</h1>
@@ -91,7 +91,7 @@
 
     </div>
 
-    <div class="container p-5 row align-items-center">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center">
         <div class="row align-items-center data-sm text-orange">
             <b class="col-auto pe-5">{{__('general.share')}}</b>
             <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">

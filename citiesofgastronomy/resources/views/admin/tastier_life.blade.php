@@ -17,7 +17,7 @@
     </ul>
     <div class="tab-content px-5" id="pills-tab-tastierlifeContent">
         <div class="tab-pane fade show active" id="pills-recipes" role="tabpanel" aria-labelledby="pills-recipes-tab">
-            <div id="" class="container p-5">
+            <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
                         <h3 class="admin-title"><b class="text-gray">{{__('tastier_life.recipes.admin_title_1')}}</b><b>{{__('tastier_life.recipes.admin_title_2')}}</b></h3>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="pills-chefs" role="tabpanel" aria-labelledby="pills-chefs-tab">
-            <div id="" class="container p-5">
+            <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
                         <h3 class="admin-title"><b class="text-gray">{{__('tastier_life.chefs.admin_title_1')}}</b><b>{{__('tastier_life.chefs.admin_title_2')}}</b></h3>
@@ -111,7 +111,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="pills-categories" role="tabpanel" aria-labelledby="pills-categories-tab">
-            <div id="" class="container p-5">
+            <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
                         <h3 class="admin-title"><b class="text-gray">{{__('tastier_life.categories.admin_title_1')}}</b><b>{{__('tastier_life.categories.admin_title_2')}}</b></h3>

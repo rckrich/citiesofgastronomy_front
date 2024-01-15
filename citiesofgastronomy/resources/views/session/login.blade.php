@@ -4,9 +4,9 @@
 
 @section('content')
     <section id="login" class="bg-white min-h-100 row mx-0">
-        <div class="p-5 align-self-center">
-            <div class="container-sm card bg-dark p-5">
-                <div class="p-5 col-10 mx-auto">
+        <div class="p-lg-5 p-md-5 p-sm-3 p-3 align-self-center">
+            <div class="container-sm card bg-dark p-lg-5 p-md-5 p-sm-3 p-3">
+                <div class="p-lg-5 p-md-5 p-sm-3 p-3 col-10 mx-auto">
                     <div class="text-center">
                         <img  id="navbarLogo" class="mb-5" src="{{asset('assets/img/logo.png')}}" alt="Logo"/>
                     </div>

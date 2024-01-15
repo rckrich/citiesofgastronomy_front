@@ -72,7 +72,7 @@
         </div>
         </div>
 
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row g-4">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">

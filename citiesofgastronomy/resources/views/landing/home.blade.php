@@ -4,8 +4,8 @@
 
 @section('content')
     <section id="map">
-    <div>
-        <div class="d-block">
+    <div class="row align-items-center mx-0 px-0">
+        <div class="d-block px-0">
             <div class="mx-0 px-0">
 
                 <!-- el viewBox 450 cambia el tamaño de la vista del heigth de la imagen con los botones -->
@@ -200,7 +200,7 @@
 
                 <div id="map-card" class="d-none">
                     <div class="row align-items-center px-0 mx-0">
-                        <div class="card px-0 mx-auto" style="width: 25rem;">
+                        <div class="card px-0 mx-auto" style="width: 350px;">
                             <div class="card-header">
                             <button type="button" class="btn btn-transparent" onclick="closeMapModal()">
                                 <img src="{{asset('assets/icons/close.png')}}" width="50" height="50"/>
@@ -208,7 +208,7 @@
                             </div>
 
                             <img src="{{asset('assets/img/Home/DSC_0278.png')}}" id="photo" class="card-img-top w-100" alt="...">
-                            <div class="card-body p-5">
+                            <div class="card-body p-4">
                                 <h5 class="card-title" id="name">Name</h5>
                                 <p class="card-text" id="country"><b>Country:</b> Name</p>
                                 <p class="card-text" id="continentName"><b>Continent:</b> Name</p>
@@ -233,7 +233,7 @@
                         </div>
                         <div class="modal-body p-0">
                             <img src="{{asset('assets/img/Home/DSC_0278.png')}}" class="card-img-top w-100" alt="...">
-                            <div class="p-5">
+                            <div class="p-lg-5 p-md-5 p-sm-3 p-3">
                                 <h5 class="card-title mb-3">Name</h5>
                                 <p class="card-text"><b>Country:</b> Name</p>
                                 <p class="card-text"><b>Continent:</b> Name</p>
@@ -262,14 +262,14 @@
     </div>
     </section>
 
-    <section id="about" class="container p-5 selectable-text-area">
+    <section id="about" class="container p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
         <div class="min-h-100 row px-0 mx-0 align-items-center">
             <h1 class="title-xl text-yellow text-center">{{__('landing.about.title')}}</h1>
             <div class="row text-white">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h2 class="title-sm">{{__('landing.about.subtitle')}}</h2>
                     <p>{{__('landing.lorem')}}</p>
-                    <a class="btn btn-primary" href="{{route('landing.about')}}">{{__('landing.btn_learn')}}</a>
+                    <a class="btn btn-primary mt-2 mb-4" href="{{route('landing.about')}}">{{__('landing.btn_learn')}}</a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5">
                     @if($bannerAbout =='')
@@ -300,22 +300,32 @@
             </div>
         </div>
         </div>
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="min-h-100 row px-0 mx-0 align-items-center">
-            <div class="row mt-5">
+            <div class="row mt-5 mx-0">
                 <div class="col-lg-6 col-12 mb-5">
-                    <div class="card p-5 bg-orange h-100">
+                    <div class="card p-lg-5 p-md-5 p-sm-3 p-3 bg-orange h-100">
                     <div class="card-body text-white">
                         <h5 class="title-md"><b>{{__('landing.stats.subtitle_1')}}</b></h5>
-                        <p class="">{{__('landing.lorem')}}</p>
+                        <p class="">{{__('landing.stats.text_1')}}</p>
                     </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-12 mb-5">
-                    <div class="card p-5 bg-blue h-100">
+                    <div class="card p-lg-5 p-md-5 p-sm-3 p-3 bg-blue h-100">
                     <div class="card-body text-white">
                         <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
-                        <p class="">{{__('landing.lorem')}}</p>
+                        <p class="">{{__('landing.stats.text_2')}}</p>
+                        <p class="">
+                            <ul>
+                                <li>{{__('landing.stats.text_2_li1')}}</li>
+                                <li>{{__('landing.stats.text_2_li2')}}</li>
+                                <li>{{__('landing.stats.text_2_li3')}}</li>
+                                <li>{{__('landing.stats.text_2_li4')}}</li>
+                                <li>{{__('landing.stats.text_2_li5')}}</li>
+                                <li>{{__('landing.stats.text_2_li6')}}</li>
+                            </ul>
+                        </p>
                         <a target="_blank" href="https://en.unesco.org/creative-cities/" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
                     </div>
                     </div>
@@ -324,13 +334,13 @@
         </div>
         </div>
     </section>
-    <section id="initiatives" class="p-5 selectable-text-area">
-        <div class="container py-5">
+    <section id="initiatives" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
+        <div class="container py-lg-5 py-md-5 py-sm-3 py-3">
             <div class="row align-items-center mb-5">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="col-6 pe-0">
                     <h1 class="title-xl">{{__('landing.initiatives.title')}}</h1>
                 </div>
-                <div class="col-auto ms-lg-auto ms-md-auto ms-sm-0 ms-0">
+                <div class="col-auto ms-auto">
                     <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
                 </div>
             </div>
@@ -414,13 +424,13 @@
             </div>
         </div>
     </section>
-    <section id="news" class="p-5 selectable-text-area">
-        <div class="container py-5">
+    <section id="news" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
+        <div class="container py-lg-5 py-md-5 py-sm-3 py-3">
             <div class="row align-items-center mb-5">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="col-6 pe-0">
                     <h1 class="title-xl">{{__('landing.news.title')}}</h1>
                 </div>
-                <div class="col-auto ms-lg-auto ms-md-auto ms-sm-0 ms-0">
+                <div class="col-auto ms-auto">
                     <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
                 </div>
             </div>
@@ -504,13 +514,13 @@
             </div>
         </div>
     </section>
-    <section id="open_calls" class="p-5 selectable-text-area">
-        <div class="container py-5">
+    <section id="open_calls" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
+        <div class="container py-lg-5 py-md-5 py-sm-3 py-3">
             <div class="row align-items-center mb-5">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="col-6 pe-0">
                     <h1 class="title-xl">{{__('landing.open_calls.title')}}</h1>
                 </div>
-                <div class="col-auto ms-lg-auto ms-md-auto ms-sm-0 ms-0">
+                <div class="col-auto ms-auto">
                     <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
                 </div>
             </div>
@@ -596,11 +606,11 @@
     </section>
     <section id="calendar" class="bg-white selectable-text-area">
         <div class="container p-4">
-        <div class="row align-items-center">
-            <div class="col-auto ms-auto be-gray">
+        <div class="row align-items-center text-lg-left text-center">
+            <div class="col-auto ms-lg-auto mx-auto be-gray">
                 <h1 class="title-lg text-ocean">{{__('landing.calendar.title')}}</h1>
             </div>
-            <div class="col-auto me-auto">
+            <div class="col-auto ms-lg-0 mx-auto">
                 <a href="{{route('landing.calendar')}}" class="btn btn-secondary">{{__('landing.btn_view')}}</a>
             </div>
         </div>

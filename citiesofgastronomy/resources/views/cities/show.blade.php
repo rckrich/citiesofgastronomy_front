@@ -22,7 +22,7 @@
         </div>
     </div>
     @if($city['logo'])
-    <div class="container p-5">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="my-5 row px-0 mx-0 align-items-start">
             <div class="col-4 mx-auto mt-lg-0 mt-md-0 mt-sm-5 mt-5">
                 <img src="{{config('app.url').$city['logo']}}" class="mx-auto my-auto w-100 br-9" alt="...">
@@ -31,7 +31,7 @@
     </div>
     @endif
 
-    <div class="container p-5">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row">
             <!--div class="col-1 py-5">
                 <div class="row py-2">
@@ -47,11 +47,11 @@
                     <a href="" class="px-2 text-right"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
                 </div>
             </div-->
-            <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-5">
-                <div class="p-5 title-xs bg-orange text-white text-center">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
+                <div class="p-lg-5 p-md-5 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('cities.view.about_title')}}</b>
                 </div>
-                <div class="p-5 bg-gray text-left">
+                <div class="p-lg-5 p-md-5 p-sm-3 p-3 bg-gray text-left">
                     <p class="py-2 text-orange subtitle"><b>{{__('cities.view.data_city')}}</b></p>
                     <p class="py-2 text-white data">{{$city["name"]}}, {{$city["country"]}}</p>
                     <p class="py-2 text-orange subtitle"><b>{{__('cities.view.data_continent')}}</b></p>
@@ -62,13 +62,13 @@
                     <p class="py-2 text-white data">{{$city["restaurantFoodStablishments"]}}</p>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-6 col-sm-12 col-12 p-5">
+            <div class="col-lg-7 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
                 <p class="py-2 data ">{{$city["description"]}}</p>
             </div>
         </div>
     </div>
 
-    <div class="container p-5">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row align-items-center mb-5">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h1 class="title-xl">{{__('general.gallery')}}</h1>
@@ -90,7 +90,7 @@
         <div class="w-100 bb-orange py-5"></div>
     </div>
 
-    <div class="container p-5 row align-items-center">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center">
 
         <div class="row align-items-center data-sm text-orange">
             <b class="col-auto pe-5">{{__('general.share')}}</b>

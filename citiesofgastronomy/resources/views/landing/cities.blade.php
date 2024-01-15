@@ -33,7 +33,7 @@
         </div>
 
         <div class="container py-5">
-            <div class="row g-5 py-5 col-12 mx-auto">
+            <div class="row g-5 py-lg-5 py-md-5 py-sm-5 py-3 col-12 mx-auto">
 
                 @foreach($cityList as $city)
                     <div class="col-lg-auto col-md-4 col-sm-6 col-12">
@@ -44,8 +44,8 @@
                             @else
                             <img src="{{asset('assets/img/default.jpg')}}" class="card-img-top" alt="">
                             @endif
-                            <div class="card-body px-0 bg-black text-white text-center">
-                                <h5 class="card-title mt-2 mb-4">{{$city["name"]}} </h5>
+                            <div class="card-body px-0 py-2 bg-black text-white text-center">
+                                <h5 class="card-title my-2">{{$city["name"]}} </h5>
                                 <p class="card-text mb-2">{{$city["country"]}}</p>
                                 <p class="card-text mb-2">{{$city["continentName"]}}</p>
                             </div>

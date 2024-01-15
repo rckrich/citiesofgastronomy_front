@@ -4,7 +4,7 @@
 
 @section('content')
     <section id="admin_tours">
-        <div id="" class="container p-5">
+        <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row mx-0">
                 <div class="col-12 px-0 py-2">
                     <h3 class="admin-title"><b>{{__('tours.admin.title')}}</b></h3>

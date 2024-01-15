@@ -99,7 +99,7 @@
         <button id="twitter-share-btn"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></button>
     </div>
     <footer>
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row">
                 <div class="col-12 align-self-center text-center">
                     <div class="row g-2">

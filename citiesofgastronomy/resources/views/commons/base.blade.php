@@ -22,12 +22,12 @@
 </head>
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top py-4">
-        <div class="row mx-0 col-lg-2 col-md-4 col-sm-4 col-4 ms-lg-auto ms-md-0 ms-sm-0 ms-0 ps-5">
+        <div class="row mx-0 col-lg-2 col-md-4 col-sm-4 col-4 ms-lg-auto ms-md-0 ms-sm-0 ms-0 ps-lg-5 ps-md-5 ps-sm-3 ps-3">
             <a class="navbar-brand m-auto" href="{{ route('landing.index') }}">
                 <img id="navbarLogo" class="" src="{{asset('assets/img/logo.png')}}" alt="Logo"/>
             </a>
         </div>
-        <div class="pe-5">
+        <div class="pe-lg-5 pe-md-5 pe-sm-3 pe-3">
         <button id="OpenMenu" class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -86,10 +86,10 @@
         <button id="twitter-share-btn"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></button>
     </div>
     <section id="newsletter">
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <img  id="navbarLogo" class="mb-5" src="{{asset('assets/img/logo_white.png')}}" alt="Logo"/>
+                <div class="col-lg-6 col-md-5 col-sm-12 col-12">
+                    <img  id="footerLogo" class="mb-5" src="{{asset('assets/img/logo_white.png')}}" alt="Logo"/>
                     <form>
                         <div class="row g-2 mb-3">
                             <label for="newsletter_email">{{__('general.newsletter.description')}}</label>
@@ -102,7 +102,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="col-lg-6 col-md-7 col-sm-12 col-12">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-lg-0 my-md-0 my-sm-3 my-3">
                             <p class="title-xs">{{__('general.newsletter.info')}}</p>
@@ -128,7 +128,7 @@
         </div>
     </section>
     <footer>
-        <div class="container p-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 align-self-start">
                     <div class="row g-2">

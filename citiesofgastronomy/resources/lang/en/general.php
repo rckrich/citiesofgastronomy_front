@@ -27,14 +27,10 @@ return [
     'copyright' => 'COPYRIGHT © 2023 CITIES OF GASTRONOMY',
     'privacy_policy' => 'Privacy Policy',
     'terms_of_use' => 'Terms of Use',
+
+
+    'btn_subscribe' => 'Subscribe',
     'share'=>'Share on: ',
-
-
-
-    'create_title'=>'Crear :Object',
-    'edit_title'=>'Editar :Object',
-    'show_title'=>'Detalles de :Object',
-
     
     'session' => [
         'logout' => 'Cerrar sesión',
