@@ -41,7 +41,7 @@ class AboutController extends Controller
         $title = $request->input("title");
         $link = $request->input("link");
         $startDate = $request->input("startDate");
-        $endDate = $request->input("iendDate");
+        $endDate = $request->input("endDate");
         $dattaSend = [
             'id' => $id,
             'title' => $title,
