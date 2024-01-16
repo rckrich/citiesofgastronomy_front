@@ -150,6 +150,11 @@
         document.getElementById(id1).value = '1' ;
     }
 
+    function isValidUrl(string) {
+        console.log(string);
+            try {     new URL(string);       return true;
+            } catch (err) { return false;        }
+        }
     </script>
 </body>
 </html>

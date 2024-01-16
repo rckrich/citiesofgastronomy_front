@@ -88,11 +88,6 @@
             }
             document.getElementById(showElement).style.display = 'block';
         }
-        function isValidUrl(string) {
-        console.log(string);
-            try {     new URL(string);       return true;
-            } catch (err) { return false;        }
-        }
         function saveclusterInfo(){
             console.log("Save cluster :::");
 
@@ -148,7 +143,7 @@
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-                                        localStorage.setItem('message', 'Cluster coordination info was successfully saved');
+                                        //localStorage.setItem('message', 'Cluster coordination info was successfully saved');
                                         //window.location ='/admin/cities/';
                                         alert("Cluster coordination info was successfully saved");
                                         //document.getElementById("btnSubmit").disabled = false;
@@ -204,7 +199,7 @@
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-                                        localStorage.setItem('message', 'Links was successfully saved');
+                                        //localStorage.setItem('message', 'Links was successfully saved');
                                         //window.location ='/admin/cities/';
                                         alert("Links was successfully saved");
                                         //document.getElementById("btnSubmit").disabled = false;
