@@ -47,7 +47,7 @@
                             <tbody class="">
                                 @foreach($timeline as $item)
                                 <tr class="align-items-center">
-                                    <td class="col-8">{{$item["tittle"]}}</td>
+                                    <td class="col-8" id="timeTittle{{$item['id']}}">{{$item["tittle"]}}</td>
                                     <td class="col-auto my-auto">
                                         <button class="btn btn-link"  onclick="modalAddUp({{$item['id']}})"
                                             >{{__('about.btn_edit')}}</button>
@@ -73,7 +73,8 @@
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('about.faq.search_ph')}}" aria-label="{{__('about.faq.search_ph')}}" aria-describedby="basic-addon1">
+                                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('about.faq.search_ph')}}"
+                                            aria-label="{{__('about.faq.search_ph')}}" aria-describedby="basic-addon1">
                             </div>
                             </div>
                         </div>
@@ -113,7 +114,7 @@
 
 <!-- Modal CREATE/EDIT TIMELINE-->
 <div class="modal fade" id="editTimelineModal" tabindex="-1" aria-labelledby="editTimelineModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-
+@csrf
 <x-loading />
 <input type="hidden" id="data_id" name="data_id" value="">
 
@@ -130,26 +131,34 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_title">{{__('about.timeline.data_title')}}</label>
                 <input id="data_title" name="data_title" class="form-control" placeholder="{{__('about.timeline.ph_title')}}"/>
+                <div id="validation_timelineTittle" class="invalid-feedback" style="display: none;">This field is required</div>
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_link">{{__('about.timeline.data_link')}}</label>
                 <input id="data_link" name="data_link" class="form-control" placeholder="{{__('about.timeline.ph_link')}}"/>
+                <div id="validation_timelineLink" class="invalid-feedback" style="display: none;">Incorrect URL format</div>
             </div>
             <div class="row m-0 p-0">
                 <div class="col-6 form-group py-2 ps-0">
                     <label class="form-label" for="data_startdate">{{__('about.timeline.data_startdate')}}</label>
-                    <input id="data_startdate" name="data_startdate" class="form-control" placeholder="{{__('about.timeline.ph_startdate')}}"/>
+                    <input id="data_startdate" name="data_startdate" class="form-control"  type="date"
+                                placeholder="{{__('about.timeline.ph_startdate')}}"/>
+                <div id="validation_timelinestartdate" class="invalid-feedback" style="display: none;">This field is required</div>
                 </div>
                 <div class="col-6 form-group py-2 pe-0">
                     <label class="form-label" for="data_enddate">{{__('about.timeline.data_enddate')}}</label>
-                    <input id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('about.timeline.ph_enddate')}}"/>
+                    <input id="data_enddate" name="data_enddate" class="form-control"  type="date"
+                                placeholder="{{__('about.timeline.ph_enddate')}}"/>
+                <div id="validation_timelineenddate" class="invalid-feedback" style="display: none;">This field is required</div>
+                <div id="validation_timelineDateCompare" class="invalid-feedback" style="display: none;">Please select an End Date equal or after the Start Date</div>
                 </div>
             </div>
 
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" id="btnSaveTimeline" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
+            <button type="button" id="btnSaveTimeline" onclick="saveTimeline()"
+                    class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
         </div>
         </form>
     </div>
@@ -232,6 +241,14 @@ var editModal; var modalToggle;
     });
 
     function modalAddUp(id){
+
+        //reseteo todas las leyendas de validaciones
+        document.getElementById("validation_timelineTittle").style.display = 'none';
+            document.getElementById("validation_timelineLink").style.display = 'none';
+            document.getElementById("validation_timelinestartdate").style.display = 'none';
+            document.getElementById("validation_timelineenddate").style.display = 'none';
+            document.getElementById("validation_timelineDateCompare").style.display = 'none';
+
         console.log("# modal tlup")
             editModal.show(modalToggle);
 
@@ -241,10 +258,13 @@ var editModal; var modalToggle;
             document.getElementById("data_enddate").value = '';
 
         if(id == '' || id == undefined){
+            document.getElementById("btnSaveTimeline").innerHTML = '<?= __('admin.btn_create')?>';
             console.log("CREATE::");
             document.getElementById('createTimelineModalLabel').style.display = 'block';
             document.getElementById('editTimelineModalLabel').style.display = 'none';
         }else{
+
+            document.getElementById("btnSaveTimeline").innerHTML = '<?= __('admin.btn_edit')?>';
             console.log("UPDATE::");
             console.log(id);
                 document.getElementById("loading").style.display = 'block';
@@ -270,6 +290,110 @@ var editModal; var modalToggle;
                 xhttp.send();
                 //*/
         };
+    }
+
+</script>
+<script>
+    function saveTimeline(){
+        console.log("#-> ingresa al SAVE");
+        let guardar = 1;
+        document.getElementById("btnSaveTimeline").disabled = true;
+
+        //reseteo todas las leyendas de validaciones
+            document.getElementById("validation_timelineTittle").style.display = 'none';
+            document.getElementById("validation_timelineLink").style.display = 'none';
+            document.getElementById("validation_timelinestartdate").style.display = 'none';
+            document.getElementById("validation_timelineenddate").style.display = 'none';
+            document.getElementById("validation_timelineDateCompare").style.display = 'none';
+
+
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("data_id").value;
+        datos.append('id', data_id);
+        let data_title = document.getElementById("data_title").value;
+        datos.append('title', data_title);
+        let data_link = document.getElementById("data_link").value;
+        datos.append('link', data_link);
+        let data_startdate = document.getElementById("data_startdate").value;
+        datos.append('startDate', data_startdate);
+        let data_enddate = document.getElementById("data_enddate").value;
+        datos.append('endDate', data_enddate);
+
+        //verificar datos obligatorios
+        if(!data_title){
+            document.getElementById("validation_timelineTittle").style.display = 'block';
+            guardar = 2;
+            console.log("#falta titulo");
+        };
+        if(!data_startdate){
+            document.getElementById("validation_timelinestartdate").style.display = 'block';
+            guardar = 2;
+            console.log("#falta f ini");
+        };
+        if(!data_enddate){
+            document.getElementById("validation_timelineenddate").style.display = 'block';
+            guardar = 2;
+            console.log("#falta fin");
+        };
+
+        //VALIDA URL
+        /*if( isValidUrl(data_link) ){}else{
+                document.getElementById("validation_timelineLink").style.display = 'block';
+                guardar = 2;
+                console.log("#falta fin");
+        };//*/
+
+        //comparar fechas
+        if(data_startdate && data_enddate){
+            var f1 = new Date(data_startdate);
+            var f2 = new Date(data_enddate);
+
+            console.log("f1 > f2");
+            console.log(f1 > f2);
+            if(f1 > f2){
+                document.getElementById("validation_timelineDateCompare").style.display = 'block';
+                guardar = 2;
+            };
+        };
+
+
+        //data_title data_startdate  data_enddate -->obligatorios
+        //if(false){
+            let id1 = '';
+        if(guardar == 1){
+            $.ajax({
+                                    type: 'POST',
+                                    url: '/admin/timelineSave/',
+                                    data: datos,
+                                    contentType: false,
+                                    cache: false,
+                                    processData:false,
+                                    beforeSend: function(){
+                                        //$('.btnSaveTimeline').attr("disabled","disabled");
+                                        //$('#fupForm').css("opacity",".5");
+                                    },
+                                    success: function(msg){
+                                        //localStorage.setItem('message', 'Timeline info was successfully saved');
+                                        //window.location ='/admin/cities/';
+                                        document.getElementById("btnSaveTimeline").disabled = false;
+                                        editModal.hide(modalToggle);
+                                        if(data_id){
+                                            alert("The timeline entry was successfully edited");
+                                            id1 = 'timeTittle'+data_id;
+                                            document.getElementById(id1).innerHTML  = data_title;
+                                        }else{
+                                            alert("The timeline entry was successfully created");
+                                            location.reload();
+                                        };
+                                    }
+                    });
+        }else{
+            document.getElementById("btnSaveTimeline").disabled = false;
+        };
+
+
     }
 </script>
 @endsection
