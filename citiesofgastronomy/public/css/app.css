@@ -36,7 +36,7 @@ body{background-color: #000;color:#fff;}
 .title-md{font-size: 48px;}
 .title-sm{font-size: 40px;}
 .title-xs,.card-title{font-size: 30px;}
-.subtitle{font-size: 25px;}
+.subtitle{font-size: 25px; line-height: 28px;}
 .subtitle-md{font-size: 24px;}
 .data{font-size: 22px;}
 .data-sm{font-size: 20px;}
@@ -48,7 +48,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 ul {padding-left: 1rem;}
 .visible-icon{width: 38px; height: 26px;}
 
-#newsletter .nav-link{font-family: 'Helvetica LT Std Roman'; font-size: 14px;}
+#newsletter .nav-link,#newsletter p{font-family: 'Helvetica LT Std Roman'; font-size: 14px;}
 #calendar .title-lg, #newsletter .title-xs,.card-title{font-family: 'Helvetica LT Std Black';}
 #newsletter .title-xs{font-size: 16px;}
 a .text-white{color: #fff!important;}
@@ -57,6 +57,7 @@ a .text-white{color: #fff!important;}
 .text-blue{color: #5479FA;}
 .text-yellow{color: #D7D308;}
 .text-yellow2{color: #FFFC65;}
+.text-red{color: #ff0000;}
 .text-ocean{color: #354E57;}
 .text-gray{color:#707070}
 .text-right{text-align: right;}
@@ -162,7 +163,8 @@ a .text-white{color: #fff!important;}
     padding: 8rem;
     z-index: 10;
 }
-#show_city .banner-title-overlay{margin-top: 80px;}
+#show_city .banner-title{ position: relative;}
+#show_city .banner-title img{height: 480px; object-fit: cover; object-position: center;}
 #num_stats .banner-title-overlay{position: relative!important;}
 #num_stats .banner-title{
     background-repeat: no-repeat!important;
@@ -246,17 +248,26 @@ a .text-white{color: #fff!important;}
     object-fit: cover;
     width: 100%;
 }
-.gallery-img{height: 50vh;}
+.gallery-img{height: 30vh;}
 #page_cities .card-img-top{height: 100%;}
 
 /*ABOUT - TIMELINE*/
-.timeline-item{height: 67px;}
-.timeline-col{border: 1px solid #707070;height: 100%; display: flex; align-items: center;}
+.timeline-item{height: 67px!important;}
+.timeline-col{border: 1px solid #707070; word-break:keep-all;}
+.timeline-col.timeline-title{width: 45%; min-width: 350px;}
+.timeline-col.timeline-icon{width: 10%; min-width: 120px;}
+.timeline-col.timeline-date{width: 35%; min-width: 250px;}
 .timeline-title{font: normal normal normal 26px/31px "Helvetica LT Std";}
 .timeline-date{font: normal normal normal 22px/26px "Helvetica LT Std";}
-#timeline-list .bl-blue{border-left: 20px solid #5479FA;}
-#timeline-list .bl-orange{border-left: 20px solid #FEA561;}
-#timeline-list .bl-yellow{border-left: 20px solid #D7D308;}
+#timeline-list.table{ border-collapse: separate;border-spacing:20px 20px;}
+#timeline-list td{background-color: transparent!important; vertical-align: middle;}
+#timeline-list .bl-1{border-left: 20px solid #CF754A;}
+#timeline-list .bl-2{border-left: 20px solid #CFA84D;}
+#timeline-list .bl-3{border-left: 20px solid #7CA25F;}
+#timeline-list .bl-4{border-left: 20px solid #3E8E75;}
+#timeline-list .bl-5{border-left: 20px solid #457B79;}
+#timeline-list .bl-6{border-left: 20px solid #4C657C;}
+
 /*.timeline-item >.timeline-col:nth-child(1){}*/
 
 /*NEWSLETTER*/
@@ -365,7 +376,7 @@ footer a{color: #fff;}
     #navbarLogo{width: 150px!important;height: 39px!important;}
 }
 @media screen and (min-width: 992px) and (max-width:1200px){
-    .gallery-img{height: 35vh!important;}
+    .gallery-img{height: 20vh!important;}
     #calendar .title-lg{font-size: 35px;}
 }
 @media (min-width: 992px){
@@ -382,7 +393,7 @@ footer a{color: #fff;}
     #map-card,#map_button{display: none!important;visibility: hidden!important;}
     #map:hover{cursor: pointer;}
     .pin{z-index: 8;} .pin:hover{filter: unset;}
-    .gallery-img{height: 40vh;}
+    .gallery-img{height: 30vh;}
 
     .title-xl{font-size: 64px;}
     .title-lg{font-size: 30px!important;}
@@ -393,14 +404,22 @@ footer a{color: #fff;}
     .subtitle-md{font-size: 18px!important;}
     .data{font-size: 18px!important;line-height: 20px;}
     .data-sm{font-size: 16px!important;}
+    #show_city .subtitle{font-size: 17px!important;}
+    #show_city .data{font-size: 15px!important; line-height: 18px!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size:80px!important;line-height: inherit;}
     #num_stats .banner-title, #num_stats .banner-title-overlay {height: 350px;}
     #footerLogo{width: 200px;height: 53px;}
     .visible-icon{width: 30px!important; height: 20px!important;}
 
 }
+@media (min-width: 768px) and (max-width:991px){
+    .container, .container-md, .container-sm {
+        max-width: 800px!important;
+    }
+}
 @media (max-width: 767px){
     .banner-title-overlay{padding: 5rem!important;}
+    .gallery-img{height: 25vh;}
     :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: inherit;}
     #initiatives .title-xl,#news .title-xl,#open_calls .title-xl{font-size: 50px;}
     #initiatives .btn-primary,#news .btn-primary,#open_calls .btn-primary{width: 120px!important;font-size: 14px;height: 50px;line-height: 36px!important;}
@@ -409,6 +428,11 @@ footer a{color: #fff;}
     footer .offset-3{margin-left: auto!important;}
 
    /* footer .col-auto{margin-left: auto!important;margin-right: auto!important;}*/
+}
+@media (min-width: 576px) and (max-width:767px){
+    .container, .container-sm {
+        max-width: 580px;
+    }
 }
 @media (max-width: 557px){
     #navbarLogo{width: 200px;height:53px}
@@ -428,17 +452,16 @@ footer a{color: #fff;}
     .data{font-size: 18px!important;line-height: 20px;}
     .data-sm{font-size: 16px!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size:60px!important;line-height: 60px;}
-    #num_stats .banner-title, #num_stats .banner-title-overlay, .banner-title-overlay, .carousel-item {height: 300px;}
+    #num_stats .banner-title, #num_stats .banner-title-overlay, .banner-title-overlay, .carousel-item, #show_city .banner-title, #show_city .banner-title img {height: 300px;}
 
 
-    .gallery-img{height: 30vh!important;}
-
+    .gallery-img{height: 20vh!important;}
 
 }
 @media (max-width: 400px){
     #num_stats .banner-title, #num_stats .banner-title-overlay {height: 250px;}
     :not(#num_stats)>.banner-title-overlay{padding: .5rem!important;}
-    :not(#num_stats)>.banner-title-overlay .title-lg{font-size: 50px!important;}
+    :not(#num_stats)>.banner-title .title-lg{font-size: 50px!important;}
     #initiatives .title-xl,#news .title-xl,#open_calls .title-xl{font-size: 30px;}
     .btn-primary{width: 200px;}
 

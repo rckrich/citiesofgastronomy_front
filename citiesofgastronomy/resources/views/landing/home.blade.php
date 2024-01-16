@@ -268,7 +268,7 @@
             <div class="row text-white">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h2 class="title-sm">{{__('landing.about.subtitle')}}</h2>
-                    <p>{{__('landing.lorem')}}</p>
+                    <p>{{__('about.desc')}}</p>
                     <a class="btn btn-primary mt-2 mb-4" href="{{route('landing.about')}}">{{__('landing.btn_learn')}}</a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5">

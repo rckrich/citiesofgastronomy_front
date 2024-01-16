@@ -123,7 +123,15 @@
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-lg-0 my-md-0 my-sm-3 my-3">
                             <p class="title-xs">{{__('general.newsletter.cluster')}}</p>
                             @for($i=0; $i < count($info); $i++)
-                            <a class="nav-link py-1">{{$info[$i]["value"]}}</a>
+                            @if($i == 0)
+                                <p class="py-1 mb-1">{{__('general.coord_name')}}<br/>{{$info[$i]["value"]}}</p>
+                            @elseif($i == 1)
+                                <p class="py-1 mb-1">{{__('general.coord_email')}}<br/>{{$info[$i]["value"]}}</p>
+                            @elseif($i == 2)
+                                <a class="nav-link py-1" href="{{$info[$i]['value']}}" target="_blank">{{__('general.coord_link')}}</a>
+                            @else()
+                                <a class="nav-link py-1">{{$info[$i]["value"]}}</a>
+                            @endif
                             @endfor
                         </div>
                     </div>
@@ -138,10 +146,10 @@
                     <div class="row g-2">
                         <p>{{__('general.copyright')}}</p>
                         <div class="col-auto">
-                            <a href="">{{__('general.privacy_policy')}}</a>
+                            <a href="{{route('landing.privacy_policy')}}">{{__('general.privacy_policy')}}</a>
                         </div>
                         <div class="col-auto offset-3">
-                            <a href="">{{__('general.terms_of_use')}}</a>
+                            <a href="{{route('landing.terms_conditions')}}">{{__('general.terms_of_use')}}</a>
                         </div>
                     </div>
                 </div>

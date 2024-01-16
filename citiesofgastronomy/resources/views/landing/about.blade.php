@@ -81,8 +81,10 @@
             </div>
         </div>
 
+        <div class="p-lg-5 p-md-5 p-sm-3 p-3">
+
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-            <div class="row align-items-center mb-5 pt-5">
+            <div class="row align-items-center mb-lg-5 mb-md-5 mb-sm-3 mb-3 pt-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.faq.title')}}</h1>
                 </div>
@@ -135,38 +137,48 @@
         </div>
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-            <div class="row align-items-center mb-5">
+            <div class="row align-items-center mb-lg-5 mb-md-5 mb-sm-3 mb-3">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.timeline.title')}}</h1>
                 </div>
             </div>
             <div class="row align-items-center">
-                <div id="timeline-list" class="px-0">
+                
+                <div class="table-responsive px-0">
+                    <table id="timeline-list" class="table table-dark w-100">
+                        <tbody>
+                                    
+                        @foreach($timeline as $time)
 
-                @foreach($timeline as $time)
-                    <!-- -->
-                    <div class="timeline-item row align-items-center mx-auto my-3">
-                        <div class="timeline-col px-0 mx-2 col-lg-7 col-md-7 col-sm-5 col-5 bl-blue ">
-                            <div class="w-100 timeline-title ps-3 text-left"><?= $time["tittle"]?></div>
-                        </div>
-                        <div class="timeline-col px-0 mx-2 col-lg-1 col-md-1 col-sm-1 col-auto text-center">
-                            <div class="w-100">
+                            <tr class="timeline-item">
+                                <td class="timeline-col timeline-title text-left ps-3 mx-2
+                                    {{ $time['monthNum'] == 1 || $time['monthNum'] == 7 ? 'bl-1':''}} 
+                                    {{ $time['monthNum'] == 2 || $time['monthNum'] == 8 ? 'bl-2':''}} 
+                                    {{ $time['monthNum'] == 3 || $time['monthNum'] == 9 ? 'bl-3':''}} 
+                                    {{ $time['monthNum'] == 4 || $time['monthNum'] == 10 ? 'bl-4':''}} 
+                                    {{ $time['monthNum'] == 5 || $time['monthNum'] == 11 ? 'bl-5':''}} 
+                                    {{ $time['monthNum'] == 6 || $time['monthNum'] == 12 ? 'bl-6':''}} ">
+                                    <?= $time["tittle"]?>
+                                </td>
+                                <td class="timeline-col timeline-icon text-center">
+                                    <a <?php if($time["link"]){echo 'href="'.$time["link"].'"';};?> target="_blank">
+                                        <img class="mx-auto visible-icon" src="<?php
+                                        if(!$time["link"]){echo asset('assets/icons/visibility_off.svg');}
+                                        else{echo asset('assets/icons/visibility.svg');};?>"/>
+                                    </a>
+                                </td>
+                                <td class="timeline-col timeline-date text-center"><?= $time["startDateFormat"]?> <?php
+                                    if($time["endDateFormat"]){echo ' - '.$time["endDateFormat"];};//14.Jan.2024?>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-                                <a <?php if($time["link"]){echo 'href="'.$time["link"].'"';};?> target="_blank">
-                                    <img class="mx-auto visible-icon" src="<?php
-                                    if(!$time["link"]){echo asset('assets/icons/visibility_off.svg');}
-                                    else{echo asset('assets/icons/visibility.svg');};?>"/>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="timeline-col px-0 mx-2 col-lg-3 col-md-3 col-sm-3 col-auto text-center">
-                            <div class="w-100 timeline-date"><?= $time["startDateFormat"]?> <?php
-                                    if($time["endDateFormat"]){echo ' - '.$time["endDateFormat"];};//14.Jan.2024?></div>
-                        </div>
-                    </div>
-                    <!-- -->
-                @endforeach
+
             </div>
+
         </div>
 
 

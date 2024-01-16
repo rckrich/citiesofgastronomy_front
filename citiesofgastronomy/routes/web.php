@@ -43,6 +43,10 @@ Route::get('/stats', [LandingController::class, 'stats'])->name('landing.stats')
 Route::get('/calendar', [LandingController::class, 'calendar'])->name('landing.calendar');
 Route::get('/contact', [LandingController::class, 'contact'])->name('landing.contact');
 
+Route::get('/privacy_policy', [LandingController::class, 'privacy_policy'])->name('landing.privacy_policy');
+Route::get('/terms_and_conditions', [LandingController::class, 'terms_conditions'])->name('landing.terms_conditions');
+
+
 
 /*ADMIN PANEL*/
 Route::get('/login', [AdminController::class, 'login'])->name('admin.login');

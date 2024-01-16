@@ -86,7 +86,24 @@ class LandingController extends Controller
         $inputs["banners"] = $res["banner"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
-        $inputs["timeline"] = $res["timeline"];
+        //$inputs["timeline"] = $res["timeline"];´
+
+
+        $inputs["timeline"] = [];
+
+        foreach ($res["timeline"] as $data) { 
+            $timeline = [
+                "id"=> $data["id"],
+                "tittle"=>  $data["tittle"],
+                "link"=> $data["link"],
+                "startDate"=> $data["startDate"],
+                "endDate"=> $data["endDate"],
+                "startDateFormat"=> $data["startDateFormat"],
+                "endDateFormat"=> $data["endDateFormat"],
+                "monthNum" => date('n',(strtotime($data["startDate"]))),
+            ];
+            array_push($inputs["timeline"],$timeline);
+        }
 
         return view('landing.about', $inputs);
     }
@@ -246,4 +263,53 @@ class LandingController extends Controller
 
         return $res;
     }
+
+    public function privacy_policy(){
+                $url = config('app.apiUrl').'home';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+        $res = json_decode( $data, true);
+        //Log::info("DAtta Result-- ::");
+
+        $inputs = [];
+        $inputs["bannerAbout"] = $res["bannerAbout"];
+        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
+        //Log::info($inputs);
+        $inputs["cityList"] = $res["cities"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
+
+
+
+        return view('commons.privacy_policy', $inputs);
+    }
+
+    public function terms_conditions(){
+                $url = config('app.apiUrl').'home';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+        $res = json_decode( $data, true);
+        //Log::info("DAtta Result-- ::");
+
+        $inputs = [];
+        $inputs["bannerAbout"] = $res["bannerAbout"];
+        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
+        //Log::info($inputs);
+        $inputs["cityList"] = $res["cities"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
+
+
+
+        return view('commons.terms_conditions', $inputs);
+    }
+
 }
