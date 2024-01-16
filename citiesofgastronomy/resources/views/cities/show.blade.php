@@ -16,15 +16,14 @@
                 <h1 class="title-lg text-yellow pb-5">{{$city["name"]}}</h1>
                 <h6 class="data py-2"><b class="text-orange">{{$city["country"]}}</b></h6>
                 <h6 class="data py-2 text-orange">City of Gastronomy since {{$city["designationyear"]}}</h6>
-
             </div>
         </div>
         </div>
     </div>
     @if($city['logo'])
     <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-        <div class="my-5 row px-0 mx-0 align-items-start">
-            <div class="col-4 mx-auto mt-lg-0 mt-md-0 mt-sm-5 mt-5">
+        <div class="mt-lg-5 mt-md-3 mt-sm-3 mt-3 row px-0 mx-0 align-items-start">
+            <div class="col-lg-5 col-md-8 col-sm-12 col-12 mx-auto mt-lg-0 mt-md-0 mt-sm-5 mt-5">
                 <img src="{{config('app.url').$city['logo']}}" class="mx-auto my-auto w-100 br-9" alt="...">
             </div>
         </div>
@@ -47,22 +46,22 @@
                     <a href="" class="px-2 text-right"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
                 </div>
             </div-->
-            <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
-                <div class="p-lg-5 p-md-5 p-sm-3 p-3 title-xs bg-orange text-white text-center">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
+                <div class="p-lg-5 p-md-4 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('cities.view.about_title')}}</b>
                 </div>
-                <div class="p-lg-5 p-md-5 p-sm-3 p-3 bg-gray text-left">
-                    <p class="py-2 text-orange subtitle"><b>{{__('cities.view.data_city')}}</b></p>
-                    <p class="py-2 text-white data">{{$city["name"]}}, {{$city["country"]}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('cities.view.data_continent')}}</b></p>
-                    <p class="py-2 text-white data">{{$city["continentName"]}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('cities.view.data_population')}}</b></p>
-                    <p class="py-2 text-white data">{{$city["population"]}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('cities.view.data_locations')}}</b></p>
-                    <p class="py-2 text-white data">{{$city["restaurantFoodStablishments"]}}</p>
+                <div class="p-lg-5 p-md-4 p-sm-3 p-3 bg-gray text-left">
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('cities.view.data_city')}}</b></p>
+                    <p class="pb-2 text-white data">{{$city["name"]}}, {{$city["country"]}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('cities.view.data_continent')}}</b></p>
+                    <p class="pb-2 text-white data">{{$city["continentName"]}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('cities.view.data_population')}}</b></p>
+                    <p class="pb-2 text-white data">{{$city["population"]}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('cities.view.data_locations')}}</b></p>
+                    <p class="pb-2 text-white data">{{$city["restaurantFoodStablishments"]}}</p>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-12 p-lg-5 p-md-3 p-sm-3 p-3">
                 <p class="py-2 data "><?php echo $city["description"]?></p>
             </div>
         </div>
@@ -90,7 +89,7 @@
         <div class="w-100 bb-orange py-5"></div>
     </div>
 
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center mx-auto">
 
         <div class="row align-items-center data-sm text-orange">
             <b class="col-auto pe-5">{{__('general.share')}}</b>
