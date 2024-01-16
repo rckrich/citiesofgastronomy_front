@@ -463,7 +463,7 @@
                                     success: function(msg){
 
                                         sel_file('img' + capit + item, sectionName+'_banner'+item );
-                                        localStorage.setItem('message', 'Image was successfully changed');
+                                        //localStorage.setItem('message', 'Image was successfully changed');
                                         //window.location ='/admin/cities/';
                                         alert("Image was successfully changed");
                                         //document.getElementById("btnSubmit").disabled = false;
@@ -494,7 +494,7 @@
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-                                        localStorage.setItem('message', 'Image was successfully delete');
+                                        //localStorage.setItem('message', 'Image was successfully delete');
                                         //window.location ='/admin/cities/';
                                         alert("Image was successfully delete");
                                         //document.getElementById("btnSubmit").disabled = false;
@@ -531,7 +531,7 @@
                             },
                             success: function(msg){
                                 addItem(sectionName, sectionId);
-                                localStorage.setItem('message', 'Image was successfully added');
+                                //localStorage.setItem('message', 'Image was successfully added');
                                 //window.location ='/admin/cities/';
                                 alert("Image was successfully saved");
                                 //document.getElementById("btnSubmit").disabled = false;
@@ -605,7 +605,7 @@
                                 //$('#fupForm').css("opacity",".5");
                             },
                             success: function(msg){
-                                localStorage.setItem('message', 'Image was successfully edited');
+                                //localStorage.setItem('message', 'Image was successfully edited');
                                 //window.location ='/admin/cities/';
                                 alert("Image was successfully saved");
                                 //document.getElementById("btnSubmit").disabled = false;
