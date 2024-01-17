@@ -13,172 +13,172 @@
                 viewBox="0 0 1056 500" style="enable-background:new 0 0 1056 816;" xml:space="preserve"
                 style="position:absolute;vertical-align:middle">
                     <g>
-                        <svg id="pin-1-AfyonkarahisarTurkiye" class="pin" x="555" y="328"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-1-AfyonkarahisarTurkiye" class="pin" x="555" y="328"  onclick="openCity(41)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-2-AlbaItaly" class="pin" x="515" y="318"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-2-AlbaItaly" class="pin" x="515" y="318"  onclick="openCity(42)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-3-ArequipaPeru" class="pin" x="380" y="435"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-3-ArequipaPeru" class="pin" x="380" y="435"  onclick="openCity(43)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-4-BelemBrazil" class="pin" x="422" y="416"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-4-BelemBrazil" class="pin" x="422" y="416"  onclick="openCity(44)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-5-BeloHorizonteBrazil" class="pin" x="426" y="443"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-5-BeloHorizonteBrazil" class="pin" x="426" y="443"  onclick="openCity(45)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-6-BendigoAustralia" class="pin" x="755" y="472"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-6-BendigoAustralia" class="pin" x="755" y="472"  onclick="openCity(46)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-7-BergamoItaly" class="pin" x="520" y="314"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-7-BergamoItaly" class="pin" x="520" y="314"  onclick="openCity(47)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-8-BergenNorway" class="pin" x="512" y="275"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-8-BergenNorway" class="pin" x="512" y="275"  onclick="openCity(48)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-9-BohiconBenin" class="pin" x="508" y="395"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-9-BohiconBenin" class="pin" x="508" y="395"  onclick="openCity(49)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-10-BuenaventuraColombia" class="pin" x="368" y="405"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-10-BuenaventuraColombia" class="pin" x="368" y="405"  onclick="openCity(50)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-11-BuraidaSaudiA" class="pin" x="580" y="355"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-11-BuraidaSaudiA" class="pin" x="580" y="355"  onclick="openCity(51)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-12-BurgosSpain" class="pin" x="495" y="322"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-12-BurgosSpain" class="pin" x="495" y="322"  onclick="openCity(52)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-13-ChengduChina" class="pin" x="685" y="355"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-13-ChengduChina" class="pin" x="685" y="355"  onclick="openCity(53)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-14-CiudaddepanamaPanama" class="pin" x="365" y="390"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-14-CiudaddepanamaPanama" class="pin" x="365" y="390"  onclick="openCity(54)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-15-CochabambaBolivia" class="pin" x="390" y="445"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-15-CochabambaBolivia" class="pin" x="390" y="445"  onclick="openCity(55)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-16-DeniaSpain" class="pin" x="502" y="329"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-16-DeniaSpain" class="pin" x="502" y="329"  onclick="openCity(56)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-17-EnsenadaMexico" class="pin" x="305" y="355"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-17-EnsenadaMexico" class="pin" x="305" y="355"  onclick="openCity(57)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-18-FlorianopolisBrazil" class="pin" x="416" y="460"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-18-FlorianopolisBrazil" class="pin" x="416" y="460"  onclick="openCity(58)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-19-GaziantepTurkiye" class="pin" x="566" y="337"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-19-GaziantepTurkiye" class="pin" x="566" y="337"  onclick="openCity(59)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-20-HuaianChina" class="pin" x="705" y="348"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-20-HuaianChina" class="pin" x="705" y="348"  onclick="openCity(60)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-21-HyderabadIndia" class="pin" x="637" y="378"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-21-HyderabadIndia" class="pin" x="637" y="378"  onclick="openCity(61)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-22-JeonjuSouthkorea" class="pin" x="720" y="340"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-22-JeonjuSouthkorea" class="pin" x="720" y="340"  onclick="openCity(62)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-23-KermanshahIran" class="pin" x="585" y="343"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-23-KermanshahIran" class="pin" x="585" y="343"  onclick="openCity(63)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-24-KuchingMalaysia" class="pin" x="693" y="403"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-24-KuchingMalaysia" class="pin" x="693" y="403"  onclick="openCity(64)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-25-LankaranAzerbaijan" class="pin" x="583" y="330"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-25-LankaranAzerbaijan" class="pin" x="583" y="330"  onclick="openCity(65)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-26-LauncestonAustralia" class="pin" x="755" y="485"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-26-LauncestonAustralia" class="pin" x="755" y="485"  onclick="openCity(66)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-27-MacaoChina" class="pin" x="702" y="365"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-27-MacaoChina" class="pin" x="702" y="365"  onclick="openCity(67)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-28-MeridaMexico" class="pin" x="347" y="367"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-28-MeridaMexico" class="pin" x="349" y="371"  onclick="openCity(68)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-29-OstersundSweden" class="pin" x="530" y="267"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-29-OstersundSweden" class="pin" x="530" y="267"  onclick="openCity(69)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-30-OverstrandHermanusSouthafrica" class="pin" x="537" y="473"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-30-OverstrandHermanusSouthafrica" class="pin" x="537" y="473"  onclick="openCity(70)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-31-ParatyBrazil" class="pin" x="422" y="450"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-31-ParatyBrazil" class="pin" x="422" y="450"  onclick="openCity(71)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-32-ParmaItaly" class="pin" x="520" y="320"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-32-ParmaItaly" class="pin" x="520" y="320"  onclick="openCity(72)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-33-PhetchaburiThailand" class="pin" x="675" y="387"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-33-PhetchaburiThailand" class="pin" x="675" y="387"  onclick="openCity(73)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-34-PhuketThailand" class="pin" x="671" y="393"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-34-PhuketThailand" class="pin" x="671" y="393"  onclick="openCity(74)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-35-PopayanColombia" class="pin" x="372" y="409"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-35-PopayanColombia" class="pin" x="372" y="409"  onclick="openCity(75)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-36-PortoviejoEcuador" class="pin" x="365" y="415"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-36-PortoviejoEcuador" class="pin" x="365" y="415"  onclick="openCity(76)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-37-HatayTurkiye" class="pin" x="563" y="339"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-37-HatayTurkiye" class="pin" x="563" y="339"  onclick="openCity(77)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-38-RashtIran" class="pin" x="587" y="336"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-38-RashtIran" class="pin" x="587" y="336"  onclick="openCity(78)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-39-RouenFrance" class="pin" x="506" y="300"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-39-RouenFrance" class="pin" x="506" y="300"  onclick="openCity(79)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-40-ThessalonikiGreece" class="pin" x="530" y="329"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-40-ThessalonikiGreece" class="pin" x="530" y="329"  onclick="openCity(80)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-41-SanantonioUsa" class="pin" x="331" y="348"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-41-SanantonioUsa" class="pin" x="331" y="348"  onclick="openCity(81)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-42-SaintpetersburgRussia" class="pin" x="550" y="275"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-42-SaintpetersburgRussia" class="pin" x="550" y="275"  onclick="openCity(82)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-43-SantamariadafeiraPortugal" class="pin" x="489" y="329"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-43-SantamariadafeiraPortugal" class="pin" x="489" y="329"  onclick="openCity(83)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-44-ShundeChina" class="pin" x="696" y="367"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-44-ShundeChina" class="pin" x="696" y="367"  onclick="openCity(84)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-45-TsuruokaJapan" class="pin" x="746" y="332"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-45-TsuruokaJapan" class="pin" x="746" y="332"  onclick="openCity(85)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-46-TucsonUsa" class="pin" x="315" y="345"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-46-TucsonUsa" class="pin" x="315" y="345"  onclick="openCity(86)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-47-UsukiJapan" class="pin" x="728" y="346"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-47-UsukiJapan" class="pin" x="728" y="346"  onclick="openCity(87)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-48-YangzhouChina" class="pin" x="708" y="351"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-48-YangzhouChina" class="pin" x="708" y="351"  onclick="openCity(88)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-49-ZahleLebanon" class="pin" x="566" y="345"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-49-ZahleLebanon" class="pin" x="566" y="345"  onclick="openCity(89)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-50-BattambangCambodia" class="pin" x="680" y="385"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-50-BattambangCambodia" class="pin" x="680" y="385"  onclick="openCity(90)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-51-ChaozhouChina" class="pin" x="710" y="363"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-51-ChaozhouChina" class="pin" x="710" y="363"  onclick="openCity(91)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-52-FribourgSwitzerland" class="pin" x="511" y="308"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-52-FribourgSwitzerland" class="pin" x="511" y="308"  onclick="openCity(92)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-53-GangneungSouthkorea" class="pin" x="723" y="336"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-53-GangneungSouthkorea" class="pin" x="723" y="336"  onclick="openCity(93)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-54-HeraklionGreece" class="pin" x="532" y="337"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-54-HeraklionGreece" class="pin" x="532" y="337"  onclick="openCity(94)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-55-IloiloPhilippines" class="pin" x="710" y="391"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-55-IloiloPhilippines" class="pin" x="710" y="391"  onclick="openCity(95)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
-                        <svg id="pin-56-NkongsambaCameroon" class="pin" x="518" y="398"  onclick="openCity(5)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
+                        <svg id="pin-56-NkongsambaCameroon" class="pin" x="518" y="398"  onclick="openCity(96)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
                             <path id="" data-name="Trazado 17" d="M9.05,0A9.049,9.049,0,0,0,0,9.05c0,3.609,4.727,9.326,7.347,12.221a2.3,2.3,0,0,0,3.4,0c2.619-2.891,7.347-8.608,7.347-12.221A9.048,9.048,0,0,0,9.05,0Zm0,13.119A3.618,3.618,0,1,1,12.668,9.5,3.619,3.619,0,0,1,9.05,13.119Z" fill="#000"/>
                         </svg>
                         <!--svg id="pin-1" class="pin" x="350" y="250"  onclick="openCity(1)" xmlns="http://www.w3.org/2000/svg" width="7" height="9" viewBox="0 0 18.095 22.024">
@@ -334,7 +334,7 @@
         </div>
         </div>
     </section>
-    <section id="initiatives" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
+    <!--section id="initiatives" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
         <div class="container py-lg-5 py-md-5 py-sm-3 py-3">
             <div class="row align-items-center mb-5">
                 <div class="col-6 pe-0">
@@ -616,13 +616,14 @@
         </div>
         </div>
 
-    </section>
+    </section-->
 
     <script>
         var cities ='<?php echo json_encode($cityList) ?>';
         var userObj = JSON.parse(cities);
         function openCity(id){
             let found = userObj.find((element) => element["id"] == id);
+            console.log(found);
             if(found){
 
                 document.getElementById("name").innerHTML = found["name"];

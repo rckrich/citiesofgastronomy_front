@@ -32,7 +32,9 @@
             </div>
         </div>
 
-        <div class="container py-5">
+        @include('commons.work_in_progress')
+
+        <!--div class="container py-5">
             <div id="contact-cards" class="row g-6 py-5 col-12 mx-auto">
                 <div class="card-group col-lg-2 col-md-3 col-sm-6 col-12 my-3">
                     <div class="card h-100">
@@ -225,7 +227,7 @@
                 </div>
 
             </div>
-        </div>
+        </div-->
 
 
 

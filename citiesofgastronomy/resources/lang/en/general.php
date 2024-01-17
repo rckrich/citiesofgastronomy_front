@@ -91,8 +91,9 @@ return [
     
     'session' => [
         'logout' => 'Cerrar sesión',
-    ]
+    ],
 
+    'in_construction'=>'In construction. Available Soon.',
 
 
 ];

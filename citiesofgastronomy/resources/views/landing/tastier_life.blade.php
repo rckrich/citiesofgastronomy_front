@@ -32,7 +32,10 @@
             </div>
         </div>
 
-        <div class="container px-5 pt-5 filters">
+        @include('commons.work_in_progress')
+
+
+        <!--div class="container px-5 pt-5 filters">
         <div class="row g-4 px-5">
             <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="form-group">
@@ -115,7 +118,7 @@
 
 
             </div>
-        </div>
+        </div-->
 
     </section>
 @endsection
