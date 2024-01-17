@@ -88,7 +88,7 @@
 
         <div class="p-lg-5 p-md-5 p-sm-3 p-3">
 
-        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
+        <!--div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row align-items-center mb-lg-5 mb-md-5 mb-sm-3 mb-3 pt-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.faq.title')}}</h1>
@@ -139,7 +139,7 @@
                 </div>
 
             </div>
-        </div>
+        </div-->
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row align-items-center mb-lg-5 mb-md-5 mb-sm-3 mb-3">

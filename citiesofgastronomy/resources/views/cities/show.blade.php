@@ -13,7 +13,7 @@
         @endif
         <div class="banner-title-overlay row align-items-center mx-0">
             <div class="banner-img-overlay">
-                <h1 class="title-lg text-yellow pb-5">{{$city["name"]}}</h1>
+                <h1 class="title-lg text-yellow pb-lg-5 pb-md-5 pb-sm-3 pb-3">{{$city["name"]}}</h1>
                 <h6 class="data py-2"><b class="text-orange">{{$city["country"]}}</b></h6>
                 <h6 class="data py-2 text-orange">City of Gastronomy since {{$city["designationyear"]}}</h6>
             </div>
@@ -46,7 +46,7 @@
                     <a href="" class="px-2 text-right"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
                 </div>
             </div-->
-            <div class="col-lg-5 col-md-5 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
+            <div class="col-lg-4 col-md-5 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="p-lg-5 p-md-4 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('cities.view.about_title')}}</b>
                 </div>
@@ -61,7 +61,7 @@
                     <p class="pb-2 text-white data">{{$city["restaurantFoodStablishments"]}}</p>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-7 col-sm-12 col-12 p-lg-5 p-md-3 p-sm-3 p-3">
+            <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-5 p-md-3 p-sm-3 p-3">
                 <p class="py-2 data "><?php echo $city["description"]?></p>
             </div>
         </div>

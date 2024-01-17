@@ -144,7 +144,7 @@ a .text-white{color: #fff!important;}
 /*IMAGE BANNERS (CAROUSEL)*/
 .carousel-item{    
     width: 100%;
-    height: 480px;
+    height: 350px;
     text-align: center;
 }
 .carousel-caption{font: normal normal bold 100px/60px 'Helvetica LT Std';}
@@ -153,7 +153,7 @@ a .text-white{color: #fff!important;}
 .carousel-indicators .active {background-color: #D87C16!important;}
 .banner-title-overlay{
     width: 100%;
-    height: 480px;
+    height: 350px;
     text-align: center; 
     position: absolute;
     top: 0;
@@ -164,7 +164,8 @@ a .text-white{color: #fff!important;}
     z-index: 10;
 }
 #show_city .banner-title{ position: relative;}
-#show_city .banner-title img{height: 480px; object-fit: cover; object-position: center;}
+#show_city .banner-title img{height: 350px; object-fit: cover; object-position: center;}
+#show_city .banner-title-overlay{padding: 4rem!important;}
 #num_stats .banner-title-overlay{position: relative!important;}
 #num_stats .banner-title{
     background-repeat: no-repeat!important;
@@ -192,7 +193,7 @@ a .text-white{color: #fff!important;}
 
 /*MAP*/
 #map #Capa_1{position: absolute;z-index: 12;}
-.pin{z-index: 14;width: 12px;height: 14.16px;position: absolute;filter: invert(99%) sepia(13%) saturate(0%) hue-rotate(259deg) brightness(113%) contrast(100%);}
+.pin{z-index: 14;width: 12px;height: 14.16px;position: absolute;/*filter: invert(99%) sepia(13%) saturate(0%) hue-rotate(259deg) brightness(113%) contrast(100%);*/}
 .pin:hover{
     cursor: pointer;
     transform: scale(1.2); 
@@ -409,6 +410,9 @@ footer a{color: #fff;}
     #show_city .data{font-size: 15px!important; line-height: 18px!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size:80px!important;line-height: inherit;}
     #num_stats .banner-title, #num_stats .banner-title-overlay {height: 350px;}
+    .carousel-item,.banner-title-overlay{height: 480px;}
+    #show_city .banner-title-overlay,#show_city .banner-title img{height: 400px;}
+    #show_city .banner-title-overlay{padding: 2rem!important;}
     #footerLogo{width: 200px;height: 53px;}
     .visible-icon{width: 30px!important; height: 20px!important;}
 
@@ -455,8 +459,9 @@ footer a{color: #fff;}
     .data{font-size: 18px!important;line-height: 20px;}
     .data-sm{font-size: 16px!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size:60px!important;line-height: 60px;}
-    #num_stats .banner-title, #num_stats .banner-title-overlay, .banner-title-overlay, .carousel-item, #show_city .banner-title, #show_city .banner-title img {height: 300px;}
-
+    #num_stats .banner-title, #num_stats .banner-title-overlay, .banner-title-overlay, 
+    .carousel-item{height: 300px;}
+    #show_city .banner-title,#show_city .banner-title-overlay,#show_city .banner-title img{height: 300px;}
 
     .gallery-img{height: 20vh!important;}
 
