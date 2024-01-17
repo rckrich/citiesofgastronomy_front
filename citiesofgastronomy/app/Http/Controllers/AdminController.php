@@ -159,7 +159,7 @@ class AdminController extends Controller
         };
         $fields_string = http_build_query($fields);
 
-        $url = config('app.apiUrl').'about/timeline/list/?'.$page;
+        $url = config('app.apiUrl').'about/timeline/list/?page='.$page;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -178,6 +178,7 @@ class AdminController extends Controller
         $inputs["timeline"] = $res["timeline"];
         $inputs["search_box"] = $search_box;
         $inputs["page"] = $page;
+        $inputs["faq"] = $res["faq"];
         $inputs["st"] = $st;
         return view('admin.about', $inputs);
     }
@@ -406,10 +407,11 @@ class AdminController extends Controller
     public function newsletter(Request $request)
     {
         $page = $request->input("page");
+        Log::info($page." <--page");
 
         if(!$page){ $page=1;   };
 
-        $url = config('app.apiUrl').'newsletterAdmin/?'.$page;
+        $url = config('app.apiUrl').'newsletterAdmin/?page='.$page;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

@@ -3,6 +3,8 @@
 @extends('commons.admin_base')
 
 @section('content')
+
+<input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
     <section id="admin_newsletter">
     <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row mx-0">
@@ -35,8 +37,20 @@
                     </tbody>
                 </table>
             </div>
+            <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" onclick="paginator('prev')">Previous</a></li>
+                        @for($i=1;$i < $paginator +1; $i++)
+                        <li class="page-item"><a class="page-link" onclick="paginator('<?= $i?>')"><?= $i?></a></li>
+                        @endfor
+                        <li class="page-item"><a class="page-link" onclick="paginator('next')">Next</a></li>
+
+                    </ul>
+            </nav>
         </div>
     </section>
+
+
 
 <!-- Modal DOWNLOAD CVS-->
 <div class="modal fade" id="downloadCVSModal" tabindex="-1" aria-labelledby="downloadCVSModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -67,5 +81,37 @@
     </div>
   </div>
 </div>
+<script>
 
+    function paginator(page){
+        let paginatorCant = '<?= $paginator?>';
+        paginatorCant = parseInt(paginatorCant);
+
+        //console.log("-->PAG");
+        let paginaActual = document.getElementById('pageActual').value;
+        paginaActual= parseInt(paginaActual);
+
+
+        let nada = '';
+        if(page == 'prev' || page == 'next'){
+                //console.log("#0");
+            if(page == 'next' && paginaActual != paginatorCant){
+                page = paginaActual + 1;
+                //console.log("#1");
+            }else if(page == 'prev' && paginaActual > 1){
+                page = paginaActual - 1;
+                //console.log("#2");
+            }else{
+                nada = 'si';
+            };
+        }else{
+            page= parseInt(page);
+        };
+        //console.log(paginaActual);
+        //console.log(page);
+        if(nada == ''){
+            window.location = '/admin/newsletter/?page='+page;
+        };
+    }
+</script>
 @endsection
