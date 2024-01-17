@@ -67,5 +67,63 @@ class AboutController extends Controller
         return $res;
     }
 
+    public function faqFind($id)
+    {
+
+        $inputs = [];
+        $inputs["banners"] = [];
+
+        $url = config('app.apiUrl').'about/faq/find/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        if($data){
+            $res = json_decode( $data, true);
+            Log::info($res);
+            Log::info( $res["faq"] );
+            $faq = $res["faq"];
+        }else{
+            $faq = [];
+        };
+
+        return $faq;
+
+    }
+
+
+
+    public function faqSave(Request $request)
+    {
+        $id = $request->input("id");
+        $faq = $request->input("faq");
+        $answer = $request->input("answer");
+        $dattaSend = [
+            'id' => $id,
+            'faq' => $faq,
+            'answer' => $answer
+        ];
+
+        $url = config('app.apiUrl').'about/faq/save/';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        //Log::info("TIMELINE SAVE ::");
+        //Log::info($res);
+
+        return $res;
+    }
+
+
 
 }
