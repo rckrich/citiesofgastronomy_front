@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-12 px-0 py-2">
                             <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-                            <button class="btn btn-primary mx-auto" onclick="modalAddUp()">{{__('about.timeline.btn_add')}}</buttton>
+                            <button class="btn btn-primary mx-auto" id="btnAddTime" onclick="modalAddUp()">{{__('about.timeline.btn_add')}}</buttton>
                             </div>
                         </div>
                     </div>
@@ -61,8 +61,21 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
+                        <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" onclick="paginator('prev')">Previous</a></li>
+                                    @for($i=1;$i < $paginator +1; $i++)
+                                    <li class="page-item"><a class="page-link" onclick="paginator('<?= $i?>')"><?= $i?></a></li>
+                                    @endfor
+                                    <li class="page-item"><a class="page-link" onclick="paginator('next')">Next</a></li>
+
+                                </ul>
+                        </nav>
                 </div>
             </div>
+
             <div class="tab-pane fade" id="pills-faq" role="tabpanel" aria-labelledby="pills-faq-tab">
                 <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                     <div class="row mx-0">
@@ -80,7 +93,7 @@
                         </div>
                         <div class="col-12 px-0 py-2">
                             <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-                            <button class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#editFAQModal">{{__('about.faq.btn_add')}}</buttton>
+                            <button class="btn btn-primary mx-auto" onclick="openFaq()">{{__('about.faq.btn_add')}}</buttton>
                             </div>
                         </div>
                     </div>
@@ -94,15 +107,18 @@
                                 </tr>
                             </thead>
                             <tbody class="">
+
+                            @foreach($faq as $item)
                                 <tr class="align-items-center">
-                                    <td class="col-8">FAQ 1</td>
+                                    <td class="col-8"><?= $item["faq"]?></td>
                                     <td class="col-auto my-auto">
-                                        <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editFAQModal">{{__('about.btn_edit')}}</button>
+                                        <button class="btn btn-link"   onclick="openFaq({{$item['id']}})">{{__('about.btn_edit')}}</button>
                                     </td>
                                     <td class="col-auto my-auto">
                                         <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteFAQModal">{{__('admin.btn_delete')}}
                                     </button></td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -168,6 +184,7 @@
 <!-- Modal CREATE/EDIT FAQ-->
 <div class="modal fade" id="editFAQModal" tabindex="-1" aria-labelledby="editFAQModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
+    <input type="hidden" id="data_idfaq">
     <div class="modal-content">
         <div class="modal-header b-none px-4">
             <h5 class="modal-title" id="createFAQModalLabel">{{__('about.faq.create_modal_title')}}</h5>
@@ -179,15 +196,17 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_faq">{{__('about.faq.data_faq')}}</label>
                 <input id="data_faq" name="data_faq" class="form-control" placeholder="{{__('about.faq.ph_faq')}}"/>
+                <div id="validation_faq" class="invalid-feedback" style="display: none;">This field is required</div>
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_answer">{{__('about.faq.data_answer')}}</label>
                 <textarea id="data_answer" name="data_answer" class="form-control" placeholder="{{__('about.faq.ph_answer')}}"></textarea>
+                <div id="validation_faqANW" class="invalid-feedback" style="display: none;">This field is required</div>
             </div>
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto" onclick="saveFaq()" id="btnSaveFaq">{{__('admin.btn_create')}}</buttton>
         </div>
         </form>
     </div>
@@ -234,10 +253,15 @@
 <script>
 
 var editModal; var modalToggle;
+var editModalFAQ; var modalToggleFAQ;
+
+
 
     $(document).ready(function(e){
         editModal = new bootstrap.Modal('#editTimelineModal', { keyboard: false    });
         modalToggle = document.getElementById("editTimelineModal");
+        editModalFAQ = new bootstrap.Modal('#editFAQModal', { keyboard: false    });
+        modalToggleFAQ = document.getElementById("editFAQModal");
     });
 
     function modalAddUp(id){
@@ -252,6 +276,7 @@ var editModal; var modalToggle;
         console.log("# modal tlup")
             editModal.show(modalToggle);
 
+            document.getElementById("data_id").value = '';
             document.getElementById("data_title").value = '';
             document.getElementById("data_link").value = '';
             document.getElementById("data_startdate").value = '';
@@ -298,6 +323,7 @@ var editModal; var modalToggle;
         console.log("#-> ingresa al SAVE");
         let guardar = 1;
         document.getElementById("btnSaveTimeline").disabled = true;
+        document.getElementById("btnAddTime").disabled = true;
 
         //reseteo todas las leyendas de validaciones
             document.getElementById("validation_timelineTittle").style.display = 'none';
@@ -387,6 +413,7 @@ var editModal; var modalToggle;
                                             alert("The timeline entry was successfully created");
                                             location.reload();
                                         };
+                                        document.getElementById("btnAddTime").disabled = false;
                                     }
                     });
         }else{
@@ -394,6 +421,44 @@ var editModal; var modalToggle;
         };
 
 
+    }
+
+
+
+
+
+
+
+
+
+
+    function paginator(page){
+        let paginatorCant = '<?= $paginator?>';
+        paginatorCant = parseInt(paginatorCant);
+
+        //console.log("-->PAG");
+        let paginaActual = document.getElementById('pageActual').value;
+        paginaActual= parseInt(paginaActual);
+
+
+        let nada = '';
+        if(page == 'prev' || page == 'next'){
+                //console.log("#0");
+            if(page == 'next' && paginaActual != paginatorCant){
+                page = paginaActual + 1;
+                //console.log("#1");
+            }else if(page == 'prev' && paginaActual > 1){
+                page = paginaActual - 1;
+                //console.log("#2");
+            }else{
+                nada = 'si';
+            };
+        }else{
+            page= parseInt(page);
+        };
+        if(nada == ''){
+            window.location = '../admin/about/?page='+page;
+        };
     }
 </script>
 @endsection
