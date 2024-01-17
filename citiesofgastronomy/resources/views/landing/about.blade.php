@@ -38,8 +38,13 @@
                 <p>{{__('about.desc')}}</p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5 mt-5">
+                @if($bannerAbout =='')
                 <img src="{{asset('assets/img/Home/sample.png')}}" class="mx-auto my-auto w-100 br-9" alt="...">
+                @else
+                <img src="{{config('app.url').$bannerAbout}}" class="mx-auto my-auto w-100 br-9" alt="...">
+                @endif
             </div>
+            
 
         </div>
         </div>

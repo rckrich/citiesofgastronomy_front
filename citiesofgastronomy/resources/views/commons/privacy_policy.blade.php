@@ -6,8 +6,8 @@
 <section id="privacy_policy">
     <div class="container p-lg-5 p-md-5 p-sm-5 p-5">
         <div class="py-3">
-            <h1 class="title-lg">{{__('general.privacy.title')}}</h1>
-            <h3 class="">{{__('general.privacy.subtitle_1')}}<a href="{{__('general.cog_website_host')}}">{{__('general.cog_website_host')}}</a>{{__('general.privacy.subtitle_2')}}</h3>  
+            <h3 class="">{{__('general.privacy.title')}}</h3>
+            <p class="">{{__('general.privacy.subtitle_1')}}<a href="{{__('general.cog_website_host')}}">{{__('general.cog_website_host')}}</a>{{__('general.privacy.subtitle_2')}}</p>  
         </div>
         <div class="py-3">
             <p><b>{{__('general.privacy.section_1')}}</b></p>

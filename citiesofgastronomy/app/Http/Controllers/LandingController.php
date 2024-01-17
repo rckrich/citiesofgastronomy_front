@@ -84,6 +84,7 @@ class LandingController extends Controller
         $inputs = [];
         //$inputs["initiatives"] = $res["initiatives"];
         $inputs["banners"] = $res["banner"];
+        $inputs["bannerAbout"] = ""; //$res["bannerAbout"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
         //$inputs["timeline"] = $res["timeline"];´
