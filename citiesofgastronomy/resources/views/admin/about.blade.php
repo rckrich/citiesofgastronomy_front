@@ -460,5 +460,129 @@ var editModalFAQ; var modalToggleFAQ;
             window.location = '../admin/about/?page='+page;
         };
     }
+
+
+
+
+
+
+
+
+    /*---------------------------------------------------------------------*/
+
+
+    function openFaq(id){
+
+//reseteo todas las leyendas de validaciones
+document.getElementById("validation_faq").style.display = 'none';
+document.getElementById("validation_faqANW").style.display = 'none';
+
+console.log("# modal FAQ UP")
+    editModalFAQ.show(modalToggleFAQ);
+
+    document.getElementById("data_faq").value = '';
+    document.getElementById("data_answer").value = '';
+    document.getElementById("data_idfaq").value = '';
+
+if(id == '' || id == undefined){
+    document.getElementById("btnSaveFaq").innerHTML = '<?= __('admin.btn_create')?>';
+    console.log("CREATE::");
+    document.getElementById('createFAQModalLabel').style.display = 'block';
+    document.getElementById('editFAQModalLabel').style.display = 'none';
+}else{
+
+    document.getElementById("btnSaveFaq").innerHTML = '<?= __('admin.btn_edit')?>';
+    console.log("UPDATE::");
+    console.log(id);
+        document.getElementById("loading").style.display = 'block';
+    document.getElementById('createFAQModalLabel').style.display = 'none';
+    document.getElementById('editFAQModalLabel').style.display = 'block';
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+            let res =  JSON.parse(this.responseText);
+
+            console.log(":: respuesta FAQ FIND");
+            console.log(res);
+
+            document.getElementById("data_idfaq").value = res["id"];
+            document.getElementById("data_faq").value = res["faq"];
+            document.getElementById("data_answer").value = res["answer"];
+            //*/
+            document.getElementById("loading").style.display = 'none';
+        }
+        xhttp.open("GET", "/admin/faqFind/"+id, true);
+        xhttp.send();
+        //*/
+};
+}
+
+function saveFaq(){
+console.log("#-> ingresa al SAVE");
+let guardar = 1;
+document.getElementById("btnSaveFaq").disabled = true;
+
+//reseteo todas las leyendas de validaciones
+    document.getElementById("validation_faq").style.display = 'none';
+    document.getElementById("validation_faqANW").style.display = 'none';
+
+
+let datos = new FormData();
+let token = document.getElementsByName("_token")[0].value;
+datos.append('_token', token);
+let data_id = document.getElementById("data_idfaq").value;
+datos.append('id', data_id);
+let data_faq = document.getElementById("data_faq").value;
+datos.append('faq', data_faq);
+let data_answer = document.getElementById("data_answer").value;
+datos.append('answer', data_answer);
+
+//verificar datos obligatorios
+if(!data_faq){
+    document.getElementById("validation_faq").style.display = 'block';
+    guardar = 2;
+    console.log("#falta faq");
+};
+if(!data_answer){
+    document.getElementById("validation_faqANW").style.display = 'block';
+    guardar = 2;
+    console.log("#falta f ini");
+};
+
+//if(false){
+    let id1 = '';
+if(guardar == 1){
+    $.ajax({
+                            type: 'POST',
+                            url: '/admin/faqSave/',
+                            data: datos,
+                            contentType: false,
+                            cache: false,
+                            processData:false,
+                            beforeSend: function(){
+                                //$('.btnSaveFaq').attr("disabled","disabled");
+                                //$('#fupForm').css("opacity",".5");
+                            },
+                            success: function(msg){
+                                //localStorage.setItem('message', 'Timeline info was successfully saved');
+                                //window.location ='/admin/cities/';
+                                document.getElementById("btnSaveFaq").disabled = false;
+                                editModal.hide(modalToggle);
+                                if(data_id){
+                                    alert("The faq entry was successfully edited");
+                                    id1 = 'timeTittle'+data_id;
+                                    document.getElementById(id1).innerHTML  = data_title;
+                                }else{
+                                    alert("The faq entry was successfully created");
+                                    location.reload();
+                                };
+                            }
+            });
+}else{
+    document.getElementById("btnSaveFaq").disabled = false;
+};
+
+
+}
 </script>
 @endsection
