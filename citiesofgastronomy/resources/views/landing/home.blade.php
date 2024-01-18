@@ -1021,7 +1021,7 @@
 
         function openCity(id){
             let found = userObj.find((element) => element["id"] == id);
-            console.log(found);
+            //console.log(found);
             if(found){
 
                 document.getElementById("name").innerHTML = found["name"];
