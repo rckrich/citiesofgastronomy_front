@@ -35,7 +35,8 @@ body{background-color: #000;color:#fff;}
 .title-lg{font-size: 50px;}
 .title-md{font-size: 48px;}
 .title-sm{font-size: 40px;}
-.title-xs,.card-title{font-size: 30px;}
+.title-xs,.card-title{font-size: 20px;}
+.card-text{font-size: 15px;}
 .subtitle{font-size: 25px; line-height: 28px;}
 .subtitle-md{font-size: 24px;}
 .data{font-size: 22px;}
