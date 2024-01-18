@@ -148,15 +148,18 @@ class AdminController extends Controller
     public function about(Request $request, $page = 1)
     {
         $page = $request->input("page");
+        $pageFaq = $request->input("pagef");
+        Log::info("#PAGE FAQ :: ".$pageFaq);
 
         if(!$page){ $page=1;   };
         $st = $request->input("st");
         $search_box = $request->input("search_box");
         if($search_box){
-            $fields = array('search' => $search_box, 'page' => $page);
+            $fields = array('search' => $search_box, 'page' => '1');
         }else{
-            $fields = array('page' => $page);
         };
+        $fields = array('page' => $page, 'pageFaq' => $pageFaq);
+
         $fields_string = http_build_query($fields);
 
         $url = config('app.apiUrl').'about/timeline/list/?page='.$page;
@@ -171,6 +174,7 @@ class AdminController extends Controller
 
         $res = json_decode( $data, true);
 
+        $section = $request->input("section");
 
         $inputs = [];
         $inputs["timelineTotal"] = $res["tot"];
@@ -178,7 +182,11 @@ class AdminController extends Controller
         $inputs["timeline"] = $res["timeline"];
         $inputs["search_box"] = $search_box;
         $inputs["page"] = $page;
+        $inputs["section"] = $section;
         $inputs["faq"] = $res["faq"];
+        $inputs["pageFaq"] = $res["pageFaq"];
+        $inputs["totFAQ"] = $res["totFAQ"];
+        $inputs["paginatorFAQ"] = $res["paginatorFAQ"];
         $inputs["st"] = $st;
         return view('admin.about', $inputs);
     }

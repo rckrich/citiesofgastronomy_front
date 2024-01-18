@@ -6,16 +6,16 @@
     <section id="admin_about">
     <ul class="nav nav-pills mb-3 px-5 pt-5 pb-4" id="pills-tab-about" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-timeline-tab" data-bs-toggle="pill" data-bs-target="#pills-timeline"
+                <button class="nav-link  <?php if($section==''){echo 'active';}?>" id="pills-timeline-tab" data-bs-toggle="pill" data-bs-target="#pills-timeline"
                 type="button" role="tab" aria-controls="pills-timeline" aria-selected="true">{{__('about.timeline.title')}}</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-faq-tab" data-bs-toggle="pill" data-bs-target="#pills-faq"
+                <button class="nav-link  <?php if($section!=''){echo 'active';}?>" id="pills-faq-tab" data-bs-toggle="pill" data-bs-target="#pills-faq"
                 type="button" role="tab" aria-controls="pills-faq" aria-selected="false">{{__('about.faq.title')}}</button>
             </li>
         </ul>
         <div class="tab-content px-5" id="pills-tab-aboutContent">
-            <div class="tab-pane fade show active" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">
+            <div class="tab-pane fade <?php if($section==''){echo 'show active';}?>" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">
                 <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                     <div class="row mx-0">
                         <div class="col-12 px-0 py-2">
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="pills-faq" role="tabpanel" aria-labelledby="pills-faq-tab">
+            <div class="tab-pane fade <?php if($section!=''){echo 'show active';}?>" id="pills-faq" role="tabpanel" aria-labelledby="pills-faq-tab">
                 <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                     <div class="row mx-0">
                         <div class="col-12 px-0 py-2">
@@ -110,7 +110,7 @@
 
                             @foreach($faq as $item)
                                 <tr class="align-items-center">
-                                    <td class="col-8"><?= $item["faq"]?></td>
+                                    <td class="col-8" id="faqTittle{{$item['id']}}"><?= $item["faq"]?></td>
                                     <td class="col-auto my-auto">
                                         <button class="btn btn-link"   onclick="openFaq({{$item['id']}})">{{__('about.btn_edit')}}</button>
                                     </td>
@@ -122,8 +122,23 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <input type="hidden" id="pageActualFAQ" name="pageActualFAQ" value="<?php echo  $pageFaq?>">
+                        <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" onclick="paginatorFAQ('prev')">Previous</a></li>
+                                    @for($i=1;$i < $paginatorFAQ +1; $i++)
+                                    <li class="page-item"><a class="page-link" onclick="paginatorFAQ('<?= $i?>')"><?= $i?></a></li>
+                                    @endfor
+                                    <li class="page-item"><a class="page-link" onclick="paginatorFAQ('next')">Next</a></li>
+
+                                </ul>
+                        </nav>
                 </div>
             </div>
+
+
+
         </div>
     </section>
 
@@ -131,7 +146,6 @@
 <!-- Modal CREATE/EDIT TIMELINE-->
 <div class="modal fade" id="editTimelineModal" tabindex="-1" aria-labelledby="editTimelineModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 @csrf
-<x-loading />
 <input type="hidden" id="data_id" name="data_id" value="">
 
   <div class="modal-dialog">
@@ -249,6 +263,11 @@
     </div>
   </div>
 </div>
+
+
+
+<x-loading />
+
 
 <script>
 
@@ -457,7 +476,7 @@ var editModalFAQ; var modalToggleFAQ;
             page= parseInt(page);
         };
         if(nada == ''){
-            window.location = '../admin/about/?page='+page;
+            window.location = '../../admin/about/?page='+page;
         };
     }
 
@@ -567,14 +586,16 @@ if(guardar == 1){
                                 //localStorage.setItem('message', 'Timeline info was successfully saved');
                                 //window.location ='/admin/cities/';
                                 document.getElementById("btnSaveFaq").disabled = false;
-                                editModal.hide(modalToggle);
+                                editModalFAQ.hide(modalToggleFAQ);
                                 if(data_id){
                                     alert("The faq entry was successfully edited");
-                                    id1 = 'timeTittle'+data_id;
-                                    document.getElementById(id1).innerHTML  = data_title;
+                                    id1 = 'faqTittle'+data_id;
+                                    document.getElementById(id1).innerHTML  = data_faq;
+
                                 }else{
                                     alert("The faq entry was successfully created");
-                                    location.reload();
+                                    //location.reload();
+                                    window.location = '../../admin/about/?section=faq';
                                 };
                             }
             });
@@ -584,5 +605,39 @@ if(guardar == 1){
 
 
 }
+
+
+
+
+
+
+function paginatorFAQ(page){
+        let paginatorCant = '<?= $paginatorFAQ?>';
+        paginatorCant = parseInt(paginatorCant);
+
+        //console.log("-->PAG");
+        let paginaActual = document.getElementById('pageActualFAQ').value;
+        paginaActual= parseInt(paginaActual);
+
+
+        let nada = '';
+        if(page == 'prev' || page == 'next'){
+                //console.log("#0");
+            if(page == 'next' && paginaActual != paginatorCant){
+                page = paginaActual + 1;
+                //console.log("#1");
+            }else if(page == 'prev' && paginaActual > 1){
+                page = paginaActual - 1;
+                //console.log("#2");
+            }else{
+                nada = 'si';
+            };
+        }else{
+            page= parseInt(page);
+        };
+        if(nada == ''){
+            window.location = '../../admin/about/?pagef='+page+'&section=faq';
+        };
+    }
 </script>
 @endsection
