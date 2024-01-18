@@ -3,6 +3,13 @@
 @extends('commons.base')
 
 @section('content')
+
+<script>
+        var cities ='<?php echo json_encode($cityList) ?>';
+        var userObj = JSON.parse(cities);
+    </script>
+
+
     <section id="map">
     <div class="row align-items-center mx-0 px-0">
         <div class="d-block px-0">
@@ -1011,8 +1018,7 @@
     </section-->
 
     <script>
-        var cities ='<?php echo json_encode($cityList) ?>';
-        var userObj = JSON.parse(cities);
+
         function openCity(id){
             let found = userObj.find((element) => element["id"] == id);
             console.log(found);

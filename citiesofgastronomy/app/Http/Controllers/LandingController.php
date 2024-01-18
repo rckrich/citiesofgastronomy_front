@@ -30,6 +30,9 @@ class LandingController extends Controller
         curl_setopt($curl, CURLOPT_HEADER, false);
         $data = curl_exec($curl);
         curl_close($curl);
+        $data = str_replace("'", '&apos;', $data);
+        $data = str_replace("´", '&apos;', $data);
+        $data = str_replace("`", '&apos;', $data);
         $res = json_decode( $data, true);
         //Log::info("DAtta Result-- ::");
 
