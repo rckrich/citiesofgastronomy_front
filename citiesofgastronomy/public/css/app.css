@@ -8,6 +8,7 @@ body{background-color: #000;color:#fff;}
 .w-25{width: 25%;}
 .w-auto{width: auto;}
 
+
 /*FONTS*/
 @font-face {
     font-family: "Helvetica LT Std Bold Cond";
@@ -47,6 +48,8 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 .activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
 #page_about .title-md, #num_stats .title-md{font-size: 32px;}
 #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 17px;}
+#show_city .subtitle{font-size: 20px; line-height: 24px;}
+#show_city .data{font-size: 18px;}
 
 
 
@@ -380,6 +383,9 @@ footer a{color: #fff;}
 }
 @media screen and (min-width: 992px) and (max-width:1189px){
     #navbarLogo{width: 150px!important;height: 39px!important;}
+}
+@media screen and (min-width:1201px){
+    .p-xl-5{padding: 3rem!important;}
 }
 @media screen and (min-width: 992px) and (max-width:1200px){
     .gallery-img{height: 20vh!important;}
