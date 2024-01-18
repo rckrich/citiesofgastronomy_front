@@ -45,8 +45,8 @@ body{background-color: #000;color:#fff;}
 .title-xs{font-family: 'Calibri'}
 p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: 'Calibri'}
 .activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
-#page_about .title-md, #about .title-md{font-size: 32px;}
-#page_about .card-text, #about .card-text, #page_about ul li, #about ul li{font-size: 17px;}
+#page_about .title-md, #num_stats .title-md{font-size: 32px;}
+#page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 17px;}
 
 
 
@@ -171,13 +171,13 @@ a .text-white{color: #fff!important;}
 #show_city .banner-title{ position: relative;}
 #show_city .banner-title img{height: 350px; object-fit: cover; object-position: center;}
 #show_city .banner-title-overlay{padding: 4rem!important;}
-#num_stats .banner-title-overlay{position: relative!important;}
+#num_stats .banner-title-overlay{position: relative!important; height: 350px;}
 #num_stats .banner-title{
     background-repeat: no-repeat!important;
     background-position: center!important;
     background-size: cover!important;
     width: 100%;
-    height: 480px;
+    height: 350px;
     text-align: center;   
     padding: 0;   
 }
@@ -384,8 +384,8 @@ footer a{color: #fff;}
 @media screen and (min-width: 992px) and (max-width:1200px){
     .gallery-img{height: 20vh!important;}
     #calendar .title-lg{font-size: 35px;}
-    #page_about .title-md, #about .title-md{font-size: 27px;}
-    #page_about .card-text, #about .card-text, #page_about ul li, #about ul li{font-size: 15px;}
+    #page_about .title-md, #num_stats .title-md{font-size: 27px;}
+    #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 15px;}
 }
 @media (min-width: 992px){
     .text-lg-left{text-align: left!important;}
@@ -415,7 +415,8 @@ footer a{color: #fff;}
     #show_city .subtitle{font-size: 17px!important;}
     #show_city .data{font-size: 15px!important; line-height: 18px!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size:80px!important;line-height: inherit;}
-    #num_stats .banner-title, #num_stats .banner-title-overlay {height: 350px;}
+    #num_stats .banner-title, #num_stats .banner-title-overlay {height: 250px;}
+    #num_stats .banner-title-overlay {padding: 4rem!important;}
     .carousel-item,.banner-title-overlay{height: 480px;}
     #show_city .banner-title-overlay,#show_city .banner-title img{height: 400px;}
     #show_city .banner-title-overlay{padding: 2rem!important;}
