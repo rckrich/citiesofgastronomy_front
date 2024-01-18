@@ -57,8 +57,8 @@
                             <div class="card p-lg-4 p-md-4 p-sm-3 p-3 bg-orange h-100">
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_1')}}</b></h5>
-                                <p class="">{{__('landing.stats.text_1')}}</p>
-                                <p class="">
+                                <p class="card-text">{{__('landing.stats.text_1')}}</p>
+                                <p class="card-text">
                                     <ul>
                                         <li>{{__('landing.stats.text_1_li1')}}</li>
                                         <li>{{__('landing.stats.text_1_li2')}}</li>
@@ -76,7 +76,7 @@
                             <div class="card p-lg-4 p-md-4 p-sm-3 p-3 bg-blue h-100">
                             <div class="card-body text-white">
                                 <h5 class="title-md"><b>{{__('landing.stats.subtitle_2')}}</b></h5>
-                                <p class="">{{__('landing.stats.text_2')}}</p>
+                                <p class="card-text">{{__('landing.stats.text_2')}}</p>
                                 <a target="_blank" href="https://en.unesco.org/creative-cities/" class="btn btn-primary">{{__('landing.btn_explore')}}</a>
                             </div>
                             </div>
