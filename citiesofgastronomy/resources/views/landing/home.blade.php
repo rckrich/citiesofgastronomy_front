@@ -601,7 +601,7 @@
                     <div class="row align-items-center px-0 mx-0">
                         <div class="card px-0 mx-auto" style="width: 350px;">
                             <div class="card-header">
-                            <button type="button" class="btn btn-transparent" onclick="closeMapModal()">
+                            <button type="button" class="btn btn-transparent px-0" onclick="closeMapModal()">
                                 <img src="{{asset('assets/icons/close.png')}}" width="50" height="50"/>
                             </button>
                             </div>

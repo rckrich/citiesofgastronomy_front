@@ -223,7 +223,7 @@ a .text-white{color: #fff!important;}
     width: 100%;
     text-align: center;   
 }
-#map-card .card-header{background-color: transparent!important; height: 100px; text-align: right;z-index: 10;}
+#map-card .card-header{background-color: transparent!important; height: 100px; text-align: right;z-index: 10; border-bottom: none!important;}
 #map-card .card{background-color: rgba(218, 126, 22, 0.761)!important; color:#fff;border-radius: 25px;}
 #map-card .card-img-top{margin-top: -100px; border-radius: 25px 25px 0 0; height: 211px; object-fit: cover; object-position: center;}
 #map-card .card-body{text-align: left;}
