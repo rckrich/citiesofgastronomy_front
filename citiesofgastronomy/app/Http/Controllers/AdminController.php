@@ -38,7 +38,7 @@ class AdminController extends Controller
         };
         $fields_string = http_build_query($fields);
 
-        $url = config('app.apiUrl').'cities/?'.$page;
+        $url = config('app.apiUrl').'cities';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -154,15 +154,14 @@ class AdminController extends Controller
         if(!$page){ $page=1;   };
         $st = $request->input("st");
         $search_box = $request->input("search_box");
-        if($search_box){
-            $fields = array('search' => $search_box, 'page' => '1');
-        }else{
-        };
-        $fields = array('page' => $page, 'pageFaq' => $pageFaq);
+
+
+        $fields = array('page' => $page, 'pageFaq' => $pageFaq, 'search' => $search_box);
+
 
         $fields_string = http_build_query($fields);
 
-        $url = config('app.apiUrl').'about/timeline/list/?page='.$page;
+        $url = config('app.apiUrl').'about/timeline/list';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -419,7 +418,7 @@ class AdminController extends Controller
 
         if(!$page){ $page=1;   };
 
-        $url = config('app.apiUrl').'newsletterAdmin/?page='.$page;
+        $url = config('app.apiUrl').'newsletterAdmin?page='.$page;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

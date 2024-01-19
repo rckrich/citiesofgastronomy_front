@@ -126,4 +126,36 @@ class AboutController extends Controller
 
 
 
+    public function aboutDel(Request $request)
+    {
+
+        Log::info("##DEL -->");
+        $id = $request->input("id");
+        $type = $request->input("type");
+        $dattaSend = [
+            'id' => $id,
+            'type' => $type
+        ];
+
+        $url = config('app.apiUrl').'about/delete';
+        Log::info($url);
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("DELET RESPONSE ::");
+        Log::info($res);
+
+        return $res;
+    }
+
+
+
 }

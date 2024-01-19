@@ -25,7 +25,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('about.timeline.search_ph')}}" aria-label="{{__('about.timeline.search_ph')}}" aria-describedby="basic-addon1">
+                                <input id="search_box" name="search_box" class="form-control me-2" type="search" onclick="searchFN('time')" placeholder="{{__('about.timeline.search_ph')}}" aria-label="{{__('about.timeline.search_ph')}}" aria-describedby="basic-addon1">
                             </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('about.faq.search_ph')}}"
+                                <input id="search_boxFAQ" name="search_boxFAQ" class="form-control me-2"  onclick="searchFN('faq')" type="search" placeholder="{{__('about.faq.search_ph')}}"
                                             aria-label="{{__('about.faq.search_ph')}}" aria-describedby="basic-addon1">
                             </div>
                             </div>
@@ -628,19 +628,57 @@ function openDelModal(type, id){
 }
 
 function deleteFnc(type){
-    let modal = '';let idItem = '';let boton='';
+    console.log("##delete ::")
+    let modal = '';let idItem = '';let boton='';let paginaActual = '';let url='';
     if(type == 'timeline'){
-        //delModal.show(modalDelToggle);
+        document.getElementById("btnDelTime").disabled = false;
         modal = '';
-        idItem = 'timelineIdDelete';
+        idItem = document.getElementById('timelineIdDelete').value;
         boton = 'btnDelTime';
+        paginaActual = document.getElementById('pageActual').value;
     }else if(type == 'faq'){
-        //delModalFAQ.show(modalDelToggleFAQ);
+        document.getElementById("btnDelFaq").disabled = false;
         modal = '';
-        idItem = 'faqIdDelete';
+        idItem = document.getElementById('faqIdDelete').value;
         boton = 'btnDelFaq';
-
+        paginaActual = document.getElementById('pageActualFAQ').value;
     };
+
+    if(paginaActual == undefined ){paginaActual = 1;}
+
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    datos.append('_token', token);
+    datos.append('id', idItem);
+    datos.append('type', type);
+
+    $.ajax({
+                            type: 'POST',
+                            url: '/admin/aboutDel/',
+                            data: datos,
+                            contentType: false,
+                            cache: false,
+                            processData:false,
+                            beforeSend: function(){
+                                //$('.btnSaveFaq').attr("disabled","disabled");
+                                //$('#fupForm').css("opacity",".5");
+                            },
+                            success: function(msg){
+                                //localStorage.setItem('message', 'Timeline info was successfully saved');
+                                //window.location ='/admin/cities/';
+                                if(type == 'timeline'){
+                                    alert("The timeline entry was successfully delete");
+                                    delModal.hide(modalDelToggle);
+                                    url = '../../admin/about?page='+paginaActual;
+                                }else{
+                                    alert("The faq entry was successfully delete");
+                                    delModalFAQ.hide(modalDelToggleFAQ);
+                                    url = '../../admin/about?section=faq&page='+paginaActual;
+                                };
+                                console.log(url);
+                                window.location = url;
+                            }
+            });
 }
 
 
@@ -674,5 +712,9 @@ function paginatorFAQ(page){
             window.location = '../../admin/about/?pagef='+page+'&section=faq';
         };
     }
+
+
+
+
 </script>
 @endsection
