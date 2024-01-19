@@ -1,7 +1,21 @@
 
 body{background-color: #000;color:#fff;}
-.min-h-100{min-height: 100vh;}
-.min-h-80{min-height: 80vh;}
+@media (orientation: landscape) and (min-width:1536px){
+    .min-h-100{min-height: 100vh;}
+    .min-h-80{min-height: 80vh;}
+}
+@media (orientation: landscape) and (max-width:1535px){
+    .min-h-100{min-height: 80vh;}
+    .min-h-80{min-height: 40vh;}
+}
+@media (orientation: landscape) and (max-width:1399px){
+    .min-h-100{min-height: 60vh;}
+    .min-h-80{min-height: 40vh;}
+}
+@media (orientation: portrait) {
+    .min-h-100{min-height: inherit;}
+    .min-h-80{min-height: inherit;}
+}
 .w-75{width: 75%;}
 .w-60{width: 60%;}
 .w-50{width: 50%;}
@@ -392,6 +406,7 @@ footer a{color: #fff;}
     #calendar .title-lg{font-size: 35px;}
     #page_about .title-md, #num_stats .title-md{font-size: 27px;}
     #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 15px;}
+    :not(#num_stats)>.banner-title .title-lg {font-size: 70px!important;line-height: 75px;}
 }
 @media (min-width: 992px){
     .text-lg-left{text-align: left!important;}
@@ -420,10 +435,10 @@ footer a{color: #fff;}
     .data-sm{font-size: 16px!important;}
     #show_city .subtitle{font-size: 17px!important;}
     #show_city .data{font-size: 15px!important; line-height: 18px!important;}
-    :not(#num_stats)>.banner-title .title-lg{font-size:80px!important;line-height: inherit;}
+    :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: 75px;}
     #num_stats .banner-title, #num_stats .banner-title-overlay {height: 250px;}
     #num_stats .banner-title-overlay {padding: 4rem!important;}
-    .carousel-item,.banner-title-overlay{height: 480px;}
+    .carousel-item,.banner-title-overlay{height: 400px;}
     #show_city .banner-title-overlay,#show_city .banner-title img{height: 400px;}
     #show_city .banner-title-overlay{padding: 2rem!important;}
     #footerLogo{width: 200px;height: 53px;}
@@ -439,7 +454,7 @@ footer a{color: #fff;}
     #map{margin-bottom: 10rem;}
     .banner-title-overlay{padding: 5rem!important;}
     .gallery-img{height: 25vh;}
-    :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: inherit;}
+    :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: 75px;}
     #initiatives .title-xl,#news .title-xl,#open_calls .title-xl{font-size: 50px;}
     #initiatives .btn-primary,#news .btn-primary,#open_calls .btn-primary{width: 120px!important;font-size: 14px;height: 50px;line-height: 36px!important;}
 
