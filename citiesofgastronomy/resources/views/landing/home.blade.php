@@ -662,7 +662,7 @@
     </section>
 
     <section id="about" class="container p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
-        <div class="min-h-100 row px-0 mx-0 pt-5 align-items-center">
+        <div class="row px-0 mx-0 pt-5 align-items-center">
             <h1 class="title-xl text-yellow text-center pb-5">{{__('landing.about.title')}}</h1>
             <div class="row text-white">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -700,7 +700,7 @@
         </div>
         </div>
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-        <div class="min-h-100 row px-0 mx-0 align-items-center">
+        <div class="row px-0 mx-0 align-items-center">
             <div class="row mt-5 mx-0">
                 <div class="col-lg-6 col-12 mb-5">
                     <div class="card p-lg-4 p-md-4 p-sm-3 p-3 bg-orange h-100">

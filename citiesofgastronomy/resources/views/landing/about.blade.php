@@ -51,7 +51,7 @@
 
         <div class="bg-dark-gray">
             <div class="container p-lg-5 p-md-5 p-sm-3 p-3 bg-dark-gray">
-                <div class="min-h-80 row px-0 mx-0 align-items-center">
+                <div class="row px-0 mx-0 align-items-center">
                     <div class="row mt-5 mx-0">
                         <div class="col-lg-6 col-12 mb-5">
                             <div class="card p-lg-4 p-md-4 p-sm-3 p-3 bg-orange h-100">
