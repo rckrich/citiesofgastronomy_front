@@ -662,15 +662,15 @@
     </section>
 
     <section id="about" class="container p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
-        <div class="min-h-100 row px-0 mx-0 align-items-center">
-            <h1 class="title-xl text-yellow text-center">{{__('landing.about.title')}}</h1>
+        <div class="min-h-100 row px-0 mx-0 pt-5 align-items-center">
+            <h1 class="title-xl text-yellow text-center pb-5">{{__('landing.about.title')}}</h1>
             <div class="row text-white">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h2 class="title-sm">{{__('landing.about.subtitle')}}</h2>
                     <p>{{__('about.desc')}}</p>
                     <a class="btn btn-primary mt-2 mb-4" href="{{route('landing.about')}}">{{__('landing.btn_learn')}}</a>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5 pb-lg-3 pb-md-3 pb-sm-5 pb-5">
                     @if($bannerAbout =='')
                     <img src="{{asset('assets/img/Home/sample.png')}}" class="mx-auto my-auto w-100 br-9" alt="...">
                     @else

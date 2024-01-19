@@ -12,9 +12,14 @@ body{background-color: #000;color:#fff;}
     .min-h-100{min-height: 60vh;}
     .min-h-80{min-height: 40vh;}
 }
+@media (orientation: landscape) and(min-width:775px) and (max-width:1200px){
+    .min-h-100{min-height: 70vh;}
+    .min-h-80{min-height: 40vh;}
+}
+
 @media (orientation: portrait) {
-    .min-h-100{min-height: inherit;}
-    .min-h-80{min-height: inherit;}
+    .min-h-100{min-height: 50vh;}
+    .min-h-80{min-height: 35px;}
 }
 .w-75{width: 75%;}
 .w-60{width: 60%;}
@@ -64,6 +69,7 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 17px;}
 #show_city .subtitle{font-size: 20px; line-height: 24px;}
 #show_city .data{font-size: 18px;}
+.accordion-body{font-size: 14px;}
 
 
 
@@ -142,10 +148,11 @@ a .text-white{color: #fff!important;}
 #contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
 
 /*ACCORDION*/
+.accordion-button{font-size: 25px;}
 .accordion-button,.accordion-item{background-color: transparent!important; color: #fff!important;}
 .accordion-button,.accordion-item,.accordion-button:focus,.accordion-button:not(.collapsed),.accordion-collapse{border: none!important;box-shadow: none;}
 .accordion-button{padding: 10px 0;font: normal normal bold 35px/60px "Helvetica LT Std";}
-.accordion-body{padding: 16px 0;font: normal normal normal 18px/21px "Calibri";}
+.accordion-body{padding: 16px 0;font-size: 16px; font-family: "Calibri";}
 .accordion-button::after,.accordion-button:not(.collapsed)::after{background-image: url('../assets/icons/expand_after.png');}
 
 /*--------------------------*/
@@ -276,7 +283,7 @@ a .text-white{color: #fff!important;}
 
 /*ABOUT - TIMELINE*/
 .timeline-item{height: 67px!important;}
-.timeline-col{border: 1px solid #707070; word-break:keep-all;}
+.timeline-col{border: 1px solid #707070; word-break:keep-all; font-size: 20px!important;}
 .timeline-col.timeline-title{width: 45%; min-width: 350px;}
 .timeline-col.timeline-icon{width: 10%; min-width: 120px;}
 .timeline-col.timeline-date{width: 35%; min-width: 250px;}
@@ -378,6 +385,11 @@ footer a{color: #fff;}
   }
 /*------------------------------------*/
 
+@media screen and (max-width: 1800px){
+    .title-xl{font-size: 70px;}
+    .title-sm{font-size: 30px!important;}
+    #page_about .title-xl{font-size: 60px;}
+}
 @media screen and (min-width: 1536px){
 .container{
     max-width: 100rem !important;
@@ -407,6 +419,8 @@ footer a{color: #fff;}
     #page_about .title-md, #num_stats .title-md{font-size: 27px;}
     #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 15px;}
     :not(#num_stats)>.banner-title .title-lg {font-size: 70px!important;line-height: 75px;}
+    .title-xl{font-size: 60px;}
+    .title-sm{font-size: 25px!important;}
 }
 @media (min-width: 992px){
     .text-lg-left{text-align: left!important;}
