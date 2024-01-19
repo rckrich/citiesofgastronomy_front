@@ -279,7 +279,7 @@ a .text-white{color: #fff!important;}
     width: 100%;
 }
 .gallery-img{height: 30vh;}
-#page_cities .card-img-top{height: 100%;}
+#page_cities .card-img-top{height: 160px;}
 
 /*ABOUT - TIMELINE*/
 .timeline-item{height: 67px!important;}
@@ -390,6 +390,9 @@ footer a{color: #fff;}
     .title-sm{font-size: 30px!important;}
     #page_about .title-xl{font-size: 60px;}
 }
+@media screen and (max-width: 1536px){
+    #page_cities .card-img-top{height: 127px;}
+}
 @media screen and (min-width: 1536px){
 .container{
     max-width: 100rem !important;
@@ -403,6 +406,7 @@ footer a{color: #fff;}
 }
 @media (max-width: 1400px){
     #calendar .title-lg{font-size: 45px;}
+    #page_cities .card-img-top{height: 105px;}
 }
 @media screen and (min-width: 1190px) and (max-width:1269px){
     #navbarLogo{width: 250px!important;height: 66px!important;}
@@ -421,6 +425,7 @@ footer a{color: #fff;}
     :not(#num_stats)>.banner-title .title-lg {font-size: 70px!important;line-height: 75px;}
     .title-xl{font-size: 60px;}
     .title-sm{font-size: 25px!important;}
+    #page_cities .card-img-top{height: 83px;}
 }
 @media (min-width: 992px){
     .text-lg-left{text-align: left!important;}
@@ -437,6 +442,8 @@ footer a{color: #fff;}
     #map:hover{cursor: pointer;}
     .pin{z-index: 8;} .pin:hover{filter: unset;}
     .gallery-img{height: 30vh;}
+    #page_cities .card-img-top{height: 126px;}
+
 
     .title-xl{font-size: 64px;}
     .title-lg{font-size: 30px!important;}
@@ -482,6 +489,9 @@ footer a{color: #fff;}
         max-width: 580px;
     }
 }
+@media (max-width: 576px){
+    #page_cities .card-img-top{height: 298px;}
+}
 @media (max-width: 557px){
     #navbarLogo{width: 200px;height:53px}
     #map{margin-bottom: 8rem;}
@@ -513,6 +523,7 @@ footer a{color: #fff;}
     :not(#num_stats)>.banner-title-overlay{padding: .5rem!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size: 50px!important;}
     #initiatives .title-xl,#news .title-xl,#open_calls .title-xl{font-size: 30px;}
-    .btn-primary{width: 200px;}
+    .btn-primary{width: 200px;}    
+    #page_cities .card-img-top{height: 197px;}
 
 }
