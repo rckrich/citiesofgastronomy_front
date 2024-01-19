@@ -80,10 +80,12 @@ Route::get('/admin/tours/create', [ToursController::class, 'tour_new'])->name('a
 Route::get('/admin/tours/{id}', [ToursController::class, 'tour_edit'])->name('admin.tour_edit');
 
 Route::get('/admin/about', [AdminController::class, 'about'])->name('admin.about');
+Route::post('/admin/about', [AdminController::class, 'about']);
 Route::get('/admin/timelineFind/{id}', [AboutController::class, 'timelineFind']);
 Route::post('/admin/timelineSave/', [AboutController::class, 'timelineSave']);
 Route::get('/admin/faqFind/{id}', [AboutController::class, 'faqFind']);
 Route::post('/admin/faqSave/', [AboutController::class, 'faqSave']);
+Route::post('/admin/aboutDel/', [AboutController::class, 'aboutDel']);
 
 Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
 Route::get('/admin/contact/create', [ContactController::class, 'contact_new'])->name('admin.contact_new');
