@@ -11,7 +11,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link  <?php if($section!=''){echo 'active';}?>" id="pills-faq-tab" data-bs-toggle="pill" data-bs-target="#pills-faq"
-                type="button" role="tab" aria-controls="pills-faq" aria-selected="false">{{__('about.faq.title')}}</button>
+                type="button" role="tab" aria-controls="pills-faq" ariapageActual-selected="false">{{__('about.faq.title')}}</button>
             </li>
         </ul>
         <div class="tab-content px-5" id="pills-tab-aboutContent">
@@ -23,10 +23,21 @@
                         </div>
                         <div class="col-12 px-0 text-right row mx-0 py-2">
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                                <input id="search_box" name="search_box" class="form-control me-2" type="search" onclick="searchFN('time')" placeholder="{{__('about.timeline.search_ph')}}" aria-label="{{__('about.timeline.search_ph')}}" aria-describedby="basic-addon1">
-                            </div>
+                                <form action="../admin/about" method="POST" id="timelineSearchForm" class="input-group">
+                                @csrf
+                                    <input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
+                                    <input type="hidden" id="page" name="page" value="<?php echo  $page?>">
+                                    <input type="hidden" id="st" name="st" value="<?php echo  $st?>">
+
+                                    <input  type="button" class="input-group-text submitImage" id="basic-addon1" value=''
+                                            style="background-image:url('<?= asset('assets/icons/search_dark.svg')?>');"
+                                            onclick="searchBox('time')">
+                                    <!--<span><img src="{{asset('assets/icons/search_dark.svg')}}" class="input-group-text" id="basic-addon1">/></span>-->
+                                    <input id="search_box" name="search_box" class="form-control me-2 prevenir-envio" type="search"
+                                            placeholder="{{__('about.timeline.search_ph')}}"
+                                            aria-label="{{__('about.timeline.search_ph')}}" aria-describedby="basic-addon1"
+                                            value="{{ $search_box }}">
+                                </form>
                             </div>
                         </div>
                         <div class="col-12 px-0 py-2">
@@ -62,7 +73,6 @@
                         </table>
                     </div>
 
-                    <input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
                         <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item"><a class="page-link" onclick="paginator('prev')">Previous</a></li>
@@ -84,11 +94,22 @@
                         </div>
                         <div class="col-12 px-0 text-right row mx-0 py-2">
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                                <input id="search_boxFAQ" name="search_boxFAQ" class="form-control me-2"  onclick="searchFN('faq')" type="search" placeholder="{{__('about.faq.search_ph')}}"
+
+                                <form action="../../admin/about" method="POST" id="faqSearchForm" class="input-group">
+                                @csrf
+                                    <input type="hidden" id="section" name="section" value="faq">
+                                    <input type="hidden" id="stFAQ" name="stFAQ" value="<?php echo  $stFAQ?>">
+                                    <input type="hidden" id="pageActualFAQ" name="pageActualFAQ" value="<?=  $pageFaq?>">
+                                    <input type="hidden" id="pagef" name="pagef" value="<?=  $pageFaq?>">
+                                    <input type="buttom" class="input-group-text submitImage" id="basic-addon1" value=''
+                                        style="background-image:url('<?= asset('assets/icons/search_dark.svg')?>');"
+                                        onclick="searchBox('faq')" >
+                                    <!--<span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>-->
+                                    <input id="search_boxFAQ" name="search_boxFAQ" class="form-control me-2"  type="search"
+                                            placeholder="{{__('about.faq.search_ph')}}" value="{{ $searchFaq }}"
                                             aria-label="{{__('about.faq.search_ph')}}" aria-describedby="basic-addon1">
-                            </div>
+                                </form>
+
                             </div>
                         </div>
                         <div class="col-12 px-0 py-2">
@@ -123,7 +144,6 @@
                         </table>
                     </div>
 
-                    <input type="hidden" id="pageActualFAQ" name="pageActualFAQ" value="<?php echo  $pageFaq?>">
                         <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item"><a class="page-link" onclick="paginatorFAQ('prev')">Previous</a></li>
@@ -145,7 +165,7 @@
 
 <!-- Modal CREATE/EDIT TIMELINE-->
 <div class="modal fade" id="editTimelineModal" tabindex="-1" aria-labelledby="editTimelineModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-@csrf
+
 <input type="hidden" id="data_id" name="data_id" value="">
 
   <div class="modal-dialog">
@@ -441,7 +461,8 @@ var delModalFAQ; var modalDelToggleFAQ;
                                             document.getElementById(id1).innerHTML  = data_title;
                                         }else{
                                             alert("The timeline entry was successfully created");
-                                            location.reload();
+                                            //location.reload();
+                                            window.location = '../../admin/about/';
                                         };
                                         document.getElementById("btnAddTime").disabled = false;
                                     }
@@ -460,7 +481,8 @@ var delModalFAQ; var modalDelToggleFAQ;
 
 
 
-
+</script>
+<script>
 
     function paginator(page){
         let paginatorCant = '<?= $paginator?>';
@@ -486,13 +508,22 @@ var delModalFAQ; var modalDelToggleFAQ;
         }else{
             page= parseInt(page);
         };
-        if(nada == ''){
-            window.location = '../../admin/about/?page='+page;
+
+
+        let st = document.getElementById('st').value;
+        console.log(page);
+        if(nada == '' && st==''){
+            window.location = '../../admin/about/?page=' + page;
+        }else{
+            document.getElementById('page').value = page;
+            document.getElementById("timelineSearchForm").submit();
         };
     }
 
 
 
+</script>
+<script>
 
 
 
@@ -628,7 +659,6 @@ function openDelModal(type, id){
 }
 
 function deleteFnc(type){
-    console.log("##delete ::")
     let modal = '';let idItem = '';let boton='';let paginaActual = '';let url='';
     if(type == 'timeline'){
         document.getElementById("btnDelTime").disabled = false;
@@ -684,7 +714,11 @@ function deleteFnc(type){
 
 
 
-function paginatorFAQ(page){
+
+
+
+
+    function paginatorFAQ(page){
         let paginatorCant = '<?= $paginatorFAQ?>';
         paginatorCant = parseInt(paginatorCant);
 
@@ -708,13 +742,68 @@ function paginatorFAQ(page){
         }else{
             page= parseInt(page);
         };
-        if(nada == ''){
+
+        let st = document.getElementById('stFAQ').value;
+        if(nada == '' && st==''){
             window.location = '../../admin/about/?pagef='+page+'&section=faq';
+        }else{
+            document.getElementById('pagef').value = page;
+            document.getElementById("faqSearchForm").submit();
         };
     }
 
 
 
 
+
+
+</script>
+<script>
+
+
+    function searchBox(type){
+            console.log("--> SUBMIT");
+
+            let idST = '';let box = '';
+
+            if(type == 'time'){
+                    box = document.getElementById('search_box').value;
+                    if(box != ''){
+                        document.getElementById('st').value = '1';
+                        document.getElementById('page').value = '1';
+                        document.getElementById('stFAQ').value = '';
+                        document.getElementById("timelineSearchForm").submit();
+                    }else{
+                        window.location = '../../admin/about';
+                    };
+            }else{
+                //console.log("llego search");
+                box = document.getElementById('search_boxFAQ').value;
+                if(box != ''){
+                    //console.log("#1");
+                    document.getElementById('st').value = '';
+                    document.getElementById('pagef').value = '1';
+                    document.getElementById('stFAQ').value = '1';
+                    document.getElementById("faqSearchForm").submit();
+                }else{
+                    //console.log("#2");
+                        window.location = '../../admin/about?section=faq';
+                };
+            }
+
+    }
+
+
+    const $elementos = document.querySelectorAll(".prevenir-envio");
+
+    $elementos.forEach(elemento => {
+        elemento.addEventListener("keydown", (evento) => {
+            if (evento.key == "Enter") {
+                // Prevenir
+                evento.preventDefault();
+                return false;
+            }
+        });
+    });
 </script>
 @endsection

@@ -32,6 +32,11 @@
             width: 100%;
             height: 80px;
         }
+        .submitImage{
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: 49px;
+        }
     </style>
 </head>
 <body>

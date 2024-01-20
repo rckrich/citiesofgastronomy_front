@@ -150,13 +150,22 @@ class AdminController extends Controller
         $page = $request->input("page");
         $pageFaq = $request->input("pagef");
         Log::info("#PAGE FAQ :: ".$pageFaq);
+        Log::info(config('app.apiUrl'));
 
         if(!$page){ $page=1;   };
+
         $st = $request->input("st");
         $search_box = $request->input("search_box");
+        $stFAQ = $request->input("stFAQ");
+        $searchFaq = $request->input("search_boxFAQ");
 
 
-        $fields = array('page' => $page, 'pageFaq' => $pageFaq, 'search' => $search_box);
+
+        $fields = array(
+            'page' => $page,
+            'search' => $search_box,
+            'pageFaq' => $pageFaq,
+            'searchFaq' => $searchFaq);
 
 
         $fields_string = http_build_query($fields);
@@ -186,7 +195,9 @@ class AdminController extends Controller
         $inputs["pageFaq"] = $res["pageFaq"];
         $inputs["totFAQ"] = $res["totFAQ"];
         $inputs["paginatorFAQ"] = $res["paginatorFAQ"];
+        $inputs["searchFaq"] = $searchFaq;
         $inputs["st"] = $st;
+        $inputs["stFAQ"] = $stFAQ;
         return view('admin.about', $inputs);
     }
     public function contact()
@@ -436,6 +447,34 @@ class AdminController extends Controller
         $inputs["maillist"] = $res["maillist"];
         $inputs["page"] = $page;
         return view('admin.newsletter', $inputs);
+    }
+    public function newsletterDownload(Request $request)
+    {
+        $data_startdate = $request->input("data_startdate");
+        $data_enddate = $request->input("data_enddate");
+
+        $url = config('app.apiUrl').'newsletter/Download';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, [
+            'data_startdate' => $data_startdate,
+            'data_enddate' => $data_enddate
+        ] );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("Newsletter :::");
+        Log::info($res);
+        $newsList = $res["newsletter"];
+        //////////////////////////////////////////////////
+        $inputs = [];
+        //$inputs["total"] = $res["total"];
+
+        //return view('admin.newsletter', $inputs);
     }
 
 }
