@@ -133,7 +133,7 @@
 
         $.ajax({
                             type: 'GET',
-                            url: '/newsletter/DownloadVerify/',
+                            url: '/newsletter/DownloadVerify',
                             data: datos,
                             contentType: false,
                             cache: false,

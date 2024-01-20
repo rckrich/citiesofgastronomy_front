@@ -82,10 +82,10 @@ Route::get('/admin/tours/{id}', [ToursController::class, 'tour_edit'])->name('ad
 Route::get('/admin/about', [AdminController::class, 'about'])->name('admin.about');
 Route::post('/admin/about', [AdminController::class, 'about']);
 Route::get('/admin/timelineFind/{id}', [AboutController::class, 'timelineFind']);
-Route::post('/admin/timelineSave/', [AboutController::class, 'timelineSave']);
+Route::post('/admin/timelineSave', [AboutController::class, 'timelineSave']);
 Route::get('/admin/faqFind/{id}', [AboutController::class, 'faqFind']);
-Route::post('/admin/faqSave/', [AboutController::class, 'faqSave']);
-Route::post('/admin/aboutDel/', [AboutController::class, 'aboutDel']);
+Route::post('/admin/faqSave', [AboutController::class, 'faqSave']);
+Route::post('/admin/aboutDel', [AboutController::class, 'aboutDel']);
 
 Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
 Route::get('/admin/contact/create', [ContactController::class, 'contact_new'])->name('admin.contact_new');
@@ -95,7 +95,7 @@ Route::get('/admin/contact/{id}', [ContactController::class, 'contact_edit'])->n
 Route::get('/admin/main_site', [AdminController::class, 'main'])->name('admin.main');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');
-Route::get('/newsletter/DownloadVerify/', [AdminController::class, 'newsletterDownloadVerify']);
+Route::get('/newsletter/DownloadVerify', [AdminController::class, 'newsletterDownloadVerify']);
 
 
 Route::post('/admin/addPDF', [AdminController::class, 'addPDF']);

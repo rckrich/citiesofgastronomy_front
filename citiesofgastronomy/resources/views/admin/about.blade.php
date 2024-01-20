@@ -625,7 +625,7 @@ if(!data_answer){
 if(guardar == 1){
     $.ajax({
                             type: 'POST',
-                            url: '/admin/faqSave/',
+                            url: '/admin/faqSave',
                             data: datos,
                             contentType: false,
                             cache: false,
@@ -694,7 +694,7 @@ function deleteFnc(type){
 
     $.ajax({
                             type: 'POST',
-                            url: '/admin/aboutDel/',
+                            url: '/admin/aboutDel',
                             data: datos,
                             contentType: false,
                             cache: false,
