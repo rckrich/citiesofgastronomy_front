@@ -71,7 +71,7 @@
                                 @endforeach
 
                                 <?php  if(count($timeline)==0){?>
-                                    <div> No results found</div>
+                                    <tr> <td>No results found</td></tr>
                                 <?php };?>
 
                             </tbody>
@@ -147,7 +147,7 @@
                             @endforeach
 
                             <?php  if(count($faq)==0){?>
-                                    <div> No results found</div>
+                                    <tr> <td>No results found</td></tr>
                                 <?php };?>
 
                             </tbody>
