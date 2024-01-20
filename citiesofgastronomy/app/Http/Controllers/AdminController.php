@@ -118,7 +118,7 @@ class AdminController extends Controller
         ];
 
 
-        $url = config('app.apiUrl').'addPDF/';
+        $url = config('app.apiUrl').'addPDF';
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);

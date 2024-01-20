@@ -50,7 +50,7 @@ class AboutController extends Controller
             'endDate' => $endDate
         ];
 
-        $url = config('app.apiUrl').'about/timeline/save/';
+        $url = config('app.apiUrl').'about/timeline/save';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -61,8 +61,8 @@ class AboutController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
-        //Log::info("TIMELINE SAVE ::");
-        //Log::info($res);
+        Log::info("TIMELINE SAVE ::");
+        Log::info($res);
 
         return $res;
     }
@@ -107,7 +107,7 @@ class AboutController extends Controller
             'answer' => $answer
         ];
 
-        $url = config('app.apiUrl').'about/faq/save/';
+        $url = config('app.apiUrl').'about/faq/save';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
