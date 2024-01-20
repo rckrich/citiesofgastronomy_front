@@ -99,15 +99,17 @@
                 <div class="col-12">
 
                     <div class="accordion" id="accordionFAQ">
+                        <?php $i=0;?>
                     @foreach($faqs as $faq)
+                    <?php $i=$i+1;?>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                        <button class="accordion-button pb-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$faq['id']}}"
-                        aria-expanded="true" aria-controls="collapse{{$faq['id']}}">
+                        <button class="accordion-button pb-0 <?php if($i!=1){echo 'collapsed';}?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$faq['id']}}"
+                        aria-expanded=" <?php if($i!=1){echo 'false';}else{echo 'true';}?>" aria-controls="collapse{{$faq['id']}}">
                             {{$faq["faq"]}}
                         </button>
                         </h2>
-                        <div id="collapse{{$faq['id']}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                        <div id="collapse{{$faq['id']}}" class="accordion-collapse collapse <?php if($i==1){echo 'show';}?>" data-bs-parent="#accordionFAQ">
                         <div class="accordion-body pt-0">
                             {{$faq["answer"]}}
                         </div>
@@ -117,7 +119,8 @@
                     <!--
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                        <button class="accordion-button pb-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="accordion-button pb-0 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
                             {{__('about.faq.subtitle',['city'=>'City'])}}
                         </button>
                         </h2>
