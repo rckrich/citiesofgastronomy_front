@@ -110,7 +110,7 @@
                                         style="background-image:url('<?= asset('assets/icons/search_dark.svg')?>');"
                                         onclick="searchBox('faq')" >
                                     <!--<span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>-->
-                                    <input id="search_boxFAQ" name="search_boxFAQ" class="form-control me-2"  type="search"
+                                    <input id="search_boxFAQ" name="search_boxFAQ" class="form-control me-2 prevenir-envio"  type="search"
                                             placeholder="{{__('about.faq.search_ph')}}" value="{{ $searchFaq }}"
                                             aria-label="{{__('about.faq.search_ph')}}" aria-describedby="basic-addon1">
                                 </form>
@@ -811,6 +811,13 @@ function deleteFnc(type){
             if (evento.key == "Enter") {
                 // Prevenir
                 evento.preventDefault();
+                let id1 = evento.target.id;
+                if(evento.target.id == 'search_box'){
+                    searchBox('time');
+                }else{
+                    searchBox('faq');
+                }
+                console.log('resultado: '+ evento.target.id);
                 return false;
             }
         });
