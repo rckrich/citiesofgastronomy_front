@@ -44,7 +44,7 @@
                 <img src="{{config('app.url').$bannerAbout}}" class="mx-auto my-auto w-100 br-9" alt="...">
                 @endif
             </div>
-            
+
 
         </div>
         </div>
@@ -68,7 +68,7 @@
                                         <li>{{__('landing.stats.text_1_li6')}}</li>
                                     </ul>
                                 </p>
-                                
+
                             </div>
                             </div>
                         </div>
@@ -99,42 +99,20 @@
                 <div class="col-12">
 
                     <div class="accordion" id="accordionFAQ">
+                    @foreach($faqs as $faq)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                         <button class="accordion-button pb-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                            {{$faq["faq"]}}
                         </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
                         <div class="accordion-body pt-0">
-                            {{__('about.lorem')}}
+                            {{$faq["answer"]}}
                         </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button pb-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            {{__('about.faq.subtitle',['city'=>'City'])}}
-                        </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body pt-0">
-                            {{__('about.lorem')}}
-                        </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button pb-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            {{__('about.faq.subtitle',['city'=>'City'])}}
-                        </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body pt-0">
-                            {{__('about.lorem')}}
-                        </div>
-                        </div>
-                    </div>
+                    @endforeach
                     </div>
                 </div>
 
@@ -148,20 +126,20 @@
                 </div>
             </div>
             <div class="row align-items-center">
-                
+
                 <div class="table-responsive px-0">
                     <table id="timeline-list" class="table table-dark w-100">
                         <tbody>
-                                    
+
                         @foreach($timeline as $time)
 
                             <tr class="timeline-item">
                                 <td class="timeline-col timeline-title text-left ps-3 mx-2
-                                    {{ $time['monthNum'] == 1 || $time['monthNum'] == 7 ? 'bl-1':''}} 
-                                    {{ $time['monthNum'] == 2 || $time['monthNum'] == 8 ? 'bl-2':''}} 
-                                    {{ $time['monthNum'] == 3 || $time['monthNum'] == 9 ? 'bl-3':''}} 
-                                    {{ $time['monthNum'] == 4 || $time['monthNum'] == 10 ? 'bl-4':''}} 
-                                    {{ $time['monthNum'] == 5 || $time['monthNum'] == 11 ? 'bl-5':''}} 
+                                    {{ $time['monthNum'] == 1 || $time['monthNum'] == 7 ? 'bl-1':''}}
+                                    {{ $time['monthNum'] == 2 || $time['monthNum'] == 8 ? 'bl-2':''}}
+                                    {{ $time['monthNum'] == 3 || $time['monthNum'] == 9 ? 'bl-3':''}}
+                                    {{ $time['monthNum'] == 4 || $time['monthNum'] == 10 ? 'bl-4':''}}
+                                    {{ $time['monthNum'] == 5 || $time['monthNum'] == 11 ? 'bl-5':''}}
                                     {{ $time['monthNum'] == 6 || $time['monthNum'] == 12 ? 'bl-6':''}} ">
                                     <?= $time["tittle"]?>
                                 </td>

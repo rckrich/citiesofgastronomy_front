@@ -82,15 +82,15 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("# ABOUT ::");
-        Log::info($res["bannerAbout"]);
+        //Log::info($res["bannerAbout"]);
 
         $inputs = [];
         $inputs["banners"] = $res["banner"];
         $inputs["bannerAbout"] = $res["bannerAbout"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
-        //$inputs["timeline"] = $res["timeline"];
-
+        $inputs["timeline"] = $res["timeline"];
+        $inputs["faqs"] = $res["faq"];
 
         $inputs["timeline"] = [];
 
