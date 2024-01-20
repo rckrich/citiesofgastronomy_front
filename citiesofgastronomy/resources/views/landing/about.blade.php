@@ -102,17 +102,45 @@
                     @foreach($faqs as $faq)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                        <button class="accordion-button pb-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button pb-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$faq['id']}}"
+                        aria-expanded="true" aria-controls="collapse{{$faq['id']}}">
                             {{$faq["faq"]}}
                         </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                        <div id="collapse{{$faq['id']}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
                         <div class="accordion-body pt-0">
                             {{$faq["answer"]}}
                         </div>
                         </div>
                     </div>
                     @endforeach
+                    <!--
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button pb-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                        </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body pt-0">
+                            {{__('about.lorem')}}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button pb-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            {{__('about.faq.subtitle',['city'=>'City'])}}
+                        </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body pt-0">
+                            {{__('about.lorem')}}
+                        </div>
+                        </div>
+                    </div>
+                    <!---->
+
                     </div>
                 </div>
 

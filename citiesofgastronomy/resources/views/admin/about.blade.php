@@ -451,7 +451,7 @@ var delModalFAQ; var modalDelToggleFAQ;
         if(guardar == 1){
             $.ajax({
                                     type: 'POST',
-                                    url: '/admin/timelineSave/',
+                                    url: '/admin/timelineSave',
                                     data: datos,
                                     contentType: false,
                                     cache: false,
