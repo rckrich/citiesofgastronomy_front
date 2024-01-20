@@ -13,7 +13,8 @@
                 </div>
                 <div class="col-12 px-0 text-right row mx-0 py-2">
                     <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 ms-auto">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#downloadCVSModal">{{__('admin.newsletter.btn_download')}}</buttton>
+                    <button class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#downloadCVSModal">{{__('admin.newsletter.btn_download')}}</buttton>
                     </div>
                 </div>
             </div>
@@ -55,6 +56,7 @@
 <!-- Modal DOWNLOAD CVS-->
 <div class="modal fade" id="downloadCVSModal" tabindex="-1" aria-labelledby="downloadCVSModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
+  @csrf
     <div class="modal-content">
         <div class="modal-header b-none px-4">
             <h5 class="modal-title" id="downloadCVSModalLabel">{{__('admin.newsletter.download_modal_title')}}</h5>
@@ -75,7 +77,7 @@
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_download')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto" onclick="downloadNews()" >{{__('admin.btn_download')}}</buttton>
         </div>
         </form>
     </div>
@@ -112,6 +114,40 @@
         if(nada == ''){
             window.location = '/admin/newsletter/?page='+page;
         };
+    }
+
+
+
+
+
+
+    function downloadNews(){
+        let data_startdate = document.getElementById('data_startdate').value;
+        let data_enddate = document.getElementById('data_enddate').value;
+        let token = document.getElementsByName("_token")[0].value;
+
+        let datos = new FormData();
+        datos.append('_token', token);
+        datos.append('data_startdate', data_startdate);
+        datos.append('data_enddate', data_enddate);
+
+        $.ajax({
+                            type: 'GET',
+                            url: '/newsletter/DownloadVerify/',
+                            data: datos,
+                            contentType: false,
+                            cache: false,
+                            processData:false,
+                            beforeSend: function(){
+                                //$('.btnSaveFaq').attr("disabled","disabled");
+                                //$('#fupForm').css("opacity",".5");
+                            },
+                            success: function(msg){
+                                //url = '<?= config('app.apiUrl')?>newsletter/Download/;
+                                //console.log(url);
+                                //window.location = url;
+                            }
+        });
     }
 </script>
 @endsection

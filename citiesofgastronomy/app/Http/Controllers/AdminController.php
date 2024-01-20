@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Log;
 
 
@@ -453,7 +454,7 @@ class AdminController extends Controller
         $data_startdate = $request->input("data_startdate");
         $data_enddate = $request->input("data_enddate");
 
-        $url = config('app.apiUrl').'newsletter/Download';
+        $url = config('app.apiUrl').'newsletter/DownloadVerify';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -469,10 +470,13 @@ class AdminController extends Controller
         $res = json_decode( $data, true);
         Log::info("Newsletter :::");
         Log::info($res);
-        $newsList = $res["newsletter"];
+        //$newsList = $res["newsletter"];
+        //print_r( $res );
+        //return Excel::download($res, 'Newletter.csv', \Maatwebsite\Excel\Excel::CSV);
         //////////////////////////////////////////////////
         $inputs = [];
         //$inputs["total"] = $res["total"];
+        return $data;
 
         //return view('admin.newsletter', $inputs);
     }
