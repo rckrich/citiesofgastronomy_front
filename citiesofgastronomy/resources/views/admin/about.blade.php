@@ -69,6 +69,11 @@
                                     </button></td>
                                 </tr>
                                 @endforeach
+
+                                <?php  if(count($timeline)==0){?>
+                                    <div> No results found</div>
+                                <?php };?>
+
                             </tbody>
                         </table>
                     </div>
@@ -140,6 +145,11 @@
                                     </button></td>
                                 </tr>
                             @endforeach
+
+                            <?php  if(count($faq)==0){?>
+                                    <div> No results found</div>
+                                <?php };?>
+
                             </tbody>
                         </table>
                     </div>
