@@ -1,12 +1,32 @@
 
 body{background-color: #000;color:#fff;}
-.min-h-100{min-height: 100vh;}
-.min-h-80{min-height: 80vh;}
+@media (orientation: landscape) and (min-width:1536px){
+    .min-h-100{min-height: 100vh;}
+    .min-h-80{min-height: 80vh;}
+}
+@media (orientation: landscape) and (max-width:1535px){
+    .min-h-100{min-height: 80vh;}
+    .min-h-80{min-height: 40vh;}
+}
+@media (orientation: landscape) and (max-width:1399px){
+    .min-h-100{min-height: 60vh;}
+    .min-h-80{min-height: 40vh;}
+}
+@media (orientation: landscape) and(min-width:775px) and (max-width:1200px){
+    .min-h-100{min-height: 70vh;}
+    .min-h-80{min-height: 40vh;}
+}
+
+@media (orientation: portrait) {
+    .min-h-100{min-height: 50vh;}
+    .min-h-80{min-height: 35px;}
+}
 .w-75{width: 75%;}
 .w-60{width: 60%;}
 .w-50{width: 50%;}
 .w-25{width: 25%;}
 .w-auto{width: auto;}
+
 
 /*FONTS*/
 @font-face {
@@ -45,8 +65,11 @@ body{background-color: #000;color:#fff;}
 .title-xs{font-family: 'Calibri'}
 p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: 'Calibri'}
 .activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
-#page_about .title-md, #about .title-md{font-size: 32px;}
-#page_about .card-text, #about .card-text, #page_about ul li, #about ul li{font-size: 17px;}
+#page_about .title-md, #num_stats .title-md{font-size: 32px;}
+#page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 17px;}
+#show_city .subtitle{font-size: 20px; line-height: 24px;}
+#show_city .data{font-size: 18px;}
+.accordion-body{font-size: 14px;}
 
 
 
@@ -125,10 +148,11 @@ a .text-white{color: #fff!important;}
 #contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
 
 /*ACCORDION*/
+.accordion-button{font-size: 25px;}
 .accordion-button,.accordion-item{background-color: transparent!important; color: #fff!important;}
 .accordion-button,.accordion-item,.accordion-button:focus,.accordion-button:not(.collapsed),.accordion-collapse{border: none!important;box-shadow: none;}
 .accordion-button{padding: 10px 0;font: normal normal bold 35px/60px "Helvetica LT Std";}
-.accordion-body{padding: 16px 0;font: normal normal normal 18px/21px "Calibri";}
+.accordion-body{padding: 16px 0;font-size: 16px; font-family: "Calibri";}
 .accordion-button::after,.accordion-button:not(.collapsed)::after{background-image: url('../assets/icons/expand_after.png');}
 
 /*--------------------------*/
@@ -171,13 +195,13 @@ a .text-white{color: #fff!important;}
 #show_city .banner-title{ position: relative;}
 #show_city .banner-title img{height: 350px; object-fit: cover; object-position: center;}
 #show_city .banner-title-overlay{padding: 4rem!important;}
-#num_stats .banner-title-overlay{position: relative!important;}
+#num_stats .banner-title-overlay{position: relative!important; height: 350px;}
 #num_stats .banner-title{
     background-repeat: no-repeat!important;
     background-position: center!important;
     background-size: cover!important;
     width: 100%;
-    height: 480px;
+    height: 350px;
     text-align: center;   
     padding: 0;   
 }
@@ -223,7 +247,7 @@ a .text-white{color: #fff!important;}
     width: 100%;
     text-align: center;   
 }
-#map-card .card-header{background-color: transparent!important; height: 100px; text-align: right;z-index: 10;}
+#map-card .card-header{background-color: transparent!important; height: 100px; text-align: right;z-index: 10; border-bottom: none!important;}
 #map-card .card{background-color: rgba(218, 126, 22, 0.761)!important; color:#fff;border-radius: 25px;}
 #map-card .card-img-top{margin-top: -100px; border-radius: 25px 25px 0 0; height: 211px; object-fit: cover; object-position: center;}
 #map-card .card-body{text-align: left;}
@@ -255,11 +279,11 @@ a .text-white{color: #fff!important;}
     width: 100%;
 }
 .gallery-img{height: 30vh;}
-#page_cities .card-img-top{height: 100%;}
+#page_cities .card-img-top{height: 160px;}
 
 /*ABOUT - TIMELINE*/
 .timeline-item{height: 67px!important;}
-.timeline-col{border: 1px solid #707070; word-break:keep-all;}
+.timeline-col{border: 1px solid #707070; word-break:keep-all; font-size: 20px!important;}
 .timeline-col.timeline-title{width: 45%; min-width: 350px;}
 .timeline-col.timeline-icon{width: 10%; min-width: 120px;}
 .timeline-col.timeline-date{width: 35%; min-width: 250px;}
@@ -361,6 +385,14 @@ footer a{color: #fff;}
   }
 /*------------------------------------*/
 
+@media screen and (max-width: 1800px){
+    .title-xl{font-size: 70px;}
+    .title-sm{font-size: 30px!important;}
+    #page_about .title-xl{font-size: 60px;}
+}
+@media screen and (max-width: 1536px){
+    #page_cities .card-img-top{height: 127px;}
+}
 @media screen and (min-width: 1536px){
 .container{
     max-width: 100rem !important;
@@ -374,12 +406,16 @@ footer a{color: #fff;}
 }
 @media (max-width: 1400px){
     #calendar .title-lg{font-size: 45px;}
+    #page_cities .card-img-top{height: 105px;}
 }
 @media screen and (min-width: 1190px) and (max-width:1269px){
     #navbarLogo{width: 250px!important;height: 66px!important;}
 }
 @media screen and (min-width: 992px) and (max-width:1189px){
     #navbarLogo{width: 150px!important;height: 39px!important;}
+}
+@media screen and (min-width:1201px){
+    .p-xl-5{padding: 3rem!important;}
 }
 @media screen and (min-width: 992px) and (max-width:1200px){
     .gallery-img{height: 20vh!important;}
@@ -390,9 +426,6 @@ footer a{color: #fff;}
     .title-xl{font-size: 60px;}
     .title-sm{font-size: 25px!important;}
     #page_cities .card-img-top{height: 83px;}
-    .filters select.form-control, .filters button{font-size: 16px;}
-    .filters select {padding: .8rem;}
-
 }
 @media (min-width: 992px){
     .text-lg-left{text-align: left!important;}
@@ -409,6 +442,8 @@ footer a{color: #fff;}
     #map:hover{cursor: pointer;}
     .pin{z-index: 8;} .pin:hover{filter: unset;}
     .gallery-img{height: 30vh;}
+    #page_cities .card-img-top{height: 126px;}
+
 
     .title-xl{font-size: 64px;}
     .title-lg{font-size: 30px!important;}
@@ -421,9 +456,10 @@ footer a{color: #fff;}
     .data-sm{font-size: 16px!important;}
     #show_city .subtitle{font-size: 17px!important;}
     #show_city .data{font-size: 15px!important; line-height: 18px!important;}
-    :not(#num_stats)>.banner-title .title-lg{font-size:80px!important;line-height: inherit;}
-    #num_stats .banner-title, #num_stats .banner-title-overlay {height: 350px;}
-    .carousel-item,.banner-title-overlay{height: 480px;}
+    :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: 75px;}
+    #num_stats .banner-title, #num_stats .banner-title-overlay {height: 250px;}
+    #num_stats .banner-title-overlay {padding: 4rem!important;}
+    .carousel-item,.banner-title-overlay{height: 400px;}
     #show_city .banner-title-overlay,#show_city .banner-title img{height: 400px;}
     #show_city .banner-title-overlay{padding: 2rem!important;}
     #footerLogo{width: 200px;height: 53px;}
@@ -441,7 +477,7 @@ footer a{color: #fff;}
     #map{margin-bottom: 10rem;}
     .banner-title-overlay{padding: 5rem!important;}
     .gallery-img{height: 25vh;}
-    :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: inherit;}
+    :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: 75px;}
     #initiatives .title-xl,#news .title-xl,#open_calls .title-xl{font-size: 50px;}
     #initiatives .btn-primary,#news .btn-primary,#open_calls .btn-primary{width: 120px!important;font-size: 14px;height: 50px;line-height: 36px!important;}
 
@@ -454,6 +490,9 @@ footer a{color: #fff;}
     .container, .container-sm {
         max-width: 580px;
     }
+}
+@media (max-width: 576px){
+    #page_cities .card-img-top{height: 298px;}
 }
 @media (max-width: 557px){
     #navbarLogo{width: 200px;height:53px}
@@ -486,6 +525,7 @@ footer a{color: #fff;}
     :not(#num_stats)>.banner-title-overlay{padding: .5rem!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size: 50px!important;}
     #initiatives .title-xl,#news .title-xl,#open_calls .title-xl{font-size: 30px;}
-    .btn-primary{width: 200px;}
+    .btn-primary{width: 200px;}    
+    #page_cities .card-img-top{height: 197px;}
 
 }

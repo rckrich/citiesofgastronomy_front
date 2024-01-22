@@ -51,7 +51,7 @@
 
         <div class="bg-dark-gray">
             <div class="container p-lg-5 p-md-5 p-sm-3 p-3 bg-dark-gray">
-                <div class="min-h-80 row px-0 mx-0 align-items-center">
+                <div class="row px-0 mx-0 align-items-center">
                     <div class="row mt-5 mx-0">
                         <div class="col-lg-6 col-12 mb-5">
                             <div class="card p-lg-4 p-md-4 p-sm-3 p-3 bg-orange h-100">
@@ -88,8 +88,8 @@
 
         <div class="p-lg-5 p-md-5 p-sm-3 p-3">
 
-        <!--div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-            <div class="row align-items-center mb-lg-5 mb-md-5 mb-sm-3 mb-3 pt-5">
+        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
+            <div class="row align-items-center mb-lg-2 mb-md-3 mb-sm-3 mb-3 pt-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.faq.title')}}</h1>
                 </div>
@@ -101,36 +101,36 @@
                     <div class="accordion" id="accordionFAQ">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button pb-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             {{__('about.faq.subtitle',['city'=>'City'])}}
                         </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
+                        <div class="accordion-body pt-0">
                             {{__('about.lorem')}}
                         </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="accordion-button pb-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             {{__('about.faq.subtitle',['city'=>'City'])}}
                         </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
+                        <div class="accordion-body pt-0">
                             {{__('about.lorem')}}
                         </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <button class="accordion-button pb-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             {{__('about.faq.subtitle',['city'=>'City'])}}
                         </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
+                        <div class="accordion-body pt-0">
                             {{__('about.lorem')}}
                         </div>
                         </div>
@@ -139,10 +139,10 @@
                 </div>
 
             </div>
-        </div-->
+        </div>
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-            <div class="row align-items-center mb-lg-5 mb-md-5 mb-sm-3 mb-3">
+            <div class="row align-items-center mb-lg-2 mb-md-3 mb-sm-3 mb-3">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('about.timeline.title')}}</h1>
                 </div>

@@ -30,6 +30,9 @@ class LandingController extends Controller
         curl_setopt($curl, CURLOPT_HEADER, false);
         $data = curl_exec($curl);
         curl_close($curl);
+        $data = str_replace("'", '&apos;', $data);
+        $data = str_replace("´", '&apos;', $data);
+        $data = str_replace("`", '&apos;', $data);
         $res = json_decode( $data, true);
         //Log::info("DAtta Result-- ::");
 
@@ -48,7 +51,7 @@ class LandingController extends Controller
         $cantItems = 99999;
 
         Log::info(config('app.apiUrl'));
-        $url = config('app.apiUrl').'cities/?cantItems='.$cantItems;
+        $url = config('app.apiUrl').'cities?cantItems='.$cantItems;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

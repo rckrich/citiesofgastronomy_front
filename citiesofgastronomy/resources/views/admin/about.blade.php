@@ -25,7 +25,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('about.timeline.search_ph')}}" aria-label="{{__('about.timeline.search_ph')}}" aria-describedby="basic-addon1">
+                                <input id="search_box" name="search_box" class="form-control me-2" type="search" onclick="searchFN('time')" placeholder="{{__('about.timeline.search_ph')}}" aria-label="{{__('about.timeline.search_ph')}}" aria-describedby="basic-addon1">
                             </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                             >{{__('about.btn_edit')}}</button>
                                     </td>
                                     <td class="col-auto my-auto">
-                                        <button class="btn btn-danger"  data-bs-toggle="modal"  onclick="modalDel({{$item['id']}})"
+                                        <button class="btn btn-danger"  data-bs-toggle="modal"  onclick="openDelModal('timeline',{{$item['id']}})"
                                             data-bs-target="#deleteTimelineModal">{{__('admin.btn_delete')}}
                                     </button></td>
                                 </tr>
@@ -86,7 +86,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('about.faq.search_ph')}}"
+                                <input id="search_boxFAQ" name="search_boxFAQ" class="form-control me-2"  onclick="searchFN('faq')" type="search" placeholder="{{__('about.faq.search_ph')}}"
                                             aria-label="{{__('about.faq.search_ph')}}" aria-describedby="basic-addon1">
                             </div>
                             </div>
@@ -115,7 +115,7 @@
                                         <button class="btn btn-link"   onclick="openFaq({{$item['id']}})">{{__('about.btn_edit')}}</button>
                                     </td>
                                     <td class="col-auto my-auto">
-                                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteFAQModal">{{__('admin.btn_delete')}}
+                                        <button class="btn btn-danger"  onclick="openDelModal('faq',{{$item['id']}})">{{__('admin.btn_delete')}}
                                     </button></td>
                                 </tr>
                             @endforeach
@@ -230,6 +230,7 @@
 <!-- Modal DELETE TIMELINE-->
 <div class="modal fade" id="deleteTimelineModal" tabindex="-1" aria-labelledby="deleteTimelineModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
+    <input type="hidden" id="timelineIdDelete">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="deleteTimelineModalLabel">{{__('about.timeline.delete_modal_title')}}</h5>
@@ -240,7 +241,7 @@
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" id="btnDelTime" onclick="deleteFnc('timeline')">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -248,6 +249,7 @@
 <!-- Modal DELETE FAQ-->
 <div class="modal fade" id="deleteFAQModal" tabindex="-1" aria-labelledby="deleteFAQModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
+    <input type="hidden" id="faqIdDelete">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="deleteFAQModalLabel">{{__('about.faq.delete_modal_title')}}</h5>
@@ -258,7 +260,7 @@
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" id="btnDelFaq" onclick="deleteFnc('faq')">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -272,15 +274,24 @@
 <script>
 
 var editModal; var modalToggle;
+var delModal; var modalDelToggle;
 var editModalFAQ; var modalToggleFAQ;
+var delModalFAQ; var modalDelToggleFAQ;
 
 
 
     $(document).ready(function(e){
         editModal = new bootstrap.Modal('#editTimelineModal', { keyboard: false    });
         modalToggle = document.getElementById("editTimelineModal");
+        //
         editModalFAQ = new bootstrap.Modal('#editFAQModal', { keyboard: false    });
         modalToggleFAQ = document.getElementById("editFAQModal");
+        //
+        delModalFAQ = new bootstrap.Modal('#deleteFAQModal', { keyboard: false    });
+        modalDelToggleFAQ = document.getElementById("deleteFAQModal");
+        //
+        delModal = new bootstrap.Modal('#deleteTimelineModal', { keyboard: false    });
+        modalDelToggle = document.getElementById("deleteTimelineModal");
     });
 
     function modalAddUp(id){
@@ -606,7 +617,69 @@ if(guardar == 1){
 
 }
 
+function openDelModal(type, id){
+    if(type == 'timeline'){
+        delModal.show(modalDelToggle);
+        document.getElementById("timelineIdDelete").value = id;
+    }else if(type == 'faq'){
+        delModalFAQ.show(modalDelToggleFAQ);
+        document.getElementById("faqIdDelete").value = id;
+    };
+}
 
+function deleteFnc(type){
+    console.log("##delete ::")
+    let modal = '';let idItem = '';let boton='';let paginaActual = '';let url='';
+    if(type == 'timeline'){
+        document.getElementById("btnDelTime").disabled = false;
+        modal = '';
+        idItem = document.getElementById('timelineIdDelete').value;
+        boton = 'btnDelTime';
+        paginaActual = document.getElementById('pageActual').value;
+    }else if(type == 'faq'){
+        document.getElementById("btnDelFaq").disabled = false;
+        modal = '';
+        idItem = document.getElementById('faqIdDelete').value;
+        boton = 'btnDelFaq';
+        paginaActual = document.getElementById('pageActualFAQ').value;
+    };
+
+    if(paginaActual == undefined ){paginaActual = 1;}
+
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    datos.append('_token', token);
+    datos.append('id', idItem);
+    datos.append('type', type);
+
+    $.ajax({
+                            type: 'POST',
+                            url: '/admin/aboutDel/',
+                            data: datos,
+                            contentType: false,
+                            cache: false,
+                            processData:false,
+                            beforeSend: function(){
+                                //$('.btnSaveFaq').attr("disabled","disabled");
+                                //$('#fupForm').css("opacity",".5");
+                            },
+                            success: function(msg){
+                                //localStorage.setItem('message', 'Timeline info was successfully saved');
+                                //window.location ='/admin/cities/';
+                                if(type == 'timeline'){
+                                    alert("The timeline entry was successfully delete");
+                                    delModal.hide(modalDelToggle);
+                                    url = '../../admin/about?page='+paginaActual;
+                                }else{
+                                    alert("The faq entry was successfully delete");
+                                    delModalFAQ.hide(modalDelToggleFAQ);
+                                    url = '../../admin/about?section=faq&page='+paginaActual;
+                                };
+                                console.log(url);
+                                window.location = url;
+                            }
+            });
+}
 
 
 
@@ -639,5 +712,9 @@ function paginatorFAQ(page){
             window.location = '../../admin/about/?pagef='+page+'&section=faq';
         };
     }
+
+
+
+
 </script>
 @endsection
