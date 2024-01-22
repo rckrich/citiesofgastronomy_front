@@ -20,33 +20,33 @@
 
     <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
-                <div class="p-lg-5 p-md-5 p-sm-3 p-3 title-xs bg-orange text-white text-center">
+            <div class="col-lg-4 col-md-5 col-sm-12 col-12 p-xl-5 p-lg-4 p-md-5 p-sm-3 p-3">
+                <div class="p-lg-4 p-md-4 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('initiatives.about_title')}}</b>
                 </div>
-                <div class="p-lg-5 p-md-5 p-sm-3 p-3 bg-gray text-left">
-                    <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_type')}}</b></p>
-                    <p class="py-2 text-white data">{{__('initiatives.lorem_type')}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_topics')}}</b></p>
-                    <p class="py-2 text-white data">{{__('initiatives.lorem_topics')}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_startdate')}}</b></p>
-                    <p class="py-2 text-white data">{{__('initiatives.lorem_startdate')}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_enddate')}}</b></p>
-                    <p class="py-2 text-white data">{{__('initiatives.lorem_enddate')}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_other')}}</b></p>
-                    <p class="py-2 text-white data">{{__('initiatives.lorem_other')}}</p>
-                    <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_sdg')}}</b></p>
-                    <p class="py-2 text-white data">{{__('initiatives.lorem_sdg')}}</p>
-                    <div class="pb-">
+                <div class="px-lg-5 py-lg-4 p-md-4 p-sm-3 p-3 bg-gray text-left">
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_type')}}</b></p>
+                    <p class="pb-2 mb-2 text-white data">{{__('initiatives.lorem_type')}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_topics')}}</b></p>
+                    <p class="pb-2 mb-2 text-white data">{{__('initiatives.lorem_topics')}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_startdate')}}</b></p>
+                    <p class="pb-2 mb-2 text-white data">{{__('initiatives.lorem_startdate')}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_enddate')}}</b></p>
+                    <p class="pb-2 mb-2 text-white data">{{__('initiatives.lorem_enddate')}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_other')}}</b></p>
+                    <p class="pb-2 mb-2 text-white data">{{__('initiatives.lorem_other')}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_sdg')}}</b></p>
+                    <p class="pb-2 mb-2 text-white data">{{__('initiatives.lorem_sdg')}}</p>
+                    <div class="pb-4">
                         <img src="{{asset('assets/img/number/2.png')}}" width="35" height="35"/>
                         <img src="{{asset('assets/img/number/4.png')}}" width="35" height="35"/>
                         <img src="{{asset('assets/img/number/6.png')}}" width="35" height="35"/>
                     </div>
-                    <p class="py-2 text-orange subtitle"><b>{{__('initiatives.data_author')}}</b></p>
-                    <p class="py-2 text-white data">{{__('initiatives.lorem_author')}}</p>
+                    <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_author')}}</b></p>
+                    <p class="pb-2 mb-2 text-white data">{{__('initiatives.lorem_author')}}</p>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
+            <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
                 <p class="py-2 data ">{{__('initiatives.lorem_text0')}}</p>
                 <p class="py-2 data ">{{__('initiatives.lorem_text1')}}</p>
                 <p class="py-2 data ">{{__('initiatives.lorem_text2')}}</p>
@@ -64,24 +64,24 @@
         <div class="row align-items-center mb-5">
         <div class="row mx-0 p-0 max-height-gallery" data-lightbox="gallery">
             
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 p-2">
                 <a class="grid-item" href="{{asset('storage/initiatives/news.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
+                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img" />
                 </a>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 p-2">
                 <a class="grid-item" href="{{asset('storage/initiatives/news.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
+                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img" />
                 </a>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 p-2">
                 <a class="grid-item" href="{{asset('storage/initiatives/news.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
+                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img" />
                 </a>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 p-2">
                 <a class="grid-item" href="{{asset('storage/initiatives/news.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
+                    <img src="{{asset('storage/initiatives/news.png')}}" alt="Gallery Image" class="gallery-img" />
                 </a>
             </div>
         </div>
@@ -91,7 +91,7 @@
 
     </div>
 
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center mx-auto">
         <div class="row align-items-center data-sm text-orange">
             <b class="col-auto pe-5">{{__('general.share')}}</b>
             <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
