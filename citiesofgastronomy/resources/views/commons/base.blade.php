@@ -146,10 +146,10 @@
                     <div class="row g-2">
                         <p>{{__('general.copyright')}}</p>
                         <div class="col-auto">
-                            <a href="{{route('landing.privacy_policy')}}">{{__('general.privacy_policy')}}</a>
+                            <a href="{{route('landing.privacy_policy')}}" target="_blank">{{__('general.privacy_policy')}}</a>
                         </div>
                         <div class="col-auto offset-3">
-                            <a href="{{route('landing.terms_conditions')}}">{{__('general.terms_of_use')}}</a>
+                            <a href="{{route('landing.terms_conditions')}}" target="_blank">{{__('general.terms_of_use')}}</a>
                         </div>
                     </div>
                 </div>
@@ -206,20 +206,20 @@
                      datos.append('newsletter', newsletter_email);
 
                 $.ajax({
-                                        type: 'POST',
-                                        url: '/newslettersave',
-                                        data: datos,
-                                        contentType: false,
-                                        cache: false,
-                                        processData:false,
-                                        beforeSend: function(){
-                                            $('.submitBtn').attr("disabled","disabled");
-                                        },
-                                        success: function(msg){
-                                            //window.location ='/admin/cities/';
-                                            alert("Thanks for subscribing");
-                                            document.getElementById("newsletterBTN").disabled = false;
-                                        }
+                        type: 'POST',
+                        url: '/newslettersave',
+                        data: datos,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        beforeSend: function(){
+                            $('.submitBtn').attr("disabled","disabled");
+                        },
+                        success: function(msg){
+                            //window.location ='/admin/cities/';
+                            alert("Thanks for subscribing");
+                            document.getElementById("newsletterBTN").disabled = false;
+                        }
                     });
                     //*/
             } else {

@@ -304,7 +304,7 @@ footer a{color: #fff;}
     padding: 1rem;
     padding-right: 2rem;
   }
-  .filters select.form-control, .filters button{font-family: 'Helvetica LT Std Black';font-size: 20px;}
+  .filters select.form-control, .filters button{font-family: 'Helvetica LT Std Black';font-size: 18px;}
   .filters button{width: 210px;}
 
 
@@ -384,8 +384,15 @@ footer a{color: #fff;}
 @media screen and (min-width: 992px) and (max-width:1200px){
     .gallery-img{height: 20vh!important;}
     #calendar .title-lg{font-size: 35px;}
-    #page_about .title-md, #about .title-md{font-size: 27px;}
-    #page_about .card-text, #about .card-text, #page_about ul li, #about ul li{font-size: 15px;}
+    #page_about .title-md, #num_stats .title-md{font-size: 27px;}
+    #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 15px;}
+    :not(#num_stats)>.banner-title .title-lg {font-size: 70px!important;line-height: 75px;}
+    .title-xl{font-size: 60px;}
+    .title-sm{font-size: 25px!important;}
+    #page_cities .card-img-top{height: 83px;}
+    .filters select.form-control, .filters button{font-size: 16px;}
+    .filters select {padding: .8rem;}
+
 }
 @media (min-width: 992px){
     .text-lg-left{text-align: left!important;}
@@ -421,6 +428,8 @@ footer a{color: #fff;}
     #show_city .banner-title-overlay{padding: 2rem!important;}
     #footerLogo{width: 200px;height: 53px;}
     .visible-icon{width: 30px!important; height: 20px!important;}
+    .filters select.form-control, .filters button{font-size: 16px;}
+    .filters select {padding: .8rem;}
 
 }
 @media (min-width: 768px) and (max-width:991px){
