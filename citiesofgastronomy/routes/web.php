@@ -95,7 +95,7 @@ Route::get('/admin/contact/{id}', [ContactController::class, 'contact_edit'])->n
 Route::get('/admin/main_site', [AdminController::class, 'main'])->name('admin.main');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');
-Route::get('/newsletter/DownloadVerify', [AdminController::class, 'newsletterDownloadVerify']);
+Route::post('/newsletter/DownloadVerify', [AdminController::class, 'newsletterDownloadVerify']);
 
 
 Route::post('/admin/addPDF', [AdminController::class, 'addPDF']);

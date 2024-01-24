@@ -449,7 +449,7 @@ class AdminController extends Controller
         $inputs["page"] = $page;
         return view('admin.newsletter', $inputs);
     }
-    public function newsletterDownload(Request $request)
+    public function newsletterDownloadVerify(Request $request)
     {
         $data_startdate = $request->input("data_startdate");
         $data_enddate = $request->input("data_enddate");
@@ -469,7 +469,7 @@ class AdminController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("Newsletter :::");
-        Log::info($res);
+        //Log::info($res);
         //$newsList = $res["newsletter"];
         //print_r( $res );
         //return Excel::download($res, 'Newletter.csv', \Maatwebsite\Excel\Excel::CSV);
