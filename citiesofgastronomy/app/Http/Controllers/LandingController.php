@@ -292,7 +292,7 @@ class LandingController extends Controller
     }
 
     public function terms_conditions(){
-                $url = config('app.apiUrl').'home';
+        $url = config('app.apiUrl').'home';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
