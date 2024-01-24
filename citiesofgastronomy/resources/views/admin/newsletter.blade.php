@@ -13,8 +13,7 @@
                 </div>
                 <div class="col-12 px-0 text-right row mx-0 py-2">
                     <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 ms-auto">
-                    <button class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#downloadCVSModal">{{__('admin.newsletter.btn_download')}}</buttton>
+                    <button class="btn btn-primary" onclick="openModal()">{{__('admin.newsletter.btn_download')}}</buttton>
                     </div>
                 </div>
             </div>
@@ -68,10 +67,15 @@
                 <div class="col-6 form-group py-2 ps-0">
                     <label class="form-label" for="data_startdate">{{__('admin.newsletter.data_startdate')}}</label>
                     <input type="date" id="data_startdate" name="data_startdate" class="form-control" placeholder="{{__('about.timeline.ph_startdate')}}"/>
+
+                    <div id="validation_timelinestartdate" class="invalid-feedback" style="display: none;">This field is required</div>
                 </div>
                 <div class="col-6 form-group py-2 pe-0">
                     <label class="form-label" for="data_enddate">{{__('admin.newsletter.data_enddate')}}</label>
                     <input type="date" id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('about.timeline.ph_enddate')}}"/>
+
+                    <div id="validation_timelineenddate" class="invalid-feedback" style="display: none;">This field is required</div>
+                    <div id="validation_timelineDateCompare" class="invalid-feedback" style="display: none;">Please select an End Date equal or after the Start Date</div>
                 </div>
             </div>
         </div>
@@ -84,6 +88,14 @@
   </div>
 </div>
 <script>
+
+var CSVModal; var modalToggle;
+
+$(document).ready(function(e){
+        CSVModal = new bootstrap.Modal('#downloadCVSModal', { keyboard: false    });
+        modalToggle = document.getElementById("downloadCVSModal");
+});
+
 
     function paginator(page){
         let paginatorCant = '<?= $paginator?>';
@@ -118,36 +130,95 @@
 
 
 
+    function openModal(){
+
+        document.getElementById("data_startdate").value = '';
+        document.getElementById("data_enddate").value = '';
+
+        document.getElementById("validation_timelinestartdate").style.display = 'none';
+        document.getElementById("validation_timelineenddate").style.display = 'none';
+        document.getElementById("validation_timelineDateCompare").style.display = 'none';
+
+        CSVModal.show(modalToggle);
+    }
+
+
+    var e;
 
 
 
     function downloadNews(){
+        document.getElementById("validation_timelinestartdate").style.display = 'none';
+        document.getElementById("validation_timelineenddate").style.display = 'none';
+        document.getElementById("validation_timelineDateCompare").style.display = 'none';
+
         let data_startdate = document.getElementById('data_startdate').value;
         let data_enddate = document.getElementById('data_enddate').value;
         let token = document.getElementsByName("_token")[0].value;
 
-        let datos = new FormData();
-        datos.append('_token', token);
-        datos.append('data_startdate', data_startdate);
-        datos.append('data_enddate', data_enddate);
+        let descargar = 1;
 
-        $.ajax({
-                            type: 'GET',
-                            url: '/newsletter/DownloadVerify',
-                            data: datos,
-                            contentType: false,
-                            cache: false,
-                            processData:false,
-                            beforeSend: function(){
-                                //$('.btnSaveFaq').attr("disabled","disabled");
-                                //$('#fupForm').css("opacity",".5");
-                            },
-                            success: function(msg){
-                                //url = '<?= config('app.apiUrl')?>newsletter/Download/;
-                                //console.log(url);
-                                //window.location = url;
-                            }
-        });
+        if(!data_startdate){
+            document.getElementById("validation_timelinestartdate").style.display = 'block';
+            descargar = 2;
+            console.log("#falta f ini");
+        };
+        if(!data_enddate){
+            document.getElementById("validation_timelineenddate").style.display = 'block';
+            descargar = 2;
+            console.log("#falta fin");
+        };
+
+        //comparar fechas
+        if(data_startdate && data_enddate){
+            var f1 = new Date(data_startdate);
+            var f2 = new Date(data_enddate);
+
+            console.log("f1 > f2");
+            console.log(f1 > f2);
+            if(f1 > f2){
+                document.getElementById("validation_timelineDateCompare").style.display = 'block';
+                descargar = 2;
+            };
+        };
+
+        if(descargar == 1){
+            let datos = new FormData();
+            datos.append('_token', token);
+            datos.append('data_startdate', data_startdate);
+            datos.append('data_enddate', data_enddate);
+
+            console.log("::dOWN");
+
+            $.ajax({
+                                type: 'POST',
+                                url: '/newsletter/DownloadVerify',
+                                data: datos,
+                                contentType: false,
+                                cache: false,
+                                processData:false,
+                                beforeSend: function(){
+                                    //$('.btnSaveFaq').attr("disabled","disabled");
+                                    //$('#fupForm').css("opacity",".5");
+                                },
+                                success: function(msg){
+                                    url = '<?= config('app.apiUrl')?>newsletter/Download?data_startdate='+data_startdate+'&data_enddate='+data_enddate;
+                                    e = JSON.parse(msg);
+                                    //console.log(msg);
+                                    //console.log(e);
+                                    console.log(e["newsletter"].length);
+                                    console.log(url);
+                                    if(e["newsletter"].length == 0){
+                                            alert("No emails found on this date");
+                                    }else{
+                                        console.log("Si hay mails");
+                                        CSVModal.hide(modalToggle);
+                                        //window.location = url;
+                                        window.open(url, '_blank');
+                                    };
+                                }
+            });
+        };
     }
 </script>
 @endsection
