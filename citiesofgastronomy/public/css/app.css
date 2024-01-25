@@ -114,7 +114,7 @@ a .text-white{color: #fff!important;}
     display: inline-block;
     text-align: center;
 }
-.btn-link{font: normal normal bold 21px/20px 'Helvetica LT Std Black'; text-decoration: none;}
+.btn-link{font-size:18px; font-family: 'Helvetica LT Std Black'; text-decoration: none;}
 
 .btn-primary{width:230px;height:70px;line-height: 50px!important;}
 .btn-secondary,.btn-outline-primary{width:124px;height:40px;line-height: 25px!important;}
@@ -140,6 +140,9 @@ a .text-white{color: #fff!important;}
 .navbar .form-control,.navbar .input-group-text{background-color: #1D1D1D;border: none;color: #fff;}
 .navbar .form-control:focus{box-shadow: 0 0 0 0.25rem rgba(35, 35, 35, 0.25);}
 .nav-link-sm{text-decoration: none;}
+.btn-link:hover{text-decoration: underline;}
+.img-link{ background-color: #000;}
+.img-link:hover .card-img-top{opacity: 0.5;}
 
 /*CARDS*/
 .card-link{text-decoration: none!important;}
@@ -328,7 +331,7 @@ footer a{color: #fff;}
     padding: 1rem;
     padding-right: 2rem;
   }
-  .filters select.form-control, .filters button{font-family: 'Helvetica LT Std Black';font-size: 18px;}
+  .filters select.form-control, .filters button{font-family: 'Helvetica LT Std Black';font-size: 14px;}
   .filters button{width: 210px;}
 
 
@@ -416,6 +419,7 @@ footer a{color: #fff;}
 }
 @media screen and (min-width:1201px){
     .p-xl-5{padding: 3rem!important;}
+    .pt-xl-4 {padding-top: 1.5rem!important;}
 }
 @media screen and (min-width: 992px) and (max-width:1200px){
     .container, .container-lg, .container-md, .container-sm {
@@ -430,6 +434,10 @@ footer a{color: #fff;}
     .title-xl{font-size: 60px;}
     .title-sm{font-size: 25px!important;}
     #page_cities .card-img-top{height: 83px;}
+    #page_contact .icon-social.fb{width: 20px; height: 20px;}
+    #page_contact .icon-social.in{width: 18.4px; height: 18p.4x;}
+    #page_contact .icon-social.tw{width: 15.2px; height: 18.4px;}
+    #page_contact .icon-social.lin{width: 16.8px; height: 16.8px;}
 }
 @media (min-width: 992px){
     .text-lg-left{text-align: left!important;}

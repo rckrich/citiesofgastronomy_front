@@ -733,7 +733,7 @@
         </div>
         </div>
     </section>
-    <!--section id="initiatives" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
+    <section id="initiatives" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
         <div class="container py-lg-5 py-md-5 py-sm-3 py-3">
             <div class="row align-items-center mb-5">
                 <div class="col-6 pe-0">
@@ -823,7 +823,7 @@
             </div>
         </div>
     </section>
-    <section id="news" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
+    <section id="news" class="p-lg-5 p-md-5 pt-md-3 p-sm-3 p-3 selectable-text-area">
         <div class="container py-lg-5 py-md-5 py-sm-3 py-3">
             <div class="row align-items-center mb-5">
                 <div class="col-6 pe-0">
@@ -913,7 +913,7 @@
             </div>
         </div>
     </section>
-    <section id="open_calls" class="p-lg-5 p-md-5 p-sm-3 p-3 selectable-text-area">
+    <section id="open_calls" class="p-lg-5 p-md-5 pt-md-3 p-sm-3 p-3 selectable-text-area">
         <div class="container py-lg-5 py-md-5 py-sm-3 py-3">
             <div class="row align-items-center mb-5">
                 <div class="col-6 pe-0">
@@ -1015,7 +1015,7 @@
         </div>
         </div>
 
-    </section-->
+    </section>
 
     <script>
 

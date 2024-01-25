@@ -32,7 +32,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end pe-lg-4 pe-0" id="navbarNav">
             <ul class="navbar-nav text-center">
                 <li id="nav_index" class="nav-item {{ request()->routeIs('landing.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.index')}}">{{__('general.nav_index')}}</a>
