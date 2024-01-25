@@ -13,7 +13,9 @@
                 </div>
                 <div class="col-12 px-0 text-right row mx-0 py-2">
                     <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 ms-auto">
-                    <button class="btn btn-primary" onclick="openModal()">{{__('admin.newsletter.btn_download')}}</buttton>
+                    <button class="btn btn-primary" onclick="openModal()"<?php
+                            if( count($maillist) == 0){     echo ' disabled';    };
+                    ?>>{{__('admin.newsletter.btn_download')}}</buttton>
                     </div>
                 </div>
             </div>
