@@ -32,40 +32,39 @@
             </div>
         </div>
 
-        @include('commons.work_in_progress')
+        <!--include('commons.work_in_progress')-->
 
-
-        <!--div class="container px-5 pt-5 filters">
-        <div class="row g-4 px-5">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+        <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1">
                 <div class="form-group">
                     <select class="form-control">
                         <option id="filter-" name="filter-" value="0">Category</option>
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1">
                 <div class="form-group">
                     <select class="form-control">
                         <option id="filter-" name="filter-" value="0">City</option>
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1">
                 <div class="form-group">
                     <select class="form-control">
                         <option id="filter-" name="filter-" value="0">Chef Name</option>
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 ps-lg-1 pe-lg-2 px-md-1 px-sm-1 px-1">
                 <button class="btn btn-info w-100 h-100">Filter posts</button>
             </div>
         </div>
         </div>
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-        <div class="row g-4 px-5">
+        <div class="row g-4">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
                         <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
@@ -118,7 +117,7 @@
 
 
             </div>
-        </div-->
+        </div>
 
     </section>
 @endsection

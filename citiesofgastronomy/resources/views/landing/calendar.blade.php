@@ -32,6 +32,7 @@
         </div>
 
         @include('commons.work_in_progress')
+        <!--include('commons.work_in_progress')-->
 
         <!--div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row align-items-center mb-5">

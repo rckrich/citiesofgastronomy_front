@@ -57,9 +57,9 @@ body{background-color: #000;color:#fff;}
 .title-sm{font-size: 40px;}
 .title-xs,.card-title{font-size: 20px;}
 .card-text{font-size: 15px;}
-.subtitle{font-size: 25px; line-height: 28px;}
+.subtitle{font-size: 20px; line-height: 24px;}
 .subtitle-md{font-size: 24px;}
-.data{font-size: 22px;}
+.data{font-size: 18px;}
 .data-sm{font-size: 20px;}
 .nav-link-sm{font-size: 14px;}
 .title-xs{font-family: 'Calibri'}
@@ -67,8 +67,6 @@ p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: '
 .activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
 #page_about .title-md, #num_stats .title-md{font-size: 32px;}
 #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 17px;}
-#show_city .subtitle,#show_initiative .subtitle{font-size: 20px; line-height: 24px;}
-#show_city .data,#show_initiative .data{font-size: 18px;}
 .accordion-body{font-size: 14px;}
 
 
@@ -462,12 +460,10 @@ footer a{color: #fff;}
     .title-md{font-size: 28px!important;}
     .title-sm{font-size: 25px!important;}
     .title-xs,.card-title{font-size: 20px!important;}
-    .subtitle{font-size: 20px!important;}
+    .subtitle{font-size: 17px!important;}
     .subtitle-md{font-size: 18px!important;}
-    .data{font-size: 18px!important;line-height: 20px;}
+    .data{font-size: 15px!important;line-height: 18px;}
     .data-sm{font-size: 16px!important;}
-    #show_city .subtitle,#show_initiative .subtitle{font-size: 17px!important;}
-    #show_city .data,#show_initiative .data{font-size: 15px!important; line-height: 18px!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size:70px!important;line-height: 75px;}
     #num_stats .banner-title, #num_stats .banner-title-overlay {height: 250px;}
     #num_stats .banner-title-overlay {padding: 4rem!important;}
@@ -520,9 +516,8 @@ footer a{color: #fff;}
     .title-md{font-size: 28px!important;}
     .title-sm{font-size: 25px!important;}
     .title-xs,.card-title{font-size: 20px!important;}
-    .subtitle{font-size: 20px!important;}
+
     .subtitle-md{font-size: 18px!important;}
-    .data{font-size: 18px!important;line-height: 20px;}
     .data-sm{font-size: 16px!important;}
     :not(#num_stats)>.banner-title .title-lg{font-size:60px!important;line-height: 60px;}
     #num_stats .banner-title, #num_stats .banner-title-overlay, .banner-title-overlay, 

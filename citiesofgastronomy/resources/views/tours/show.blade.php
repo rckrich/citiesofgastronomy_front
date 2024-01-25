@@ -4,8 +4,8 @@
 
 @section('content')
 <section id="show_tour">
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-        <div class="my-5 row px-0 mx-0 align-items-start">
+    <div class="container p-lg-5 p-md-5 pb-md-3 p-sm-3 p-3">
+        <div class="my-5 row px-0 mx-0 align-items-center">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h5 class="title-sm mb-4">{{__('tours.lorem_title')}}</h5>
                 <h6 class="data-sm py-2">{{__('tours.lorem_desc')}}</h6>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
+    <div class="container p-lg-5 p-md-5 py-md-3 p-sm-3 p-3">
         <div class="row align-items-center mb-5">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h1 class="title-xl">{{__('general.gallery')}}</h1>
@@ -64,7 +64,7 @@
 
     </div>
 
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center mx-auto">
         <div class="row align-items-center data-sm text-orange pb-5">
             <b class="col-auto pe-5">{{__('general.share')}}</b>
             <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
