@@ -35,10 +35,10 @@
             </div>
         </div>
 
-        @include('commons.work_in_progress')
+        <!--include('commons.work_in_progress')-->
 
-        <!--div class="container px-5 pt-5 filters">
-        <div class="row g-4 px-5">
+        <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
+        <div class="row g-4">
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 me-auto">
                 <div class="form-group">
                     <select class="form-control">
@@ -46,14 +46,14 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 ms-auto">
+            <div class="col-lg-2 col-md-6 col-sm-6 col-6 ms-auto">
                 <button class="btn btn-info w-100 h-100">Filter posts</button>
             </div>
         </div>
         </div>
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-        <div class="row g-4 px-5">
+        <div class="row g-4">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
                         <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
@@ -105,7 +105,7 @@
 
 
             </div>
-        </div-->
+        </div>
 
 
     </section>

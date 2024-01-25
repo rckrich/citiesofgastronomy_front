@@ -4,8 +4,8 @@
 
 @section('content')
 <section id="show_tastierlife">
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
-        <div class="my-5 row px-0 mx-0 align-items-start">
+    <div class="container p-lg-5 p-md-5 pb-md-3 p-sm-3 p-3">
+        <div class="my-5 row px-0 mx-0 align-items-center">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h5 class="title-sm mb-4">{{__('tastier_life.lorem_title')}}</h5>
                 <h6 class="data-sm py-2">{{__('tastier_life.lorem_desc')}}</h6>
@@ -28,63 +28,63 @@
         </div>
     </div>
 
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
+    <div class="container p-lg-5 p-md-5 py-md-3 p-sm-3 p-3">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
-                <div class="p-lg-5 p-md-5 p-sm-3 p-3 title-xs bg-orange text-white text-center">
+            <div class="col-lg-4 col-md-5 col-sm-12 col-12 p-xl-5 pt-xl-4 p-lg-4 p-md-5 pt-md-3 p-sm-3 p-3">
+                <div class="p-lg-4 p-md-4 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('tastier_life.about_title')}}</b>
                 </div>
                 <div class="bg-gray text-left row px-3 py-5 mx-0">
-                    <div class="row px-0 mx-0">
+                    <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-2">
                             <img class="w-100" src="{{asset('assets/icons/Icon_Difficulty.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10">
-                            <p class="py-2 text-orange subtitle"><b>{{__('tastier_life.data_difficulty')}}</b></p>                    
-                            <p class="py-2 text-white data">{{__('tastier_life.lorem_difficulty')}}</p>
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                            <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_difficulty')}}</b></p>                    
+                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_difficulty')}}</p>
                         </div>
                     </div>                    
-                    <div class="row px-0 mx-0">
+                    <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-2">
                             <img class="w-100" src="{{asset('assets/icons/Icon_PrepTime.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10">
-                            <p class="py-2 text-orange subtitle"><b>{{__('tastier_life.data_preptime')}}</b></p>
-                            <p class="py-2 text-white data">{{__('tastier_life.lorem_preptime')}}</p>
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                            <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_preptime')}}</b></p>
+                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_preptime')}}</p>
                         </div>
                     </div>                  
-                    <div class="row px-0 mx-0">
+                    <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-2">
                             <img class="w-100" src="{{asset('assets/icons/Icon_TotalTime.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10">
-                            <p class="py-2 text-orange subtitle"><b>{{__('tastier_life.data_totaltime')}}</b></p>
-                            <p class="py-2 text-white data">{{__('tastier_life.lorem_totaltime')}}</p>
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                            <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_totaltime')}}</b></p>
+                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_totaltime')}}</p>
                         </div>
                     </div>                    
-                    <div class="row px-0 mx-0">
+                    <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-2">
                             <img class="w-100" src="{{asset('assets/icons/Icon_Servings.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10">
-                            <p class="py-2 text-orange subtitle"><b>{{__('tastier_life.data_servings')}}</b></p>
-                            <p class="py-2 text-white data">{{__('tastier_life.lorem_servings')}}</p>
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                            <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_servings')}}</b></p>
+                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_servings')}}</p>
                         </div>
                     </div>                    
-                    <div class="row px-0 mx-0">
+                    <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-2">
                             <img class="w-100" src="{{asset('assets/icons/Icon_Ingredients.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10">        
-                            <p class="py-2 text-orange subtitle"><b>{{__('tastier_life.data_ingredients')}}</b></p>
-                            <p class=" text-white data">{{__('tastier_life.lorem_ingredients1')}}</p>
-                            <p class=" text-white data">{{__('tastier_life.lorem_ingredients2')}}</p>
-                            <p class=" text-white data">{{__('tastier_life.lorem_ingredients3')}}</p>
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">        
+                            <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_ingredients')}}</b></p>
+                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_ingredients1')}}</p>
+                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_ingredients2')}}</p>
+                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_ingredients3')}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-6 col-sm-12 col-12 p-lg-5 p-md-5 p-sm-3 p-3">
+            <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
                 <p class="py-2 data ">{{__('tastier_life.lorem_text0')}}</p>
                 <p class="py-2 data ">{{__('tastier_life.lorem_text1')}}</p>
                 <p class="py-2 data ">{{__('tastier_life.lorem_text2')}}</p>
@@ -93,7 +93,7 @@
         </div>
     </div>
     
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
+    <div class="container p-lg-5 p-md-5 py-md-3 p-sm-3 p-3">
         <div class="row align-items-center mb-5">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h1 class="title-xl">{{__('general.gallery')}}</h1>
@@ -134,7 +134,7 @@
 
     </div>
 
-    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center">
+    <div class="container p-lg-5 p-md-5 p-sm-3 p-3 row align-items-center mx-auto">
         <div class="row align-items-center data-sm text-orange pb-5">
             <b class="col-auto pe-5">{{__('general.share')}}</b>
             <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
