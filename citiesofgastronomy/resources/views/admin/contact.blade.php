@@ -33,24 +33,20 @@
                         </tr>
                     </thead>
                     <tbody class="">
+                        <!-- -->
+                        @foreach($list as $item)
                         <tr class="align-items-center">
-                            <td class="col-8">Contact A Name</td>
+                            <td class="col-8">{{$item["name"]}}</td>
                             <td class="col-auto my-auto">
-                                <a class="btn btn-link" href="{{route('admin.contact_edit',['id'=>1])}}">{{__('contact.admin.btn_edit')}}</a>
-                            </td>                           
+                                <a class="btn btn-link" href="{{route('admin.contact_edit',['id'=>$item['id']])}}">{{__('contact.admin.btn_edit')}}</a>
+                            </td>
                             <td class="col-auto my-auto">
-                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteContactModal">{{__('admin.btn_delete')}}</button>
+                                <button class="btn btn-danger"  data-bs-toggle="modal"
+                                data-bs-target="#deleteContactModal">{{__('admin.btn_delete')}}</button>
                             </td>
                         </tr>
-                        <tr class="align-items-center">
-                            <td class="col-8">Contact A Name</td>
-                            <td class="col-auto my-auto">
-                                <a class="btn btn-link" href="{{route('admin.contact_edit',['id'=>1])}}">{{__('contact.admin.btn_edit')}}</a>
-                            </td>                           
-                            <td class="col-auto my-auto">
-                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteContactModal">{{__('admin.btn_delete')}}</button>
-                            </td>
-                        </tr>
+                        @endforeach
+                        <!-- -->
                     </tbody>
                 </table>
             </div>

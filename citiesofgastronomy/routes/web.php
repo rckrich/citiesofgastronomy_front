@@ -89,6 +89,7 @@ Route::post('/admin/aboutDel', [AboutController::class, 'aboutDel']);
 
 Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
 Route::get('/admin/contact/create', [ContactController::class, 'contact_new'])->name('admin.contact_new');
+Route::post('/admin/contact/save', [ContactController::class, 'save']);
 Route::get('/admin/contact/{id}', [ContactController::class, 'contact_edit'])->name('admin.contact_edit');
 
 

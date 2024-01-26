@@ -201,9 +201,40 @@ class AdminController extends Controller
         $inputs["stFAQ"] = $stFAQ;
         return view('admin.about', $inputs);
     }
-    public function contact()
+    public function contact(Request $request)
     {
-        return view('admin.contact');
+        $page = $request->input("page");
+
+        if(!$page){ $page=1;   };
+        $st = $request->input("st");
+        $search_box = $request->input("search_box");
+
+        $fields = array('search' => $search_box, 'page' => $page);
+
+        $fields_string = http_build_query($fields);
+
+        $url = config('app.apiUrl').'adminContacts';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        $inputs = [];
+        $inputs["total"] = $res["tot"];
+        $inputs["paginator"] = $res["paginator"];
+        $inputs["list"] = $res["contact"];
+        $inputs["search_box"] = $search_box;
+        $inputs["page"] = $page;
+        $inputs["st"] = $st;
+        //return view('admin.cities', $inputs);
+
+        return view('admin.contact', $inputs);
     }
     public function main()
     {
