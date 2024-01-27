@@ -10,7 +10,7 @@ return [
     'admin'=>[
         'title'=>'Manage Contacts',
         'search_ph'=>'Search Contact',
-        'btn_add'=>'ADD CONTACT',   
+        'btn_add'=>'ADD CONTACT',
         'btn_edit'=>'Edit',
 
         'delete_modal_title'=>'Do you want to delete?',
@@ -36,10 +36,10 @@ return [
         'ph_instagram'=>'Link',
         ''=>'',
         ''=>'',
-        
+
     ],
     'edit' => [
-        'title'=>'Edit city info',
+        'title'=>'Edit contact info',
         'data_name'=>'Name:',
         'ph_name'=>'Contact A Name',
         'data_position'=>'Position:',
@@ -55,7 +55,7 @@ return [
         'data_instagram'=>'Instagram (optional):',
         'ph_instagram'=>'Link',
         ''=>'',
-        
+
     ],
 
 ];

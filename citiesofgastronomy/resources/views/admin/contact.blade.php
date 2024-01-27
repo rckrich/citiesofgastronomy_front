@@ -24,6 +24,9 @@
                 </div>
             </div>
             <div class="row mx-0 pt-4">
+                <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
+                    Contact was successfully created
+                </div>
                 <table class="table table-fixed">
                     <thead class="">
                         <tr>
@@ -71,4 +74,20 @@
     </div>
   </div>
 </div>
+
+<script>
+    let message = localStorage.getItem('contactMessage');
+        console.log("##message");
+        console.log(message);
+        if(message){
+            console.log("Local Storage DELETE");
+                localStorage.removeItem('contactMessage');
+                document.getElementById('alertMessage').innerHTML = message;
+                document.getElementById('alertMessage').style.display = 'block';
+                setTimeout(() => {
+                    console.log("Delayed for 1 second.");
+                    document.getElementById('alertMessage').style.display = 'none';
+                },5000);
+        };
+</script>
 @endsection
