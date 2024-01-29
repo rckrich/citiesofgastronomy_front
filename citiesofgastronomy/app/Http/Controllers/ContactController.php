@@ -109,4 +109,31 @@ class ContactController extends Controller
         //Log::info($res);
         return redirect( "admin/contact" );
     }
+
+
+    public function delete($id){
+        $url = config('app.apiUrl').'contact/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+        //*/
+
+        //Log::info($data);
+
+        if($data == ''){
+            return redirect( "/admin/contact" )->with('error', 'There was an unexpected error, please try again');
+        }else{
+            return redirect( "/admin/contact" );
+        };//*/
+
+
+    }
+
+
+
+
 }

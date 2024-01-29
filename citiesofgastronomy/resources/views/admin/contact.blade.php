@@ -11,10 +11,17 @@
                 </div>
                 <div class="col-12 px-0 text-right row mx-0 py-2">
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                        <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('contact.admin.search_ph')}}" aria-label="{{__('contact.admin.search_ph')}}" aria-describedby="basic-addon1">
-                    </div>
+                        <form action="/admin/contact" method="POST" id="searchForm" class="input-group">
+                            @csrf
+                            <span class="input-group-text" id="basic-addon1" onclick="resetPageAndSearch()">
+                                <img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
+                            <input id="search_box" name="search_box" class="form-control me-2 search" type="search"
+                                placeholder="{{__('contact.admin.search_ph')}}" aria-label="{{__('contact.admin.search_ph')}}"
+                                aria-describedby="basic-addon1" value="<?= $search_box?>">
+                            <input type="hidden" id="page" name="page" value="{{$page}}">
+                            <input type="hidden" id="pageActual" value="{{$page}}">
+                            <input type="hidden" id="st" name="st" value="{{$st}}">
+                        </form>
                     </div>
                 </div>
                 <div class="col-12 px-0 py-2">
@@ -24,9 +31,16 @@
                 </div>
             </div>
             <div class="row mx-0 pt-4">
+
                 <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
-                    Contact was successfully created
+                    Contact was successfully
                 </div>
+                @if (session()->has('error'))
+                <div class="alert alert-danger" role="alert" id="alertMessageAlert" style="display:none">
+                    There was an unexpected error, please try again
+                </div>
+                @endif
+
                 <table class="table table-fixed">
                     <thead class="">
                         <tr>
@@ -45,13 +59,23 @@
                             </td>
                             <td class="col-auto my-auto">
                                 <button class="btn btn-danger"  data-bs-toggle="modal"
-                                data-bs-target="#deleteContactModal">{{__('admin.btn_delete')}}</button>
+                                data-bs-target="#deleteContactModal" onclick="modalDel({{$item['id']}})">{{__('admin.btn_delete')}}</button>
                             </td>
                         </tr>
                         @endforeach
                         <!-- -->
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" onclick="paginator('prev')">Previous</a></li>
+                        @for($i=1;$i < $paginator +1; $i++)
+                        <li class="page-item"><a class="page-link" onclick="paginator('<?= $i?>')"><?= $i?></a></li>
+                        @endfor
+                        <li class="page-item"><a class="page-link" onclick="paginator('next')">Next</a></li>
+
+                    </ul>
+                </nav>
             </div>
         </div>
     </section>
@@ -69,18 +93,25 @@
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="delContact()">{{__('admin.btn_delete')}}</button>
       </div>
+      <input type="hidden" id="id_del_contact">
     </div>
   </div>
 </div>
 
 <script>
-    let message = localStorage.getItem('contactMessage');
-        console.log("##message");
-        console.log(message);
+    <?php if (session()->has('error')){?>
+        localStorage.removeItem('contactMessage');
+
+                document.getElementById('alertMessageAlert').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('alertMessageAlert').style.display = 'none';
+                },5000);
+
+    <?php }else{?>
+        let message = localStorage.getItem('contactMessage');
         if(message){
-            console.log("Local Storage DELETE");
                 localStorage.removeItem('contactMessage');
                 document.getElementById('alertMessage').innerHTML = message;
                 document.getElementById('alertMessage').style.display = 'block';
@@ -89,5 +120,101 @@
                     document.getElementById('alertMessage').style.display = 'none';
                 },5000);
         };
+    <?php }?>
+
+        function delContact(){
+            let id = document.getElementById('id_del_contact').value;
+            localStorage.setItem('contactMessage', 'The contact info was successfully deleted');
+            window.location = '/admin/ContactDelete/'+id;
+        }
+        function modalDel(id){
+            document.getElementById('id_del_contact').value = id;
+        }
+
+
+
+        const $elementos = document.querySelectorAll(".search");
+
+        $elementos.forEach(elemento => {
+            elemento.addEventListener("keydown", (evento) => {
+                if (evento.key == "Enter") {
+                    // Prevenir
+                    evento.preventDefault();
+                    resetPageAndSearch();
+                    return false;
+                }
+            });
+        });
+
+
+
+
+
+
+
+        function searchBox(){
+            console.log("--> SUBMIT");
+
+            let idST = '';let box = '';
+            let page = document.getElementById('page').value;
+
+            box = document.getElementById('search_box').value;
+                if(box != ''){
+                    document.getElementById("searchForm").submit();
+                }else{
+                        window.location = '../../admin/contact?page='+page;
+                };
+        }
+
+
+
+
+
+        function resetPageAndSearch(){
+            document.getElementById('page').value = '1';
+            searchBox();
+        }
+
+
+
+
+
+//////////////////////////////////////////////
+
+    function paginator(page){
+        let search = document.getElementById('search_box').value;
+        let paginatorCant = '<?= $paginator?>';
+        paginatorCant = parseInt(paginatorCant);
+        //search_box
+        //console.log("-->PAG");
+        let paginaActual = document.getElementById('pageActual').value;
+        paginaActual= parseInt(paginaActual);
+        if (search != ''){
+            paginaActual = document.getElementById('page').value;
+            paginaActual= parseInt(paginaActual);
+        };
+
+        let nada = '';
+        if(page == 'prev' || page == 'next'){
+                //console.log("#0");
+            if(page == 'next' && paginaActual != paginatorCant){
+                page = paginaActual + 1;
+                //console.log("#1");
+            }else if(page == 'prev' && paginaActual > 1){
+                page = paginaActual - 1;
+                //console.log("#2");
+            }else{
+                nada = 'si';
+            };
+        }else{
+            page= parseInt(page);
+        };
+        console.log(paginaActual);
+        console.log(page);
+        if(nada == ''){
+            document.getElementById('page').value = page;
+            searchBox();
+        };
+    }
 </script>
 @endsection

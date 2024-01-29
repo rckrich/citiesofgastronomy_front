@@ -88,9 +88,11 @@ Route::post('/admin/faqSave', [AboutController::class, 'faqSave']);
 Route::post('/admin/aboutDel', [AboutController::class, 'aboutDel']);
 
 Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
+Route::post('/admin/contact', [AdminController::class, 'contact']);
 Route::get('/admin/contact/create', [ContactController::class, 'contact_new'])->name('admin.contact_new');
 Route::post('/admin/contact/save', [ContactController::class, 'save']);
 Route::get('/admin/contact/{id}', [ContactController::class, 'contact_edit'])->name('admin.contact_edit');
+Route::get('/admin/ContactDelete/{id}', [ContactController::class, 'delete']);
 
 
 Route::get('/admin/main_site', [AdminController::class, 'main'])->name('admin.main');

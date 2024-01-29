@@ -201,9 +201,14 @@ class AdminController extends Controller
         $inputs["stFAQ"] = $stFAQ;
         return view('admin.about', $inputs);
     }
+
+
+
+
     public function contact(Request $request)
     {
         $page = $request->input("page");
+        Log::info("#PAGE: ".$page);
 
         if(!$page){ $page=1;   };
         $st = $request->input("st");
@@ -224,6 +229,9 @@ class AdminController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
+
+        Log::info("#ADMIN Contact List");
+        //Log::info($res);
 
         $inputs = [];
         $inputs["total"] = $res["tot"];
