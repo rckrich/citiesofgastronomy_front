@@ -21,10 +21,11 @@ class ContactController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("CONTACT :: RESPONSE");
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["contact"] = ['id' => '', 'idCity'=>'', 'name'=>'', 'position'=>''];
+        $inputs["contactSocialNetwork"] = [];
         $inputs["continents"] = $res["continents"];
         $inputs["SocialNetworkType"] = $res["social"];
         $inputs["cities"] = $res["cities"];
@@ -60,7 +61,7 @@ class ContactController extends Controller
         $inputs["cities"] = $res["cities"];
         $inputs["id"] = $id;
 
-        //Log::info($res["contactSocialNetwork"]);
+        Log::info($res["contactSocialNetwork"]);
         //Log::info($res["social"]);
         //Log::info($res["contact"]);
 
