@@ -744,7 +744,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-1">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -763,7 +763,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-2">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -782,7 +782,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-3">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -801,7 +801,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-4">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -834,7 +834,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-1">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -853,7 +853,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-2">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -872,7 +872,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-3">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -891,7 +891,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-4">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/news.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -924,7 +924,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-1">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -943,7 +943,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-2">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -962,7 +962,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-3">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">
@@ -981,7 +981,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-4">
                     <div class="card">
                         <img src="{{asset('assets/img/Home/open_calls.png')}}" class="card-img-top" alt="...">
                         <div class="card-body px-0 bg-black text-white">

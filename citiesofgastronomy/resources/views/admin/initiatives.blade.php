@@ -37,13 +37,18 @@
                             </select>
                         </div>
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
-                            <select id="select_sdg_filter" class="form-control h-100">
+                            <select id="select_topic_filter" class="form-control h-100">
                                 <option>{{__('initiatives.init.select_topic')}}</option>
                             </select>
                         </div>
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
-                            <select id="select_sdg_filter" class="form-control h-100">
+                            <select id="select_connection_filter" class="form-control h-100">
                                 <option>{{__('initiatives.init.select_connection')}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                            <select id="select_activity_filter" class="form-control h-100">
+                                <option>{{__('initiatives.init.select_activity')}}</option>
                             </select>
                         </div>
 

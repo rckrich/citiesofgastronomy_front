@@ -107,6 +107,7 @@ return [
         'select_sdg'=>'All SDG',
         'select_topic'=>'All Topics',
         'select_connection'=>'All Connections to Creative Fields',
+        'select_activity'=>'All Activity Types',
     ],
     'filters'=>[
         'title'=>'Filters',

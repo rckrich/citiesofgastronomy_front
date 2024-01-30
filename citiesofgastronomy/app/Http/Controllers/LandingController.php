@@ -236,11 +236,28 @@ class LandingController extends Controller
     }
     public function search(Request $request)
     {
+        $url = config('app.apiUrl').'home';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+        $res = json_decode( $data, true);
+        //Log::info("DAtta Result-- ::");
+
         $inputs = [];
-        $inputs["SocialNetworkType"] = [];
-        $inputs["info"] = [];
+        $inputs["bannerAbout"] = $res["bannerAbout"];
+        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
+        //Log::info($inputs);
+        $inputs["cityList"] = $res["cities"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
+        $SocialNetworkType = $res["SocialNetworkType"];
+        $info = $res["info"];
+
         $keyword = $request->input('search_box');
-        return view('landing.search', compact('keyword'));
+        return view('landing.search', compact('keyword','inputs','info','SocialNetworkType'));
 
     }
     public function newsletter(Request $request)
@@ -268,7 +285,7 @@ class LandingController extends Controller
     }
 
     public function privacy_policy(){
-                $url = config('app.apiUrl').'home';
+        $url = config('app.apiUrl').'home';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
