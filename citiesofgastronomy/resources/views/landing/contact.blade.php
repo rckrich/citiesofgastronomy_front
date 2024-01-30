@@ -42,16 +42,17 @@
                             <h5 class="card-title mt-2 mb-4">{{ $city["name"] }}</h5>
                             <!-- -->
                             @foreach($city["contacts"] as $contact)
-                            <div class="mb-2">
+                            <div class="mb-3">
                                 <p class="card-text mb-0">{{ $contact["name"] }}</p>
                                 <p class="card-text mb-2">{{ $contact["position"] }}</p>
+                                @if(count($contact["social_network"])!=0)
                                 <div class="row align-items-end ">
-                                <div class="col-auto mx-auto mt-2 mb-4">
+                                <div class="col-auto mx-auto b-2">
                                     @foreach($contact["social_network"] as $social)
                                     <?php   $id = $social["idSocialNetworkType"];
                                             $soc = $social["social_network_type"];
                                     ?>
-                                    <a href="" class="px-lg-1 px-md-1 px-sm-2 px-2">
+                                    <a href="" class="px-lg-1 px-md-1 px-sm-2 px-2 icon-link">
                                             <img class="icon-social {{$cls[$id]}} " src="{{asset('assets/icons/'.$soc[0]['icon'])}}"
                                                 height="25" width="25"/>
                                     </a>
@@ -61,6 +62,7 @@
                                     @endforeach
                                 </div>
                                 </div>
+                                @endif
                             </div>
                             @endforeach
                             <!-- -->

@@ -62,7 +62,7 @@
                     <a class="nav-link" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                 </li>
             </ul>
-            <!--
+            
                 <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
                     @csrf
                     @method('POST')
@@ -71,7 +71,7 @@
                         <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
                     </div>
                 </form>
-            -->
+            
 
         </div>
 
