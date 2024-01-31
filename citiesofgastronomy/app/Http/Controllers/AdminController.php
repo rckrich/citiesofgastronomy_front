@@ -133,9 +133,50 @@ class AdminController extends Controller
         return $data;
     }
 
-    public function initiatives()
+    public function initiatives(Request $request)
     {
-        return view('admin.initiatives');
+        $page = $request->input("page");
+        Log::info("#PAGE: ".$page);
+
+        if(!$page){ $page=1;   };
+        $st = $request->input("st");
+        $search_box = $request->input("search_box");
+
+        $fields = array('search' => $search_box, 'page' => $page);
+
+        $fields_string = http_build_query($fields);
+        Log::info(config('app.apiUrl'));
+
+        $url = config('app.apiUrl').'initiatives';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        Log::info("#ADMIN INITIATIVE List");
+        //Log::info($res);
+
+        $inputs = [];
+        $inputs["total"] = $res["tot"];
+        $inputs["paginator"] = $res["paginator"];
+        $inputs["list"] = $res["initiatives"];
+        $inputs["search_box"] = $search_box;
+        $inputs["page"] = $page;
+        $inputs["st"] = $st;
+
+        $inputs["section"] = $request->input("section");
+        $inputs["sub"] = $request->input("sub");
+
+        $inputs["typeOfActivity"] = $res["typeOfActivity"];
+        //return view('admin.cities', $inputs);
+
+        return view('admin.initiatives', $inputs);
     }
 
     public function tastier_life()

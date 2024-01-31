@@ -36,13 +36,13 @@ class InitiativesController extends Controller
     {
         return view('initiatives.edit');
     }
-    public function typeOfActivity_save()
+    public function typeOfActivity_save(Request $request)
     {
         $id = $request->input("id");
-        $answer = $request->input("answer");
+        $name = $request->input("name");
         $dattaSend = [
             'id' => $id,
-            'faq' => $faq
+            'name' => $name
         ];
 
         $url = config('app.apiUrl').'typeOfActivity/store';
