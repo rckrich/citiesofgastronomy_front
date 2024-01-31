@@ -64,6 +64,15 @@
                         </tr>
                         @endforeach
                         <!-- -->
+
+                        @if( count($list) == 0)
+                            <tr class="align-items-center">
+                                    <td class="col-8">No results found</td>
+                                    <td class="col-auto"></td>
+                                    <td class="col-auto"></td>
+                                    <td class="col-auto"></td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
                 <nav aria-label="Page navigation example">
