@@ -3,6 +3,7 @@
 @extends('commons.admin_base')
 
 @section('content')
+@csrf
 <section id="admin_initiatives">
     <ul class="nav nav-pills mb-3 px-5 pt-5 pb-4" id="pills-tab-initiatives" role="tablist">
         <li class="nav-item" role="presentation">
@@ -147,10 +148,14 @@
 <script>
 
 var editModal_type; var modalToggle_type;
+var editModal_topic; var modalToggle_topic;
 
     $(document).ready(function(e){
         editModal_type = new bootstrap.Modal('#editActivityModal', { keyboard: false    });
         modalToggle_type = document.getElementById("editActivityModal");
+        //
+        editModal_topic = new bootstrap.Modal('#editTopicModal', { keyboard: false    });
+        modalToggle_topic = document.getElementById("editTopicModal");
         //
     });
 </script>

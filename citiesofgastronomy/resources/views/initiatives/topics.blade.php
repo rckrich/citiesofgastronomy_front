@@ -28,15 +28,17 @@
                 </tr>
             </thead>
             <tbody class="">
+                @foreach($Topics as $item)
                 <tr class="align-items-center">
-                    <td class="col-8">Academic | Scientific</td>
+                    <td class="col-8">{{$item["name"]}}</td>
                     <td class="col-auto my-auto">
                         <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editTopicModal">{{__('initiatives.btn_edit')}}</button>
-                    </td>                             
+                    </td>
                     <td class="col-auto my-auto">
                         <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTopicModal">{{__('admin.btn_delete')}}
                     </button></td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -47,21 +49,24 @@
 <div class="modal fade" id="editTopicModal" tabindex="-1" aria-labelledby="editTopicModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
+        <input type="hidden" id="data_topic_id">
         <div class="modal-header b-none px-4">
             <h5 class="modal-title" id="createActivityModalLabel">{{__('initiatives.filters.topic.create_modal_title')}}</h5>
             <h5 class="modal-title" id="editTopicModalLabel">{{__('initiatives.filters.topic.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
+        </div>
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
-                <label class="form-label" for="data_title">{{__('initiatives.filters.topic.data_type')}}</label>
-                <input id="data_title" name="data_title" class="form-control" placeholder="{{__('initiatives.filters.topic.ph_type')}}"/>
-            </div>   
+                <label class="form-label" for="data_topic_name">{{__('initiatives.filters.topic.data_type')}}</label>
+                <input id="data_topic_name" name="data_topic_name" class="form-control" placeholder="{{__('initiatives.filters.topic.ph_type')}}"/>
+
+                <div id="validation_data_topic_name" class="invalid-feedback">Obligatory field</div>
+            </div>
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto" id="topic_btn" onclick="saveTopic()">{{__('admin.btn_create')}}</buttton>
         </div>
         </form>
     </div>
@@ -86,3 +91,60 @@
     </div>
   </div>
 </div>
+<script>
+    function openModal_type(){
+    editModal_type.show(modalToggle_type);
+}
+
+function saveTopic(){
+        console.log("#-> ingresa al SAVE");
+        let guardar = 1;
+        document.getElementById("topic_btn").disabled = true;
+
+        //reseteo todas las leyendas de validaciones
+        document.getElementById("validation_data_topic_name").style.display = 'none';
+
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("data_topic_id").value;
+        datos.append('id', data_id);
+        let data_name = document.getElementById("data_topic_name").value;
+        datos.append('name', data_name);
+
+
+        //if(false){
+            let id1 = '';
+        if(data_name){
+            $.ajax({
+                                    type: 'POST',
+                                    url: '/admin/initiatives/topic/store',
+                                    data: datos,
+                                    contentType: false,
+                                    cache: false,
+                                    processData:false,
+                                    beforeSend: function(){             },
+                                    success: function(msg){
+
+                                        document.getElementById("topic_btn").disabled = false;
+                                        editModal_type.hide(modalToggle_type);
+
+                                        if(data_id){
+                                            alert("The topic entry was successfully edited");
+                                            //id1 = 'faqTittle'+data_id;
+                                            //document.getElementById(id1).innerHTML  = data_faq;
+                                        }else{
+                                            alert("The topic entry was successfully created");
+                                            window.location = '../../admin/initiatives?section=filters&sub=topics';
+                                        };
+                                    }
+                    });
+        }else{
+            document.getElementById("topic_btn").disabled = false;
+            document.getElementById("validation_data_topic_name").style.display = 'block';
+            editModal_type.hide(modalToggle_type);
+        };
+
+
+}
+</script>
