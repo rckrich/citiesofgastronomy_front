@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 px-0 py-2">
             <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-            <button class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#editTopicModal">{{__('initiatives.filters.topic.btn_add')}}</buttton>
+            <button class="btn btn-primary mx-auto" onclick="openModal_type()">{{__('initiatives.filters.topic.btn_add')}}</buttton>
             </div>
         </div>
     </div>
@@ -92,8 +92,14 @@
   </div>
 </div>
 <script>
-    function openModal_type(){
-    editModal_type.show(modalToggle_type);
+    function openModal_type(id){
+        editModal_topic.show(modalToggle_topic);
+        document.getElementById("topic_btn").disabled = false;
+        document.getElementById("validation_data_topic_name").style.display = 'none';
+        if(!id){
+            document.getElementById("data_topic_id").value = '';
+            document.getElementById("data_topic_name").value = '';
+        };
 }
 
 function saveTopic(){
@@ -127,7 +133,7 @@ function saveTopic(){
                                     success: function(msg){
 
                                         document.getElementById("topic_btn").disabled = false;
-                                        editModal_type.hide(modalToggle_type);
+                                        editModal_topic.hide(modalToggle_topic);
 
                                         if(data_id){
                                             alert("The topic entry was successfully edited");
@@ -142,7 +148,7 @@ function saveTopic(){
         }else{
             document.getElementById("topic_btn").disabled = false;
             document.getElementById("validation_data_topic_name").style.display = 'block';
-            editModal_type.hide(modalToggle_type);
+           // editModal_topic.hide(modalToggle_topic);
         };
 
 

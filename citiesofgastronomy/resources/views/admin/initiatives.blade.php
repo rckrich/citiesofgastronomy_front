@@ -89,13 +89,13 @@
                 </button>
             </li>
             <li class="nav-item py-2 px-3" role="presentation">
-                <button class="nav-link" id="pills-topics-tab" data-bs-toggle="pill" data-bs-target="#pills-topics" type="button" role="tab"
+                <button class="nav-link <?php if($sub=='topics'){echo ' active';}?>" id="pills-topics-tab" data-bs-toggle="pill" data-bs-target="#pills-topics" type="button" role="tab"
                 aria-controls="pills-topics" aria-selected="true">
                     {{__('initiatives.filters.tab_topic')}}
                 </button>
             </li>
             <li class="nav-item py-2 px-3" role="presentation">
-                <button class="nav-link" id="pills-sdg-tab" data-bs-toggle="pill" data-bs-target="#pills-sdg" type="button" role="tab"
+                <button class="nav-link <?php if($sub=='sdg'){echo ' active';}?>" id="pills-sdg-tab" data-bs-toggle="pill" data-bs-target="#pills-sdg" type="button" role="tab"
                 aria-controls="pills-sdg" aria-selected="true">
                     {{__('initiatives.filters.tab_sdg')}}
                 </button>
@@ -111,10 +111,10 @@
             <div class="tab-pane fade <?php if($sub==''){echo 'show active';}?>" id="pills-activityType" role="tabpanel" aria-labelledby="pills-activityType-tab">
                 @include('initiatives.activity_types')
             </div>
-            <div class="tab-pane fade" id="pills-topics" role="tabpanel" aria-labelledby="pills-topics-tab">
+            <div class="tab-pane fade <?php if($sub=='topics'){echo 'show active';}?>" id="pills-topics" role="tabpanel" aria-labelledby="pills-topics-tab">
                 @include('initiatives.topics')
             </div>
-            <div class="tab-pane fade" id="pills-sdg" role="tabpanel" aria-labelledby="pills-sdg-tab">
+            <div class="tab-pane fade <?php if($sub=='sdg'){echo 'show active';}?>" id="pills-sdg" role="tabpanel" aria-labelledby="pills-sdg-tab">
                 @include('initiatives.sdg')
             </div>
             <div class="tab-pane fade" id="pills-connections" role="tabpanel" aria-labelledby="pills-connections-tab">
@@ -149,6 +149,7 @@
 
 var editModal_type; var modalToggle_type;
 var editModal_topic; var modalToggle_topic;
+var editModal_sdg; var modalToggle_sdg;
 
     $(document).ready(function(e){
         editModal_type = new bootstrap.Modal('#editActivityModal', { keyboard: false    });
@@ -156,6 +157,9 @@ var editModal_topic; var modalToggle_topic;
         //
         editModal_topic = new bootstrap.Modal('#editTopicModal', { keyboard: false    });
         modalToggle_topic = document.getElementById("editTopicModal");
+        //
+        editModal_sdg = new bootstrap.Modal('#editSDGModal', { keyboard: false    });
+        modalToggle_sdg = document.getElementById("editSDGModal");
         //
     });
 </script>

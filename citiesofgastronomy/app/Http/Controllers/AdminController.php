@@ -175,6 +175,7 @@ class AdminController extends Controller
 
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];
+        $inputs["sdg"] = $res["sdg"];
         //return view('admin.cities', $inputs);
 
         return view('admin.initiatives', $inputs);
