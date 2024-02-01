@@ -68,6 +68,8 @@ Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name(
 Route::get('/admin/initiatives/create', [InitiativesController::class, 'initiatives_new'])->name('admin.initiatives_new');
 Route::get('/admin/initiatives/{id}', [InitiativesController::class, 'initiatives_edit'])->name('admin.initiatives_edit');
 Route::post('/admin/initiatives/typeOfActivity/store', [InitiativesController::class, 'typeOfActivity_save']);
+Route::post('/admin/initiatives/topic/store', [InitiativesController::class, 'topics_save']);
+Route::post('/admin/initiatives/sdg/store', [InitiativesController::class, 'sdg_save']);
 
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
 Route::get('/admin/tastier_life/recipe/create', [TastierLifeController::class, 'recipe_new'])->name('admin.recipe_new');
