@@ -88,6 +88,7 @@ return [
 
     'btn_subscribe' => 'Subscribe',
     'share'=>'Share on: ',
+    'clear_filters'=>'Clear Filters',
     
     'session' => [
         'logout' => 'Cerrar sesión',

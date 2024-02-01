@@ -13,6 +13,7 @@ $(document).ready(function () {
         bsCollapse.hide()
     });  
     $("#map").on("click", function(){toggleMapLink()})
+    $(".filter-select").on("change", function(){showResetFilterButton()})
     $("#search_box").keypress(function (e) {
       var key = e.which;
       if(key == 13)  // the enter key code
@@ -239,6 +240,19 @@ function toggleMapLink(){
     window.location.pathname = "/cities";
   }
 
+}
+
+function showResetFilterButton(){
+  $("#clear-filters-btn").removeClass("d-none")
+  $("#clear-filters-btn").addClass("d-block")
+}
+function resetFilters(){
+  $(".filter-select").prop('selectedIndex',0)
+  this.hideResetFilterButton()
+}
+function hideResetFilterButton(){
+  $("#clear-filters-btn").removeClass("d-block")
+  $("#clear-filters-btn").addClass("d-none")
 }
 
 function openEditMailModal(){

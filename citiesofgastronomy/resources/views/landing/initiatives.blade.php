@@ -37,41 +37,49 @@
         <div class="row g-6">
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option id="filter-" name="filter-" value="0">Cities</option>
+                    <select class="form-control filter-select">
+                        <option id="filter-0" name="filter-0" value="0">Cities</option>
+                        <option id="filter-1" name="filter-1" value="0">a city</option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option id="filter-" name="filter-" value="0">Type of Activity</option>
+                    <select class="form-control filter-select">
+                        <option id="filter-0" name="filter-0" value="0">Type of Activity</option>
+                        <option id="filter-1" name="filter-1" value="0">an activity</option>
+
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control">
+                    <select class="form-control filter-select">
                         <option id="filter-" name="filter-" value="0">Topics</option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control">
+                    <select class="form-control filter-select">
                         <option id="filter-" name="filter-" value="0">SDG</option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control">
+                    <select class="form-control filter-select">
                         <option id="filter-" name="filter-" value="0">Connection to other creative fields</option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 ps-lg-1 pe-lg-2 px-md-1 px-sm-1 px-1 my-3">
                 <button class="btn btn-info w-100 h-100">Filter posts</button>
+            </div>
+        </div>
+        <div id="clear-filters-btn" class="row d-none">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 mb-3">
+                <button class="btn btn-info w-100" onclick="resetFilters()">{{__('general.clear_filters')}}</button>
             </div>
         </div>
         </div>
