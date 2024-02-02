@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 px-0 py-2">
             <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-            <button class="btn btn-primary mx-auto" onclick="openModal_type()">{{__('initiatives.filters.topic.btn_add')}}</buttton>
+            <button class="btn btn-primary mx-auto" onclick="openModal_topic()">{{__('initiatives.filters.topic.btn_add')}}</buttton>
             </div>
         </div>
     </div>
@@ -92,7 +92,7 @@
   </div>
 </div>
 <script>
-    function openModal_type(id){
+    function openModal_topic(id){
         editModal_topic.show(modalToggle_topic);
         document.getElementById("topic_btn").disabled = false;
         document.getElementById("validation_data_topic_name").style.display = 'none';

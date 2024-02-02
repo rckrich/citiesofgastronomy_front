@@ -31,7 +31,28 @@ class InitiativesController extends Controller
     }
     public function initiatives_new()
     {
-        return view('initiatives.new');
+        $url = config('app.apiUrl').'initiatives/create';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        Log::info("#ADMIN INITIATIVE ");
+        //Log::info($res);
+
+        $inputs = [];
+
+        $inputs["citiesFilter"] = $res["citiesFilter"];
+        $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
+        $inputs["TopicsFilter"] = $res["TopicsFilter"];
+        $inputs["sdgFilter"] = $res["sdgFilter"];
+        $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
+
+        return view('initiatives.new', $inputs);
     }
     public function initiatives_edit()
     {

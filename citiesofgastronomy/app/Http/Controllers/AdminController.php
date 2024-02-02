@@ -163,19 +163,27 @@ class AdminController extends Controller
         //Log::info($res);
 
         $inputs = [];
+        $inputs["initiatives"] = $res["initiatives"];
+        //Total de registros encontrados
         $inputs["total"] = $res["tot"];
+        //Cantidad de paginas
         $inputs["paginator"] = $res["paginator"];
-        $inputs["list"] = $res["initiatives"];
+        //contenido del buscador
         $inputs["search_box"] = $search_box;
+        //pagina en la que estamos
         $inputs["page"] = $page;
         $inputs["st"] = $st;
 
+        //Seccion en la que nos encontramos (esta vacia en el caso de ser initiatives e = 'filters' para habilitar los filtros)
         $inputs["section"] = $request->input("section");
+        //Subsecciones de los filtros los valores que puede tomar esto es: topics, sdg
+        //si esta vacio se considera que esta en  "type of act" (falta definir el valor de conections to other)
         $inputs["sub"] = $request->input("sub");
 
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];
         $inputs["sdg"] = $res["sdg"];
+        $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
         //return view('admin.cities', $inputs);
 
         return view('admin.initiatives', $inputs);
