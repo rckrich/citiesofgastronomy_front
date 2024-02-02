@@ -34,31 +34,31 @@
         </div>
         <div class="collapse navbar-collapse justify-content-end pe-lg-4 pe-0" id="navbarNav">
             <ul class="navbar-nav text-center">
-                <li id="nav_index" class="nav-item {{ request()->routeIs('landing.index') ? 'active' : '' }}">
+                <li id="nav_index" class="nav-item my-auto {{ request()->routeIs('landing.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.index')}}">{{__('general.nav_index')}}</a>
                 </li>
-                <li id="nav_cities" class="nav-item {{ request()->routeIs('landing.cities') ? 'active' : '' }}">
+                <li id="nav_cities" class="nav-item my-auto {{ request()->routeIs('landing.cities') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.cities')}}">{{__('general.nav_cities')}}</a>
                 </li>
-                <li id="nav_about" class="nav-item {{ request()->routeIs('landing.about') ? 'active' : '' }}">
+                <li id="nav_about" class="nav-item my-auto {{ request()->routeIs('landing.about') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.about')}}">{{__('general.nav_about')}}</a>
                 </li>
-                <li id="nav_initiatives" class="nav-item {{ request()->routeIs('landing.initiatives') ? 'active' : '' }}">
+                <li id="nav_initiatives" class="nav-item my-auto {{ request()->routeIs('landing.initiatives') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.initiatives')}}">{{__('general.nav_initiatives')}}</a>
                 </li>
-                <li id="nav_initiatives" class="nav-item {{ request()->routeIs('landing.tastier_life') ? 'active' : '' }}">
+                <li id="nav_initiatives" class="nav-item my-auto {{ request()->routeIs('landing.tastier_life') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.tastier_life')}}">{{__('general.nav_tastier_life')}}</a>
                 </li>
-                <li id="nav_tours" class="nav-item {{ request()->routeIs('landing.tours') ? 'active' : '' }}">
+                <li id="nav_tours" class="nav-item my-auto {{ request()->routeIs('landing.tours') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.tours')}}">{{__('general.nav_tours')}}</a>
                 </li>
-                <li id="nav_stats" class="nav-item {{ request()->routeIs('landing.stats') ? 'active' : '' }}">
+                <li id="nav_stats" class="nav-item my-auto {{ request()->routeIs('landing.stats') ? 'active' : '' }}">
                     <a class="nav-link" target="_blank" href="https://drive.google.com/drive/folders/1b2TV7H4y8SwQZaSuAyAQ_AMn9ovczgIs?usp=drive_link">{{__('general.nav_stats')}}</a>
                 </li>
-                <li id="nav_calendar" class="nav-item {{ request()->routeIs('landing.calendar') ? 'active' : '' }}">
+                <li id="nav_calendar" class="nav-item my-auto {{ request()->routeIs('landing.calendar') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.calendar')}}">{{__('general.nav_calendar')}}</a>
                 </li>
-                <li id="nav_contact" class="nav-item {{ request()->routeIs('landing.contact') ? 'active' : '' }}">
+                <li id="nav_contact" class="nav-item my-auto {{ request()->routeIs('landing.contact') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                 </li>
             </ul>
@@ -66,7 +66,7 @@
                 <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
                     @csrf
                     @method('POST')
-                    <div class="input-group px-2">
+                    <div class="input-group px-2 mx-auto">
                         <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search.svg')}}"/></span>
                         <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
                     </div>

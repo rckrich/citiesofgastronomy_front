@@ -78,8 +78,10 @@
             </div>
         </div>
         <div id="clear-filters-btn" class="row d-none">
-            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 mb-3">
-                <button class="btn btn-info w-100" onclick="resetFilters()">{{__('general.clear_filters')}}</button>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 mb-3 text-left">
+                <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="resetFilters()">
+                    {{__('general.clear_filters')}}  X
+                </label>
             </div>
         </div>
         </div>

@@ -405,16 +405,22 @@ footer a{color: #fff;}
 }
 @media screen and (max-width: 1536px){
     #page_cities .card-img-top{height: 127px;}
+    #navbarLogo{width: 250px!important;height: 66px!important;}
+    .navbar-expand-lg .navbar-nav .nav-link{padding:.4rem;}
 }
 @media screen and (min-width: 1536px){
 .container{
     max-width: 100rem !important;
 }
+.nav-item {
+    padding-right: 1rem!important;
+    padding-left: 1rem!important;
+}
 }
 @media (min-width: 1420px){
     .nav-item {
-        padding-right: 1rem!important;
-        padding-left: 1rem!important;
+        padding-right: .6rem!important;
+        padding-left: .6rem!important;
     }
 }
 @media (max-width: 1400px){
@@ -422,10 +428,13 @@ footer a{color: #fff;}
     #page_cities .card-img-top{height: 105px;}
 }
 @media screen and (min-width: 1190px) and (max-width:1269px){
-    #navbarLogo{width: 250px!important;height: 66px!important;}
+    #navbarLogo{width: 200px!important;height: 52.8px!important;}
+    /*#navbarLogo{width: 250px!important;height: 66px!important;}*/
+    
 }
 @media screen and (min-width: 992px) and (max-width:1189px){
     #navbarLogo{width: 150px!important;height: 39px!important;}
+    .navbar-expand-lg .navbar-nav .nav-link{ font-size: 15px;}
 }
 @media screen and (min-width:1201px){
     .p-xl-5{padding: 3rem!important;}
