@@ -97,6 +97,8 @@
 <script>
 function openModal_type(){
     editModal_type.show(modalToggle_type);
+        document.getElementById("validation_data_type_name").style.display = 'none';
+        document.getElementById("data_type_name").value='';
 }
 
 function saveType(){
@@ -145,7 +147,7 @@ function saveType(){
         }else{
             document.getElementById("type_btn").disabled = false;
             document.getElementById("validation_data_type_name").style.display = 'block';
-            editModal_type.hide(modalToggle_type);
+
         };
 
 
