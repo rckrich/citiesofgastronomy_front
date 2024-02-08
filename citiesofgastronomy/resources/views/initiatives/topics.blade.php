@@ -123,27 +123,32 @@ function saveTopic(){
             let id1 = '';
         if(data_name){
             $.ajax({
-                                    type: 'POST',
-                                    url: '/admin/initiatives/topic/store',
-                                    data: datos,
-                                    contentType: false,
-                                    cache: false,
-                                    processData:false,
-                                    beforeSend: function(){             },
-                                    success: function(msg){
-
-                                        document.getElementById("topic_btn").disabled = false;
-                                        editModal_topic.hide(modalToggle_topic);
-
-                                        if(data_id){
-                                            alert("The topic entry was successfully edited");
-                                            //id1 = 'faqTittle'+data_id;
-                                            //document.getElementById(id1).innerHTML  = data_faq;
-                                        }else{
-                                            alert("The topic entry was successfully created");
-                                            window.location = '../../admin/initiatives?section=filters&sub=topics';
-                                        };
-                                    }
+                    type: 'POST',
+                    url: '/admin/initiatives/topic/store',
+                    data: datos,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    beforeSend: function(){             },
+                    success: function(msg){
+                        document.getElementById("topic_btn").disabled = false;
+                        if (msg.status===400) {
+                            alert("Error: " + msg.message);
+                        } 
+                        else {
+                            editModal_topic.hide(modalToggle_topic);
+                            if(data_id){
+                                alert(msg.message);
+                                //alert("The topic entry was successfully edited");
+                                //id1 = 'faqTittle'+data_id;
+                                //document.getElementById(id1).innerHTML  = data_faq;
+                            }else{
+                                alert(msg.message);
+                                //alert("The topic entry was successfully created");
+                                window.location = '../../admin/initiatives?section=filters&sub=topics';
+                            };
+                        }
+                    }
                     });
         }else{
             document.getElementById("topic_btn").disabled = false;

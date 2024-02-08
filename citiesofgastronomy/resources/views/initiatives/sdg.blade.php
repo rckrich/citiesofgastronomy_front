@@ -135,27 +135,32 @@ function savesdg(){
             let id1 = '';
         if(data_name){
             $.ajax({
-                                    type: 'POST',
-                                    url: '/admin/initiatives/sdg/store',
-                                    data: datos,
-                                    contentType: false,
-                                    cache: false,
-                                    processData:false,
-                                    beforeSend: function(){             },
-                                    success: function(msg){
-
-                                        document.getElementById("sdg_btn").disabled = false;
-                                        editModal_sdg.hide(modalToggle_sdg);
-
-                                        if(data_id){
-                                            alert("The SDG entry was successfully edited");
-                                            //id1 = 'faqTittle'+data_id;
-                                            //document.getElementById(id1).innerHTML  = data_faq;
-                                        }else{
-                                            alert("The SDG entry was successfully created");
-                                            window.location = '../../admin/initiatives?section=filters&sub=sdg';
-                                        };
-                                    }
+                    type: 'POST',
+                    url: '/admin/initiatives/sdg/store',
+                    data: datos,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    beforeSend: function(){},
+                    success: function(msg){
+                        document.getElementById("sdg_btn").disabled = false;
+                        if (msg.status===400) {
+                            alert("Error: " + msg.message);
+                        } 
+                        else {
+                            editModal_sdg.hide(modalToggle_sdg);
+                            if(data_id){
+                                //alert("The SDG entry was successfully edited");
+                                alert(msg.message);
+                                //id1 = 'faqTittle'+data_id;
+                                //document.getElementById(id1).innerHTML  = data_faq;
+                            }else{
+                                //alert("The SDG entry was successfully created");
+                                alert(msg.message);
+                                window.location = '../../admin/initiatives?section=filters&sub=sdg';
+                            };
+                        }
+                    }
                     });
         }else{
             document.getElementById("sdg_btn").disabled = false;
