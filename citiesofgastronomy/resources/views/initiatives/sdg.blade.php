@@ -6,10 +6,12 @@
         </div>
         <div class="col-12 px-0 text-right row mx-0 py-2">
             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
+            <!--form-->
             <div class="input-group">
-                <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.sdg.search_ph')}}" aria-label="{{__('initiatives.filters.sdg.search_ph')}}" aria-describedby="basic-addon1">
+                <span class="input-group-text" id="search_sdg_label"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
+                <input id="search_box_sdg" name="search_box_sdg" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.sdg.search_ph')}}" aria-label="{{__('initiatives.filters.sdg.search_ph')}}" aria-describedby="search_sdg_label">
             </div>
+            <!--/form-->
             </div>
         </div>
         <div class="col-12 px-0 py-2">
@@ -63,18 +65,19 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_sdg_name">{{__('initiatives.filters.sdg.ph_type')}}</label>
                 <input id="data_sdg_name" name="data_sdg_name" class="form-control" placeholder="{{__('initiatives.filters.sdg.ph_type')}}"/>
+                <div id="validation_data_sdg_name" class="invalid-feedback">Obligatory field</div>
             </div>
         </div>
         <div class="modal-body px-4">
             <div class="form-group py-2">
                 <label class="form-label" for="data_sdg_number">{{__('initiatives.filters.sdg.data_number')}}</label>
                 <input id="data_sdg_number" name="data_sdg_number" class="form-control" placeholder="{{__('initiatives.filters.sdg.ph_type')}}"/>
-                <div id="validation_data_sdg_name" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_sdg_number" class="invalid-feedback">Obligatory field</div>
             </div>
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto" id="sdg_btn" onclick="savesdg()">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto" id="sdg_btn" onclick="saveSdg()">{{__('admin.btn_create')}}</buttton>
         </div>
         </form>
     </div>
@@ -106,19 +109,22 @@
         editModal_sdg.show(modalToggle_sdg);
         document.getElementById("sdg_btn").disabled = false;
         document.getElementById("validation_data_sdg_name").style.display = 'none';
+        document.getElementById("validation_data_sdg_number").style.display = 'none';
         if(!id){
             document.getElementById("data_sdg_id").value = '';
             document.getElementById("data_sdg_name").value = '';
+            document.getElementById("data_sdg_number").value = '';
         };
-}
+    }
 
-function savesdg(){
-        console.log("#-> ingresa al SAVE");
+    function saveSdg(){
+        //console.log("#-> ingresa al SAVE");
         let guardar = 1;
         document.getElementById("sdg_btn").disabled = true;
 
         //reseteo todas las leyendas de validaciones
         document.getElementById("validation_data_sdg_name").style.display = 'none';
+        document.getElementById("validation_data_sdg_number").style.display = 'none';
 
         let datos = new FormData();
         let token = document.getElementsByName("_token")[0].value;
@@ -132,42 +138,52 @@ function savesdg(){
 
 
         //if(false){
-            let id1 = '';
+        let id1 = '';
         if(data_name){
-            $.ajax({
-                    type: 'POST',
-                    url: '/admin/initiatives/sdg/store',
-                    data: datos,
-                    contentType: false,
-                    cache: false,
-                    processData:false,
-                    beforeSend: function(){},
-                    success: function(msg){
-                        document.getElementById("sdg_btn").disabled = false;
-                        if (msg.status===400) {
-                            alert("Error: " + msg.message);
-                        } 
-                        else {
-                            editModal_sdg.hide(modalToggle_sdg);
-                            if(data_id){
-                                //alert("The SDG entry was successfully edited");
-                                alert(msg.message);
-                                //id1 = 'faqTittle'+data_id;
-                                //document.getElementById(id1).innerHTML  = data_faq;
-                            }else{
-                                //alert("The SDG entry was successfully created");
-                                alert(msg.message);
-                                window.location = '../../admin/initiatives?section=filters&sub=sdg';
-                            };
+                $.ajax({
+                        type: 'POST',
+                        url: '/admin/initiatives/sdg/store',
+                        data: datos,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        beforeSend: function(){},
+                        success: function(msg){
+                            document.getElementById("sdg_btn").disabled = false;
+                            if (msg.status===400) {
+                                alert("Error: " + msg.message);
+                            } 
+                            else {
+                                editModal_sdg.hide(modalToggle_sdg);
+                                if(data_id){
+                                    alert(msg.message);
+                                }else{
+                                    alert(msg.message);
+                                    window.location = '../../admin/initiatives?section=filters&sub=sdg';
+                                };
+                            }
                         }
-                    }
-                    });
+                });
         }else{
             document.getElementById("sdg_btn").disabled = false;
             document.getElementById("validation_data_sdg_name").style.display = 'block';
-           // editModal_sdg.hide(modalToggle_sdg);
+            document.getElementById("validation_data_sdg_number").style.display = 'block';
+
         };
+    }
 
+</script>
 
-}
+<script>
+    $("#search_box_sdg").keypress(function (e) {
+      var key = e.which;
+      if(key == 13)  // the enter key code
+      {
+        //let search_sdg = document.getElementById("search_box_sdg").value;
+        let search_sdg = $("#search_box_sdg").val().toLowerCase();
+
+       alert(search_sdg)
+      }
+      else{}
+     }); 
 </script>
