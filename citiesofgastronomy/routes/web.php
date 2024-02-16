@@ -66,6 +66,7 @@ Route::post('/admin/completeUpdate', [CitiesController::class, 'citiesCompleteUp
 
 Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
 Route::get('/admin/initiatives/create', [InitiativesController::class, 'initiatives_new'])->name('admin.initiatives_new');
+Route::post('/admin/initiatives/store', [InitiativesController::class, 'initiatives_store']);
 Route::get('/admin/initiatives/{id}', [InitiativesController::class, 'initiatives_edit'])->name('admin.initiatives_edit');
 Route::post('/admin/initiatives/typeOfActivity/store', [InitiativesController::class, 'typeOfActivity_save']);
 Route::post('/admin/initiatives/topic/store', [InitiativesController::class, 'topics_save']);

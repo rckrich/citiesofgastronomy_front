@@ -82,27 +82,27 @@
         </div>
         <div class="tab-pane fade <?php if($section=='filters'){echo 'show active';}?>" id="pills-filters" role="tabpanel" aria-labelledby="pills-filters-tab">
         <ul class="nav nav-pills mb-3 py-2" id="pills-tab-filters" role="tablist">
-            <li class="nav-item py-2 px-3" role="presentation">
+            <li class="nav-item py-2 px-3 <?php if($sub==''){echo ' active';}?>" role="presentation">
                 <button class="nav-link <?php if($sub==''){echo ' active';}?>" id="pills-activityType-tab" data-bs-toggle="pill" data-bs-target="#pills-activityType" type="button" role="tab"
-                aria-controls="pills-activityType" aria-selected="true">
+                aria-controls="pills-activityType" aria-selected="<?php if($sub==''){echo 'true';}else{echo 'false" tabindex="-1';}?>">
                     {{__('initiatives.filters.tab_type')}}
                 </button>
             </li>
-            <li class="nav-item py-2 px-3" role="presentation">
+            <li class="nav-item py-2 px-3 <?php if($sub=='topics'){echo ' active';}?>" role="presentation">
                 <button class="nav-link <?php if($sub=='topics'){echo ' active';}?>" id="pills-topics-tab" data-bs-toggle="pill" data-bs-target="#pills-topics" type="button" role="tab"
-                aria-controls="pills-topics" aria-selected="true">
+                aria-controls="pills-topics" aria-selected="<?php if($sub=='topics'){echo 'true';}else{echo 'false" tabindex="-1';}?>">
                     {{__('initiatives.filters.tab_topic')}}
                 </button>
             </li>
-            <li class="nav-item py-2 px-3" role="presentation">
+            <li class="nav-item py-2 px-3 <?php if($sub=='sdg'){echo ' active';}?>" role="presentation">
                 <button class="nav-link <?php if($sub=='sdg'){echo ' active';}?>" id="pills-sdg-tab" data-bs-toggle="pill" data-bs-target="#pills-sdg" type="button" role="tab"
-                aria-controls="pills-sdg" aria-selected="true">
+                aria-controls="pills-sdg" aria-selected="<?php if($sub=='sdg'){echo 'true';}else{echo 'false" tabindex="-1';}?>">
                     {{__('initiatives.filters.tab_sdg')}}
                 </button>
             </li>
             <li class="nav-item py-2 px-3" role="presentation">
                 <button class="nav-link" id="pills-connections-tab" data-bs-toggle="pill" data-bs-target="#pills-connections" type="button" role="tab"
-                aria-controls="pills-connections" aria-selected="true">
+                aria-controls="pills-connections" aria-selected="false">
                     {{__('initiatives.filters.tab_connection')}}
                 </button>
             </li>
