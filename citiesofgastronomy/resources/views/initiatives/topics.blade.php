@@ -8,7 +8,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.topic.search_ph')}}" aria-label="{{__('initiatives.filters.topic.search_ph')}}" aria-describedby="basic-addon1">
+                <input name="search_box_topics" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.topic.search_ph')}}" aria-label="{{__('initiatives.filters.topic.search_ph')}}" aria-describedby="basic-addon1">
             </div>
             </div>
         </div>
@@ -100,9 +100,9 @@
             document.getElementById("data_topic_id").value = '';
             document.getElementById("data_topic_name").value = '';
         };
-}
+    }
 
-function saveTopic(){
+    function saveTopic(){
         console.log("#-> ingresa al SAVE");
         let guardar = 1;
         document.getElementById("topic_btn").disabled = true;
@@ -155,7 +155,5 @@ function saveTopic(){
             document.getElementById("validation_data_topic_name").style.display = 'block';
            // editModal_topic.hide(modalToggle_topic);
         };
-
-
-}
+    }
 </script>

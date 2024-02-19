@@ -180,9 +180,9 @@
       if(key == 13)  // the enter key code
       {
         //let search_sdg = document.getElementById("search_box_sdg").value;
-        let search_sdg = $("#search_box_sdg").val().toLowerCase();
+        //let search_sdg = $("#search_box_sdg").val().toLowerCase();
 
-       alert(search_sdg)
+       //alert(search_sdg)
       }
       else{}
      }); 

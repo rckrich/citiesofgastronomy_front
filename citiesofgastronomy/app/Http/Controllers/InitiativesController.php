@@ -317,4 +317,30 @@ class InitiativesController extends Controller
 
         return $res;
     }
+
+    public function connection_save(Request $request)
+    {
+        $id = $request->input("id");
+        $name = $request->input("name");
+        $dattaSend = [
+            'id' => $id,
+            'name' => $name
+        ];
+
+        $url = config('app.apiUrl').'connectionsToOther/store';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("CONNECTION SAVE ::");
+        //Log::info($res);
+
+        return $res;
+    }
 }

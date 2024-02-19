@@ -100,9 +100,9 @@
                     {{__('initiatives.filters.tab_sdg')}}
                 </button>
             </li>
-            <li class="nav-item py-2 px-3" role="presentation">
-                <button class="nav-link" id="pills-connections-tab" data-bs-toggle="pill" data-bs-target="#pills-connections" type="button" role="tab"
-                aria-controls="pills-connections" aria-selected="false">
+            <li class="nav-item py-2 px-3 <?php if($sub=='connections'){echo ' active';}?>" role="presentation">
+                <button class="nav-link <?php if($sub=='connections'){echo ' active';}?>" id="pills-connections-tab" data-bs-toggle="pill" data-bs-target="#pills-connections" type="button" role="tab"
+                aria-controls="pills-connections" aria-selected="<?php if($sub=='connections'){echo 'true';}else{echo 'false" tabindex="-1';}?>">
                     {{__('initiatives.filters.tab_connection')}}
                 </button>
             </li>
@@ -117,7 +117,7 @@
             <div class="tab-pane fade <?php if($sub=='sdg'){echo 'show active';}?>" id="pills-sdg" role="tabpanel" aria-labelledby="pills-sdg-tab">
                 @include('initiatives.sdg')
             </div>
-            <div class="tab-pane fade" id="pills-connections" role="tabpanel" aria-labelledby="pills-connections-tab">
+            <div class="tab-pane fade <?php if($sub=='connections'){echo 'show active';}?>" id="pills-connections" role="tabpanel" aria-labelledby="pills-connections-tab">
                 @include('initiatives.connections')
             </div>
         </div>
@@ -150,6 +150,7 @@
 var editModal_type; var modalToggle_type;
 var editModal_topic; var modalToggle_topic;
 var editModal_sdg; var modalToggle_sdg;
+var editModal_connection; var modalToggle_connection;
 
     $(document).ready(function(e){
         editModal_type = new bootstrap.Modal('#editActivityModal', { keyboard: false    });
@@ -160,6 +161,9 @@ var editModal_sdg; var modalToggle_sdg;
         //
         editModal_sdg = new bootstrap.Modal('#editSDGModal', { keyboard: false    });
         modalToggle_sdg = document.getElementById("editSDGModal");
+        //
+        editModal_connection = new bootstrap.Modal('#editConnectionModal', { keyboard: false    });
+        modalToggle_connection = document.getElementById("editConnectionModal");
         //
     });
 </script>

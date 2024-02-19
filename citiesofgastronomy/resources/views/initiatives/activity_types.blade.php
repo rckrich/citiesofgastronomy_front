@@ -8,7 +8,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.type.search_ph')}}" aria-label="{{__('initiatives.filters.type.search_ph')}}" aria-describedby="basic-addon1">
+                <input name="search_box_actypes" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.type.search_ph')}}" aria-label="{{__('initiatives.filters.type.search_ph')}}" aria-describedby="basic-addon1">
             </div>
             </div>
         </div>
@@ -95,64 +95,65 @@
 
 
 <script>
-function openModal_type(){
-    editModal_type.show(modalToggle_type);
-    document.getElementById("validation_data_type_name").style.display = 'none';
-    document.getElementById("data_type_name").value='';
-}
+    function openModal_type(){
+        editModal_type.show(modalToggle_type);
+        document.getElementById("validation_data_type_name").style.display = 'none';
+        document.getElementById("data_type_name").value='';
+    }
 
-function saveType(){
-    //console.log("#-> ingresa al SAVE");
-    let guardar = 1;
-    document.getElementById("type_btn").disabled = true;
+    function saveType(){
+        //console.log("#-> ingresa al SAVE");
+        let guardar = 1;
+        document.getElementById("type_btn").disabled = true;
 
-    //reseteo todas las leyendas de validaciones
-    document.getElementById("validation_data_type_name").style.display = 'none';
+        //reseteo todas las leyendas de validaciones
+        document.getElementById("validation_data_type_name").style.display = 'none';
 
-    let datos = new FormData();
-    let token = document.getElementsByName("_token")[0].value;
-    datos.append('_token', token);
-    let data_id = document.getElementById("data_type_id").value;
-    datos.append('id', data_id);
-    let data_name = document.getElementById("data_type_name").value;
-    datos.append('name', data_name);
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("data_type_id").value;
+        datos.append('id', data_id);
+        let data_name = document.getElementById("data_type_name").value;
+        datos.append('name', data_name);
 
 
-    //if(false){
-    let id1 = '';
-    if(data_name){
-            $.ajax({
-                    type: 'POST',
-                    url: '/admin/initiatives/typeOfActivity/store',
-                    data: datos,
-                    contentType: false,
-                    cache: false,
-                    processData:false,
-                    beforeSend: function(){},
-                    success: function(msg){
-                        document.getElementById("type_btn").disabled = false;
-                        if (msg.status===400) {
-                            alert("Error: " + msg.message);
-                        } 
-                        else {
-                            editModal_type.hide(modalToggle_type);
-                            if(data_id){
-                                alert(msg.message);
-                                //id1 = 'faqTittle'+data_id;
-                                //document.getElementById(id1).innerHTML  = data_faq;
-                            }else{
-                                alert(msg.message);
-                                window.location = '../../admin/initiatives?section=filters&sub=';
-                            };
+        //if(false){
+        let id1 = '';
+        if(data_name){
+                $.ajax({
+                        type: 'POST',
+                        url: '/admin/initiatives/typeOfActivity/store',
+                        data: datos,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        beforeSend: function(){},
+                        success: function(msg){
+                            document.getElementById("type_btn").disabled = false;
+                            if (msg.status===400) {
+                                alert("Error: " + msg.message);
+                            } 
+                            else {
+                                editModal_type.hide(modalToggle_type);
+                                if(data_id){
+                                    alert(msg.message);
+                                    //id1 = 'faqTittle'+data_id;
+                                    //document.getElementById(id1).innerHTML  = data_faq;
+                                }else{
+                                    alert(msg.message);
+                                    window.location = '../../admin/initiatives?section=filters&sub=';
+                                };
+                            }
                         }
-                    }
-            });
-    }else{
-        document.getElementById("type_btn").disabled = false;
-        document.getElementById("validation_data_type_name").style.display = 'block';
+                });
+        }else{
+            document.getElementById("type_btn").disabled = false;
+            document.getElementById("validation_data_type_name").style.display = 'block';
 
-    };
+        };
 
 
-}
+    }
+
 </script>
