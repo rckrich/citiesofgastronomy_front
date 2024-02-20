@@ -106,11 +106,8 @@
 <script>
     function openModal_sdg(id,name,number){
         editModal_sdg.show(modalToggle_sdg);
-        document.getElementById("sdg_btn").disabled = false;
-        document.getElementById("update_sdg_btn").disabled = false;
-
-        document.getElementById("validation_data_sdg_name").style.display = 'none';
-        document.getElementById("validation_data_sdg_number").style.display = 'none';
+        enableBtns();
+        resetValidations();
         if(!id){
             $('#editSDGModal').addClass('create-form');
             $('#editSDGModal').removeClass('edit-form');

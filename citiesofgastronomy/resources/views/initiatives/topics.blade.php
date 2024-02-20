@@ -32,7 +32,7 @@
                 <tr class="align-items-center">
                     <td class="col-8">{{$item["name"]}}</td>
                     <td class="col-auto my-auto">
-                        <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editTopicModal">{{__('initiatives.btn_edit')}}</button>
+                        <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editTopicModal" onclick="openModal_topic({{$item['id']}},'{{$item['name']}}')">{{__('initiatives.btn_edit')}}</button>
                     </td>
                     <td class="col-auto my-auto">
                         <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTopicModal">{{__('admin.btn_delete')}}
@@ -51,8 +51,8 @@
     <div class="modal-content">
         <input type="hidden" id="data_topic_id">
         <div class="modal-header b-none px-4">
-            <h5 class="modal-title" id="createActivityModalLabel">{{__('initiatives.filters.topic.create_modal_title')}}</h5>
-            <h5 class="modal-title" id="editTopicModalLabel">{{__('initiatives.filters.topic.edit_modal_title')}}</h5>
+            <h5 class="modal-title create-modal-label" id="createActivityModalLabel">{{__('initiatives.filters.topic.create_modal_title')}}</h5>
+            <h5 class="modal-title edit-modal-label" id="editTopicModalLabel">{{__('initiatives.filters.topic.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form class="">
@@ -66,7 +66,8 @@
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto" id="topic_btn" onclick="saveTopic()">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto create-form-btn" id="topic_btn" onclick="saveTopic()">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto edit-form-btn" id="update_topic_btn" onclick="saveTopic()">{{__('admin.btn_edit')}}</buttton>
         </div>
         </form>
     </div>
@@ -92,21 +93,27 @@
   </div>
 </div>
 <script>
-    function openModal_topic(id){
+    function openModal_topic(id, name){
         editModal_topic.show(modalToggle_topic);
-        document.getElementById("topic_btn").disabled = false;
+        enableBtns();
         document.getElementById("validation_data_topic_name").style.display = 'none';
         if(!id){
+            $('#editTopicModal').addClass('create-form');
+            $('#editTopicModal').removeClass('edit-form');
             document.getElementById("data_topic_id").value = '';
             document.getElementById("data_topic_name").value = '';
+        };
+        if(id){
+            $('#editTopicModal').removeClass('create-form');
+            $('#editTopicModal').addClass('edit-form');
+
+            document.getElementById("data_topic_id").value = id;
+            document.getElementById("data_topic_name").value = name;
         };
     }
 
     function saveTopic(){
-        console.log("#-> ingresa al SAVE");
-        let guardar = 1;
-        document.getElementById("topic_btn").disabled = true;
-
+        disableBtns();
         //reseteo todas las leyendas de validaciones
         document.getElementById("validation_data_topic_name").style.display = 'none';
 
@@ -118,9 +125,6 @@
         let data_name = document.getElementById("data_topic_name").value;
         datos.append('name', data_name);
 
-
-        //if(false){
-            let id1 = '';
         if(data_name){
             $.ajax({
                     type: 'POST',
@@ -131,29 +135,28 @@
                     processData:false,
                     beforeSend: function(){             },
                     success: function(msg){
-                        document.getElementById("topic_btn").disabled = false;
+                        enableBtns();
                         if (msg.status===400) {
                             alert("Error: " + msg.message);
                         } 
                         else {
                             editModal_topic.hide(modalToggle_topic);
-                            if(data_id){
-                                alert(msg.message);
-                                //alert("The topic entry was successfully edited");
-                                //id1 = 'faqTittle'+data_id;
-                                //document.getElementById(id1).innerHTML  = data_faq;
-                            }else{
-                                alert(msg.message);
-                                //alert("The topic entry was successfully created");
-                                window.location = '../../admin/initiatives?section=filters&sub=topics';
-                            };
+                            alert(msg.message);
+                            window.location = '../../admin/initiatives?section=filters&sub=topics';
                         }
                     }
                     });
         }else{
-            document.getElementById("topic_btn").disabled = false;
+            enableBtns();
             document.getElementById("validation_data_topic_name").style.display = 'block';
-           // editModal_topic.hide(modalToggle_topic);
         };
+    }
+    function disableBtns(){
+        document.getElementById("topic_btn").disabled = true;
+        document.getElementById("update_topic_btn").disabled = true;
+    }
+    function enableBtns(){
+        document.getElementById("topic_btn").disabled = false;
+        document.getElementById("update_topic_btn").disabled = false;
     }
 </script>
