@@ -261,6 +261,27 @@ class InitiativesController extends Controller
         return $res;
     }
 
+    public function typeOfActivity_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'typeOfActivity/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("TYPE OF ACTIVITY DELETE ::");
+        //Log::info($res);
+
+        return $res;
+    }
 
     public function topics_save(Request $request)
     {
@@ -283,6 +304,28 @@ class InitiativesController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("TOPICS SAVE ::");
+        //Log::info($res);
+
+        return $res;
+    }
+
+    public function topics_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'topic/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("TOPICS DELETE ::");
         //Log::info($res);
 
         return $res;

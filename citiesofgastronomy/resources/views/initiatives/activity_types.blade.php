@@ -36,7 +36,7 @@
                         <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editActivityModal" onclick="openModal_type({{$item['id']}},'{{$item['name']}}')">{{__('initiatives.btn_edit')}}</button>
                     </td>
                     <td class="col-auto my-auto">
-                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteActivityModal">{{__('admin.btn_delete')}}
+                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteActivityModal" onclick="openDeleteModal_type({{$item['id']}})">{{__('admin.btn_delete')}}
                     </button></td>
                 </tr>
                 @endforeach
@@ -84,11 +84,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="hidden" id="delete_data_type_id">
             <p>{{__('initiatives.filters.type.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="deleteType()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -159,8 +160,6 @@
             document.getElementById("validation_data_type_name").style.display = 'block';
 
         };
-
-
     }
 
     function disableBtns(){
@@ -170,6 +169,39 @@
     function enableBtns(){
         document.getElementById("type_btn").disabled = false;
         document.getElementById("update_type_btn").disabled = false;
+    }
+
+    function openDeleteModal_type(id){
+        document.getElementById("delete_data_type_id").value = id;
+    }
+    function deleteType(){
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("delete_data_type_id").value;
+        datos.append('id', data_id);
+
+        if(data_id){
+            $.ajax({
+                type: 'POST',
+                url: '/admin/initiatives/typeOfActivity/delete',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){},
+                success: function(msg){
+                    $('#deleteActivityModal').hide();
+                    if (msg.status===400) {
+                        alert("Error: " + msg.message);
+                    } 
+                    else {
+                        alert(msg.message);
+                        window.location = '../../admin/initiatives?section=filters&sub=';
+                    }
+                }
+            });
+        }
     }
 
 </script>

@@ -35,7 +35,7 @@
                         <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editTopicModal" onclick="openModal_topic({{$item['id']}},'{{$item['name']}}')">{{__('initiatives.btn_edit')}}</button>
                     </td>
                     <td class="col-auto my-auto">
-                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTopicModal">{{__('admin.btn_delete')}}
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTopicModal" onclick="openDeleteModal_topic({{$item['id']}})">{{__('admin.btn_delete')}}
                     </button></td>
                 </tr>
                 @endforeach
@@ -83,11 +83,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="hidden" id="delete_data_topic_id">
             <p>{{__('initiatives.filters.topic.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="deleteTopic()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -158,5 +159,39 @@
     function enableBtns(){
         document.getElementById("topic_btn").disabled = false;
         document.getElementById("update_topic_btn").disabled = false;
+    }
+
+    
+    function openDeleteModal_topic(id){
+        document.getElementById("delete_data_topic_id").value = id;
+    }
+    function deleteTopic(){
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("delete_data_topic_id").value;
+        datos.append('id', data_id);
+
+        if(data_id){
+            $.ajax({
+                type: 'POST',
+                url: '/admin/initiatives/topic/delete',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){},
+                success: function(msg){
+                    $('#deleteTopicModal').hide();
+                    if (msg.status===400) {
+                        alert("Error: " + msg.message);
+                    } 
+                    else {
+                        alert(msg.message);
+                        window.location = '../../admin/initiatives?section=filters&sub=topics';
+                    }
+                }
+            });
+        }
     }
 </script>

@@ -70,10 +70,10 @@ Route::post('/admin/initiatives/store', [InitiativesController::class, 'initiati
 Route::get('/admin/initiatives/{id}', [InitiativesController::class, 'initiatives_edit'])->name('admin.initiatives_edit');
 
 Route::post('/admin/initiatives/typeOfActivity/store', [InitiativesController::class, 'typeOfActivity_save']);
-//Route::post('/admin/initiatives/typeOfActivity/delete', [InitiativesController::class, 'typeOfActivity_delete']);
+Route::post('/admin/initiatives/typeOfActivity/delete', [InitiativesController::class, 'typeOfActivity_delete']);
 
 Route::post('/admin/initiatives/topic/store', [InitiativesController::class, 'topics_save']);
-//Route::post('/admin/initiatives/topic/delete', [InitiativesController::class, 'topics_delete']);
+Route::post('/admin/initiatives/topic/delete', [InitiativesController::class, 'topics_delete']);
 
 Route::post('/admin/initiatives/sdg/store', [InitiativesController::class, 'sdg_save']);
 //Route::post('/admin/initiatives/sdg/delete', [InitiativesController::class, 'sdg_delete']);
