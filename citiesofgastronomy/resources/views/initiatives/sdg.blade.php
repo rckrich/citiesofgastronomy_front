@@ -16,7 +16,7 @@
         </div>
         <div class="col-12 px-0 py-2">
             <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-            <button class="btn btn-primary mx-auto"  onclick="openModal_sdg()">{{__('initiatives.filters.sdg.btn_add')}}</buttton>
+            <button class="btn btn-primary mx-auto" onclick="openModal_sdg()">{{__('initiatives.filters.sdg.btn_add')}}</buttton>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
                     <td class="col-auto">{{$item["number"]}}</td>
                     <td class="col-7">{{$item["name"]}}</td>
                     <td class="col-auto my-auto">
-                        <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editSDGModal">{{__('initiatives.btn_edit')}}</button>
+                        <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editSDGModal" onclick="openModal_sdg({{$item['id']}},'{{$item['name']}}',{{$item['number']}})">{{__('initiatives.btn_edit')}}</button>
                     </td>
                     <td class="col-auto my-auto">
                         <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteSDGModal">{{__('admin.btn_delete')}}
@@ -56,8 +56,8 @@
     <div class="modal-content">
         <input type="hidden" id="data_sdg_id">
         <div class="modal-header b-none px-4">
-            <h5 class="modal-title" id="createActivityModalLabel">{{__('initiatives.filters.sdg.create_modal_title')}}</h5>
-            <h5 class="modal-title" id="editSDGModalLabel">{{__('initiatives.filters.sdg.edit_modal_title')}}</h5>
+            <h5 class="modal-title create-modal-label" id="createSDGModalLabel">{{__('initiatives.filters.sdg.create_modal_title')}}</h5>
+            <h5 class="modal-title edit-modal-label" id="editSDGModalLabel">{{__('initiatives.filters.sdg.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form class="">
@@ -67,8 +67,6 @@
                 <input id="data_sdg_name" name="data_sdg_name" class="form-control" placeholder="{{__('initiatives.filters.sdg.ph_type')}}"/>
                 <div id="validation_data_sdg_name" class="invalid-feedback">Obligatory field</div>
             </div>
-        </div>
-        <div class="modal-body px-4">
             <div class="form-group py-2">
                 <label class="form-label" for="data_sdg_number">{{__('initiatives.filters.sdg.data_number')}}</label>
                 <input id="data_sdg_number" name="data_sdg_number" class="form-control" placeholder="{{__('initiatives.filters.sdg.ph_type')}}"/>
@@ -77,7 +75,8 @@
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto" id="sdg_btn" onclick="saveSdg()">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto create-form-btn" id="sdg_btn" onclick="saveSdg()">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto edit-form-btn" id="update_sdg_btn" onclick="saveSdg()">{{__('admin.btn_edit')}}</buttton>
         </div>
         </form>
     </div>
@@ -105,26 +104,34 @@
 
 
 <script>
-    function openModal_sdg(id){
+    function openModal_sdg(id,name,number){
         editModal_sdg.show(modalToggle_sdg);
         document.getElementById("sdg_btn").disabled = false;
+        document.getElementById("update_sdg_btn").disabled = false;
+
         document.getElementById("validation_data_sdg_name").style.display = 'none';
         document.getElementById("validation_data_sdg_number").style.display = 'none';
         if(!id){
+            $('#editSDGModal').addClass('create-form');
+            $('#editSDGModal').removeClass('edit-form');
+
             document.getElementById("data_sdg_id").value = '';
             document.getElementById("data_sdg_name").value = '';
             document.getElementById("data_sdg_number").value = '';
+        }
+        if(id){
+            $('#editSDGModal').removeClass('create-form');
+            $('#editSDGModal').addClass('edit-form');
+
+            document.getElementById("data_sdg_id").value = id;
+            document.getElementById("data_sdg_number").value = number;
+            document.getElementById("data_sdg_name").value = name;
         };
     }
 
     function saveSdg(){
-        //console.log("#-> ingresa al SAVE");
-        let guardar = 1;
-        document.getElementById("sdg_btn").disabled = true;
-
-        //reseteo todas las leyendas de validaciones
-        document.getElementById("validation_data_sdg_name").style.display = 'none';
-        document.getElementById("validation_data_sdg_number").style.display = 'none';
+        disableBtns();
+        resetValidations();
 
         let datos = new FormData();
         let token = document.getElementsByName("_token")[0].value;
@@ -136,10 +143,7 @@
         let data_number = document.getElementById("data_sdg_number").value;
         datos.append('number', data_number);
 
-
-        //if(false){
-        let id1 = '';
-        if(data_name){
+        if(data_name && data_number){
                 $.ajax({
                         type: 'POST',
                         url: '/admin/initiatives/sdg/store',
@@ -149,27 +153,39 @@
                         processData:false,
                         beforeSend: function(){},
                         success: function(msg){
-                            document.getElementById("sdg_btn").disabled = false;
+                            enableBtns();
                             if (msg.status===400) {
                                 alert("Error: " + msg.message);
                             } 
                             else {
                                 editModal_sdg.hide(modalToggle_sdg);
-                                if(data_id){
-                                    alert(msg.message);
-                                }else{
-                                    alert(msg.message);
-                                    window.location = '../../admin/initiatives?section=filters&sub=sdg';
-                                };
+                                alert(msg.message);
+                                window.location = '../../admin/initiatives?section=filters&sub=sdg';
+                               
                             }
                         }
                 });
         }else{
-            document.getElementById("sdg_btn").disabled = false;
-            document.getElementById("validation_data_sdg_name").style.display = 'block';
-            document.getElementById("validation_data_sdg_number").style.display = 'block';
-
+            enableBtns();
+            showValidationMessages();
         };
+    }
+
+    function disableBtns(){
+        document.getElementById("sdg_btn").disabled = true;
+        document.getElementById("update_sdg_btn").disabled = true;
+    }
+    function enableBtns(){
+        document.getElementById("sdg_btn").disabled = false;
+        document.getElementById("update_sdg_btn").disabled = false;
+    }
+    function showValidationMessages(){
+        document.getElementById("validation_data_sdg_name").style.display = 'block';
+        document.getElementById("validation_data_sdg_number").style.display = 'block';
+    }
+    function resetValidations(){//reseteo todas las leyendas de validaciones
+        document.getElementById("validation_data_sdg_name").style.display = 'none';
+        document.getElementById("validation_data_sdg_number").style.display = 'none';
     }
 
 </script>

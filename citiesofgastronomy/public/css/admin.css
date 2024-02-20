@@ -122,3 +122,13 @@ input[type="file"]:active::before {}
 #pills-tab-tastierlife{background-color: #272727;}
 #pills-tab-tastierlife button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
 #pills-tab-tastierlife button.active{text-decoration: underline;}
+
+/*CHANGE BETWEEN CREATE/EDIT FORMS*/
+.create-form .create-form-btn{display: block!important;}
+.create-form .edit-form-btn{display: none!important;}
+.edit-form .create-form-btn{display: none!important;}
+.edit-form .edit-form-btn{display: block!important;}
+.create-form .create-modal-label{display: block!important;}
+.create-form .edit-modal-label{display: none!important;}
+.edit-form .create-modal-label{display: none!important;}
+.edit-form .edit-modal-label{display: block!important;}
