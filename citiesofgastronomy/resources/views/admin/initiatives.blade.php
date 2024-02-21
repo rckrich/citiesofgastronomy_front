@@ -157,6 +157,13 @@ var editModal_topic; var modalToggle_topic;
 var editModal_sdg; var modalToggle_sdg;
 var editModal_connection; var modalToggle_connection;
 
+var deleteModal_type; var modalToggleDelete_type;
+var deleteModal_topic; var modalToggleDelete_topic;
+var deleteModal_sdg; var modalToggleDelete_sdg;
+var deleteModal_connection; var modalToggleDelete_connection;
+
+
+
     $(document).ready(function(e){
         editModal_type = new bootstrap.Modal('#editActivityModal', { keyboard: false    });
         modalToggle_type = document.getElementById("editActivityModal");
@@ -169,6 +176,18 @@ var editModal_connection; var modalToggle_connection;
         //
         editModal_connection = new bootstrap.Modal('#editConnectionModal', { keyboard: false    });
         modalToggle_connection = document.getElementById("editConnectionModal");
+        //
+        deleteModal_type = new bootstrap.Modal('#deleteActivityModal', { keyboard: false    });
+        modalToggleDelete_type = document.getElementById("editActivityModal");
+        //
+        deleteModal_topic = new bootstrap.Modal('#deleteTopicModal', { keyboard: false    });
+        modalToggleDelete_topic = document.getElementById("deleteTopicModal");
+        //
+        deleteModal_sdg = new bootstrap.Modal('#deleteSDGModal', { keyboard: false    });
+        modalToggleDelete_sdg = document.getElementById("deleteSDGModal");
+        //
+        deleteModal_connection = new bootstrap.Modal('#deleteConnectionModal', { keyboard: false    });
+        modalToggleDelete_connection = document.getElementById("deleteConnectionModal");
         //
     });
 

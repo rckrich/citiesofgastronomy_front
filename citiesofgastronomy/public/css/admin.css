@@ -1,8 +1,9 @@
 body{
     background-color: #F1F1F1!important;
     color: #000!important;
+    overflow: auto;
+    padding: 0!important;
 }
-
 /**/
 .admin-title,.section-title{font-family:'Helvetica LT Std'; }
 .admin-subtitle, td{font-family:'Calibri';}

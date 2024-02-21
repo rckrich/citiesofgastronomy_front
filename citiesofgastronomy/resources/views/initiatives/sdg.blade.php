@@ -214,7 +214,7 @@
                 processData:false,
                 beforeSend: function(){},
                 success: function(msg){
-                    $('#deleteSDGModal').hide();
+                    closeModal('deleteSDGModal');
                     if (msg.status===400) {
                         alert("Error: " + msg.message);
                     } 

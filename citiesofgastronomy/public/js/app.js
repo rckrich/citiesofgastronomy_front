@@ -11,6 +11,11 @@ $(document).ready(function () {
         $(this).addClass("active");
         $(this).parent().addClass("active");
         bsCollapse.hide()
+    });
+    $('.modal').on('hide.bs.modal', function () {
+      $('body').removeClass('modal-open');
+      $('body').attr('style', 'overflow:auto');
+      $('body').removeAttr('data-bs-overflow');
     });  
     $("#map").on("click", function(){toggleMapLink()})
     $(".filter-select").on("change", function(){showResetFilterButton()})
@@ -45,6 +50,13 @@ selectableTextArea.forEach(elem => {
 
 
 document.addEventListener("mousedown", documentMouseDown);
+
+function closeModal(modalId){
+  $('#'+modalId).hide();
+  $('body').removeClass('modal-open');
+  $('body').attr('style', 'overflow:auto');
+  $('body').removeAttr('data-bs-overflow');
+}
 
 function selectableTextAreaMouseUp(event) {
   setTimeout(() => { // In order to avoid some weird behavior...
