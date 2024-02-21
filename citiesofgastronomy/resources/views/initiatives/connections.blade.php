@@ -6,10 +6,13 @@
         </div>
         <div class="col-12 px-0 text-right row mx-0 py-2">
             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
+            <form action="../admin/initiatives?section=filters&sub=connections" method="POST" id="searchForm_connection">
+            @csrf
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                <input name="search_box_connections" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.connection.search_ph')}}" aria-label="{{__('initiatives.filters.connection.search_ph')}}" aria-describedby="basic-addon1">
+                <input id="search_box" name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.connection.search_ph')}}" aria-label="{{__('initiatives.filters.connection.search_ph')}}" aria-describedby="basic-addon1">
             </div>
+            </form>
             </div>
         </div>
         <div class="col-12 px-0 py-2">
@@ -35,7 +38,7 @@
                         <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editConnectionModal" onclick="openModal_connection({{$item['id']}},'{{$item['name']}}')">{{__('initiatives.btn_edit')}}</button>
                     </td>                             
                     <td class="col-auto my-auto">
-                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteConnectionModal">{{__('admin.btn_delete')}}
+                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteConnectionModal" onclick="openDeleteModal_connection({{$item['id']}})">{{__('admin.btn_delete')}}
                     </button></td>
                 </tr>
                 @endforeach
@@ -89,11 +92,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="text" id="delete_data_connection_id">
             <p>{{__('initiatives.filters.connection.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary"  onclick="deleteConnection()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -168,4 +172,54 @@
         document.getElementById("update_connection_btn").disabled = false;
     }
 
+    function openDeleteModal_connection(id){
+        document.getElementById("delete_data_connection_id").value = id;
+    }
+    function deleteConnection(){
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("delete_data_connection_id").value;
+        datos.append('id', data_id);
+
+        if(data_id){
+            $.ajax({
+                type: 'POST',
+                url: '/admin/initiatives/connection/delete',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){},
+                success: function(msg){
+                    $('#deleteConnectionModal').hide();
+                    if (msg.status===400) {
+                        alert("Error: " + msg.message);
+                    } 
+                    else {
+                        alert(msg.message);
+                        window.location = '../../admin/initiatives?section=filters&sub=connections';
+                    }
+                }
+            });
+        }
+    }
+
+</script>
+
+<script>
+    $("#search_box").keypress(function (e) {
+      var key = e.which;
+      if(key == 13)  // the enter key code
+      {
+        let keyword = $("#search_box").val();
+
+        if(keyword){
+            $('#searchForm_connection').submit();
+        }
+        else{
+            window.location = '../../admin/initiatives?section=filters&sub=connections';
+        }
+      }
+     }); 
 </script>

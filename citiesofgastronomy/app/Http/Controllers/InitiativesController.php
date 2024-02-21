@@ -29,6 +29,7 @@ class InitiativesController extends Controller
         $inputs["info"] = $res["info"];
         return view('initiatives.show', $inputs);
     }
+
     public function initiatives_new()
     {
         $id='';
@@ -68,8 +69,6 @@ class InitiativesController extends Controller
     {
         return view('initiatives.edit');
     }
-
-
     public function initiatives_store(Request $request){
         Log::info("----> INITIATIVE STORE..");
         $name = $request->input("data_name");
@@ -235,6 +234,22 @@ class InitiativesController extends Controller
     }
 
 
+    public function initiatives_search(Request $request)
+    {
+
+        $keyword = $request->input("search_box");
+        $section = $request->input("section");
+        $sub = $request->input("sub");
+        Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub);
+        $fields = array(
+            'searchTypeOfActivity' => ($sub==='actype' ? $keyword :  ''),
+            'searchTopics' => ($sub==='topics' ? $keyword :  ''),
+            'searchSDG' => ($sub==='sdg' ? $keyword :  ''),
+            'searchConnectionsToOther' => ($sub==='connections' ? $keyword :  '')
+        );
+
+    }
+
     public function typeOfActivity_save(Request $request)
     {
         $id = $request->input("id");
@@ -331,8 +346,6 @@ class InitiativesController extends Controller
         return $res;
     }
 
-
-
     public function sdg_save(Request $request)
     {
         $id = $request->input("id");
@@ -361,6 +374,28 @@ class InitiativesController extends Controller
         return $res;
     }
 
+    public function sdg_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'sdg/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("SDG DELETE ::");
+        //Log::info($res);
+
+        return $res;
+    }
+
     public function connection_save(Request $request)
     {
         $id = $request->input("id");
@@ -382,6 +417,28 @@ class InitiativesController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("CONNECTION SAVE ::");
+        //Log::info($res);
+
+        return $res;
+    }
+
+    public function connection_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'connectionsToOther/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("CONNECTION DELETE ::");
         //Log::info($res);
 
         return $res;

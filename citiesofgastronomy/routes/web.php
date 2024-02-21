@@ -65,21 +65,18 @@ Route::post('/admin/completeUpdate', [CitiesController::class, 'citiesCompleteUp
 
 
 Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
+Route::post('/admin/initiatives', [InitiativesController::class, 'initiatives_search']);
 Route::get('/admin/initiatives/create', [InitiativesController::class, 'initiatives_new'])->name('admin.initiatives_new');
 Route::post('/admin/initiatives/store', [InitiativesController::class, 'initiatives_store']);
 Route::get('/admin/initiatives/{id}', [InitiativesController::class, 'initiatives_edit'])->name('admin.initiatives_edit');
-
 Route::post('/admin/initiatives/typeOfActivity/store', [InitiativesController::class, 'typeOfActivity_save']);
 Route::post('/admin/initiatives/typeOfActivity/delete', [InitiativesController::class, 'typeOfActivity_delete']);
-
 Route::post('/admin/initiatives/topic/store', [InitiativesController::class, 'topics_save']);
 Route::post('/admin/initiatives/topic/delete', [InitiativesController::class, 'topics_delete']);
-
 Route::post('/admin/initiatives/sdg/store', [InitiativesController::class, 'sdg_save']);
-//Route::post('/admin/initiatives/sdg/delete', [InitiativesController::class, 'sdg_delete']);
-
+Route::post('/admin/initiatives/sdg/delete', [InitiativesController::class, 'sdg_delete']);
 Route::post('/admin/initiatives/connection/store', [InitiativesController::class, 'connection_save']);
-//Route::post('/admin/initiatives/connection/delete', [InitiativesController::class, 'connection_delete']);
+Route::post('/admin/initiatives/connection/delete', [InitiativesController::class, 'connection_delete']);
 
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
 Route::get('/admin/tastier_life/recipe/create', [TastierLifeController::class, 'recipe_new'])->name('admin.recipe_new');

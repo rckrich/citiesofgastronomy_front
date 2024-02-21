@@ -136,7 +136,7 @@ class AdminController extends Controller
     public function initiatives(Request $request)
     {
         $page = $request->input("page");
-        Log::info("#PAGE: ".$page);
+        //Log::info("#PAGE: ".$page);
 
         if(!$page){ $page=1;   };
         $st = $request->input("st");
@@ -145,7 +145,7 @@ class AdminController extends Controller
         $fields = array('search' => $search_box, 'page' => $page);
 
         $fields_string = http_build_query($fields);
-        Log::info(config('app.apiUrl'));
+        //Log::info(config('app.apiUrl'));
 
         $url = config('app.apiUrl').'initiatives';
         $curl = curl_init();
@@ -160,7 +160,7 @@ class AdminController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN INITIATIVE List");
-        //Log::info($res);
+        Log::info($res);
 
         $inputs = [];
         $inputs["initiatives"] = $res["initiatives"];
@@ -188,6 +188,7 @@ class AdminController extends Controller
 
         return view('admin.initiatives', $inputs);
     }
+
 
     public function tastier_life()
     {

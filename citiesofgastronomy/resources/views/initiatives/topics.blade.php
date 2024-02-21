@@ -6,10 +6,13 @@
         </div>
         <div class="col-12 px-0 text-right row mx-0 py-2">
             <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
+            <form action="../admin/initiatives?section=filters&sub=topics" method="POST" id="searchForm_topic">
+            @csrf
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                <input name="search_box_topics" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.topic.search_ph')}}" aria-label="{{__('initiatives.filters.topic.search_ph')}}" aria-describedby="basic-addon1">
+                <input id="search_box" name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.topic.search_ph')}}" aria-label="{{__('initiatives.filters.topic.search_ph')}}" aria-describedby="basic-addon1">
             </div>
+            </form>
             </div>
         </div>
         <div class="col-12 px-0 py-2">
@@ -39,6 +42,13 @@
                     </button></td>
                 </tr>
                 @endforeach
+                @if( count($Topics) == 0)
+                    <tr class="align-items-center">
+                        <td class="col-8">No results found</td>
+                        <td class="col-auto"></td>
+                        <td class="col-auto"></td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>
@@ -112,7 +122,6 @@
             document.getElementById("data_topic_name").value = name;
         };
     }
-
     function saveTopic(){
         disableBtns();
         //reseteo todas las leyendas de validaciones
@@ -194,4 +203,21 @@
             });
         }
     }
+</script>
+
+<script>
+    $("#search_box").keypress(function (e) {
+      var key = e.which;
+      if(key == 13)  // the enter key code
+      {
+        let keyword = $("#search_box").val();
+
+        if(keyword){
+            $('#searchForm_topic').submit();
+        }
+        else{
+            window.location = '../../admin/initiatives?section=filters&sub=topics';
+        }
+      }
+     }); 
 </script>
