@@ -239,55 +239,6 @@ class InitiativesController extends Controller
     public function initiatives_search(Request $request)
     {
 
-        $keyword = $request->input("search_box");
-        $section = $request->input("section");
-        $sub = $request->input("sub");
-        Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub);
-        $fields = array(
-            'searchTypeOfActivity' => ($sub==='actype' ? $keyword :  ''),
-            'searchTopics' => ($sub==='topics' ? $keyword :  ''),
-            'searchSDG' => ($sub==='sdg' ? $keyword :  ''),
-            'searchConnectionsToOther' => ($sub==='connections' ? $keyword :  '')
-        );
-
-        $fields_string = http_build_query($fields);
-        //Log::info(config('app.apiUrl'));
-
-        $url = config('app.apiUrl').'initiatives';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
-        $data = curl_exec($curl);
-        curl_close($curl);
-
-        $res = json_decode( $data, true);
-        
-        //Log::info($res);
-
-        $inputs = [];
-        $inputs["initiatives"] = $res["initiatives"];
-        //Total de registros encontrados
-        $inputs["total"] = $res["tot"];
-        //Cantidad de paginas
-        $inputs["paginator"] = $res["paginator"];
-        //contenido del buscador
-        $inputs["search_box"] = '';
-        //pagina en la que estamos
-        $inputs["page"] = 1;
-        $inputs["st"] = '';
-
-        $inputs["section"] = $section;
-        $inputs["sub"] = $sub;
-
-        $inputs["typeOfActivity"] = $res["typeOfActivity"];
-        $inputs["Topics"] = $res["Topics"];
-        $inputs["sdg"] = $res["sdg"];
-        $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
-
-        return view('admin.initiatives', $inputs);
     }
 
     public function typeOfActivity_save(Request $request)
