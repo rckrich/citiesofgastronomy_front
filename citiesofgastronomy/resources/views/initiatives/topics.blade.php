@@ -191,7 +191,7 @@
                 processData:false,
                 beforeSend: function(){},
                 success: function(msg){
-                    $('#deleteTopicModal').hide();
+                    closeModal('deleteTopicModal');
                     if (msg.status===400) {
                         alert("Error: " + msg.message);
                     } 

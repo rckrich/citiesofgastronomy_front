@@ -21,6 +21,7 @@ class InitiativesController extends Controller
         //Log::info("DAtta Result-- ::");
 
         $inputs = [];
+        $inputs["initiatives"] = $res["initiatives"];
         $inputs["bannerAbout"] = $res["bannerAbout"];
         $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
         //Log::info($inputs);
@@ -65,7 +66,7 @@ class InitiativesController extends Controller
 
         return view('initiatives.new', $inputs);
     }
-    public function initiatives_edit()
+    public function initiatives_edit($id)
     {
         return view('initiatives.edit');
     }
@@ -150,7 +151,7 @@ class InitiativesController extends Controller
 
         $cant_gallery =$request->input('cant_gallery');
 
-        $arrPOST["cant_gallery"] = $cant_gallery;
+        $dattaSend["cant_gallery"] = $cant_gallery;
         for($i = 1; $i < $cant_gallery;$i++){
             $id1 = 'image'.$i;
             $file =  $request->file($id1);
@@ -168,51 +169,51 @@ class InitiativesController extends Controller
 
                         $image = new \CURLFile($file_path);
             };
-            $arrPOST[$id1] = $image;
+            $dattaSend[$id1] = $image;
             $id1 = 'idImage'.$i;
             $idImage =  $request->input($id1);
-            $arrPOST[$id1] = $idImage;
+            $dattaSend[$id1] = $idImage;
             $id1 = 'deleteImage'.$i;
             $deleteImage =  $request->input($id1);
-            $arrPOST[$id1] = $deleteImage;
+            $dattaSend[$id1] = $deleteImage;
         };
 
 
         $cant_links =$request->input('cant_links');
         Log::info("#Cant Links");
-        $arrPOST["cant_links"] = $cant_links;
+        $dattaSend["cant_links"] = $cant_links;
         for($i = 1; $i < $cant_links + 1;$i++){
             $id1 = 'link'.$i;
             $link =  $request->input($id1);
-            $arrPOST[$id1] = $link;
+            $dattaSend[$id1] = $link;
             $id1 = 'titleLink'.$i;
             $titleLink =  $request->input($id1);
-            $arrPOST[$id1] = $titleLink;
+            $dattaSend[$id1] = $titleLink;
             $id1 = 'idLink'.$i;
             $idLink =  $request->input($id1);
-            $arrPOST[$id1] = $idLink;
+            $dattaSend[$id1] = $idLink;
             $id1 = 'deleteLink'.$i;
             $deleteLink =  $request->input($id1);
-            $arrPOST[$id1] = $deleteLink;
+            $dattaSend[$id1] = $deleteLink;
             Log::info($titleLink);
         };
 
 
         $cant_files =$request->input('cant_files');
-        $arrPOST["cant_files"] = $cant_files;
+        $dattaSend["cant_files"] = $cant_files;
         for($i = 1; $i < $cant_files + 1;$i++){
             $id1 = 'file'.$i;
 
             $id1 = 'title'.$i;
             $id2 = 'titlefile'.$i;
             $titleLink =  $request->input($id2);
-            $arrPOST[$id1] = $titleLink;
+            $dattaSend[$id1] = $titleLink;
             $id1 = 'idFile'.$i;
             $idFile =  $request->input($id1);
-            $arrPOST[$id1] = $idFile;
+            $dattaSend[$id1] = $idFile;
             $id1 = 'deleteFile'.$i;
             $deleteLink =  $request->input($id1);
-            $arrPOST[$id1] = $deleteLink;
+            $dattaSend[$id1] = $deleteLink;
         };
 
         $url = config('app.apiUrl').'initiatives/store';
@@ -229,7 +230,8 @@ class InitiativesController extends Controller
         $res = json_decode( $data, true);
         //*/
 
-        return redirect( "/admin/initiatives/create" );
+        return $res;
+        //return redirect( "/admin/initiatives/" ) ->with('message', $res["message"]);
 
     }
 
@@ -237,6 +239,55 @@ class InitiativesController extends Controller
     public function initiatives_search(Request $request)
     {
 
+        $keyword = $request->input("search_box");
+        $section = $request->input("section");
+        $sub = $request->input("sub");
+        Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub);
+        $fields = array(
+            'searchTypeOfActivity' => ($sub==='actype' ? $keyword :  ''),
+            'searchTopics' => ($sub==='topics' ? $keyword :  ''),
+            'searchSDG' => ($sub==='sdg' ? $keyword :  ''),
+            'searchConnectionsToOther' => ($sub==='connections' ? $keyword :  '')
+        );
+
+        $fields_string = http_build_query($fields);
+        //Log::info(config('app.apiUrl'));
+
+        $url = config('app.apiUrl').'initiatives';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        
+        //Log::info($res);
+
+        $inputs = [];
+        $inputs["initiatives"] = $res["initiatives"];
+        //Total de registros encontrados
+        $inputs["total"] = $res["tot"];
+        //Cantidad de paginas
+        $inputs["paginator"] = $res["paginator"];
+        //contenido del buscador
+        $inputs["search_box"] = '';
+        //pagina en la que estamos
+        $inputs["page"] = 1;
+        $inputs["st"] = '';
+
+        $inputs["section"] = $section;
+        $inputs["sub"] = $sub;
+
+        $inputs["typeOfActivity"] = $res["typeOfActivity"];
+        $inputs["Topics"] = $res["Topics"];
+        $inputs["sdg"] = $res["sdg"];
+        $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
+
+        return view('admin.initiatives', $inputs);
     }
 
     public function typeOfActivity_save(Request $request)

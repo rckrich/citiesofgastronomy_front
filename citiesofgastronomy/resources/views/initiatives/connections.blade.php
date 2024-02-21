@@ -92,7 +92,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <input type="text" id="delete_data_connection_id">
+            <input type="hidden" id="delete_data_connection_id">
             <p>{{__('initiatives.filters.connection.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
@@ -192,7 +192,7 @@
                 processData:false,
                 beforeSend: function(){},
                 success: function(msg){
-                    $('#deleteConnectionModal').hide();
+                    closeModal('deleteConnectionModal');
                     if (msg.status===400) {
                         alert("Error: " + msg.message);
                     } 
