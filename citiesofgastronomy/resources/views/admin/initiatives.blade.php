@@ -87,8 +87,8 @@
         </div>
         <div class="tab-pane fade <?php if($section=='filters'){echo 'show active';}?>" id="pills-filters" role="tabpanel" aria-labelledby="pills-filters-tab">
         <ul class="nav nav-pills mb-3 py-2" id="pills-tab-filters" role="tablist">
-            <li class="nav-item py-2 px-3 <?php if($sub==''){echo ' active';}?>" role="presentation">
-                <button class="nav-link <?php if($sub==''){echo ' active';}?>" id="pills-activityType-tab" data-bs-toggle="pill" data-bs-target="#pills-activityType" type="button" role="tab"
+            <li class="nav-item py-2 px-3 <?php if($sub=='actype'){echo ' active';}?>" role="presentation">
+                <button class="nav-link <?php if($sub=='actype'){echo ' active';}?>" id="pills-activityType-tab" data-bs-toggle="pill" data-bs-target="#pills-activityType" type="button" role="tab"
                 aria-controls="pills-activityType" aria-selected="<?php if($sub==''){echo 'true';}else{echo 'false" tabindex="-1';}?>">
                     {{__('initiatives.filters.tab_type')}}
                 </button>
@@ -113,7 +113,7 @@
             </li>
         </ul>
         <div class="tab-content px-3" id="pills-tab-filtersContent">
-            <div class="tab-pane fade <?php if($sub==''){echo 'show active';}?>" id="pills-activityType" role="tabpanel" aria-labelledby="pills-activityType-tab">
+            <div class="tab-pane fade <?php if($sub=='actype'){echo 'show active';}?>" id="pills-activityType" role="tabpanel" aria-labelledby="pills-activityType-tab">
                 @include('initiatives.activity_types')
             </div>
             <div class="tab-pane fade <?php if($sub=='topics'){echo 'show active';}?>" id="pills-topics" role="tabpanel" aria-labelledby="pills-topics-tab">
