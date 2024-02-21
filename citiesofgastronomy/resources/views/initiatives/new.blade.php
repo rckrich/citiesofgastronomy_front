@@ -21,15 +21,17 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_name">{{__('initiatives.create.data_name')}}</label>
                         <input id="data_name" name="data_name" class="form-control" placeholder="{{__('initiatives.create.ph_name')}}"/>
+                        <div id="data_name_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_continent">{{__('initiatives.create.data_continent')}}</label>
                         <select id="data_continent" name="data_continent" class="form-control" placeholder="">
-                            <option>{{__('initiatives.create.ph_continent')}}</option>
+                            <option value="">{{__('initiatives.create.ph_continent')}}</option>
                             @foreach($Continents as $Continent)
                             <option value="{{$Continent['id']}}">{{$Continent["name"]}}</option>
                             @endforeach
                         </select>
+                        <div id="data_continent_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                     </div>
 
 
@@ -62,7 +64,8 @@
                             </div>
                             <div style="display:none">
                             @foreach($citiesFilter AS $item)
-                                    <input id="citiesFilter{{$item['id']}}" name="citiesFilter{{$item['id']}}" value="{{$item['id']}}" type="checkbox" aria-hidden="true" />
+                                    <input id="citiesFilter{{$item['id']}}" name="citiesFilter{{$item['id']}}" value="{{$item['id']}}"
+                                    type="checkbox" aria-hidden="true" class="checkCities" />
                             @endforeach
                             <?php
                                 $array = array_column($citiesFilter, 'id');
@@ -87,6 +90,7 @@
                                 <?php if($iniciative['photo']){ echo __('cities.edit.btn_image');}else{echo 'SELECT IMAGE';};?>
                             </label>
                         </div>
+                        <div id="photo_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                     </div>
 
                     <div class="bb-gray mt-4 mb-2"></div>
@@ -103,7 +107,7 @@
                             <div class="row form-group py-2">
                                 @foreach($typeOfActivityFilter AS $item)
                                 <div class="col-6">
-                                    <input  name="typeOfActivityFilter{{$item['id']}}" class="" type="checkbox"
+                                    <input  name="typeOfActivityFilter{{$item['id']}}" class="checkType" type="checkbox"
                                             value="{{$item['id']}}" aria-hidden="true" />
                                     <label for="data_sample_acttype_1">{{$item["name"]}}</label>
                                 </div>
@@ -124,7 +128,7 @@
 
                                 @foreach($TopicsFilter AS $item)
                                 <div class="col-6">
-                                    <input name="topicsFilter{{$item['id']}}" class="" value="{{$item['id']}}"
+                                    <input name="topicsFilter{{$item['id']}}" class="checkTopics" value="{{$item['id']}}"
                                             type="checkbox" aria-hidden="true" />
                                     <label for="data_sample_acttype_1">{{$item["name"]}}</label>
                                 </div>
@@ -146,7 +150,7 @@
                                 @foreach($ConnectionsToOtherFilter AS $item)
                                 <div class="col-6">
                                     <input id="connectionsToOtherFilter{{$item['id']}}"  name="connectionsToOtherFilter{{$item['id']}}"
-                                            value="{{$item['id']}}" type="checkbox" aria-hidden="true" />
+                                            value="{{$item['id']}}" type="checkbox" class="checkConnections" aria-hidden="true" />
                                     <label for="data_sample_topic_1">{{$item["name"]}}</label>
                                 </div>
                                 @endforeach
@@ -165,7 +169,8 @@
                             <div class="row form-group py-2">
                             @foreach($sdgFilter AS $item)
                                 <div class="col-6">
-                                    <input id="sdgFilter{{$item['id']}}" name="sdgFilter{{$item['id']}}" value="{{$item['id']}}" type="checkbox" aria-hidden="true" />
+                                    <input id="sdgFilter{{$item['id']}}" name="sdgFilter{{$item['id']}}" class="checkSDG"
+                                            value="{{$item['id']}}" type="checkbox" aria-hidden="true" />
                                     <label for="data_sample_sdg_{{$item['id']}}">
                                         <img class="m-2" src="{{asset('assets/img/number/'.$item['number'].'.png')}}" width="25" height="25"/>
                                             {{$item["name"]}}
@@ -190,7 +195,8 @@
                                     <label class="form-label" for="data_startdate">{{__('initiatives.create.data_startdate')}}</label>
                                 </div>
                                 <div class="col-6">
-                                    <input id="data_startdate" name="data_startdate" class="form-control" placeholder="{{__('initiatives.create.ph_startdate')}}"/>
+                                    <input id="data_startdate" name="data_startdate" class="form-control" type="date" placeholder="{{__('initiatives.create.ph_startdate')}}"/>
+                                    <div id="data_startdate_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +206,10 @@
                                     <label class="form-label" for="data_enddate">{{__('initiatives.create.data_enddate')}}</label>
                                 </div>
                                 <div class="col-6">
-                                    <input id="data_enddate" name="data_enddate" class="form-control" placeholder="{{__('initiatives.create.ph_enddate')}}"/>
+                                    <input id="data_enddate" name="data_enddate" class="form-control"  type="date"
+                                            placeholder="{{__('initiatives.create.ph_enddate')}}"/>
+                                    <div id="data_enddate_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                                    <div id="validation_dateCompare" class="invalid-feedback" style="display: none;">Please select an End Date equal or after the Start Date</div>
                                 </div>
                             </div>
                         </div>
@@ -211,6 +220,7 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_description">{{__('initiatives.edit.data_description')}}</label>
                         <textarea id="data_description" name="data_description" class="form-control" placeholder="{{__('initiatives.edit.ph_description')}}"></textarea>
+                        <div id="data_description_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                     </div>
 
                     <div class="bb-gray mt-4 mb-2"></div>
@@ -437,7 +447,6 @@
 
 
 <script>
-    var formData = new FormData(document.getElementById("initiativeForm"));
 
 
 var PDFModal;var modalToggle;
@@ -668,8 +677,8 @@ function editFileFN(itemNum){
         let filePDF =  document.getElementById("filePDF").value;
         let title =  document.getElementById("titlePDF").value;
         let id1 = '';
-        if(idFileGral !=''&&title!=''){   $valida = 'si'; };
-        if(idFileGral ==''&&filePDF!=''&&title!=''){   $valida = 'si'; };
+        if(idFileGral != '' && title != ''){   $valida = 'si'; };
+        if(idFileGral == '' && filePDF != '' && title != ''){   $valida = 'si'; };
 
         ///////////DESCIPTION
         //let description = editor.getData();
@@ -680,11 +689,12 @@ function editFileFN(itemNum){
         if(extencion!='pdf'){$valida = 'no';};
 
         if($valida == 'si'){
-            formData.append("dato", "valor");
-            addFile(e["datta"]["id"], e["datta"]["title"], e["datta"]["file"]);
-            PDFModal.hide(modalToggle);
-            document.getElementById("loading").style.display = 'none';
-                /*
+            //let formData = new FormData(document.getElementById("initiativeForm"));
+            //formData.append("dato", "valor");
+            //addFile(e["datta"]["id"], e["datta"]["title"], e["datta"]["file"]);
+            //PDFModal.hide(modalToggle);
+           // document.getElementById("loading").style.display = 'none';
+
                 $.ajax({
                     type: 'POST',
                     url: '/admin/addPDF',
@@ -798,7 +808,14 @@ function editFileFN(itemNum){
 
 
 
-
+function searchCheck (classGroup){
+    let result = true;
+    //let array1 = document.getElementsByClassName(classGroup);
+    let found = Array.from(document.getElementsByClassName(classGroup)).find((element) => element.checked == true);
+    //let found = array1.find((element) => element.checked == true);
+    if(found == undefined){result = false;};
+    return result;
+}
 
 
 
@@ -807,7 +824,60 @@ function editFileFN(itemNum){
     $("#initiativeForm").on('submit', function(e){
         e.preventDefault();
         document.getElementById("btnSubmit").disabled = true;
-        valida = 'si';
+        let data_name = document.getElementById("data_name").value;
+        let data_continent = document.getElementById("data_continent").value;
+        let photo = document.getElementById("photo").value;
+        let data_startdate = document.getElementById("data_startdate").value;
+        let data_enddate = document.getElementById("data_enddate").value;
+        let data_description = document.getElementById("data_description").value;
+        let data_startdate = document.getElementById("data_startdate").value;
+        let data_enddate = document.getElementById("data_enddate").value;
+        let valida = 'si';let errorMessage = '';
+
+        //reseteo validaciones
+
+        document.getElementById("data_name").className =  'form-control';
+                document.getElementById("data_name_validation").style.display =  'none';
+                document.getElementById("data_continent").className =  'form-control';
+                document.getElementById("data_continent_validation").style.display =  'none';
+                //document.getElementById("photo").className =  'form-control';
+                document.getElementById("photo_validation").style.display =  'none';
+                document.getElementById("data_startdate").className =  'form-control';
+                document.getElementById("data_startdate_validation").style.display =  'none';
+                document.getElementById("data_enddate").className =  'form-control';
+                document.getElementById("data_enddate_validation").style.display =  'none';
+                document.getElementById("validation_dateCompare").style.display =  'none';
+                document.getElementById("data_description").className =  'form-control';
+                document.getElementById("data_description_validation").style.display =  'none';
+
+                //comparar fechas
+        if(data_startdate && data_enddate){
+            var f1 = new Date(data_startdate);
+            var f2 = new Date(data_enddate);
+
+            console.log("f1 > f2");
+            console.log(f1 > f2);
+            if(f1 > f2){
+                document.getElementById("validation_dateCompare").style.display = 'block';
+                valida = 'no';
+            };
+        };
+
+        //FILTROS
+        let checkCities = searchCheck ('checkCities');
+        let checkType = searchCheck ('checkType');
+        let checkTopics = searchCheck ('checkTopics');
+        let checkSDG = searchCheck ('checkSDG');
+        let checkConnections = searchCheck ('checkConnections');
+        if(!checkCities || !checkType || !checkTopics || !checkSDG || !checkConnections){
+            valida = 'no';
+        };
+
+        //general DATTA
+        if(data_name=='' || data_continent=='' || photo=='' || data_startdate=='' || data_enddate=='' || data_description=='' ){
+            valida = 'no';
+        };
+
 
         if(valida == 'si'){
 
@@ -823,15 +893,79 @@ function editFileFN(itemNum){
                     //$('#fupForm').css("opacity",".5");
                 },
                 success: function(msg){
-                    localStorage.setItem('message', 'Iniciative was successfully edited');
-                        //window.location ='/admin/initiatives/';
-                        //alert("Iniciative was successfully saved");
-                        document.getElementById("btnSubmit").disabled = false;
+                    localStorage.setItem('messageIniciative', 'Iniciative was successfully edited');
+                    window.location ='/admin/initiatives/';
+                    document.getElementById("btnSubmit").disabled = false;
 
                 }
             });
+            //*/
+            alert("Iniciative was successfully saved");
 
-            }else{};
+        }else{
+            //checa FILTROS
+            let cantFiltros = 0;let txt = 'is';
+            if(!checkCities || !checkType || !checkTopics || !checkSDG || !checkConnections){
+                if(!checkCities){
+                    errorMessage = 'cities';
+                    cantFiltros = cantFiltros + 1;
+                };
+                if(!checkType){
+                    if(errorMessage != ''){errorMessage = errorMessage+', ';};
+                    errorMessage = errorMessage+'type of activity';
+                    cantFiltros = cantFiltros + 1;
+                };
+                if(!checkTopics){
+                    if(errorMessage != ''){errorMessage = errorMessage+', ';};
+                    errorMessage = errorMessage+'topics';
+                    cantFiltros = cantFiltros + 1;
+                };
+                if(!checkSDG){
+                    if(errorMessage != ''){errorMessage = errorMessage+', ';};
+                    errorMessage = errorMessage+'SDG';
+                    cantFiltros = cantFiltros + 1;
+                };
+                if(!checkConnections){
+                    if(errorMessage != ''){errorMessage = errorMessage+', ';};
+                    errorMessage = errorMessage+'connection to other';
+                    cantFiltros = cantFiltros + 1;
+                };
+                if(cantFiltros>1){txt = 'are';};
+                errorMessage = 'At least one filter of each must be selected ('+errorMessage+' '+txt+' missing)';
+
+            };
+
+            if(data_name=='' || data_continent=='' || photo=='' || data_startdate=='' || data_enddate=='' || data_description=='' ){
+                errorMessage = 'Fill out all fields';
+                if(data_name==''){
+                    document.getElementById("data_name").className =  'form-control is-invalid';
+                    document.getElementById("data_name_validation").style.display =  'block';
+                };
+                if(data_continent==''){
+                    document.getElementById("data_continent").className =  'form-control is-invalid';
+                    document.getElementById("data_continent_validation").style.display =  'block';
+                };
+                if(photo==''){
+                    //document.getElementById("photo").className =  'form-control is-invalid';
+                    document.getElementById("photo_validation").style.display =  'block';
+                };
+                if(data_startdate==''){
+                    document.getElementById("data_startdate").className =  'form-control is-invalid';
+                    document.getElementById("data_startdate_validation").style.display =  'block';
+                };
+                if(data_enddate==''){
+                    document.getElementById("data_enddate").className =  'form-control is-invalid';
+                    document.getElementById("data_enddate_validation").style.display =  'block';
+                };
+                if(data_description==''){
+                    document.getElementById("data_description").className =  'form-control is-invalid';
+                    document.getElementById("data_description_validation").style.display =  'block';
+                }
+            };
+
+            alert(errorMessage);
+        document.getElementById("btnSubmit").disabled = false;
+        };
     });
 </script>
 @endsection

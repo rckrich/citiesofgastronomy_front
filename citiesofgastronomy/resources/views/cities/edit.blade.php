@@ -602,7 +602,7 @@ $("#deepInfoForm").on('submit', function(e){
    $("#uploadPDFForm").on('submit', function(e){
        e.preventDefault();
 
-       $valida = 'no';
+       let valida = 'no';
         let PDFform = $("#uploadPDFForm");
         document.getElementById("loading").style.display = 'block';
         let idFileGral = document.getElementById("idFileGral").value;
@@ -610,8 +610,8 @@ $("#deepInfoForm").on('submit', function(e){
         let filePDF =  document.getElementById("filePDF").value;
         let title =  document.getElementById("titlePDF").value;
         let id1 = '';
-        if(idFileGral !=''&&title!=''){   $valida = 'si'; };
-        if(idFileGral ==''&&filePDF!=''&&title!=''){   $valida = 'si'; };
+        if(idFileGral !=''&&title!=''){   valida = 'si'; };
+        if(idFileGral ==''&&filePDF!=''&&title!=''){   valida = 'si'; };
 
         ///////////DESCIPTION
         let description = editor.getData();
@@ -619,9 +619,9 @@ $("#deepInfoForm").on('submit', function(e){
         //VERIFICO extencion
         file1 = document.getElementById("filePDF").value;
         let extencion = file1.split('.').pop();
-        if(extencion!='pdf'){$valida = 'no';};
+        if(extencion!='pdf'){valida = 'no';};
 
-        if($valida == 'si'){
+        if(valida == 'si'){
 
                 $.ajax({
                     type: 'POST',

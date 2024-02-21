@@ -56,6 +56,9 @@
 
                     </div>
                 </div>
+                <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
+                    Initiative was successfully created
+                </div>
                 <div class="row mx-0 pt-4">
                     <table class="table table-fixed">
                         <thead class="">
@@ -66,8 +69,9 @@
                             </tr>
                         </thead>
                         <tbody class="">
+                        @foreach($initiatives AS $item)
                             <tr class="align-items-center">
-                                <td class="col-8">Tittle. Lorem Ipsum is simply dummy text…</td>
+                                <td class="col-8">{{$item["name"]}}</td>
                                 <td class="col-auto my-auto">
                                     <a class="btn btn-link" href="{{route('admin.initiatives_edit',['id'=>1])}}">{{__('contact.admin.btn_edit')}}</a>
                                 </td>
@@ -75,6 +79,7 @@
                                     <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteInitiativeModal">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -166,5 +171,23 @@ var editModal_connection; var modalToggle_connection;
         modalToggle_connection = document.getElementById("editConnectionModal");
         //
     });
+
+
+
+
+    let message = localStorage.getItem('messageIniciative');
+        console.log("##message");
+        console.log(message);
+        if(message){
+            console.log("Local Storage DELETE");
+                localStorage.removeItem('messageIniciative');
+                document.getElementById('alertMessage').innerHTML = message;
+                document.getElementById('alertMessage').style.display = 'block';
+                setTimeout(() => {
+                    console.log("Delayed for 1 second.");
+                    document.getElementById('alertMessage').style.display = 'none';
+                },5000);
+        };
+
 </script>
 @endsection
