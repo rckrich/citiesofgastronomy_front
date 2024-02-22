@@ -88,103 +88,39 @@
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row g-4">
+                @foreach($initiatives as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
                         <a href="{{route('initiatives.view')}}" class="img-link">
                             <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
-                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
+                            <h5 class="card-title mb-2">{{$item["name"]}}</h5>
+                            <p class="card-text mb-2">{{$item["description"]}}</p>
+                            @if( count ($item["sdg_filter"]) != 0)
                             <div class="py-3">
-                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
+                                @foreach($item["sdg_filter"] as $sdg)
+                                <img src="{{asset('assets/img/number/' . $sdg['sdg_datta']['number'] . '.png')}}" width="35" height="35"/>
+                                @endforeach
                             </div>
+                            @endif
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
-                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
+                            <p class="card-text mb-2">
+                                @foreach($item["type_filter"] as $type)
+                                    {{$type['type_datta']['name']}}
+                                    @if(!$loop->last),@endif
+                                @endforeach
+                            </p>
                             <a href="{{route('initiatives.view')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
-                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
-                            <div class="py-3">
-                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
-                            </div>
-                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
-                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.view')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
-                        </div>
-                    </div>
+                @endforeach
+                @if( count ($initiatives) == 0)
+                <div>
+                    <p class="text-center">{{__('general.no_results')}}</p>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
-                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
-                            <div class="py-3">
-                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
-                            </div>
-                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
-                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.view')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
-                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
-                            <div class="py-3">
-                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
-                            </div>
-                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
-                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.view')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('landing.lorem_title')}}</h5>
-                            <p class="card-text mb-2">{{__('landing.lorem')}}</p>
-                            <div class="py-3">
-                                <img src="{{asset('assets/img/number/3.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/10.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/13.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/14.png')}}" width="35" height="35"/>
-                                <img src="{{asset('assets/img/number/16.png')}}" width="35" height="35"/>
-                            </div>
-                            <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
-                            <p class="card-text mb-2">{{__('landing.initiatives.lorem_activity')}}</p>
-                            <a href="{{route('initiatives.view')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </section>

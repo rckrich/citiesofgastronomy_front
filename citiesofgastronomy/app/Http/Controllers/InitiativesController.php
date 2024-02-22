@@ -28,6 +28,7 @@ class InitiativesController extends Controller
         $inputs["cityList"] = $res["cities"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
+
         return view('initiatives.show', $inputs);
     }
 

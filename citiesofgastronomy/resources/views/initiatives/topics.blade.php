@@ -44,7 +44,7 @@
                 @endforeach
                 @if( count($Topics) == 0)
                     <tr class="align-items-center">
-                        <td class="col-8">No results found</td>
+                        <td class="col-8">{{__('general.no_results')}}</td>
                         <td class="col-auto"></td>
                         <td class="col-auto"></td>
                     </tr>

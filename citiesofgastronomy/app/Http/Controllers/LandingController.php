@@ -129,6 +129,11 @@ class LandingController extends Controller
         $inputs["banners"] = $res["banner"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
+        $inputs["total"] = $res["tot"];        //Total de registros encontrados
+        $inputs["typeOfActivity"] = $res["typeOfActivity"];
+        $inputs["Topics"] = $res["Topics"];
+        $inputs["sdg"] = $res["sdg"];
+        $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
 
         return view('landing.initiatives', $inputs);
     }

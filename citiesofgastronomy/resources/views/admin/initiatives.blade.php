@@ -69,7 +69,7 @@
                             </tr>
                         </thead>
                         <tbody class="">
-                        @foreach($initiatives AS $item)
+                            @foreach($initiatives AS $item)
                             <tr class="align-items-center">
                                 <td class="col-8">{{$item["name"]}}</td>
                                 <td class="col-auto my-auto">
@@ -80,8 +80,25 @@
                                 </button></td>
                             </tr>
                             @endforeach
+                            @if( count ($initiatives) == 0)
+                            <tr class="align-items-center">
+                                <td class="col-8">{{__('general.no_results')}}</td>
+                                <td class="col-auto"></td>
+                                <td class="col-auto"></td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" onclick="paginator('prev')">Previous</a></li>
+                            @for($i=1;$i < $paginator +1; $i++)
+                            <li class="page-item"><a class="page-link" onclick="paginator('<?= $i?>')"><?= $i?></a></li>
+                            @endfor
+                            <li class="page-item"><a class="page-link" onclick="paginator('next')">Next</a></li>
+
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -152,17 +169,10 @@
 
 <script>
 
-var editModal_type; var modalToggle_type;
-var editModal_topic; var modalToggle_topic;
-var editModal_sdg; var modalToggle_sdg;
-var editModal_connection; var modalToggle_connection;
-
-var deleteModal_type; var modalToggleDelete_type;
-var deleteModal_topic; var modalToggleDelete_topic;
-var deleteModal_sdg; var modalToggleDelete_sdg;
-var deleteModal_connection; var modalToggleDelete_connection;
-
-
+    var editModal_type; var modalToggle_type;
+    var editModal_topic; var modalToggle_topic;
+    var editModal_sdg; var modalToggle_sdg;
+    var editModal_connection; var modalToggle_connection;
 
     $(document).ready(function(e){
         editModal_type = new bootstrap.Modal('#editActivityModal', { keyboard: false    });
@@ -177,36 +187,67 @@ var deleteModal_connection; var modalToggleDelete_connection;
         editModal_connection = new bootstrap.Modal('#editConnectionModal', { keyboard: false    });
         modalToggle_connection = document.getElementById("editConnectionModal");
         //
-        deleteModal_type = new bootstrap.Modal('#deleteActivityModal', { keyboard: false    });
-        modalToggleDelete_type = document.getElementById("editActivityModal");
-        //
-        deleteModal_topic = new bootstrap.Modal('#deleteTopicModal', { keyboard: false    });
-        modalToggleDelete_topic = document.getElementById("deleteTopicModal");
-        //
-        deleteModal_sdg = new bootstrap.Modal('#deleteSDGModal', { keyboard: false    });
-        modalToggleDelete_sdg = document.getElementById("deleteSDGModal");
-        //
-        deleteModal_connection = new bootstrap.Modal('#deleteConnectionModal', { keyboard: false    });
-        modalToggleDelete_connection = document.getElementById("deleteConnectionModal");
-        //
     });
 
 
-
-
     let message = localStorage.getItem('messageIniciative');
-        console.log("##message");
-        console.log(message);
-        if(message){
-            console.log("Local Storage DELETE");
-                localStorage.removeItem('messageIniciative');
-                document.getElementById('alertMessage').innerHTML = message;
-                document.getElementById('alertMessage').style.display = 'block';
-                setTimeout(() => {
-                    console.log("Delayed for 1 second.");
-                    document.getElementById('alertMessage').style.display = 'none';
-                },5000);
+    console.log("##message");
+    console.log(message);
+    if(message){
+        console.log("Local Storage DELETE");
+            localStorage.removeItem('messageIniciative');
+            document.getElementById('alertMessage').innerHTML = message;
+            document.getElementById('alertMessage').style.display = 'block';
+            setTimeout(() => {
+                console.log("Delayed for 1 second.");
+                document.getElementById('alertMessage').style.display = 'none';
+            },5000);
+    };
+
+
+    //////////////////////////////////////////////
+
+    function paginator(page){
+        let search = document.getElementById('search_box').value;
+        let paginatorCant = '<?= $paginator?>';
+        paginatorCant = parseInt(paginatorCant);
+        //search_box
+        //console.log("-->PAG");
+        let paginaActual = document.getElementById('pageActual').value;
+        paginaActual= parseInt(paginaActual);
+        if (search != ''){
+            paginaActual = document.getElementById('page').value;
+            paginaActual= parseInt(paginaActual);
         };
+
+        let nada = '';
+        if(page == 'prev' || page == 'next'){
+                //console.log("#0");
+            if(page == 'next' && paginaActual != paginatorCant){
+                page = paginaActual + 1;
+                //console.log("#1");
+            }else if(page == 'prev' && paginaActual > 1){
+                page = paginaActual - 1;
+                //console.log("#2");
+            }else{
+                nada = 'si';
+            };
+        }else{
+            page= parseInt(page);
+        };
+        //console.log(paginaActual);
+        //console.log(page);
+        if(nada == ''){
+            if (search == ''){
+                console.log("#not SERCH");
+                window.location = '/admin/initiatives/?page='+page;
+            }else{
+                //window.location = '/admin/initiatives/?page='+paginaActual;
+                document.getElementById('page').value = page;
+                document.getElementById('formSearchInitiative').submit();
+            };
+        };
+    }
 
 </script>
 @endsection
