@@ -35,7 +35,7 @@ Route::post('/search', [LandingController::class, 'search'])->name('search');
 Route::post('/newslettersave', [LandingController::class, 'newsletter']);
 
 Route::get('/cities/view/{id}', [CitiesController::class, 'index'])->name('cities.view');
-Route::get('/initiatives/view', [InitiativesController::class, 'index'])->name('initiatives.view');
+Route::get('/initiatives/view/{id}', [InitiativesController::class, 'index'])->name('initiatives.view');
 Route::get('/tastier_life/view', [TastierLifeController::class, 'index'])->name('tastier_life.view');
 Route::get('/tours/view', [ToursController::class, 'index'])->name('tours.view');
 

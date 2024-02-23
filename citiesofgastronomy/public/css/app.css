@@ -148,6 +148,13 @@ a .text-white{color: #fff!important;}
 .card{border: none;}
 #contact-cards .card-group:nth-child(odd) .card-body{background-color: #D87C16!important;color:#fff}
 #contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
+.card-text{
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 3; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
 
 /*ACCORDION*/
 .accordion-button{font-size: 25px;}

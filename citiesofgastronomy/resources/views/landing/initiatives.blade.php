@@ -91,7 +91,7 @@
                 @foreach($initiatives as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
-                        <a href="{{route('initiatives.view')}}" class="img-link">
+                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
                             <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body px-0 bg-black text-white">
@@ -111,7 +111,7 @@
                                     @if(!$loop->last),@endif
                                 @endforeach
                             </p>
-                            <a href="{{route('initiatives.view')}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class InitiativesController extends Controller
 {
-    public function index()
+    public function index($id)
     {
 
         $url = config('app.apiUrl').'home';
