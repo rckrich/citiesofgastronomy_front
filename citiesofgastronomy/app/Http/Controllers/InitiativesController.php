@@ -50,8 +50,18 @@ class InitiativesController extends Controller
 
         $inputs = [];
 
-        $inputs["iniciative"] = [];
         $inputs["iniciative"]["photo"] = '';
+        $inputs["iniciative"]["name"] = '';
+        $inputs["iniciative"]["id"] = '';
+        $inputs["iniciative"]["continent"] = '';
+        $inputs["iniciative"]["startDate"] = '';
+        $inputs["iniciative"]["endDate"] = '';
+        $inputs["iniciative"]["description"] = '';
+        $inputs["iniciative"]["sdg_filter"] = [];
+        $inputs["iniciative"]["type_filter"] = [];
+        $inputs["iniciative"]["conections_filter"] = [];
+        $inputs["iniciative"]["topics_filter"] = [];
+        $inputs["iniciative"]["cities_filter"] = [];
         $inputs["id"] = $id;
         $inputs["citiesFilter"] = $res["citiesFilter"];
         $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
@@ -87,6 +97,17 @@ class InitiativesController extends Controller
 
         $inputs["iniciative"] = [];
         $inputs["iniciative"]["photo"] = '';
+        $inputs["iniciative"]["name"] = '';
+        $inputs["iniciative"]["id"] = '';
+        $inputs["iniciative"]["continent"] = '';
+        $inputs["iniciative"]["startDate"] = '';
+        $inputs["iniciative"]["endDate"] = '';
+        $inputs["iniciative"]["description"] = '';
+        $inputs["iniciative"]["sdg_filter"] = [];
+        $inputs["iniciative"]["type_filter"] = [];
+        $inputs["iniciative"]["conections_filter"] = [];
+        $inputs["iniciative"]["topics_filter"] = [];
+        $inputs["iniciative"]["cities_filter"] = [];
         $inputs["id"] = $id;
         $inputs["citiesFilter"] = $res["citiesFilter"];
         $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
