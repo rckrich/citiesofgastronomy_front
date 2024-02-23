@@ -43,6 +43,9 @@ class LandingController extends Controller
         $inputs["cityList"] = $res["cities"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
+        $inputs["initiatives"] = $res["recentInitiatives"];
+        $inputs["news"] = $res["news"];
+        $inputs["open_calls"] = $res["openCalls"];
 
         return view('landing.home', $inputs);
     }
