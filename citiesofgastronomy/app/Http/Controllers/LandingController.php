@@ -135,7 +135,7 @@ class LandingController extends Controller
         $inputs["total"] = $res["tot"];        //Total de registros encontrados
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];
-        $inputs["sdg"] = $res["sdg"];
+        $inputs["sdgs"] = $res["sdg"];
         $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
 
         return view('landing.initiatives', $inputs);
