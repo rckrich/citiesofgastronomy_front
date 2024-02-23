@@ -751,7 +751,7 @@
                     <div class="card">
                         <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
-                            <img src="{{asset($item['photo'])}}" class="card-img-top" alt="...">
+                            <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
                             <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                             @endif                        </a>
@@ -799,7 +799,7 @@
                     <div class="card">
                         <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
-                            <img src="{{asset($item['photo'])}}" class="card-img-top" alt="...">
+                            <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
                             <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                             @endif
@@ -847,7 +847,7 @@
                     <div class="card">
                         <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
-                            <img src="{{asset($item['photo'])}}" class="card-img-top" alt="...">
+                            <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
                             <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
                             @endif

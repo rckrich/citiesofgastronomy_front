@@ -14,6 +14,7 @@ return [
     
     'search' => 'Search',
     'gallery' => 'Gallery',
+    'no_gallery' => 'No images found.',
 
     'newsletter' => [
         'description' => 'Suscribe to our newsletter',

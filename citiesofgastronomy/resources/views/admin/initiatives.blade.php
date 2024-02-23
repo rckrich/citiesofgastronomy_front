@@ -7,14 +7,14 @@
 <section id="admin_initiatives">
     <ul class="nav nav-pills mb-3 px-5 pt-5 pb-4" id="pills-tab-initiatives" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link <?php if($section==''){echo ' active';}?>" id="pills-init-tab" data-bs-toggle="pill" data-bs-target="#pills-init" type="button" role="tab" aria-controls="pills-init" aria-selected="true">{{__('initiatives.init.title')}}</button>
+            <button class="nav-link <?php if($section=='in'){echo ' active';}?>" id="pills-init-tab" data-bs-toggle="pill" data-bs-target="#pills-init" type="button" role="tab" aria-controls="pills-init" aria-selected="true">{{__('initiatives.init.title')}}</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link <?php if($section=='filters'){echo ' active';}?>" id="pills-filters-tab" data-bs-toggle="pill" data-bs-target="#pills-filters" type="button" role="tab" aria-controls="pills-filters" aria-selected="false">{{__('initiatives.filters.title')}}</button>
         </li>
     </ul>
     <div class="tab-content px-5" id="pills-tab-initiativesContent">
-        <div class="tab-pane fade  <?php if($section==''){echo 'show active';}?>" id="pills-init" role="tabpanel" aria-labelledby="pills-init-tab">
+        <div class="tab-pane fade  <?php if($section=='in'){echo 'show active';}?>" id="pills-init" role="tabpanel" aria-labelledby="pills-init-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
@@ -22,10 +22,13 @@
                     </div>
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
+                        <form action="../admin/initiatives?section=in" method="POST" id="searchForm_ini">
+                        @csrf
                         <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.init.search_ph')}}" aria-label="{{__('initiatives.init.search_ph')}}" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="search_initiative_label"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
+                            <input id="search_box" name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.init.search_ph')}}" aria-label="{{__('initiatives.init.search_ph')}}" aria-describedby="search_initiative_label">
                         </div>
+                        </form>
                         </div>
                     </div>
                     <div class="row col-12 px-0 py-2">
@@ -73,7 +76,7 @@
                             <tr class="align-items-center">
                                 <td class="col-8">{{$item["name"]}}</td>
                                 <td class="col-auto my-auto">
-                                <a class="btn btn-link" href="{{route('admin.initiatives_edit',['id'=>$item["id"]])}}">{{__('contact.admin.btn_edit')}}</a>
+                                <a class="btn btn-link" href="{{route('admin.initiatives_edit',['id'=>$item['id']])}}">{{__('contact.admin.btn_edit')}}</a>
                                 </td>
                                 <td class="col-auto my-auto">
                                     <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteInitiativeModal">{{__('admin.btn_delete')}}
@@ -242,12 +245,29 @@
                 console.log("#not SERCH");
                 window.location = '/admin/initiatives/?page='+page;
             }else{
-                //window.location = '/admin/initiatives/?page='+paginaActual;
+                window.location = '/admin/initiatives/?page='+paginaActual;
                 document.getElementById('page').value = page;
                 document.getElementById('formSearchInitiative').submit();
             };
         };
     }
 
+</script>
+
+<script>
+    $("#search_box").keypress(function (e) {
+      var key = e.which;
+      if(key == 13)  // the enter key code
+      {
+        let keyword = $("#search_box").val();
+
+        if(keyword){
+            $('#searchForm_ini').submit();
+        }
+        else{
+            window.location = '../../admin/initiatives?section=in';
+        }
+      }
+     }); 
 </script>
 @endsection

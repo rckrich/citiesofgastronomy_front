@@ -10,26 +10,59 @@ class InitiativesController extends Controller
     public function index($id)
     {
 
-        $url = config('app.apiUrl').'home';
+        $url_home = config('app.apiUrl').'home';
+        $curl_home = curl_init();
+        curl_setopt($curl_home, CURLOPT_URL, $url_home);
+        curl_setopt($curl_home, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl_home, CURLOPT_HEADER, false);
+        $data_home = curl_exec($curl_home);
+        curl_close($curl_home);
+        $res_home = json_decode( $data_home, true);
+        //Log::info("DAtta Result-- ::");
+
+
+        $url = config('app.apiUrl').'initiatives/find/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
         $data = curl_exec($curl);
         curl_close($curl);
+
         $res = json_decode( $data, true);
-        //Log::info("DAtta Result-- ::");
+
+        Log::info("#ADMIN INITIATIVE :: VIEW");
+        Log::info(config('app.apiUrl').'initiatives/'.$id);
+        //Log::info($res);
 
         $inputs = [];
-        $inputs["initiatives"] = $res["initiatives"];
-        $inputs["bannerAbout"] = $res["bannerAbout"];
-        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
-        //Log::info($inputs);
-        $inputs["cityList"] = $res["cities"];
-        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
-        $inputs["info"] = $res["info"];
+        $inputs["SocialNetworkType"] = $res_home["SocialNetworkType"];
+        $inputs["info"] = $res_home["info"];
+
+        $inputs["initiative"] = [];
+        $inputs["initiative"]["photo"] = $res["iniciative"]["photo"];
+        $inputs["initiative"]["name"] = $res["iniciative"]["name"];
+        $inputs["initiative"]["id"] = $res["iniciative"]["id"];
+        $inputs["initiative"]["continent"] = $res["iniciative"]["continent"];
+        $inputs["initiative"]["startDate"] = $res["iniciative"]["startDate"];
+        $inputs["initiative"]["endDate"] = $res["iniciative"]["endDate"];
+        $inputs["initiative"]["description"] = $res["iniciative"]["description"];
+        $inputs["initiative"]["sdg_filter"] = $res["iniciative"]["sdg_filter"];
+        $inputs["initiative"]["type_filter"] = $res["iniciative"]["type_filter"];
+        $inputs["initiative"]["conections_filter"] = $res["iniciative"]["conections_filter"];
+        $inputs["initiative"]["topics_filter"] = $res["iniciative"]["topics_filter"];
+        $inputs["initiative"]["cities_filter"] = $res["iniciative"]["cities_filter"];
+        $inputs["id"] = $id;
+        $inputs["gallery"] = $res["iniciative"]["images"];
+        $inputs["links"] = $res["iniciative"]["links"];
+        $inputs["files"] = $res["iniciative"]["pdf"];
+
+
+
+        Log::info($inputs);
 
         return view('initiatives.show', $inputs);
+
     }
 
     public function initiatives_new()
@@ -297,11 +330,13 @@ class InitiativesController extends Controller
         $section = $request->input("section");
         $sub = $request->input("sub");
         Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub);
+        Log::info(!$sub ? $keyword :  '');
         $fields = array(
             'searchTypeOfActivity' => ($sub==='actype' ? $keyword :  ''),
             'searchTopics' => ($sub==='topics' ? $keyword :  ''),
             'searchSDG' => ($sub==='sdg' ? $keyword :  ''),
-            'searchConnectionsToOther' => ($sub==='connections' ? $keyword :  '')
+            'searchConnectionsToOther' => ($sub==='connections' ? $keyword :  ''),
+            'search' => ($section ==='in' ? $keyword :  '')
         );
 
         $fields_string = http_build_query($fields);
@@ -342,6 +377,7 @@ class InitiativesController extends Controller
         $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
 
         return view('admin.initiatives', $inputs);
+
     }
 
     public function typeOfActivity_save(Request $request)
