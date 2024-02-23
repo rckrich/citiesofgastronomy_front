@@ -73,7 +73,7 @@
                             <tr class="align-items-center">
                                 <td class="col-8">{{$item["name"]}}</td>
                                 <td class="col-auto my-auto">
-                                    <a class="btn btn-link" href="{{route('admin.initiatives_edit',['id'=>1])}}">{{__('contact.admin.btn_edit')}}</a>
+                                <a class="btn btn-link" href="{{route('admin.initiatives_edit',['id'=>$item["id"]])}}">{{__('contact.admin.btn_edit')}}</a>
                                 </td>
                                 <td class="col-auto my-auto">
                                     <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteInitiativeModal">{{__('admin.btn_delete')}}

@@ -69,7 +69,38 @@ class InitiativesController extends Controller
     }
     public function initiatives_edit($id)
     {
-        return view('initiatives.edit');
+        $url = config('app.apiUrl').'initiatives/find/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        Log::info("#ADMIN INITIATIVE :: EDIT");
+        Log::info(config('app.apiUrl').'initiatives/'.$id);
+        //Log::info($res);
+
+        $inputs = [];
+
+        $inputs["iniciative"] = $res["iniciative"];
+        $inputs["id"] = $id;
+        $inputs["citiesFilter"] = $res["citiesFilter"];
+        $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
+        $inputs["TopicsFilter"] = $res["TopicsFilter"];
+        $inputs["sdgFilter"] = $res["sdgFilter"];
+        $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
+        $inputs["Continents"] = $res["Continent"];
+        $inputs["gallery"] = $res["iniciative"]["images"];
+        $inputs["links"] = $res["iniciative"]["links"];
+        $inputs["files"] = $res["iniciative"]["pdf"];
+
+        //Log::info($inputs["sdgFilter"]);
+
+        return view('initiatives.new', $inputs);
+        //return view('initiatives.edit');
     }
     public function initiatives_store(Request $request){
         Log::info("----> INITIATIVE STORE..");
@@ -265,7 +296,7 @@ class InitiativesController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
-        
+
         //Log::info($res);
 
         $inputs = [];
