@@ -85,7 +85,8 @@ class InitiativesController extends Controller
 
         $inputs = [];
 
-        $inputs["iniciative"] = $res["iniciative"];
+        $inputs["iniciative"] = [];
+        $inputs["iniciative"]["photo"] = '';
         $inputs["id"] = $id;
         $inputs["citiesFilter"] = $res["citiesFilter"];
         $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
@@ -93,9 +94,9 @@ class InitiativesController extends Controller
         $inputs["sdgFilter"] = $res["sdgFilter"];
         $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
         $inputs["Continents"] = $res["Continent"];
-        $inputs["gallery"] = $res["iniciative"]["images"];
-        $inputs["links"] = $res["iniciative"]["links"];
-        $inputs["files"] = $res["iniciative"]["pdf"];
+        $inputs["gallery"] = [];
+        $inputs["links"] = [];
+        $inputs["files"] = [];
 
         //Log::info($inputs["sdgFilter"]);
 

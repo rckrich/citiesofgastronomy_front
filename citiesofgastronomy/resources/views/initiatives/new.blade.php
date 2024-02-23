@@ -20,7 +20,7 @@
                 @csrf
                     <div class="form-group py-2">
                         <label class="form-label" for="data_name">{{__('initiatives.create.data_name')}}</label>
-                        <input id="data_name" name="data_name" class="form-control" placeholder="{{__('initiatives.create.ph_name')}}"/>
+                        <input id="data_name" name="data_name" class="form-control" value="{{$iniciative['name']}}" placeholder="{{__('initiatives.create.ph_name')}}"/>
                         <div id="data_name_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                     </div>
                     <div class="form-group py-2">
@@ -28,7 +28,8 @@
                         <select id="data_continent" name="data_continent" class="form-control" placeholder="">
                             <option value="">{{__('initiatives.create.ph_continent')}}</option>
                             @foreach($Continents as $Continent)
-                            <option value="{{$Continent['id']}}">{{$Continent["name"]}}</option>
+                            <option value="{{$Continent['id']}}" <?php if($iniciative['continent']==$Continent['id']){
+                                echo 'selected';};?>>{{$Continent["name"]}}</option>
                             @endforeach
                         </select>
                         <div id="data_continent_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
@@ -45,8 +46,9 @@
                                         Available cities
                                     </button>
                                     @foreach($citiesFilter AS $item)
+                                    <?php $found_key = in_array($item['id'], array_column($iniciative['cities_filter'], 'filter'));?>
                                     <button type="button" id="cityAvaliable{{$item['id']}}" onclick="cityClick('{{$item['id']}}', 'add')"
-                                         class="list-group-item list-group-item-action">{{$item['name']}}</button>
+                                         class="list-group-item list-group-item-action" style="display:<?php if($found_key){echo 'none'; }else{echo 'block';};?>">{{$item['name']}}</button>
                                     @endforeach
                                 </div>
                             </div>
@@ -57,15 +59,17 @@
                                     Selected cities
                                     </button>
                                     @foreach($citiesFilter AS $item)
+                                    <?php $found_key = in_array($item['id'], array_column($iniciative['cities_filter'], 'filter'));?>
                                     <button type="button" id="citySelect{{$item['id']}}" onclick="cityClick('{{$item['id']}}', 'del')"
-                                         class="list-group-item list-group-item-action" style="display:none">{{$item['name']}}</button>
+                                         class="list-group-item list-group-item-action" style="display:<?php if($found_key){echo 'block';}else{echo 'none';};?>">{{$item['name']}}</button>
                                     @endforeach
                                 </div>
                             </div>
                             <div style="display:none">
                             @foreach($citiesFilter AS $item)
+                            <?php $found_key = in_array($item['id'], array_column($iniciative['cities_filter'], 'filter'));?>
                                     <input id="citiesFilter{{$item['id']}}" name="citiesFilter{{$item['id']}}" value="{{$item['id']}}"
-                                    type="checkbox" aria-hidden="true" class="checkCities" />
+                                    type="checkbox" aria-hidden="true" class="checkCities" <?php if($found_key){echo 'checked';};?>/>
                             @endforeach
                             <?php
                                 $array = array_column($citiesFilter, 'id');
@@ -106,12 +110,16 @@
                             </div>
                             <div class="row form-group py-2">
                                 @foreach($typeOfActivityFilter AS $item)
+
+                                <?php $found_key = in_array($item['id'], array_column($iniciative['type_filter'], 'filter'));?>
+
                                 <div class="col-6">
                                     <input  name="typeOfActivityFilter{{$item['id']}}" class="checkType" type="checkbox"
-                                            value="{{$item['id']}}" aria-hidden="true" />
-                                    <label for="data_sample_acttype_1">{{$item["name"]}}</label>
+                                            value="{{$item['id']}}" aria-hidden="true" <?php if($found_key){echo 'checked';};?> />
+                                    <label for="data_sample_acttype_1">{{$item["name"]}} <b>({{$item['id']}})</b> </label>
                                 </div>
                                 @endforeach
+
                                 <?php
                                 $array = array_column($typeOfActivityFilter, 'id');
                                 $valor =  implode(",", $array);
@@ -127,9 +135,10 @@
                             <div class="row form-group py-2">
 
                                 @foreach($TopicsFilter AS $item)
+                                <?php $found_key = in_array($item['id'], array_column($iniciative['topics_filter'], 'filter'));?>
                                 <div class="col-6">
                                     <input name="topicsFilter{{$item['id']}}" class="checkTopics" value="{{$item['id']}}"
-                                            type="checkbox" aria-hidden="true" />
+                                            type="checkbox" aria-hidden="true"  <?php if($found_key){echo 'checked';};?>/>
                                     <label for="data_sample_acttype_1">{{$item["name"]}}</label>
                                 </div>
                                 @endforeach
@@ -148,9 +157,11 @@
                             </div>
                             <div class="row form-group py-2">
                                 @foreach($ConnectionsToOtherFilter AS $item)
+                                <?php $found_key = in_array($item['id'], array_column($iniciative['conections_filter'], 'filter'));?>
                                 <div class="col-6">
                                     <input id="connectionsToOtherFilter{{$item['id']}}"  name="connectionsToOtherFilter{{$item['id']}}"
-                                            value="{{$item['id']}}" type="checkbox" class="checkConnections" aria-hidden="true" />
+                                            value="{{$item['id']}}" type="checkbox" class="checkConnections" aria-hidden="true"
+                                            <?php if($found_key){echo 'checked';};?>/>
                                     <label for="data_sample_topic_1">{{$item["name"]}}</label>
                                 </div>
                                 @endforeach
@@ -168,9 +179,10 @@
                             </div>
                             <div class="row form-group py-2">
                             @foreach($sdgFilter AS $item)
+                                <?php $found_key = in_array($item['id'], array_column($iniciative['sdg_filter'], 'filter'));?>
                                 <div class="col-6">
                                     <input id="sdgFilter{{$item['id']}}" name="sdgFilter{{$item['id']}}" class="checkSDG"
-                                            value="{{$item['id']}}" type="checkbox" aria-hidden="true" />
+                                            value="{{$item['id']}}" type="checkbox" aria-hidden="true"  <?php if($found_key){echo 'checked';};?>/>
                                     <label for="data_sample_sdg_{{$item['id']}}">
                                         <img class="m-2" src="{{asset('assets/img/number/'.$item['number'].'.png')}}" width="25" height="25"/>
                                             {{$item["name"]}}
@@ -195,7 +207,8 @@
                                     <label class="form-label" for="data_startdate">{{__('initiatives.create.data_startdate')}}</label>
                                 </div>
                                 <div class="col-6">
-                                    <input id="data_startdate" name="data_startdate" class="form-control" type="date" placeholder="{{__('initiatives.create.ph_startdate')}}"/>
+                                    <input id="data_startdate" name="data_startdate" class="form-control" type="date"
+                                    value="{{$iniciative['startDate']}}" placeholder="{{__('initiatives.create.ph_startdate')}}"/>
                                     <div id="data_startdate_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                                 </div>
                             </div>
@@ -207,7 +220,7 @@
                                 </div>
                                 <div class="col-6">
                                     <input id="data_enddate" name="data_enddate" class="form-control"  type="date"
-                                            placeholder="{{__('initiatives.create.ph_enddate')}}"/>
+                                    value="{{$iniciative['endDate']}}"  placeholder="{{__('initiatives.create.ph_enddate')}}"/>
                                     <div id="data_enddate_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                                     <div id="validation_dateCompare" class="invalid-feedback" style="display: none;">Please select an End Date equal or after the Start Date</div>
                                 </div>
@@ -219,7 +232,8 @@
 
                     <div class="form-group py-2">
                         <label class="form-label" for="data_description">{{__('initiatives.edit.data_description')}}</label>
-                        <textarea id="data_description" name="data_description" class="form-control" placeholder="{{__('initiatives.edit.ph_description')}}"></textarea>
+                        <textarea id="data_description" name="data_description" class="form-control"
+                        placeholder="{{__('initiatives.edit.ph_description')}}">{{$iniciative['description']}}</textarea>
                         <div id="data_description_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                     </div>
 
@@ -788,7 +802,9 @@ function editFileFN(itemNum){
         document.getElementById(nuevaid).style.display = '';
         document.getElementById("cant_files").value =nuevovalor;
     }
+</script>
 
+<script>
     function cityClick(id, action){
         let idAvaliable = 'cityAvaliable'+id;
         let idSelect = 'citySelect'+id;
@@ -804,6 +820,9 @@ function editFileFN(itemNum){
     }
 
 
+</script>
+
+<script>
 
 
 
@@ -830,8 +849,8 @@ function searchCheck (classGroup){
         let data_startdate = document.getElementById("data_startdate").value;
         let data_enddate = document.getElementById("data_enddate").value;
         let data_description = document.getElementById("data_description").value;
-        let data_startdate = document.getElementById("data_startdate").value;
-        let data_enddate = document.getElementById("data_enddate").value;
+        //let data_startdate = document.getElementById("data_startdate").value;
+        //let data_enddate = document.getElementById("data_enddate").value;
         let valida = 'si';let errorMessage = '';
 
         //reseteo validaciones
