@@ -124,23 +124,11 @@ class InitiativesController extends Controller
 
         Log::info("#ADMIN INITIATIVE :: EDIT");
         Log::info(config('app.apiUrl').'initiatives/'.$id);
-        //Log::info($res);
+        Log::info($res);
 
         $inputs = [];
 
-        $inputs["iniciative"] = [];
-        $inputs["iniciative"]["photo"] = '';
-        $inputs["iniciative"]["name"] = '';
-        $inputs["iniciative"]["id"] = '';
-        $inputs["iniciative"]["continent"] = '';
-        $inputs["iniciative"]["startDate"] = '';
-        $inputs["iniciative"]["endDate"] = '';
-        $inputs["iniciative"]["description"] = '';
-        $inputs["iniciative"]["sdg_filter"] = [];
-        $inputs["iniciative"]["type_filter"] = [];
-        $inputs["iniciative"]["conections_filter"] = [];
-        $inputs["iniciative"]["topics_filter"] = [];
-        $inputs["iniciative"]["cities_filter"] = [];
+        $inputs["iniciative"] = $res["iniciative"];
         $inputs["id"] = $id;
         $inputs["citiesFilter"] = $res["citiesFilter"];
         $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
@@ -148,9 +136,9 @@ class InitiativesController extends Controller
         $inputs["sdgFilter"] = $res["sdgFilter"];
         $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
         $inputs["Continents"] = $res["Continent"];
-        $inputs["gallery"] = [];
-        $inputs["links"] = [];
-        $inputs["files"] = [];
+        $inputs["gallery"] = $res["iniciative"]["images"];
+        $inputs["links"] = $res["iniciative"]["links"];
+        $inputs["files"] = $res["iniciative"]["pdf"];
 
         //Log::info($inputs["sdgFilter"]);
 
