@@ -993,6 +993,14 @@ function searchCheck (classGroup){
                 }
             };
 
+            if(data_startdate && data_enddate){
+                if(f1 > f2){
+                console.log("Validacion de fechas");
+                    document.getElementById("validation_dateCompare").style.display = 'block';
+                    errorMessage = 'Please select an End Date equal or after the Start Date';
+                };
+            };
+
             alert(errorMessage);
         document.getElementById("btnSubmit").disabled = false;
         };
