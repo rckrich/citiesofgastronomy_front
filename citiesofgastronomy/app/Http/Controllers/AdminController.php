@@ -160,7 +160,7 @@ class AdminController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN INITIATIVE List");
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["initiatives"] = $res["initiatives"];

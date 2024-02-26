@@ -232,8 +232,7 @@
 
                     <div class="form-group py-2">
                         <label class="form-label" for="data_description">{{__('initiatives.edit.data_description')}}</label>
-                        <textarea id="data_description" name="data_description" class="form-control"
-                        placeholder="{{__('initiatives.edit.ph_description')}}">{{$iniciative['description']}}</textarea>
+                        <textarea id="data_description" name="data_description" class="form-control">{{$iniciative['description']}}</textarea>
                         <div id="data_description_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
                     </div>
 
@@ -460,8 +459,10 @@
 
 
 
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script>
 
+var editor = CKEDITOR.replace( 'data_description' );
 
 var PDFModal;var modalToggle;
  var LinkModal;var linkModalToggle;
@@ -843,15 +844,18 @@ function searchCheck (classGroup){
     $("#initiativeForm").on('submit', function(e){
         e.preventDefault();
         document.getElementById("btnSubmit").disabled = true;
+        let id = '<?= $id?>';
         let data_name = document.getElementById("data_name").value;
         let data_continent = document.getElementById("data_continent").value;
         let photo = document.getElementById("photo").value;
         let data_startdate = document.getElementById("data_startdate").value;
         let data_enddate = document.getElementById("data_enddate").value;
-        let data_description = document.getElementById("data_description").value;
+        //let data_description = document.getElementById("data_description").value;
         //let data_startdate = document.getElementById("data_startdate").value;
         //let data_enddate = document.getElementById("data_enddate").value;
         let valida = 'si';let errorMessage = '';
+
+        let data_description  = editor.getData();//document.getElementById("data_description").value;
 
         //reseteo validaciones
 
@@ -893,17 +897,23 @@ function searchCheck (classGroup){
         };
 
         //general DATTA
-        if(data_name=='' || data_continent=='' || photo=='' || data_startdate=='' || data_enddate=='' || data_description=='' ){
+        if(data_name=='' || data_continent=='' || data_startdate=='' || data_enddate=='' || data_description=='' ){
             valida = 'no';
         };
 
+        if(photo=='' && id==''){
+            valida = 'no';
+        };
 
         if(valida == 'si'){
+
+            let datos = new FormData(this);
+            datos.append('data_description', data_description);
 
             $.ajax({
                 type: 'POST',
                 url: '/admin/initiatives/store',
-                data: new FormData(this),
+                data: datos,
                 contentType: false,
                 cache: false,
                 processData:false,
@@ -912,6 +922,7 @@ function searchCheck (classGroup){
                     //$('#fupForm').css("opacity",".5");
                 },
                 success: function(msg){
+                    console.log(msg);
                     localStorage.setItem('messageIniciative', 'Iniciative was successfully edited');
                     window.location ='/admin/initiatives/';
                     document.getElementById("btnSubmit").disabled = false;
@@ -919,7 +930,7 @@ function searchCheck (classGroup){
                 }
             });
             //*/
-            alert("Iniciative was successfully saved");
+            //alert("Iniciative was successfully saved");
 
         }else{
             //checa FILTROS
@@ -980,6 +991,14 @@ function searchCheck (classGroup){
                     document.getElementById("data_description").className =  'form-control is-invalid';
                     document.getElementById("data_description_validation").style.display =  'block';
                 }
+            };
+
+            if(data_startdate && data_enddate){
+                if(f1 > f2){
+                console.log("Validacion de fechas");
+                    document.getElementById("validation_dateCompare").style.display = 'block';
+                    errorMessage = 'Please select an End Date equal or after the Start Date';
+                };
             };
 
             alert(errorMessage);
