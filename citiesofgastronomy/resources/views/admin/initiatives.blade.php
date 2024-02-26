@@ -58,7 +58,7 @@
                             <select id="select_sdg_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_sdg')}}</option>
                                 @foreach($sdg as $sdgg)
-                                <option id="filter-{{$sdgg['id']}}" name="filter-{{$sdgg['id']}}" value="{{$sdgg['id']}}">{{$sdgg['name']}}</option>
+                                <option id="filter-{{$sdgg['id']}}" name="filter-{{$sdgg['id']}}" value="{{$sdgg['id']}}">{{$sdgg['number']}} - {{$sdgg['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -203,6 +203,7 @@
         editModal_connection = new bootstrap.Modal('#editConnectionModal', { keyboard: false    });
         modalToggle_connection = document.getElementById("editConnectionModal");
         //
+        console.log('contador de paginador actual'<?= $paginator?>+' - página actual'+<?= $page?>)
     });
 
 
@@ -226,6 +227,7 @@
         let search = $("#search_box").val();
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
+        console.log(paginatorCant)
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
         if (search != ''){
@@ -252,13 +254,13 @@
         //console.log(page);
         if(nada == ''){
             if (search == ''){
-                console.log("#not SERCH");
-                window.location = '/admin/initiatives/?section=in&page='+page;
+                console.log("#not SEARCH");
+                window.location = '/admin/initiatives/?section=in&page='+page; ///ROCÍO: por aquí debe estar lo que hace la recarga
             }else{
                 //window.location = '/admin/initiatives/?page='+paginaActual;
                 console.log("# SERCH");console.log(search);
                 document.getElementById('page').value = page;
-                //document.getElementById('formSearchInitiative').submit();
+                document.getElementById('formSearchInitiative').submit();
             };
         };
     }
@@ -277,7 +279,7 @@
         }
         else{
             window.location = '/admin/initiatives/?section=in&page='+page;
-        }
+         }
       }
      }); 
 </script>

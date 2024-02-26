@@ -317,8 +317,12 @@ class InitiativesController extends Controller
         $keyword = $request->input("search_box");
         $section = $request->input("section");
         $sub = $request->input("sub");
+        $page = $request->input("page");
+        if(!$page){ $page=1;   };
+        $st = $request->input("st");
+
         Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub);
-        Log::info(!$sub ? $keyword :  '');
+        //Log::info(!$sub ? $keyword :  '');
         $fields = array(
             'searchTypeOfActivity' => ($sub==='actype' ? $keyword :  ''),
             'searchTopics' => ($sub==='topics' ? $keyword :  ''),
@@ -353,9 +357,8 @@ class InitiativesController extends Controller
         //contenido del buscador
         $inputs["search_box"] = '';
         //pagina en la que estamos
-        $inputs["page"] = 1;
-        $inputs["st"] = '';
-
+        $inputs["page"] = $page;
+        $inputs["st"] = $st;
         $inputs["section"] = $section;
         $inputs["sub"] = $sub;
 
@@ -363,6 +366,8 @@ class InitiativesController extends Controller
         $inputs["Topics"] = $res["Topics"];
         $inputs["sdg"] = $res["sdg"];
         $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
+
+        Log::info('paginator:'.$inputs["paginator"].'/page:'.$inputs["page"].'/st:'.$inputs["st"]);
 
         return view('admin.initiatives', $inputs);
 

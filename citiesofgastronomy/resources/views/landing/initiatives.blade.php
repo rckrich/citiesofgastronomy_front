@@ -68,7 +68,7 @@
                     <select class="form-control filter-select">
                         <option id="filter-0" name="filter-0" value="0">SDG</option>
                         @foreach($sdgs as $sdg)
-                        <option id="filter-{{$sdg['id']}}" name="filter-{{$sdg['id']}}" value="{{$sdg['id']}}">{{$sdg['name']}}</option>
+                        <option id="filter-{{$sdg['id']}}" name="filter-{{$sdg['id']}}" value="{{$sdg['id']}}">{{$sdg['number']}} - {{$sdg['name']}}</option>
                         @endforeach
                     </select>
                 </div>
