@@ -10,7 +10,7 @@
                 <h5 class="title-sm mb-4">{{$initiative['name']}}</h5>
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('initiatives.data_city')}}</b>
                     @foreach($initiative['cities_filter'] as $city)
-                        {{$city['id']}}
+                        {{$city['cities_datta']['name']}}
                         @if(!$loop->last),@endif
                     @endforeach
                 </h6>
@@ -39,7 +39,10 @@
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_topics')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
-                        
+                    @foreach($initiative['topics_filter'] as $type)
+                        {{$type['topics_datta']['name']}}
+                        @if(!$loop->last),@endif
+                    @endforeach
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_startdate')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">{{$initiative['startDate']}}</p>
@@ -47,7 +50,10 @@
                     <p class="pb-2 mb-2 text-white data">{{$initiative['endDate']}}</p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_other')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
-                        
+                    @foreach($initiative['connections_filter'] as $type)
+                        {{$type['connections_datta']['name']}}
+                        @if(!$loop->last),@endif
+                    @endforeach
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_sdg')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
@@ -64,7 +70,7 @@
                 </div>
             </div>
             <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
-                <p class="py-2 data">{{$initiative['description']}}</p>
+                <p class="py-2 data">{!! $initiative['description'] !!}</p>
             </div>
         </div>
     </div>
@@ -87,7 +93,7 @@
             @endforeach
         </div>
         @else
-        <p>{{__('general.no_gallery')}}</p>
+        <p class="">{{__('general.no_gallery')}}</p>
         @endif
         </div>
         

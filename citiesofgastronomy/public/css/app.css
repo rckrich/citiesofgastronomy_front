@@ -56,7 +56,7 @@ body{background-color: #000;color:#fff;}
 .title-md{font-size: 48px;}
 .title-sm{font-size: 40px;}
 .title-xs,.card-title{font-size: 20px;}
-.card-text{font-size: 15px;}
+.card-text{font-size: 15px!important;}
 .subtitle{font-size: 20px; line-height: 24px;}
 .subtitle-md{font-size: 24px;}
 .data{font-size: 18px;}
@@ -66,7 +66,7 @@ body{background-color: #000;color:#fff;}
 p{font-size: 17px; font: normal normal normal 17px/21px 'Calibri';font-family: 'Calibri'}
 .activity{font: normal normal bold 18px/22px 'Calibri';font-family: 'Calibri'}
 #page_about .title-md, #num_stats .title-md{font-size: 32px;}
-#page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 17px;}
+#page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 17px!important;}
 .accordion-body{font-size: 14px;}
 
 
@@ -149,11 +149,11 @@ a .text-white{color: #fff!important;}
 #contact-cards .card-group:nth-child(odd) .card-body{background-color: #D87C16!important;color:#fff}
 #contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
 .card-text{
-    display: -webkit-box; 
-    -webkit-box-orient: vertical; 
-    -webkit-line-clamp: 3; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    display: -webkit-box!important; 
+    -webkit-box-orient: vertical!important; 
+    -webkit-line-clamp: 3!important; 
+    overflow: hidden!important; 
+    text-overflow: ellipsis!important; 
 }
 
 /*ACCORDION*/
@@ -455,7 +455,7 @@ footer a{color: #fff;}
     .gallery-img{height: 20vh!important;}
     #calendar .title-lg{font-size: 35px;}
     #page_about .title-md, #num_stats .title-md{font-size: 27px;}
-    #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 15px;}
+    #page_about .card-text, #num_stats .card-text, #page_about ul li, #num_stats ul li{font-size: 15px!important;}
     :not(#num_stats)>.banner-title .title-lg {font-size: 70px!important;line-height: 75px;}
     .title-xl{font-size: 60px;}
     .title-sm{font-size: 25px!important;}

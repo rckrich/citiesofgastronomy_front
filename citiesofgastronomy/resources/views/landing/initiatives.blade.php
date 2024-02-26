@@ -102,11 +102,19 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
                         <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
+                            @if($item['photo']!=null || $item['photo'] != '')
+                            <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
+                            @else
                             <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
+                            @endif
                         </a>
                         <div class="card-body px-0 bg-black text-white">
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
-                            <p class="card-text mb-2">{{$item["description"]}}</p>
+                            <p class="card-text mb-2">{{
+                                str_replace(['<br />','&nbsp;'], ' ', 
+                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                )
+                            }}</p>
                             @if( count ($item["sdg_filter"]) != 0)
                             <div class="py-3">
                                 @foreach($item["sdg_filter"] as $sdg)

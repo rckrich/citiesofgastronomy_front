@@ -22,13 +22,16 @@
                     </div>
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
-                        <form action="../admin/initiatives?section=in" method="POST" id="searchForm_ini">
+                        <form action="{{'/admin/initiatives/?section=in&page='.$page}}" method="POST" id="searchForm_ini">
                         @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="search_initiative_label"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input id="search_box" name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.init.search_ph')}}" aria-label="{{__('initiatives.init.search_ph')}}" aria-describedby="search_initiative_label">
+                            <input id="search_box" name="search_box" value="<?= $search_box?>" class="form-control me-2" type="search" placeholder="{{__('initiatives.init.search_ph')}}" aria-label="{{__('initiatives.init.search_ph')}}" aria-describedby="search_initiative_label">
+                            <input type="hidden" id="page" name="page"
+                                                value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
                         </div>
                         </form>
+                        <input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
                         </div>
                     </div>
                     <div class="row col-12 px-0 py-2">
@@ -36,27 +39,37 @@
                             <a class="btn btn-primary mx-auto" href="{{route('admin.initiatives_new')}}">{{__('initiatives.init.btn_add')}}</a>
                         </div>
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
-                            <select id="select_sdg_filter" class="form-control h-100">
-                                <option>{{__('initiatives.init.select_sdg')}}</option>
+                            <select id="select_activity_filter" class="form-control h-100">
+                                <option value="default">{{__('initiatives.init.select_activity')}}</option>
+                                @foreach($typeOfActivity as $actype)
+                                <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" value="{{$actype['id']}}">{{$actype['name']}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
                             <select id="select_topic_filter" class="form-control h-100">
-                                <option>{{__('initiatives.init.select_topic')}}</option>
+                                <option value="default">{{__('initiatives.init.select_topic')}}</option>
+                                @foreach($Topics as $topic)
+                                <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" value="{{$topic['id']}}">{{$topic['name']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                            <select id="select_sdg_filter" class="form-control h-100">
+                                <option value="default">{{__('initiatives.init.select_sdg')}}</option>
+                                @foreach($sdg as $sdgg)
+                                <option id="filter-{{$sdgg['id']}}" name="filter-{{$sdgg['id']}}" value="{{$sdgg['id']}}">{{$sdgg['name']}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
                             <select id="select_connection_filter" class="form-control h-100">
-                                <option>{{__('initiatives.init.select_connection')}}</option>
+                                <option value="default">{{__('initiatives.init.select_connection')}}</option>
+                                @foreach($ConnectionsToOther as $cn)
+                                <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" value="{{$cn['id']}}">{{$cn['name']}}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
-                            <select id="select_activity_filter" class="form-control h-100">
-                                <option>{{__('initiatives.init.select_activity')}}</option>
-                            </select>
-                        </div>
-
-
                     </div>
                 </div>
                 <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
@@ -209,13 +222,10 @@
 
 
     //////////////////////////////////////////////
-
     function paginator(page){
-        let search = document.getElementById('search_box').value;
+        let search = $("#search_box").val();
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
-        //search_box
-        //console.log("-->PAG");
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
         if (search != ''){
@@ -243,11 +253,12 @@
         if(nada == ''){
             if (search == ''){
                 console.log("#not SERCH");
-                window.location = '/admin/initiatives/?page='+page;
+                window.location = '/admin/initiatives/?section=in&page='+page;
             }else{
-                window.location = '/admin/initiatives/?page='+paginaActual;
+                //window.location = '/admin/initiatives/?page='+paginaActual;
+                console.log("# SERCH");console.log(search);
                 document.getElementById('page').value = page;
-                document.getElementById('formSearchInitiative').submit();
+                //document.getElementById('formSearchInitiative').submit();
             };
         };
     }
@@ -265,7 +276,7 @@
             $('#searchForm_ini').submit();
         }
         else{
-            window.location = '../../admin/initiatives?section=in';
+            window.location = '/admin/initiatives/?section=in&page='+page;
         }
       }
      }); 

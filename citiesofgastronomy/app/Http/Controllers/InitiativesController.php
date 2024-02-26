@@ -43,13 +43,13 @@ class InitiativesController extends Controller
         $inputs["initiative"]["photo"] = $res["iniciative"]["photo"];
         $inputs["initiative"]["name"] = $res["iniciative"]["name"];
         $inputs["initiative"]["id"] = $res["iniciative"]["id"];
-        $inputs["initiative"]["continent"] = $res["iniciative"]["continent"];
+        $inputs["initiative"]["continent"] = $res["iniciative"]["continentName"];
         $inputs["initiative"]["startDate"] = $res["iniciative"]["startDate"];
         $inputs["initiative"]["endDate"] = $res["iniciative"]["endDate"];
         $inputs["initiative"]["description"] = $res["iniciative"]["description"];
         $inputs["initiative"]["sdg_filter"] = $res["iniciative"]["sdg_filter"];
         $inputs["initiative"]["type_filter"] = $res["iniciative"]["type_filter"];
-        $inputs["initiative"]["conections_filter"] = $res["iniciative"]["conections_filter"];
+        $inputs["initiative"]["connections_filter"] = $res["iniciative"]["conections_filter"];
         $inputs["initiative"]["topics_filter"] = $res["iniciative"]["topics_filter"];
         $inputs["initiative"]["cities_filter"] = $res["iniciative"]["cities_filter"];
         $inputs["id"] = $id;
@@ -59,7 +59,7 @@ class InitiativesController extends Controller
 
 
 
-        Log::info($inputs);
+        Log::info($res);
 
         return view('initiatives.show', $inputs);
 
