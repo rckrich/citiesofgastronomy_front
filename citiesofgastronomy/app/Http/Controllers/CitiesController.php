@@ -69,20 +69,27 @@ class CitiesController extends Controller
         return view('cities.edit', $inputs);
     }
 
-    public function delete($id){
+    public function cities_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
         $url = config('app.apiUrl').'cities/delete/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
         $data = curl_exec($curl);
         curl_close($curl);
 
+        $res = json_decode( $data, true);
+        Log::info("CITY DELETE ::");
+        //Log::info($res);
 
-        return redirect( "/admin/cities" );
+        return $res;
     }
-
 
     public function citiesStoreUpdate(Request $request)
     {

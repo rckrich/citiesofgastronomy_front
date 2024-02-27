@@ -290,6 +290,7 @@
         datos.append('_token', token);
         let data_id = document.getElementById("delete_initiative_id").value;
         datos.append('id', data_id);
+        let current_page = document.getElementById('page').value
 
         if(data_id){
             $.ajax({
@@ -306,8 +307,8 @@
                         alert("Error: " + msg.message);
                     } 
                     else {
-                        alert(msg.message);
-                        window.location = '../../admin/initiatives/?section=in&page=1';
+                        alert('{{trans('initiatives.delete_success')}}');
+                        window.location = '../../admin/initiatives/?section=in&page='+current_page;
                     }
                 }
             });

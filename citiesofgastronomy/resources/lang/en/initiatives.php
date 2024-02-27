@@ -126,7 +126,6 @@ return [
             'ph_type'=>'Filter name',
             'delete_modal_title'=>'Do you want to delete?',
             'delete_modal_desc'=>'Are you sure you want to delete this TYPE OF ACTIVITY? This action can\'t be undone.',
-
         ],
         'topic'=>[
             'admin_title'=>'TOPIC FILTERS',
@@ -139,7 +138,6 @@ return [
             'ph_type'=>'Filter name',
             'delete_modal_title'=>'Do you want to delete?',
             'delete_modal_desc'=>'Are you sure you want to delete this TOPIC? This action can\'t be undone.',
-
         ],
         'sdg'=>[
             'admin_title'=>'SDG FILTERS',
@@ -153,7 +151,6 @@ return [
             'data_number'=>'Filter number',
             'delete_modal_title'=>'Do you want to delete?',
             'delete_modal_desc'=>'Are you sure you want to delete this SDG? This action can\'t be undone.',
-
         ],
         'connection'=>[
             'admin_title'=>'CONNECTION FILTERS',
@@ -166,11 +163,12 @@ return [
             'ph_type'=>'Filter name',
             'delete_modal_title'=>'Do you want to delete?',
             'delete_modal_desc'=>'Are you sure you want to delete this CONNECTION? This action can\'t be undone.',
-
         ],
+        'delete_success'=>'The filter was successfully deleted.',
         ''=>'',
     ],
     'btn_edit'=>'Edit',
+    'delete_success'=>'The initiative was successfully deleted.',
     ''=>'',
 
 ];

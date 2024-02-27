@@ -57,7 +57,7 @@
                                 <a class=" btn-link" href="{{route('admin.cities_edit',['id'=>$city['id']])}}">{{__('cities.admin.btn_edit_full')}}</a>
                             </td>
                             <td class="col-auto my-auto">
-                                <button class="btn btn-danger"  data-bs-toggle="modal" onclick="modalDel({{$city['id']}})"
+                                <button class="btn btn-danger"  data-bs-toggle="modal" onclick="openDeleteModal_city({{$city['id']}})"
                                                 data-bs-target="#deleteCityModal">{{__('admin.btn_delete')}}
                             </button></td>
                         </tr>
@@ -173,7 +173,6 @@
 
 <!-- Modal DELETE CITY-->
 <div class="modal fade" id="deleteCityModal" tabindex="-1" aria-labelledby="deleteCityModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-    <input type="hidden" id="id_del_city">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -181,11 +180,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="hidden" id="delete_city_id">
             <p>{{__('cities.admin.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary" onclick="delCity()">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="deleteCity()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -348,12 +348,40 @@ $(document).ready(function(e){
         };
     }
 
-    function modalDel(id){
-        document.getElementById('id_del_city').value = id;
+    function openDeleteModal_city(id){
+        document.getElementById('delete_city_id').value = id;
     }
-    function delCity(){
-        let id = document.getElementById('id_del_city').value;
-        window.location = '/admin/citiesDelete/'+id;
+    function deleteCity(){
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("delete_city_id").value;
+        datos.append('id', data_id);
+        let current_page = document.getElementById('page').value
+
+        if(data_id){
+            $.ajax({
+                type: 'POST',
+                url: '/admin/cities/delete',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){},
+                success: function(msg){
+                    closeModal('deleteCityModal');
+                    if (msg.status===400) {
+                        alert("Error: " + msg.message);
+                    } 
+                    else {
+                       alert('{{trans('cities.admin.delete_success')}}');
+                        window.location = '/admin/cities/?page='+current_page;
+                    }
+                }
+            });
+        }
+
+
     }
 
 

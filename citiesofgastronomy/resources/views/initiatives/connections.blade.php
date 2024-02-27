@@ -197,7 +197,7 @@
                         alert("Error: " + msg.message);
                     } 
                     else {
-                        alert(msg.message);
+                        alert('{{trans('initiatives.filters.delete_success')}}');
                         window.location = '../../admin/initiatives?section=filters&sub=connections';
                     }
                 }

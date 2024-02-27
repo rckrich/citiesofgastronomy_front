@@ -58,7 +58,7 @@ Route::get('/admin/home', function(){return redirect()->route('admin.cities');})
 Route::get('/admin/cities', [AdminController::class, 'cities'])->name('admin.cities');
 Route::post('/admin/cities', [AdminController::class, 'cities']);
 Route::get('/admin/cities/{id}', [CitiesController::class, 'cities_edit'])->name('admin.cities_edit');
-Route::get('/admin/citiesDelete/{id}', [CitiesController::class, 'delete']);
+Route::post('/admin/cities/delete', [CitiesController::class, 'cities_delete']);
 Route::get('/admin/citiesFind/{id}', [AdminController::class, 'citiesFind']);
 Route::post('/admin/store', [CitiesController::class, 'citiesStoreUpdate']);
 Route::post('/admin/completeUpdate', [CitiesController::class, 'citiesCompleteUpdate']);
