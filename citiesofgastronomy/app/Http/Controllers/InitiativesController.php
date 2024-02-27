@@ -147,6 +147,7 @@ class InitiativesController extends Controller
     }
     public function initiatives_store(Request $request){
         Log::info("----> INITIATIVE STORE..");
+        $id = $request->input("id");
         $name = $request->input("data_name");
         $continent = $request->input("data_continent");
         $startDate = $request->input("data_startdate");
@@ -167,7 +168,7 @@ class InitiativesController extends Controller
 
 
         $dattaSend = [
-            'id' => '',
+            'id' => $id,
             'name' => $name,
             'idContinent' => $continent,
             'startDate' => $startDate,

@@ -12,7 +12,11 @@
         <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row mx-0">
                 <div class="col-12 px-0 py-2">
+                    @if($id)
+                    <h3 class="admin-title"><b>{{__('initiatives.edit.title')}}</b></h3>
+                    @else
                     <h3 class="admin-title"><b>{{__('initiatives.create.title')}}</b></h3>
+                    @endif
                 </div>
             </div>
             <div class="row mx-0">
@@ -335,7 +339,13 @@
 
                     <div class="row form-group py-5">
                         <div class="col-auto ms-auto"><a href="{{route('admin.initiatives')}}" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
-                        <div class="col-auto me-auto"><button id="btnSubmit" class="btn btn-primary w-100">{{__('admin.btn_create')}}</buttton></div>
+                        <div class="col-auto me-auto"><button id="btnSubmit" class="btn btn-primary w-100">
+                        @if($id)
+                            {{__('admin.btn_edit')}}
+                        @else
+                            {{__('admin.btn_create')}}
+                        @endif
+                        </buttton></div>
                     </div>
                 </form>
             </div>
@@ -909,6 +919,7 @@ function searchCheck (classGroup){
 
             let datos = new FormData(this);
             datos.append('data_description', data_description);
+            datos.append('id', id);
 
             $.ajax({
                 type: 'POST',
@@ -922,8 +933,20 @@ function searchCheck (classGroup){
                     //$('#fupForm').css("opacity",".5");
                 },
                 success: function(msg){
+                    console.log("::msg");
                     console.log(msg);
-                    localStorage.setItem('messageIniciative', 'Iniciative was successfully edited');
+                    console.log(msg.message);
+                    //let e = JSON.parse(msg);
+                    //console.log(e.datta);
+                    if(msg.status=='200'){
+                        <?php if($id){?>
+                            localStorage.setItem('messageIniciative', msg.message);
+                        <?php }else{?>
+                            localStorage.setItem('messageIniciative', msg.message);
+                        <?php };?>
+                    }else{
+                            localStorage.setItem('errorIessageIniciative', msg.message);
+                    };
                     window.location ='/admin/initiatives/';
                     document.getElementById("btnSubmit").disabled = false;
 
