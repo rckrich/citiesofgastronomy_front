@@ -933,12 +933,20 @@ function searchCheck (classGroup){
                     //$('#fupForm').css("opacity",".5");
                 },
                 success: function(msg){
+                    console.log("::msg");
                     console.log(msg);
-                    <?php if($id){?>
-                        localStorage.setItem('messageIniciative', 'Iniciative was successfully edited');
-                    <?php }else{?>
-                        localStorage.setItem('messageIniciative', 'Iniciative was successfully edited');
-                    <?php };?>
+                    console.log(msg.message);
+                    //let e = JSON.parse(msg);
+                    //console.log(e.datta);
+                    if(msg.status=='200'){
+                        <?php if($id){?>
+                            localStorage.setItem('messageIniciative', msg.message);
+                        <?php }else{?>
+                            localStorage.setItem('messageIniciative', msg.message);
+                        <?php };?>
+                    }else{
+                            localStorage.setItem('errorIessageIniciative', msg.message);
+                    };
                     window.location ='/admin/initiatives/';
                     document.getElementById("btnSubmit").disabled = false;
 

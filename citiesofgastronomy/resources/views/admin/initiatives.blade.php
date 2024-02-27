@@ -75,6 +75,9 @@
                 <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
                     Initiative was successfully created
                 </div>
+                <div class="alert alert-danger" role="alert" id="alertErrorMessage" style="display:none">
+                    The initiative couldn’t be edited, please try again.
+                </div>
                 <div class="row mx-0 pt-4">
                     <table class="table table-fixed">
                         <thead class="">
@@ -208,6 +211,7 @@
 
 
     let message = localStorage.getItem('messageIniciative');
+    let errorMessage = localStorage.getItem('errorIessageIniciative');
     console.log("##message");
     console.log(message);
     if(message){
@@ -218,7 +222,17 @@
             setTimeout(() => {
                 console.log("Delayed for 1 second.");
                 document.getElementById('alertMessage').style.display = 'none';
-            },5000);
+            },10000);
+    };
+    if(errorMessage){
+        console.log("Local Storage DELETE");
+            localStorage.removeItem('errorIessageIniciative');
+            document.getElementById('alertErrorMessage').innerHTML = errorMessage;
+            document.getElementById('alertErrorMessage').style.display = 'block';
+            setTimeout(() => {
+                console.log("Delayed for 1 second.");
+                document.getElementById('alertErrorMessage').style.display = 'none';
+            },10000);
     };
 
 
@@ -281,6 +295,6 @@
             window.location = '/admin/initiatives/?section=in&page='+page;
          }
       }
-     }); 
+     });
 </script>
 @endsection
