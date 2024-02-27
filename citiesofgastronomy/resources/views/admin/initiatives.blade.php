@@ -95,7 +95,7 @@
                                 <a class="btn btn-link" href="{{route('admin.initiatives_edit',['id'=>$item['id']])}}">{{__('contact.admin.btn_edit')}}</a>
                                 </td>
                                 <td class="col-auto my-auto">
-                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteInitiativeModal">{{__('admin.btn_delete')}}
+                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteInitiativeModal" onclick="openDeleteModal_ini({{$item['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
                             @endforeach
@@ -175,11 +175,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="hidden" id="delete_initiative_id">
             <p>{{__('initiatives.admin.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="deleteInitiative()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -279,6 +280,39 @@
         };
     }
 
+
+    function openDeleteModal_ini(id){
+        document.getElementById("delete_initiative_id").value = id;
+    }
+    function deleteInitiative(){
+        let datos = new FormData();
+        let token = document.getElementsByName("_token")[0].value;
+        datos.append('_token', token);
+        let data_id = document.getElementById("delete_initiative_id").value;
+        datos.append('id', data_id);
+
+        if(data_id){
+            $.ajax({
+                type: 'POST',
+                url: '/admin/initiatives/delete',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){},
+                success: function(msg){
+                    closeModal('deleteInitiativeModal');
+                    if (msg.status===400) {
+                        alert("Error: " + msg.message);
+                    } 
+                    else {
+                        alert(msg.message);
+                        window.location = '../../admin/initiatives/?section=in&page=1';
+                    }
+                }
+            });
+        }
+    }
 </script>
 
 <script>

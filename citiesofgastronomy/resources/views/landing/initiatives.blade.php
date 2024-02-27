@@ -38,15 +38,17 @@
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 my-3">
                 <div class="form-group">
                     <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="0">Cities</option>
-                        <option id="filter-1" name="filter-1" value="0">a city</option>
+                        <option id="filter-0" name="filter-0" value="default">Cities</option>
+                        @foreach($cities as $city)
+                        <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" value="{{$city['id']}}">{{$city['name']}}, {{$city['country']}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
                     <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="0">Type of Activity</option>
+                        <option id="filter-0" name="filter-0" value="default">Type of Activity</option>
                         @foreach($typeOfActivity as $actype)
                         <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" value="{{$actype['id']}}">{{$actype['name']}}</option>
                         @endforeach
@@ -56,7 +58,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
                     <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="0">Topics</option>
+                        <option id="filter-0" name="filter-0" value="default">Topics</option>
                         @foreach($Topics as $topic)
                         <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" value="{{$topic['id']}}">{{$topic['name']}}</option>
                         @endforeach
@@ -66,7 +68,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
                     <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="0">SDG</option>
+                        <option id="filter-0" name="filter-0" value="default">SDG</option>
                         @foreach($sdgs as $sdg)
                         <option id="filter-{{$sdg['id']}}" name="filter-{{$sdg['id']}}" value="{{$sdg['id']}}">{{$sdg['number']}} - {{$sdg['name']}}</option>
                         @endforeach
@@ -76,7 +78,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
                     <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="0">Connection to other creative fields</option>
+                        <option id="filter-0" name="filter-0" value="default">Connection to other creative fields</option>
                         @foreach($ConnectionsToOther as $cn)
                         <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" value="{{$cn['id']}}">{{$cn['name']}}</option>
                         @endforeach

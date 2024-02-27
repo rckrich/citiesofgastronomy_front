@@ -186,8 +186,6 @@ class AdminController extends Controller
         $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
         //return view('admin.cities', $inputs);
 
-        Log::info('paginator:'.$inputs["paginator"].'/page:'.$inputs["page"].'/st:'.$inputs["st"]);
-
         return view('admin.initiatives', $inputs);
     }
 

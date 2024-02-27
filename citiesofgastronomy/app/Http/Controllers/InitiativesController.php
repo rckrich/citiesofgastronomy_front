@@ -311,6 +311,28 @@ class InitiativesController extends Controller
 
     }
 
+    public function initiatives_delete(Request $request)
+    {
+        Log::info("INITIATIVE DELETE ::");
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'initiatives/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info($url);
+        Log::info($res);
+
+        return $res;
+    }
 
     public function initiatives_search(Request $request)
     {
@@ -368,7 +390,7 @@ class InitiativesController extends Controller
         $inputs["sdg"] = $res["sdg"];
         $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
 
-        Log::info('paginator:'.$inputs["paginator"].'/page:'.$inputs["page"].'/st:'.$inputs["st"]);
+        //Log::info('paginator:'.$inputs["paginator"].'/page:'.$inputs["page"].'/st:'.$inputs["st"]);
 
         return view('admin.initiatives', $inputs);
 

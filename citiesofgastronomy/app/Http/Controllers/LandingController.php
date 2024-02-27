@@ -133,6 +133,7 @@ class LandingController extends Controller
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
         $inputs["total"] = $res["tot"];        //Total de registros encontrados
+        $inputs["cities"] = $res["citiesFilter"];
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];
         $inputs["sdgs"] = $res["sdg"];

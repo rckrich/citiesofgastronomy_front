@@ -68,6 +68,7 @@ Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name(
 Route::post('/admin/initiatives', [InitiativesController::class, 'initiatives_search']);
 Route::get('/admin/initiatives/create', [InitiativesController::class, 'initiatives_new'])->name('admin.initiatives_new');
 Route::post('/admin/initiatives/store', [InitiativesController::class, 'initiatives_store']);
+Route::post('/admin/initiatives/delete', [InitiativesController::class, 'initiatives_delete']);
 Route::get('/admin/initiatives/{id}', [InitiativesController::class, 'initiatives_edit'])->name('admin.initiatives_edit');
 Route::post('/admin/initiatives/typeOfActivity/store', [InitiativesController::class, 'typeOfActivity_save']);
 Route::post('/admin/initiatives/typeOfActivity/delete', [InitiativesController::class, 'typeOfActivity_delete']);
