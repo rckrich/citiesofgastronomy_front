@@ -37,7 +37,8 @@
 
                 @foreach($cityList as $city)
                     <div class="col-lg-auto col-md-4 col-sm-6 col-12">
-                        <a class="card-link" <?php if($city['completeInfo'] == 1){echo ' href="/cities/view/'.$city['id'].'"';}?>>
+                        <a class="card-link {{$city['completeInfo'] ? 'img-link' : ''}}"
+                        <?php if($city['completeInfo'] == 1){echo ' href="/cities/view/'.$city['id'].'"';}?>>
                         <div class="card h-100">
                             @if($city['photo'])
                             <img src="{{config('app.url').$city['photo']}}" class="card-img-top" alt="...">

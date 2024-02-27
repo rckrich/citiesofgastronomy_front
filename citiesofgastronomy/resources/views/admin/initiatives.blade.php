@@ -203,7 +203,7 @@
         editModal_connection = new bootstrap.Modal('#editConnectionModal', { keyboard: false    });
         modalToggle_connection = document.getElementById("editConnectionModal");
         //
-        console.log('contador de paginador actual'<?= $paginator?>+' - página actual'+<?= $page?>)
+        //console.log('contador de paginador actual'+<?= $paginator?>+' - página actual'+<?= $page?>)
     });
 
 
@@ -255,7 +255,7 @@
         if(nada == ''){
             if (search == ''){
                 console.log("#not SEARCH");
-                window.location = '/admin/initiatives/?section=in&page='+page; ///ROCÍO: por aquí debe estar lo que hace la recarga
+                window.location = '/admin/initiatives/?section=in&page='+page;
             }else{
                 //window.location = '/admin/initiatives/?page='+paginaActual;
                 console.log("# SERCH");console.log(search);
