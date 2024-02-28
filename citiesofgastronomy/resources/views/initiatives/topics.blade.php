@@ -5,12 +5,12 @@
             <h3 class="admin-title"><b>{{__('initiatives.filters.topic.admin_title')}}</b></h3>
         </div>
         <div class="col-12 px-0 text-right row mx-0 py-2">
-            <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 ps-2 pe-0 ms-0 ms-lg-auto ms-md-auto">
             <form action="../admin/initiatives?section=filters&sub=topics" method="POST" id="searchForm_topic">
             @csrf
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                <input id="search_box" name="search_box" value="<?php if($sub=='topics'){echo $search_box;}?>" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.topic.search_ph')}}" aria-label="{{__('initiatives.filters.topic.search_ph')}}" aria-describedby="basic-addon1">
+                <input id="search_box" name="search_box" value="<?php if($sub=='topics'){echo $search_box;}?>" class="form-control" type="search" placeholder="{{__('initiatives.filters.topic.search_ph')}}" aria-label="{{__('initiatives.filters.topic.search_ph')}}" aria-describedby="basic-addon1">
             </div>
             </form>
             </div>

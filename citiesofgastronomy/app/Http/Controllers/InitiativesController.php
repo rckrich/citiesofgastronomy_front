@@ -400,7 +400,6 @@ class InitiativesController extends Controller
         $inputs["section"] = $section;
         $inputs["sub"] = $sub;
         $inputs["search_inputs"] = $search_inputs;
-        Log::info($search_inputs);
 
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];

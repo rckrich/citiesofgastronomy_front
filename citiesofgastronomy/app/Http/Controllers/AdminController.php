@@ -143,6 +143,12 @@ class AdminController extends Controller
         $search_box = $request->input("search_box");
 
         $fields = array('search' => $search_box, 'page' => $page);
+        $search_inputs = array(
+            'actype' => 'default',
+            'topic' => 'default',
+            'sdg' => 'default',
+            'connection' => 'default',
+        );
 
         $fields_string = http_build_query($fields);
         //Log::info(config('app.apiUrl'));
@@ -180,7 +186,7 @@ class AdminController extends Controller
         //si esta vacio se considera que esta en  "type of act" (falta definir el valor de conections to other)
         $inputs["sub"] = $request->input("sub");
         //campos de búsqueda por defecto vacíos
-        $inputs["search_inputs"] = [];
+        $inputs["search_inputs"] = $search_inputs;
         
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];
