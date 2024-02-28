@@ -27,8 +27,7 @@
                         <div class="input-group">
                             <span class="input-group-text" id="search_initiative_label"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
                             <input id="search_box" name="search_box" value="<?= $search_box?>" class="form-control me-2" type="search" placeholder="{{__('initiatives.init.search_ph')}}" aria-label="{{__('initiatives.init.search_ph')}}" aria-describedby="search_initiative_label">
-                            <input type="hidden" id="page" name="page"
-                                                value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
+                            <input type="hidden" id="page" name="page" value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
                         </div>
                         </form>
                         <input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
@@ -36,9 +35,9 @@
                     </div>
                     <div class="row col-12 px-0 py-2">
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-                            <a class="btn btn-primary mx-auto" href="{{route('admin.initiatives_new')}}">{{__('initiatives.init.btn_add')}}</a>
+                            <a class="btn btn-primary mx-auto w-100" href="{{route('admin.initiatives_new')}}">{{__('initiatives.init.btn_add')}}</a>
                         </div>
-                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
                             <select id="select_activity_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_activity')}}</option>
                                 @foreach($typeOfActivity as $actype)
@@ -46,7 +45,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
                             <select id="select_topic_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_topic')}}</option>
                                 @foreach($Topics as $topic)
@@ -54,7 +53,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
                             <select id="select_sdg_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_sdg')}}</option>
                                 @foreach($sdg as $sdgg)
@@ -62,7 +61,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2 form-group">
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
                             <select id="select_connection_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_connection')}}</option>
                                 @foreach($ConnectionsToOther as $cn)
@@ -207,14 +206,15 @@
         editModal_connection = new bootstrap.Modal('#editConnectionModal', { keyboard: false    });
         modalToggle_connection = document.getElementById("editConnectionModal");
         //
-        //console.log('contador de paginador actual'+<?= $paginator?>+' - página actual'+<?= $page?>)
     });
+
+    $('#pills-init-tab').on('click',function(){window.location = '/admin/initiatives/?section=in&page=1'});
+    $('#pills-filters-tab').on('click',function(){window.location = '/admin/initiatives?section=filters&sub=actype'});
 
 
     let message = localStorage.getItem('messageIniciative');
     let errorMessage = localStorage.getItem('errorIessageIniciative');
-    console.log("##message");
-    console.log(message);
+    //console.log(message);
     if(message){
         console.log("Local Storage DELETE");
             localStorage.removeItem('messageIniciative');

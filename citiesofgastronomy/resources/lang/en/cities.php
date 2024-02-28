@@ -38,7 +38,7 @@ return [
         'edit_modal_title'=>'Edit City',
         'delete_modal_title'=>'Do you want to delete?',
         'delete_modal_desc'=>'Are you sure you want to delete this City? This action can\'t be undone.',
-        'delete_success'=>'The city was successfully deleted.',
+        'delete_success'=>'The city was successfully deleted',
 
         'data_city'=>'City:',
         'ph_city'=>'City Name',
