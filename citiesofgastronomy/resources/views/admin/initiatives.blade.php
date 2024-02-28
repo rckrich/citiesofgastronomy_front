@@ -19,57 +19,61 @@
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
                         <h3 class="admin-title"><b>{{__('initiatives.init.admin_title')}}</b></h3>
-                    </div>
+                    </div>                        
+
+                    <form action="{{'/admin/initiatives/?section=in&page='.$page}}" method="POST" id="searchForm_ini">
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
-                        <form action="{{'/admin/initiatives/?section=in&page='.$page}}" method="POST" id="searchForm_ini">
                         @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="search_initiative_label"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input id="search_box" name="search_box" value="<?= $search_box?>" class="form-control me-2" type="search" placeholder="{{__('initiatives.init.search_ph')}}" aria-label="{{__('initiatives.init.search_ph')}}" aria-describedby="search_initiative_label">
+                            <input id="search_box" name="search_box" value="<?php if($section=='in'){echo $search_box;}?>" class="form-control me-2" type="search" placeholder="{{__('initiatives.init.search_ph')}}" aria-label="{{__('initiatives.init.search_ph')}}" aria-describedby="search_initiative_label">
                             <input type="hidden" id="page" name="page" value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
                         </div>
-                        </form>
+                        
                         <input type="hidden" id="pageActual" name="pageActual" value="<?php echo  $page?>">
                         </div>
                     </div>
-                    <div class="row col-12 px-0 py-2">
+                    <div class="row col-12 px-0 py-2">                         
+
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
                             <a class="btn btn-primary mx-auto w-100" href="{{route('admin.initiatives_new')}}">{{__('initiatives.init.btn_add')}}</a>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
-                            <select id="select_activity_filter" class="form-control h-100">
+                            <select name="select_activity_filter" id="select_activity_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_activity')}}</option>
                                 @foreach($typeOfActivity as $actype)
-                                <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" value="{{$actype['id']}}">{{$actype['name']}}</option>
+                                <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" value="{{$actype['id']}}">{{$actype['id']}} - {{$actype['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
-                            <select id="select_topic_filter" class="form-control h-100">
+                            <select name="select_topic_filter" id="select_topic_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_topic')}}</option>
                                 @foreach($Topics as $topic)
-                                <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" value="{{$topic['id']}}">{{$topic['name']}}</option>
+                                <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" value="{{$topic['id']}}">{{$topic['id']}} - {{$topic['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
-                            <select id="select_sdg_filter" class="form-control h-100">
+                            <select name="select_sdg_filter" id="select_sdg_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_sdg')}}</option>
                                 @foreach($sdg as $sdgg)
-                                <option id="filter-{{$sdgg['id']}}" name="filter-{{$sdgg['id']}}" value="{{$sdgg['id']}}">{{$sdgg['number']}} - {{$sdgg['name']}}</option>
+                                <option id="filter-{{$sdgg['id']}}" name="filter-{{$sdgg['id']}}" value="{{$sdgg['id']}}">{{$sdgg['id']}} - {{$sdgg['number']}} - {{$sdgg['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
-                            <select id="select_connection_filter" class="form-control h-100">
+                            <select name="select_connection_filter" id="select_connection_filter" class="form-control h-100">
                                 <option value="default">{{__('initiatives.init.select_connection')}}</option>
                                 @foreach($ConnectionsToOther as $cn)
-                                <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" value="{{$cn['id']}}">{{$cn['name']}}</option>
+                                <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" 
+                                value="{{$cn['id']}}">{{$cn['id']}} - {{$cn['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
                     Initiative was successfully created
@@ -322,8 +326,12 @@
       if(key == 13)  // the enter key code
       {
         let keyword = $("#search_box").val();
-
-        if(keyword){
+        let actype = $("#select_activity_filter").val();
+        let topic = $("#select_topic_filter").val();
+        let sdg = $("#select_sdg_filter").val();
+        let connection = $("#select_connection_filter").val();
+        
+        if(keyword || actype || topic || sdg || connection){
             $('#searchForm_ini').submit();
         }
         else{

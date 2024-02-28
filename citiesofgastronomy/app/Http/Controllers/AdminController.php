@@ -147,7 +147,7 @@ class AdminController extends Controller
         $fields_string = http_build_query($fields);
         //Log::info(config('app.apiUrl'));
 
-        $url = config('app.apiUrl').'initiatives';
+        $url = config('app.apiUrl').'initiativesAdmin';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -179,7 +179,9 @@ class AdminController extends Controller
         //Subsecciones de los filtros los valores que puede tomar esto es: topics, sdg
         //si esta vacio se considera que esta en  "type of act" (falta definir el valor de conections to other)
         $inputs["sub"] = $request->input("sub");
-
+        //campos de búsqueda por defecto vacíos
+        $inputs["search_inputs"] = [];
+        
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];
         $inputs["sdg"] = $res["sdg"];

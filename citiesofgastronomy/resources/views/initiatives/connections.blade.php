@@ -10,7 +10,7 @@
             @csrf
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                <input id="search_box" name="search_box" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.connection.search_ph')}}" aria-label="{{__('initiatives.filters.connection.search_ph')}}" aria-describedby="basic-addon1">
+                <input id="search_box" name="search_box" value="<?php if($sub=='connections'){echo $search_box;}?>" class="form-control me-2" type="search" placeholder="{{__('initiatives.filters.connection.search_ph')}}" aria-label="{{__('initiatives.filters.connection.search_ph')}}" aria-describedby="basic-addon1">
             </div>
             </form>
             </div>
