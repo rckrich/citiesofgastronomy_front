@@ -272,6 +272,8 @@ a .text-white{color: #fff!important;}
     text-align: center;
     margin-top: -140px!important;
     margin-left: 7vw!important;
+    position: absolute;
+    z-index: 13;
 }
 /*CITIES*/
 #page_cities .card{background-color: #000;}
