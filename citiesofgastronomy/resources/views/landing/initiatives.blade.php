@@ -35,63 +35,77 @@
 
         <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
         <div class="row g-6">
+        <form action="{{url('/initiatives')}}" method="POST" id="searchForm_ini" class="d-contents">
+        @csrf
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="default">Cities</option>
+                    <select class="form-control filter-select" name="select_city_filter">
+                        <option <?php if($search_inputs['city']=='default'){echo 'selected';}?>
+                            value="default">Cities</option>
                         @foreach($cities as $city)
-                        <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" value="{{$city['id']}}">{{$city['name']}}, {{$city['country']}}</option>
+                        <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" <?php if($search_inputs['city']==$city['id']){echo 'selected';}?> 
+                            value="{{$city['id']}}">{{$city['name']}}, {{$city['country']}}</option>
                         @endforeach
                     </select>
+                        
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="default">Type of Activity</option>
+                    <select class="form-control filter-select" name="select_activity_filter">
+                        <option <?php if($search_inputs['actype']=='default'){echo 'selected';}?>
+                            value="default">Type of Activity{{__('initiatives.init.select_activity')}}</option>
                         @foreach($typeOfActivity as $actype)
-                        <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" value="{{$actype['id']}}">{{$actype['name']}}</option>
+                        <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" <?php if($search_inputs['actype']==$actype['id']){echo 'selected';}?> 
+                            value="{{$actype['id']}}">{{$actype['name']}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="default">Topics</option>
+                    <select class="form-control filter-select" name="select_topic_filter">
+                        <option <?php if($search_inputs['topic']=='default'){echo 'selected';}?>  
+                            value="default">Topics {{__('initiatives.init.select_topic')}}</option>
                         @foreach($Topics as $topic)
-                        <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" value="{{$topic['id']}}">{{$topic['name']}}</option>
+                        <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" <?php if($search_inputs['topic']==$topic['id']){echo 'selected';}?> 
+                            value="{{$topic['id']}}">{{$topic['name']}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="default">SDG</option>
+                    <select class="form-control filter-select" name="select_sdg_filter">
+                        <option <?php if($search_inputs['sdg']=='default'){echo 'selected';}?>  
+                            value="default">SDG{{__('initiatives.init.select_sdg')}}</option>
                         @foreach($sdgs as $sdg)
-                        <option id="filter-{{$sdg['id']}}" name="filter-{{$sdg['id']}}" value="{{$sdg['id']}}">{{$sdg['number']}} - {{$sdg['name']}}</option>
+                        <option id="filter-{{$sdg['id']}}" name="filter-{{$sdg['id']}}" <?php if($search_inputs['sdg']==$sdg['id']){echo 'selected';}?> 
+                            value="{{$sdg['id']}}">{{$sdg['number']}} - {{$sdg['name']}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select">
-                        <option id="filter-0" name="filter-0" value="default">Connection to other creative fields</option>
+                    <select class="form-control filter-select" name="select_connection_filter">
+                        <option <?php if($search_inputs['connection']=='default'){echo 'selected';}?> 
+                            value="default">Connection to other creative fields{{__('initiatives.init.select_connection')}}</option>
                         @foreach($ConnectionsToOther as $cn)
-                        <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" value="{{$cn['id']}}">{{$cn['name']}}</option>
+                        <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" <?php if($search_inputs['connection']==$cn['id']){echo 'selected';}?>
+                            value="{{$cn['id']}}">{{$cn['name']}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 ps-lg-1 pe-lg-2 px-md-1 px-sm-1 px-1 my-3">
-                <button class="btn btn-info w-100 h-100">Filter posts</button>
+                <button type="submit" class="btn btn-info w-100 h-100">{{__('general.btn_filter')}}</button>
             </div>
+        </form>
         </div>
         <div id="clear-filters-btn" class="row d-none">
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 mb-3 text-left">
-                <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="resetFilters()">
+                <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="reloadPage()">
                     {{__('general.clear_filters')}}  X
                 </label>
             </div>
@@ -144,4 +158,25 @@
             </div>
         </div>
     </section>
+
+
+    <script>
+        $(document).ready(function(e){
+            let city = "<?= $search_inputs['city']?>";
+            let actype = "<?= $search_inputs['actype']?>";
+            let topic = "<?= $search_inputs['topic']?>";
+            let sdg = "<?= $search_inputs['sdg']?>";
+            let connection = "<?= $search_inputs['connection']?>";
+
+            if(city !='default' || actype != 'default' || topic != 'default' || sdg != 'default' || connection != 'default'){
+                showResetFilterButton();
+            }
+            else{hideResetFilterButton();}
+        });
+
+        function reloadPage(){
+            window.location = '../../initiatives';
+        }
+    </script>
+
 @endsection

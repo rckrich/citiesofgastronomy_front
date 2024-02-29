@@ -28,6 +28,7 @@ Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/cities', [LandingController::class, 'cities'])->name('landing.cities');
 Route::get('/about', [LandingController::class, 'about'])->name('landing.about');
 Route::get('/initiatives', [LandingController::class, 'initiatives'])->name('landing.initiatives');
+Route::post('/initiatives', [LandingController::class, 'initiatives_search'])->name('landing.initiatives_search');
 Route::get('/tastier_life', [LandingController::class, 'tastier_life'])->name('landing.tastier_life');
 Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours');
 Route::post('/search', [LandingController::class, 'search'])->name('search');
