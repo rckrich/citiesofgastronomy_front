@@ -164,11 +164,11 @@ return [
             'delete_modal_title'=>'Do you want to delete?',
             'delete_modal_desc'=>'Are you sure you want to delete this CONNECTION? This action can\'t be undone.',
         ],
-        'delete_success'=>'The filter was successfully deleted.',
+        'delete_success'=>'The filter was successfully deleted',
         ''=>'',
     ],
     'btn_edit'=>'Edit',
-    'delete_success'=>'The initiative was successfully deleted.',
+    'delete_success'=>'The initiative was successfully deleted',
     ''=>'',
 
 ];

@@ -4,6 +4,9 @@ body{
     overflow: auto;
     padding: 0!important;
 }
+form{padding: 0!important;}
+.form-control,.filter-select{height: 50px;}
+
 /**/
 .admin-title,.section-title{font-family:'Helvetica LT Std'; }
 .admin-subtitle, td{font-family:'Calibri';}
@@ -25,6 +28,7 @@ th{font-size: 18px;}
 .btn-primary{width: inherit;}
 .btn-outline-primary{background-color: #fff!important; color: #D87C16!important; border: solid 1px #D87C16!important;}
 .btn-outline-primary:hover,.btn-outline-primary:active,.btn-outline-primary:focus{background-color: #D87C16!important; color: #fff!important;}
+.btn-search{min-width: unset!important; padding:0 20px!important}
 
 td .btn-link, a .btn-link{color: #303030!important;font-family:'Calibri'; font-weight: bold;}
 th,td{vertical-align: middle;}
@@ -117,7 +121,6 @@ input[type="file"]:active::before {}
 #pills-tab-initiatives button.active{text-decoration: underline;}
 #pills-tab-filters button{background-color: transparent; color: #707070; border:solid 1px #707070; border-radius: 23px; padding:11px 20px; text-decoration: none; font-size: 16px; font-family: 'Calibri';}
 #pills-tab-filters button.active{background-color: #5479FA; color: #fff;border-color: transparent;}
-
 
 /*TASTIER LIFE*/
 #pills-tab-tastierlife{background-color: #272727;}

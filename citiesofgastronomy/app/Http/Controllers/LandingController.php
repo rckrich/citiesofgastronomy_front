@@ -288,7 +288,7 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("CONTACT ::");
-        Log::info($res);
+        //Log::info($res);
 
         return $res;
     }

@@ -32,7 +32,7 @@ class InitiativesController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN INITIATIVE :: VIEW");
-        Log::info(config('app.apiUrl').'initiatives/'.$id);
+        //Log::info(config('app.apiUrl').'initiatives/'.$id);
         //Log::info($res);
 
         $inputs = [];
@@ -56,10 +56,6 @@ class InitiativesController extends Controller
         $inputs["gallery"] = $res["iniciative"]["images"];
         $inputs["links"] = $res["iniciative"]["links"];
         $inputs["files"] = $res["iniciative"]["pdf"];
-
-
-
-        Log::info($res);
 
         return view('initiatives.show', $inputs);
 
@@ -123,8 +119,8 @@ class InitiativesController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN INITIATIVE :: EDIT");
-        Log::info(config('app.apiUrl').'initiatives/'.$id);
-        Log::info($res);
+        //Log::info(config('app.apiUrl').'initiatives/'.$id);
+        //Log::info($res);
 
         $inputs = [];
 
@@ -328,8 +324,8 @@ class InitiativesController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
-        Log::info($url);
-        Log::info($res);
+        //Log::info($url);
+        //Log::info($res);
 
         return $res;
     }
@@ -338,20 +334,39 @@ class InitiativesController extends Controller
     {
 
         $keyword = $request->input("search_box");
+        $actype = $request->input("select_activity_filter");
+        $topic = $request->input("select_topic_filter");
+        $sdg = $request->input("select_sdg_filter");
+        $connection = $request->input("select_connection_filter");
+
+        $search_inputs = array(
+            'actype' => $actype,
+            'topic' => $topic,
+            'sdg' => $sdg,
+            'connection' => $connection,
+        );
+
         $section = $request->input("section");
         $sub = $request->input("sub");
         $page = $request->input("page");
+
         if(!$page){ $page=1;   };
         $st = $request->input("st");
 
-        Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub);
+        Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub . '/ filters: '.$actype .','.$topic .','.$sdg .','.$connection);
         //Log::info(!$sub ? $keyword :  '');
+        
         $fields = array(
             'searchTypeOfActivity' => ($sub==='actype' ? $keyword :  ''),
             'searchTopics' => ($sub==='topics' ? $keyword :  ''),
             'searchSDG' => ($sub==='sdg' ? $keyword :  ''),
             'searchConnectionsToOther' => ($sub==='connections' ? $keyword :  ''),
-            'search' => ($section ==='in' ? $keyword :  '')
+            'search' => ($section ==='in' ? $keyword :  ''),
+            'filterType' => ($actype != 'default' ? $actype :  ''),
+            'filterTopic' => ($topic != 'default' ? $topic :  ''),
+            'filterSDG' => ($sdg != 'default' ? $sdg :  ''),
+            'filterConnections' => ($connection != 'default' ? $connection :  ''),
+            'filterCities' => ''
         );
 
         $fields_string = http_build_query($fields);
@@ -378,12 +393,13 @@ class InitiativesController extends Controller
         //Cantidad de paginas
         $inputs["paginator"] = $res["paginator"];
         //contenido del buscador
-        $inputs["search_box"] = '';
+        $inputs["search_box"] = $keyword;
         //pagina en la que estamos
         $inputs["page"] = $page;
         $inputs["st"] = $st;
         $inputs["section"] = $section;
         $inputs["sub"] = $sub;
+        $inputs["search_inputs"] = $search_inputs;
 
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];

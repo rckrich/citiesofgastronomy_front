@@ -256,14 +256,14 @@ function toggleMapLink(){
 
 function showResetFilterButton(){
   $("#clear-filters-btn").removeClass("d-none")
-  $("#clear-filters-btn").addClass("d-block")
+  $("#clear-filters-btn").addClass("d-flex")
 }
 function resetFilters(){
   $(".filter-select").prop('selectedIndex',0)
   this.hideResetFilterButton()
 }
 function hideResetFilterButton(){
-  $("#clear-filters-btn").removeClass("d-block")
+  $("#clear-filters-btn").removeClass("d-flex")
   $("#clear-filters-btn").addClass("d-none")
 }
 

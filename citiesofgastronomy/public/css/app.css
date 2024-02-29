@@ -271,6 +271,8 @@ a .text-white{color: #fff!important;}
     margin-top: -140px!important;
     margin-left: 7vw!important;
 }
+/*CITIES*/
+#page_cities .card{background-color: #000;}
 
 /*INITIATIVES*/
 #initiatives .title-xl, #news .title-xl, #open_calls .title-xl{font-size: 60px} 
