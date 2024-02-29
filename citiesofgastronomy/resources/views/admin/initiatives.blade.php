@@ -45,7 +45,7 @@
                                 value="default">{{__('initiatives.init.select_activity')}}</option>
                                 @foreach($typeOfActivity as $actype)
                                 <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" <?php if($search_inputs['actype']==$actype['id']){echo 'selected';}?> 
-                                value="{{$actype['id']}}">{{$actype['id']}} - {{$actype['name']}}</option>
+                                value="{{$actype['id']}}">{{$actype['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -55,7 +55,7 @@
                                 value="default">{{__('initiatives.init.select_topic')}}</option>
                                 @foreach($Topics as $topic)
                                 <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" <?php if($search_inputs['topic']==$topic['id']){echo 'selected';}?> 
-                                value="{{$topic['id']}}">{{$topic['id']}} - {{$topic['name']}}</option>
+                                value="{{$topic['id']}}">{{$topic['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -65,7 +65,7 @@
                                 value="default">{{__('initiatives.init.select_sdg')}}</option>
                                 @foreach($sdg as $sdgg)
                                 <option id="filter-{{$sdgg['id']}}" name="filter-{{$sdgg['id']}}" <?php if($search_inputs['sdg']==$sdgg['id']){echo 'selected';}?> 
-                                value="{{$sdgg['id']}}">{{$sdgg['id']}} - {{$sdgg['number']}} - {{$sdgg['name']}}</option>
+                                value="{{$sdgg['id']}}">{{$sdgg['number']}} - {{$sdgg['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -75,7 +75,7 @@
                                 value="default">{{__('initiatives.init.select_connection')}}</option>
                                 @foreach($ConnectionsToOther as $cn)
                                 <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" <?php if($search_inputs['connection']==$cn['id']){echo 'selected';}?>
-                                value="{{$cn['id']}}">{{$cn['id']}} - {{$cn['name']}}</option>
+                                value="{{$cn['id']}}">{{$cn['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -86,7 +86,7 @@
                     </div>
                     <div id="clear-filters-btn" class="row d-none mt-3 text-right">
                         <div class="col-lg-2 col-md-4 col-sm-12 col-12 mb-3 mx-auto me-lg-0">
-                            <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="resetFilters()">
+                            <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="reloadPage()">
                                 {{__('general.clear_filters')}}  X
                             </label>
                         </div>
@@ -336,6 +336,11 @@
             });
         }
     }
+
+    function reloadPage(){
+        let current_page = document.getElementById('page').value
+        window.location = '../../admin/initiatives/?section=in&page=1';
+    }
 </script>
 
 <script>
@@ -358,4 +363,17 @@
       }
      });
 </script>
+<script>
+        $(document).ready(function(e){
+            let actype = "<?= $search_inputs['actype']?>";
+            let topic = "<?= $search_inputs['topic']?>";
+            let sdg = "<?= $search_inputs['sdg']?>";
+            let connection = "<?= $search_inputs['connection']?>";
+
+            if(actype != 'default' || topic != 'default' || sdg != 'default' || connection != 'default'){
+                showResetFilterButton();
+            }
+            else{hideResetFilterButton();}
+        });
+    </script>
 @endsection

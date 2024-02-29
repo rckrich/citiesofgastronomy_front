@@ -116,6 +116,14 @@ class LandingController extends Controller
     public function initiatives()
     {
 
+        $search_inputs = array(
+            'actype' => 'default',
+            'topic' => 'default',
+            'sdg' => 'default',
+            'connection' => 'default',
+            'city' => 'default',
+        );
+
         $url = config('app.apiUrl').'initiatives';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -125,7 +133,7 @@ class LandingController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
-        Log::info($res["banner"]);
+        //Log::info($res["banner"]);
 
         $inputs = [];
         $inputs["initiatives"] = $res["initiatives"];
@@ -138,9 +146,74 @@ class LandingController extends Controller
         $inputs["Topics"] = $res["Topics"];
         $inputs["sdgs"] = $res["sdg"];
         $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
+        $inputs["search_inputs"] = $search_inputs;
 
         return view('landing.initiatives', $inputs);
     }
+
+    public function initiatives_search(Request $request)
+    {
+
+        $actype = $request->input("select_activity_filter");
+        $topic = $request->input("select_topic_filter");
+        $sdg = $request->input("select_sdg_filter");
+        $connection = $request->input("select_connection_filter");
+        $city = $request->input("select_city_filter");
+        
+        $fields = array(
+            'searchTypeOfActivity' =>  '',
+            'searchTopics' => '',
+            'searchSDG' => '',
+            'searchConnectionsToOther' =>  '',
+            'search' => '',
+            'filterType' => ($actype != 'default' ? $actype :  ''),
+            'filterTopic' => ($topic != 'default' ? $topic :  ''),
+            'filterSDG' => ($sdg != 'default' ? $sdg :  ''),
+            'filterConnections' => ($connection != 'default' ? $connection :  ''),
+            'filterCities' => ($city != 'default' ? $city :  '')
+        );
+        $search_inputs = array(
+            'actype' => $actype,
+            'topic' => $topic,
+            'sdg' => $sdg,
+            'connection' => $connection,
+            'city' => $city,
+        );
+
+        $fields_string = http_build_query($fields);       
+
+        $url = config('app.apiUrl').'initiatives';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        Log::info($res);
+
+        $inputs = [];
+        $inputs["initiatives"] = $res["initiatives"];
+        $inputs["banners"] = $res["banner"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
+        $inputs["total"] = $res["tot"];
+        $inputs["cities"] = $res["citiesFilter"];
+        $inputs["typeOfActivity"] = $res["typeOfActivity"];
+        $inputs["Topics"] = $res["Topics"];
+        $inputs["sdgs"] = $res["sdg"];
+        $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
+        $inputs["search_inputs"] = $search_inputs;
+
+        return view('landing.initiatives', $inputs);
+
+    }
+
+
     public function tastier_life()
     {
 
