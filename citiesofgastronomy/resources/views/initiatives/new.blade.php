@@ -988,8 +988,8 @@ function searchCheck (classGroup){
 
             };
 
-            if(data_name=='' || data_continent=='' || photo=='' || data_startdate=='' || data_enddate=='' || data_description=='' ){
-                errorMessage = 'Fill out all fields';
+            if(data_name=='' || data_continent=='' || (photo=='' && id=='') || data_startdate=='' || data_enddate=='' || data_description=='' ){
+                    errorMessage = 'Fill out all fields. ' + errorMessage  ;
                 if(data_name==''){
                     document.getElementById("data_name").className =  'form-control is-invalid';
                     document.getElementById("data_name_validation").style.display =  'block';
