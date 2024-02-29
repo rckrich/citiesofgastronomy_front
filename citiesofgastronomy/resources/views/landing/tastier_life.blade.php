@@ -17,7 +17,7 @@
             <div class="banner-title">
             <div class="banner-title-overlay row align-items-center mx-0">
                 <div class="banner-img-overlay">
-                    <h1 class="title-lg text-yellow">{{__('tastier_life.title')}}</h1>
+                    <h1 class="title-lg text-white">{{__('tastier_life.title')}}</h1>
                 </div>
             </div>
             </div>
@@ -32,9 +32,9 @@
             </div>
         </div>
 
-        <!--include('commons.work_in_progress')-->
+        @include('commons.work_in_progress')
 
-        <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
+        <!--div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1">
                 <div class="form-group">
@@ -117,7 +117,7 @@
 
 
             </div>
-        </div>
+        </div-->
 
     </section>
 @endsection

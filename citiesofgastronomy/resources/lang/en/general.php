@@ -6,7 +6,7 @@ return [
     'nav_cities' => 'Cities of Gastronomy',
     'nav_about' => 'About',
     'nav_initiatives' => 'Initiatives',
-    'nav_tastier_life' => 'A tastier Life',
+    'nav_tastier_life' => 'A tastier life',
     'nav_tours' => 'Gastro tours',
     'nav_stats' => 'Numbers and statistics',
     'nav_calendar' => 'Calendar',

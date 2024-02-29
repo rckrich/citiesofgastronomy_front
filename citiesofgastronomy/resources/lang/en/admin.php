@@ -5,7 +5,7 @@ return [
     'nav_cities' => 'Cities',
     'nav_about' => 'About',
     'nav_initiatives' => 'Initiatives',
-    'nav_tastier_life' => 'A tastier Life',
+    'nav_tastier_life' => 'A tastier life',
     'nav_tours' => 'Gastro tours',
     'nav_contact' => 'Contact',
     'nav_main' => 'Main Site Content',

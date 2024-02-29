@@ -54,7 +54,7 @@ body{background-color: #000;color:#fff;}
 .title-lg,.title-md,.title-sm, .title-xs b, .subtitle b,.data-sm b,.nav-link-sm b, .subtitle-md b{font-family: 'Helvetica LT Std Black';}
 .title-xl{font-size: 84px;font-family: 'Helvetica LT Std Bold Cond';}
 .title-lg{font-size: 50px;}
-.title-md{font-size: 48px;}
+.title-md{font-size: 48px;line-height: normal;}
 .title-sm{font-size: 40px;}
 .title-xs,.card-title{font-size: 20px;}
 .card-text{font-size: 15px!important;}
@@ -188,8 +188,8 @@ a .text-white{color: #fff!important;}
 }
 .carousel-caption{font: normal normal bold 100px/60px 'Helvetica LT Std';}
 .carousel-indicators{z-index: 11;}
-.carousel-indicators button{opacity: 1 !important;border-radius: 100%!important; width: 12px!important; height: 12px!important; background-color: transparent!important; border: solid 1px #D87C16!important;}
-.carousel-indicators .active {background-color: #D87C16!important;}
+.carousel-indicators button{opacity: 1 !important;border-radius: 100%!important; width: 12px!important; height: 12px!important; background-color: transparent!important; border: solid 1px #fff!important;}
+.carousel-indicators .active {background-color: #fff!important;}
 .banner-title-overlay{
     width: 100%;
     height: 350px;
@@ -201,10 +201,11 @@ a .text-white{color: #fff!important;}
     left: 0;
     padding: 8rem;
     z-index: 10;
+    text-shadow:5px 5px 12px rgba(0, 0, 0, 0.8)
 }
 #show_city .banner-title{ position: relative;}
 #show_city .banner-title img{height: 350px; object-fit: cover; object-position: center;}
-#show_city .banner-title-overlay{padding: 4rem!important; text-shadow:5px 5px 12px rgba(0, 0, 0, 0.8)}
+#show_city .banner-title-overlay{padding: 4rem!important;}
 #num_stats .banner-title-overlay{position: relative!important; height: 350px;}
 #num_stats .banner-title{
     background-repeat: no-repeat!important;

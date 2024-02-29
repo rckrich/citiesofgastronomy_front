@@ -17,7 +17,7 @@
             <div class="banner-title">
             <div class="banner-title-overlay row align-items-center mx-0">
                 <div class="banner-img-overlay">
-                    <h1 class="title-lg text-yellow">{{__('contact.title')}}</h1>
+                    <h1 class="title-lg text-white">{{__('contact.title')}}</h1>
                 </div>
             </div>
             </div>

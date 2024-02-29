@@ -63,14 +63,14 @@
                 </li>
             </ul>
             
-                <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
+                <!--form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
                     @csrf
                     @method('POST')
                     <div class="input-group px-2 mx-auto">
                         <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search.svg')}}"/></span>
                         <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
                     </div>
-                </form>
+                </form-->
             
 
         </div>

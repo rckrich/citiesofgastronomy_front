@@ -13,9 +13,9 @@
         @endif
         <div class="banner-title-overlay row align-items-center mx-0">
             <div class="banner-img-overlay">
-                <h1 class="title-lg text-yellow pb-lg-5 pb-md-5 pb-sm-3 pb-3">{{$city["name"]}}</h1>
-                <h6 class="data py-2"><b class="text-orange">{{$city["country"]}}</b></h6>
-                <h6 class="data py-2 text-orange">City of Gastronomy since {{$city["designationyear"]}}</h6>
+                <h1 class="title-lg text-white pb-lg-5 pb-md-5 pb-sm-3 pb-3">{{$city["name"]}}</h1>
+                <h6 class="data py-2"><b class="text-white">{{$city["country"]}}</b></h6>
+                <h6 class="data py-2 text-white">City of Gastronomy since {{$city["designationyear"]}}</h6>
             </div>
         </div>
         </div>

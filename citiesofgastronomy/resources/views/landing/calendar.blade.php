@@ -16,7 +16,7 @@
             <div class="banner-title">
             <div class="banner-title-overlay row align-items-center mx-0">
                 <div class="banner-img-overlay">
-                    <h1 class="title-lg text-yellow">{{__('calendar.title')}}</h1>
+                    <h1 class="title-lg text-white">{{__('calendar.title')}}</h1>
                 </div>
             </div>
             </div>
@@ -31,9 +31,9 @@
             </div>
         </div>
 
-        <!--include('commons.work_in_progress')-->
+        @include('commons.work_in_progress')
 
-        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
+        <!--div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row align-items-center mb-lg-2 mb-md-3 mb-sm-3 mb-3">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('calendar.timeline.title')}}</h1>
@@ -45,7 +45,7 @@
                     <table id="timeline-list" class="table table-dark w-100">
                         <tbody>
 
-                        <!--foreach(timeline as time)-->
+                        <!-foreach(timeline as time)->
 
                             <tr class="timeline-item">
                                 <td class="timeline-col timeline-title text-left ps-3 mx-2">
@@ -59,7 +59,7 @@
                                 <td class="timeline-col timeline-date text-center">14.Jan.2024
                                 </td>
                             </tr>
-                        <!--endforeach-->
+                        <!-endforeach->
                         </tbody>
                     </table>
                 </div>
@@ -67,7 +67,7 @@
 
             </div>
 
-        </div>
+        </div-->
 
     </section>
 @endsection

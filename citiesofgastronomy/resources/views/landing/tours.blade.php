@@ -19,7 +19,7 @@
             <div class="banner-title">
             <div class="banner-title-overlay row align-items-center mx-0">
                 <div class="banner-img-overlay">
-                    <h1 class="title-lg text-yellow">{{__('tours.title')}}</h1>
+                    <h1 class="title-lg text-white">{{__('tours.title')}}</h1>
                 </div>
             </div>
             </div>
@@ -35,9 +35,9 @@
             </div>
         </div>
 
-        <!--include('commons.work_in_progress')-->
+        @include('commons.work_in_progress')
 
-        <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
+        <!--div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
         <div class="row g-4">
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 me-auto">
                 <div class="form-group">
@@ -105,7 +105,7 @@
 
 
             </div>
-        </div>
+        </div-->
 
 
     </section>
