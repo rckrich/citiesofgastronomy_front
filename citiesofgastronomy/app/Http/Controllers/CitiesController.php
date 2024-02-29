@@ -26,6 +26,17 @@ class CitiesController extends Controller
             $res = json_decode( $data, true);
 
             $inputs["city"] = $res["cities"];
+
+            if($inputs["city"]["population"] == '0' 
+            || $inputs["city"]["population"]=='00' 
+            || $inputs["city"]["population"]=='000'){
+                $inputs["city"]["population"] = '';
+            }
+            if($inputs["city"]["restaurantFoodStablishments"] == '0' 
+            || $inputs["city"]["restaurantFoodStablishments"]=='00' 
+            || $inputs["city"]["restaurantFoodStablishments"]=='000'){
+                $inputs["city"]["restaurantFoodStablishments"] = '';
+            }
             $inputs["banners"] = $res["bannerCities"];
             $inputs["gallery"] = $res["gallery"];
             $inputs["links"] = $res["links"];

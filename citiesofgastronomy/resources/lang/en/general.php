@@ -6,8 +6,8 @@ return [
     'nav_cities' => 'Cities of Gastronomy',
     'nav_about' => 'About',
     'nav_initiatives' => 'Initiatives',
-    'nav_tastier_life' => 'Tastier Life',
-    'nav_tours' => 'Tours',
+    'nav_tastier_life' => 'A tastier Life',
+    'nav_tours' => 'Gastro tours',
     'nav_stats' => 'Numbers and statistics',
     'nav_calendar' => 'Calendar',
     'nav_contact' => 'Contact',
@@ -15,6 +15,7 @@ return [
     'search' => 'Search',
     'gallery' => 'Gallery',
     'no_gallery' => 'No images found.',
+    'no_data' => 'N/A',
 
     'newsletter' => [
         'description' => 'Suscribe to our newsletter',

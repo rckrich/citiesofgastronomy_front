@@ -1,6 +1,6 @@
 <?php
 return [
-    'title'=>'Tastier Life',
+    'title'=>'A tastier Life',
     'lorem_title' => 'Recipe Name',  
     'lorem_desc' => '(Recipe Short Description). Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.',  
     'data_chef' => 'Chef: ',  

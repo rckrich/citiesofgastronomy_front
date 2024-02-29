@@ -1,6 +1,6 @@
 <?php
 return [
-    'title'=>'Tours',
+    'title'=>'Gastro tours',
     'lorem_title' => 'Tour Name',  
     'lorem_desc' => '(Brief description). Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.',  
     'data_agency' => 'Travel Agency: ',  

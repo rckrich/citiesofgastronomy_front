@@ -204,7 +204,7 @@ a .text-white{color: #fff!important;}
 }
 #show_city .banner-title{ position: relative;}
 #show_city .banner-title img{height: 350px; object-fit: cover; object-position: center;}
-#show_city .banner-title-overlay{padding: 4rem!important;}
+#show_city .banner-title-overlay{padding: 4rem!important; text-shadow:5px 5px 12px rgba(0, 0, 0, 0.8)}
 #num_stats .banner-title-overlay{position: relative!important; height: 350px;}
 #num_stats .banner-title{
     background-repeat: no-repeat!important;

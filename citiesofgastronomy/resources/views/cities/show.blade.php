@@ -56,9 +56,9 @@
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('cities.view.data_continent')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">{{$city["continentName"]}}</p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('cities.view.data_population')}}</b></p>
-                    <p class="pb-2 mb-2 text-white data">{{$city["population"]}}</p>
+                    <p class="pb-2 mb-2 text-white data">{{$city["population"]?number_format($city["population"]):__('general.no_data')}}</p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('cities.view.data_locations')}}</b></p>
-                    <p class="pb-2 mb-2 text-white data">{{$city["restaurantFoodStablishments"]}}</p>
+                    <p class="pb-2 mb-2 text-white data">{{$city["restaurantFoodStablishments"]?number_format($city["restaurantFoodStablishments"]):__('general.no_data')}}</p>
                 </div>
             </div>
             <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
@@ -103,7 +103,7 @@
         </div>
 
         <div class="text-center" style="margin: 5rem 0">
-            <p class="title-md py-5">{{__('cities.view.more_info')}}</p>
+            <p class="title-md py-5">{{__('cities.view.more_info', ['City' => $city["name"] ] )}}</p>
             @foreach($links as $link)
             <p class="data py-2"><a href="{{$link['image']}}" target="_blank" class="text-link text-orange">{{$link['title']}}</a></p>
             @endforeach
