@@ -318,28 +318,45 @@ class LandingController extends Controller
     }
     public function search(Request $request)
     {
-        $url = config('app.apiUrl').'home';
+
+        $keyword = $request->input('search_box');
+        $inputs = [];
+
+        $url_home = config('app.apiUrl').'home';
+        $curl_home = curl_init();
+        curl_setopt($curl_home, CURLOPT_URL, $url_home);
+        curl_setopt($curl_home, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl_home, CURLOPT_HEADER, false);
+        $data_home = curl_exec($curl_home);
+        curl_close($curl_home);
+        $res_home = json_decode( $data_home, true);
+
+        $fields = array(
+            'search' => $keyword
+        );
+
+        $fields_string = http_build_query($fields);
+
+        $url = config('app.apiUrl').'generalSearch';
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
         $data = curl_exec($curl);
         curl_close($curl);
         $res = json_decode( $data, true);
-        //Log::info("DAtta Result-- ::");
 
-        $inputs = [];
-        $inputs["bannerAbout"] = $res["bannerAbout"];
-        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
-        //Log::info($inputs);
-        $inputs["cityList"] = $res["cities"];
-        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
-        $inputs["info"] = $res["info"];
-        $SocialNetworkType = $res["SocialNetworkType"];
-        $info = $res["info"];
 
-        $keyword = $request->input('search_box');
-        return view('landing.search', compact('keyword','inputs','info','SocialNetworkType'));
+        $inputs["SocialNetworkType"] = $res_home["SocialNetworkType"];
+        $inputs["info"] = $res_home["info"];
+        $inputs["results"] = $res["search"]; 
+        $inputs["search_box"]=$keyword;
+        Log::info($res);
+
+        return view('landing.search', $inputs);
 
     }
     public function newsletter(Request $request)

@@ -63,14 +63,14 @@
                 </li>
             </ul>
             
-                <!--form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
+                <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
                     @csrf
                     @method('POST')
                     <div class="input-group px-2 mx-auto">
                         <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search.svg')}}"/></span>
                         <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
                     </div>
-                </form-->
+                </form>
             
 
         </div>
@@ -120,6 +120,7 @@
                             <a class="nav-link py-1" href="{{route('landing.calendar')}}">{{__('general.nav_calendar')}}</a>
                             <a class="nav-link py-1" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                         </div>
+                        @if($info)
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-lg-0 my-md-0 my-sm-3 my-3">
                             <p class="title-xs">{{__('general.newsletter.cluster')}}</p>
                             @for($i=0; $i < count($info); $i++)
@@ -133,7 +134,9 @@
                                 <a class="nav-link py-1">{{$info[$i]["value"]}}</a>
                             @endif
                             @endfor
-                        </div>
+                        </div>                            
+                        @endif
+
                     </div>
                 </div>
             </div>
