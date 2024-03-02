@@ -3,10 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="RCK Games" />
+    <meta name="description" content="Nace de la emoción de estar en movimiento, y busca activamente ser la mejor opción de vivienda para un joven empresario o estudiante que requiere conectividad y un espacio para forjar su nueva vida.">
+    <!--link rel="icon" href="Muven-Icon.png"-->
 
-    <title>CitiesOfGastronomy</title>
+    <meta name="twitter:card" content="summary" />
+    <!-- <meta name="twitter:site" content="@UMGbar" /> -->
+    <meta name="twitter:title" content="UNESCO Cities of Gastronomy" />
+    <meta name="twitter:description" content="Nace de la emoción de estar en movimiento, y busca activamente ser la mejor opción de vivienda para un joven empresario o estudiante que requiere conectividad y un espacio para forjar su nueva vida." />
+    <meta name="twitter:image" content="https://citiesofgastronomy.com/assets/icons/twitter.svg" />
+
+    <meta property="og:title" content="UNESCO Cities of Gastronomy" />
+    <meta property="og:description" content="Nace de la emoción de estar en movimiento, y busca activamente ser la mejor opción de vivienda para un joven empresario o estudiante que requiere conectividad y un espacio para forjar su nueva vida." />
+    <meta property="og:type" content="website" />  
+    <meta property="og:url" content="https://citiesofgastronomy.com" />
+    <meta property="og:image" content="https://citiesofgastronomy.com/assets/icons/twitter.svg" />
+
+    <title>UNESCO Cities Of Gastronomy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}" type="text/css" >

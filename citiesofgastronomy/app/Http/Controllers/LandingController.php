@@ -284,13 +284,14 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("CALENDAR ::");
-        //Log::info($res["banner"]);
+        Log::info($res);
 
         $inputs = [];
         $inputs["calendar"] = $res["calendar"];
         $inputs["banners"] = $res["banner"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
+        $inputs["timeline"] = $res["calendar"];
 
         return view('landing.calendar', $inputs);
     }
@@ -354,7 +355,7 @@ class LandingController extends Controller
         $inputs["info"] = $res_home["info"];
         $inputs["results"] = $res["search"]; 
         $inputs["search_box"]=$keyword;
-        Log::info($res);
+        //Log::info($res);
 
         return view('landing.search', $inputs);
 
