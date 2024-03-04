@@ -32,6 +32,9 @@ class TastierLifeController extends Controller
     {
         return view('tastier_life.new_recipe');
     } 
+
+
+
     public function recipe_edit()
     {
         return view('tastier_life.edit_recipe');
@@ -39,7 +42,52 @@ class TastierLifeController extends Controller
     public function chef_new()
     {
         return view('tastier_life.new_chef');
-    } 
+    }     
+    
+    public function chef_save(Request $request)
+    {
+        $id = $request->input("id");
+        $name = $request->input("data_name");
+        $idCity = $request->input("facebook_link");
+        $position = $request->input("twitter_link");
+        $linksTag = $request->input("linkedin_link");
+        $idSection = $request->input("instagram_link");
+        $idSection = $request->input("tiktok_link");
+
+        $dattaSend = [
+            'id' => $id,
+            'idOwner' => $id,
+            'name' => $name,
+            'idCity' => $idCity,
+            'position' => $position,
+            'idSection' => $idSection
+        ];
+
+        $arrayTags = explode(",", $linksTag);
+
+        for($i = 0; $i < count($arrayTags)  ; $i++){
+
+            $idLink = $arrayTags[$i].'_link';
+            $dattaSend[$idLink] = $request->input($idLink);
+            //Instagram_link
+        }
+
+        $url = config('app.apiUrl').'contact/save';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        //Log::info("CONTACT SAVE ::");
+        //Log::info($res);
+        return redirect( "admin/tastier_life" );
+    }
+    
     public function chef_edit()
     {
         return view('tastier_life.edit_chef');

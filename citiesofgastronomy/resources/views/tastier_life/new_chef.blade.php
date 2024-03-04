@@ -11,7 +11,8 @@
                 </div>
             </div>
             <div class="row mx-0">
-                <form class="pb-5 my-3">
+                <form class="pb-5 my-3" action="/admin/chef/save" method="POST" id="newChef_Form">
+                    @csrf
                     <div class="form-group py-2">
                         <label class="form-label" for="data_name">{{__('tastier_life.chefs.create.data_name')}}</label>
                         <input id="data_name" name="data_name" class="form-control" placeholder="{{__('tastier_life.chefs.create.ph_name')}}"/>

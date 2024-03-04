@@ -85,6 +85,7 @@ Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->nam
 Route::get('/admin/tastier_life/recipe/create', [TastierLifeController::class, 'recipe_new'])->name('admin.recipe_new');
 Route::get('/admin/tastier_life/recipe/{id}', [TastierLifeController::class, 'recipe_edit'])->name('admin.recipe_edit');
 Route::get('/admin/tastier_life/chef/create', [TastierLifeController::class, 'chef_new'])->name('admin.chef_new');
+Route::get('/admin/tastier_life/chef/store', [TastierLifeController::class, 'chef_save'])->name('admin.chef_save');
 Route::get('/admin/tastier_life/chef/{id}', [TastierLifeController::class, 'chef_edit'])->name('admin.chef_edit');
 
 
