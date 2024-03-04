@@ -31,9 +31,9 @@
             </div>
         </div>
 
-        <!--include('commons.work_in_progress')-->
+        @include('commons.work_in_progress')
 
-        <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
+        <!--div class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row align-items-center mb-lg-2 mb-md-3 mb-sm-3 mb-3">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h1 class="title-xl">{{__('calendar.timeline.title')}}</h1>
@@ -74,7 +74,7 @@
 
             </div>
 
-        </div>
+        </div-->
 
     </section>
 @endsection
