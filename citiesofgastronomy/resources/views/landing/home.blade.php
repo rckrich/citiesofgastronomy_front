@@ -789,8 +789,16 @@
                 <div class="col-6 pe-0">
                     <h1 class="title-xl">{{__('landing.news.title')}}</h1>
                 </div>
-                <div class="col-auto ms-auto">
-                    <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
+                <div class="col-auto ms-auto"><!--id in production 8 -->
+                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_news" class="d-contents">
+                        @csrf
+                        <input type="hidden" name="select_activity_filter" value="8">
+                        <input type="hidden" name="select_topic_filter" value="default">
+                        <input type="hidden" name="select_sdg_filter" value="default">
+                        <input type="hidden" name="select_connection_filter" value="default">
+                        <input type="hidden" name="select_city_filter" value="default">
+                        <button type="submit" class="btn btn-primary">{{__('landing.btn_view')}}</button>
+                    </form>
                 </div>
             </div>
             <div class="row g-4">
@@ -837,8 +845,16 @@
                 <div class="col-6 pe-0">
                     <h1 class="title-xl">{{__('landing.open_calls.title')}}</h1>
                 </div>
-                <div class="col-auto ms-auto">
-                    <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
+                <div class="col-auto ms-auto"> <!--id in production 7 -->
+                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_openCalls" class="d-contents">
+                        @csrf
+                        <input type="hidden" name="select_activity_filter" value="7">
+                        <input type="hidden" name="select_topic_filter" value="default">
+                        <input type="hidden" name="select_sdg_filter" value="default">
+                        <input type="hidden" name="select_connection_filter" value="default">
+                        <input type="hidden" name="select_city_filter" value="default">
+                        <button type="submit" class="btn btn-primary">{{__('landing.btn_view')}}</button>
+                    </form>
                 </div>
             </div>
             <div class="row g-4">
@@ -926,6 +942,5 @@
                 openMapModal();
             };
         }
-
     </script>
 @endsection
