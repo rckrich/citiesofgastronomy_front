@@ -307,7 +307,7 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("CONTACT ::");
-        Log::info($res["banner"]);
+        Log::info($res);
 
         $inputs = [];
         $inputs["contacts"] = $res["contacts"];

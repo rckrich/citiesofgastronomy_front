@@ -749,7 +749,7 @@
                 @foreach($initiatives as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-{{($loop->index)+1}}">
                     <div class="card">
-                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
+                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
                             <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
@@ -777,7 +777,7 @@
                                     @if(!$loop->last),@endif
                                 @endforeach
                             </p>
-                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -810,7 +810,7 @@
                 @foreach($news as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-{{($loop->index)+1}}">
                     <div class="card">
-                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
+                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
                             <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
@@ -839,7 +839,7 @@
                                     @if(!$loop->last),@endif
                                 @endforeach
                             </p>
-                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -871,7 +871,7 @@
                 @foreach($open_calls as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-{{($loop->index)+1}}">
                     <div class="card">
-                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
+                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
                             <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
@@ -900,7 +900,7 @@
                                     @if(!$loop->last),@endif
                                 @endforeach
                             </p>
-                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
