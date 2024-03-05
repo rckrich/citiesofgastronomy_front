@@ -34,7 +34,7 @@
 
         <div class="container py-lg-5 py-md-5 py-sm-3 p-3">
             <div id="contact-cards" class="row g-lg-4 g-md-4 g-sm-5 g-5 py-5 col-12 mx-auto">
-                <?php $cls = [1=>'fb', 2=>'tw', 3=>'lin', 4=>'in', 5=>'lin', 6=>'lin']?>
+                <?php $cls = [1=>'fb', 2=>'tw', 3=>'tt', 4=>'in', 5=>'yt', 6=>'lin']?>
                 @foreach($contacts as $city)
                 <div class="card-group col-lg-2 col-md-3 col-sm-6 col-12 my-3">
                     <div class="card h-100">
