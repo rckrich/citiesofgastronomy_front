@@ -742,7 +742,7 @@
                     <h1 class="title-xl">{{__('landing.initiatives.title')}}</h1>
                 </div>
                 <div class="col-auto ms-auto">
-                    <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
+                    <a href="{{route('landing.initiatives')}}" target="_blank" class="btn btn-primary">{{__('landing.btn_view')}}</a>
                 </div>
             </div>
             <div class="row g-4">
@@ -795,7 +795,7 @@
                     <h1 class="title-xl">{{__('landing.news.title')}}</h1>
                 </div>
                 <div class="col-auto ms-auto"><!--id in production 8 -->
-                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_news" class="d-contents">
+                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_news" class="d-contents" target="_blank">
                         @csrf
                         <input type="hidden" name="select_activity_filter" value="8">
                         <input type="hidden" name="select_topic_filter" value="default">
@@ -856,7 +856,7 @@
                     <h1 class="title-xl">{{__('landing.open_calls.title')}}</h1>
                 </div>
                 <div class="col-auto ms-auto"> <!--id in production 7 -->
-                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_openCalls" class="d-contents">
+                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_openCalls" class="d-contents" target="_blank">
                         @csrf
                         <input type="hidden" name="select_activity_filter" value="7">
                         <input type="hidden" name="select_topic_filter" value="default">

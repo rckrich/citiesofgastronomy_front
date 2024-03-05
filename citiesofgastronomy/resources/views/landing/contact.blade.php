@@ -52,10 +52,11 @@
                                     <?php   $id = $social["idSocialNetworkType"];
                                             $soc = $social["social_network_type"];
                                     ?>
-                                    <a href="" class="px-lg-1 px-md-1 px-sm-2 px-2 icon-link">
-                                            <img class="icon-social {{$cls[$id]}} " src="{{asset('assets/icons/'.$soc[0]['icon'])}}"
-                                                height="25" width="25"/>
+                                    @if($id!=6 && $id!=5)
+                                    <a href="{{$social['social_network']}}" target="_blank" class="px-lg-1 px-md-1 px-sm-2 px-2 icon-link">
+                                            <img class="icon-social {{$cls[$id]}} " src="{{asset('assets/icons/'.$soc[0]['icon'])}}"/>
                                     </a>
+                                    @endif
                                     <!--<a href="" class="px-lg-1 px-md-1 px-sm-2 px-2"><img class="icon-social in" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
                                     <a href="" class="px-lg-1 px-md-1 px-sm-2 px-2"><img class="icon-social tw" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
                                     <a href="" class="px-lg-1 px-md-1 px-sm-2 px-2"><img class="icon-social lin" src="{{asset('assets/icons/linked_in.svg')}}" height="21" width="21"/></a>-->
