@@ -6,17 +6,17 @@
     <section id="admin_tastierlife">
     <ul class="nav nav-pills mb-3 px-5 pt-5 pb-4" id="pills-tab-tastierlife" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-recipes-tab" data-bs-toggle="pill" data-bs-target="#pills-recipes" type="button" role="tab" aria-controls="pills-recipes" aria-selected="true">{{__('tastier_life.recipes.title')}}</button>
+            <button class="nav-link <?php if($section=='recipes'){echo ' active';}?>" id="pills-recipes-tab" data-bs-toggle="pill" data-bs-target="#pills-recipes" type="button" role="tab" aria-controls="pills-recipes" aria-selected="true">{{__('tastier_life.recipes.title')}}</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-chefs-tab" data-bs-toggle="pill" data-bs-target="#pills-chefs" type="button" role="tab" aria-controls="pills-chefs" aria-selected="false">{{__('tastier_life.chefs.title')}}</button>
+            <button class="nav-link <?php if($section=='chefs'){echo ' active';}?>" id="pills-chefs-tab" data-bs-toggle="pill" data-bs-target="#pills-chefs" type="button" role="tab" aria-controls="pills-chefs" aria-selected="false">{{__('tastier_life.chefs.title')}}</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-categories-tab" data-bs-toggle="pill" data-bs-target="#pills-categories" type="button" role="tab" aria-controls="pills-categories" aria-selected="false">{{__('tastier_life.categories.title')}}</button>
+            <button class="nav-link <?php if($section=='cat'){echo ' active';}?>" id="pills-categories-tab" data-bs-toggle="pill" data-bs-target="#pills-categories" type="button" role="tab" aria-controls="pills-categories" aria-selected="false">{{__('tastier_life.categories.title')}}</button>
         </li>
     </ul>
     <div class="tab-content px-5" id="pills-tab-tastierlifeContent">
-        <div class="tab-pane fade show active" id="pills-recipes" role="tabpanel" aria-labelledby="pills-recipes-tab">
+        <div class="tab-pane fade <?php if($section=='recipes'){echo ' show active';}?>" id="pills-recipes" role="tabpanel" aria-labelledby="pills-recipes-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="pills-chefs" role="tabpanel" aria-labelledby="pills-chefs-tab">
+        <div class="tab-pane fade <?php if($section=='chefs'){echo ' show active';}?>" id="pills-chefs" role="tabpanel" aria-labelledby="pills-chefs-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
@@ -110,7 +110,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="pills-categories" role="tabpanel" aria-labelledby="pills-categories-tab">
+        <div class="tab-pane fade <?php if($section=='cat'){echo ' show active';}?>" id="pills-categories" role="tabpanel" aria-labelledby="pills-categories-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
                     <div class="col-12 px-0 py-2">
@@ -239,5 +239,11 @@
   </div>
 </div>
 
+<script>
+$('#pills-recipes-tab').on('click',function(){window.location = '/admin/tastier_life?section=recipes'});
+$('#pills-chefs-tab').on('click',function(){window.location = '/admin/tastier_life?section=chefs'});
+$('#pills-categories-tab').on('click',function(){window.location = '/admin/tastier_life?section=cat'});
+
+</script>
 
 @endsection

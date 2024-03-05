@@ -66,7 +66,7 @@ Route::post('/admin/completeUpdate', [CitiesController::class, 'citiesCompleteUp
 
 
 Route::get('/admin/initiatives', [AdminController::class, 'initiatives'])->name('admin.initiatives');
-Route::get('/admin/initiatives/?section=in&page=1', [AdminController::class, 'initiatives'])->name('admin.initiatives');
+Route::get('/admin/initiatives?section=in&page=1', [AdminController::class, 'initiatives'])->name('admin.initiatives');
 Route::post('/admin/initiatives', [InitiativesController::class, 'initiatives_search']);
 Route::get('/admin/initiatives/create', [InitiativesController::class, 'initiatives_new'])->name('admin.initiatives_new');
 Route::post('/admin/initiatives/store', [InitiativesController::class, 'initiatives_store']);
@@ -82,6 +82,7 @@ Route::post('/admin/initiatives/connection/store', [InitiativesController::class
 Route::post('/admin/initiatives/connection/delete', [InitiativesController::class, 'connection_delete']);
 
 Route::get('/admin/tastier_life', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
+Route::get('/admin/tastier_life?section=recipes', [AdminController::class, 'tastier_life'])->name('admin.tastier_life');
 Route::get('/admin/tastier_life/recipe/create', [TastierLifeController::class, 'recipe_new'])->name('admin.recipe_new');
 Route::get('/admin/tastier_life/recipe/{id}', [TastierLifeController::class, 'recipe_edit'])->name('admin.recipe_edit');
 Route::get('/admin/tastier_life/chef/create', [TastierLifeController::class, 'chef_new'])->name('admin.chef_new');

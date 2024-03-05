@@ -757,7 +757,12 @@
                             @endif                        </a>
                         <div class="card-body px-0 bg-black text-white">
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
-                            <p class="card-text mb-2">{{$item["description"]}}</p>
+                            <p class="card-text mb-2">{{
+                                str_replace(['<br />','&nbsp;'], ' ', 
+                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                )
+                            }}
+                            </p>
                             @if( count ($item["sdg_filter"]) != 0)
                             <div class="py-3">
                                 @foreach($item["sdg_filter"] as $sdg)
@@ -814,7 +819,12 @@
                         </a>
                         <div class="card-body px-0 bg-black text-white">
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
-                            <p class="card-text mb-2">{{$item["description"]}}</p>
+                            <p class="card-text mb-2">{{
+                                str_replace(['<br />','&nbsp;'], ' ', 
+                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                )
+                            }}
+                            </p>
                             @if( count ($item["sdg_filter"]) != 0)
                             <div class="py-3">
                                 @foreach($item["sdg_filter"] as $sdg)
@@ -870,7 +880,12 @@
                         </a>
                         <div class="card-body px-0 bg-black text-white">
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
-                            <p class="card-text mb-2">{{$item["description"]}}</p>
+                            <p class="card-text mb-2">{{
+                                str_replace(['<br />','&nbsp;'], ' ', 
+                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                )
+                            }}
+                            </p>
                             @if( count ($item["sdg_filter"]) != 0)
                             <div class="py-3">
                                 @foreach($item["sdg_filter"] as $sdg)

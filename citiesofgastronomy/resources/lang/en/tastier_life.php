@@ -129,6 +129,9 @@ return [
             'ph_linkedin'=>'Link',
             'data_tiktok'=>'Tiktok:',
             'ph_tiktok'=>'Link',
+            'data_youtube'=>'Youtube:',
+            'ph_youtube'=>'Link',
+
         ],
         'edit'=>[
             'title'=>'Edit Chef',
@@ -146,6 +149,8 @@ return [
             'ph_linkedin'=>'Link',
             'data_tiktok'=>'Tiktok:',
             'ph_tiktok'=>'Link',
+            'data_youtube'=>'Youtube:',
+            'ph_youtube'=>'Link',
         ],
 
     ],

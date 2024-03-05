@@ -198,10 +198,13 @@ class AdminController extends Controller
     }
 
 
-    public function tastier_life()
+    public function tastier_life(Request $request)
     {
-        return view('admin.tastier_life');
+        $inputs = [];
+        $inputs["section"] = $request->input("section");
+        return view('admin.tastier_life',$inputs);
     }
+
     public function tours()
     {
         return view('admin.tours');

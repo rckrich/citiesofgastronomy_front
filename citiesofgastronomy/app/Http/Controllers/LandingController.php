@@ -194,7 +194,7 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
 
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["initiatives"] = $res["initiatives"];
@@ -284,7 +284,7 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("CALENDAR ::");
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["calendar"] = $res["calendar"];

@@ -21,7 +21,7 @@
                         <h3 class="admin-title"><b>{{__('initiatives.init.admin_title')}}</b></h3>
                     </div>                        
 
-                    <form action="{{'/admin/initiatives/?section=in&page='.$page}}" method="POST" id="searchForm_ini">
+                    <form action="{{'/admin/initiatives?section=in&page='.$page}}" method="POST" id="searchForm_ini">
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 ps-2 pe-0 ms-0 ms-lg-auto ms-md-auto">
                         @csrf
@@ -230,7 +230,7 @@
         //
     });
 
-    $('#pills-init-tab').on('click',function(){window.location = '/admin/initiatives/?section=in&page=1'});
+    $('#pills-init-tab').on('click',function(){window.location = '/admin/initiatives?section=in&page=1'});
     $('#pills-filters-tab').on('click',function(){window.location = '/admin/initiatives?section=filters&sub=actype'});
 
 
@@ -292,7 +292,7 @@
         if(nada == ''){
             if (search == ''){
                 console.log("#not SEARCH");
-                window.location = '/admin/initiatives/?section=in&page='+page;
+                window.location = '/admin/initiatives?section=in&page='+page;
             }else{
                 //window.location = '/admin/initiatives/?page='+paginaActual;
                 console.log("# SERCH");console.log(search);
@@ -330,7 +330,7 @@
                     } 
                     else {
                         alert('{{trans('initiatives.delete_success')}}');
-                        window.location = '../../admin/initiatives/?section=in&page='+current_page;
+                        window.location = '../../admin/initiatives?section=in&page='+current_page;
                     }
                 }
             });
@@ -339,7 +339,7 @@
 
     function reloadPage(){
         let current_page = document.getElementById('page').value
-        window.location = '../../admin/initiatives/?section=in&page=1';
+        window.location = '../../admin/initiatives?section=in&page=1';
     }
 </script>
 
@@ -358,7 +358,7 @@
             $('#searchForm_ini').submit();
         }
         else{
-            window.location = '/admin/initiatives/?section=in&page='+page;
+            window.location = '/admin/initiatives?section=in&page='+page;
          }
       }
      });

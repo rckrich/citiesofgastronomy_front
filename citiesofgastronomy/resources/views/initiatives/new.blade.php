@@ -947,7 +947,7 @@ function searchCheck (classGroup){
                     }else{
                             localStorage.setItem('errorIessageIniciative', msg.message);
                     };
-                    window.location ='/admin/initiatives/?section=in&page=1';
+                    window.location ='/admin/initiatives?section=in&page=1';
                     document.getElementById("btnSubmit").disabled = false;
 
                 }

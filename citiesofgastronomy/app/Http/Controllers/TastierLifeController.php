@@ -48,29 +48,23 @@ class TastierLifeController extends Controller
     {
         $id = $request->input("id");
         $name = $request->input("data_name");
-        $idCity = $request->input("facebook_link");
-        $position = $request->input("twitter_link");
-        $linksTag = $request->input("linkedin_link");
-        $idSection = $request->input("instagram_link");
-        $idSection = $request->input("tiktok_link");
+        $facebook = $request->input("facebook_link");
+        $twitter = $request->input("twitter_link");
+        $linkedin = $request->input("linkedin_link");
+        $instagram = $request->input("instagram_link");
+        $tiktok = $request->input("tiktok_link");
+        $youtube = $request->input("youtube_link");
 
         $dattaSend = [
             'id' => $id,
-            'idOwner' => $id,
             'name' => $name,
-            'idCity' => $idCity,
-            'position' => $position,
-            'idSection' => $idSection
+            'Facebok_link' => $facebook,
+            'Twitter_link' => $twitter,
+            'Linkedin_link' => $linkedin,
+            'Instagram_link' => $instagram,
+            'Tiktok_link' => $tiktok,
+            'Youtube_link' => $youtube
         ];
-
-        $arrayTags = explode(",", $linksTag);
-
-        for($i = 0; $i < count($arrayTags)  ; $i++){
-
-            $idLink = $arrayTags[$i].'_link';
-            $dattaSend[$idLink] = $request->input($idLink);
-            //Instagram_link
-        }
 
         $url = config('app.apiUrl').'contact/save';
         $curl = curl_init();
@@ -83,9 +77,9 @@ class TastierLifeController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
-        //Log::info("CONTACT SAVE ::");
-        //Log::info($res);
-        return redirect( "admin/tastier_life" );
+        Log::info("CHEF SAVE ::");
+        Log::info($res);
+        return redirect( "admin/tastier_life?section=chef" );
     }
     
     public function chef_edit()
