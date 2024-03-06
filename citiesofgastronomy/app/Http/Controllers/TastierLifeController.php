@@ -95,8 +95,7 @@ class TastierLifeController extends Controller
         $res_dec = json_decode( $data, true);
         $res = $res_dec['chef'];
         Log::info("EDIT CHEF :: FIND");
-        Log::info($res);
-
+        //Log::info($res);
 
         $inputs = [];
         $inputs["id"] = $id;
@@ -155,7 +154,7 @@ class TastierLifeController extends Controller
             'Instagram_link' => $instagram,
             'Tiktok_link' => $tiktok,
             'Youtube_link' => $youtube,
-            'idSection' => 12
+            'idSection' => 12 //indicates chefs on entity social_network
         ];
 
         $url = config('app.apiUrl').'chef/store';

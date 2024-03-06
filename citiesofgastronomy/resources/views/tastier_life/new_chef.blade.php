@@ -54,11 +54,7 @@
                     <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life.chefs')}}" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
                     
                     <div class="col-auto me-auto">
-                        @if($id)
-                        <span class="btn btn-primary w-100" onclick="saveChef()">{{__('admin.btn_edit')}}</span>
-                        @else
-                        <span class="btn btn-primary w-100" onclick="saveChef()">{{__('admin.btn_create')}}</span>
-                        @endif
+                        <span class="btn btn-primary w-100" onclick="saveChef()">@if($id){{__('admin.btn_edit')}}@else{{__('admin.btn_create')}} @endif</span>
                     </div>
                 </div>
             </form>
@@ -80,9 +76,9 @@
 
         if(data_name){
             <?php if($id){?>
-            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.chefs.create_success')}}");
-            <?php }else{?>
             localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.chefs.edit_success')}}");
+            <?php }else{?>
+            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.chefs.create_success')}}");
             <?php };?>
             let form = document.getElementById('chefForm');
             form.submit();
