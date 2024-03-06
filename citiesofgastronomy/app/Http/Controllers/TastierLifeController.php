@@ -107,17 +107,30 @@ class TastierLifeController extends Controller
         $inputs["instagram_link"] = '';
         $inputs["tiktok_link"] = '';
         $inputs["youtube_link"] = '';
-        foreach ($res['socialNetworkType'] as $social){
-            if($social['id']==1 && $social['active' == 2]){$inputs["facebook_link"] = $social;}
-            if($social['id']==2 && $social['active' == 2]){$inputs["twitter_link"] = $social;}
-            if($social['id']==3 && $social['active' == 2]){$inputs["linkedin_link"] = $social;}
-            if($social['id']==4 && $social['active' == 2]){$inputs["instagram_link"] = $social;}
-            if($social['id']==5 && $social['active' == 2]){$inputs["tiktok_link"] = $social;}
-            if($social['id']==6 && $social['active' == 2]){$inputs["youtube_link"] = $social;}
+        foreach ($res['social_network'] as $social){
+            if($social){
+                switch($social['idSocialNetworkType']){
+                    case 1:
+                        $inputs["facebook_link"] = $social['social_network'];
+                        break;
+                    case 2:
+                        $inputs["twitter_link"] = $social['social_network'];
+                        break;
+                    case 3:
+                        $inputs["linkedin_link"] = $social['social_network'];
+                        break;
+                    case 4:
+                        $inputs["instagram_link"] = $social['social_network'];
+                        break;
+                    case 5:
+                        $inputs["tiktok_link"] = $social['social_network'];
+                        break;
+                    case 6:
+                        $inputs["youtube_link"] = $social['social_network'];
+                        break;
+                }
+            }
         }
-
-        
-
 
         return view('tastier_life.new_chef',$inputs);
     } 
@@ -141,7 +154,8 @@ class TastierLifeController extends Controller
             'Linkedin_link' => $linkedin,
             'Instagram_link' => $instagram,
             'Tiktok_link' => $tiktok,
-            'Youtube_link' => $youtube
+            'Youtube_link' => $youtube,
+            'idSection' => 12
         ];
 
         $url = config('app.apiUrl').'chef/store';
