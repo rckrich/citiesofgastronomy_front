@@ -72,7 +72,7 @@
                 <label class="form-label" for="data_type_name">{{__('initiatives.filters.type.data_type')}}</label>
                 <input id="data_type_name" name="data_type_name" class="form-control" placeholder="{{__('initiatives.filters.type.ph_type')}}"/>
 
-                <div id="validation_data_type_name" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_type_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>
         </div>
         <div class="modal-footer b-none row mx-0">

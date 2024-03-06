@@ -22,13 +22,13 @@
                         <label class="form-label" for="data_name">{{__('contact.create.data_name')}}</label>
                         <input id="data_name" name="data_name" class="form-control prevenir-envio"
                         placeholder="{{__('contact.create.ph_name')}}" value="{{$contact['name'] }}"/>
-                        <div id="validation_name" class="invalid-feedback">Obligatory field</div>
+                        <div id="validation_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_position">{{__('contact.create.data_position')}}</label>
                         <input id="data_position" name="data_position" class="form-control prevenir-envio"
                                 placeholder="{{__('contact.create.ph_position')}}" value="{{$contact['position'] }}"/>
-                        <div id="validation_position" class="invalid-feedback">Obligatory field</div>
+                        <div id="validation_position" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_city">{{__('contact.create.data_city')}}</label>
@@ -40,7 +40,7 @@
                                 ?>>{{ $city["name"] }}</option>
                                 @endforeach
                         </select>
-                        <div id="validation_city" class="invalid-feedback">Obligatory field</div>
+                        <div id="validation_city" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <?php $linksTag = '';?>
                         @for($i=1; $i < count($SocialNetworkType)+1; $i++)
@@ -91,8 +91,6 @@
 
     <script>
         function saveContact(){
-            console.log("#1");
-
             let data_name = document.getElementById("data_name").value;
             let data_position = document.getElementById("data_position").value;
             let data_city = document.getElementById("data_city").value;
@@ -102,8 +100,6 @@
             document.getElementById("validation_position").style.display = 'none';
 
             if(data_name && data_position && data_city){
-                console.log("#2");
-                //
                 <?php if($id){?>
                 localStorage.setItem('contactMessage', 'The contact info was successfully edited');
                 <?php }else{?>

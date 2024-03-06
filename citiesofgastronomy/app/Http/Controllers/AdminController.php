@@ -200,8 +200,41 @@ class AdminController extends Controller
 
     public function tastier_life(Request $request)
     {
+
+        $page = $request->input("page");
+        //Log::info("#PAGE: ".$page);
+
+        if(!$page){ $page=1;   };
+        $search_box = $request->input("search_box");
+
+        $fields = array('search' => $search_box, 'page' => $page);
+
+        $fields_string = http_build_query($fields);
+
+        $url = config('app.apiUrl').'tastierLife';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        Log::info("#ADMIN TastierLife List");
+        //Log::info($res);
+
         $inputs = [];
+        $inputs["search_box"] = $search_box;
+        $inputs["page"] = $page;
         $inputs["section"] = $request->input("section");
+        
+        $inputs["tot"] = $res["tot"];
+        $inputs["paginator"] = $res["paginator"];
+        $inputs["totChefs"] = $res["totCHEF"];
+        $inputs["paginatorChefs"] = $res["paginatorCHEF"];
+        $inputs["chefs"] = $res["chef"];
+
         return view('admin.tastier_life',$inputs);
     }
 
@@ -213,8 +246,8 @@ class AdminController extends Controller
     {
         $page = $request->input("page");
         $pageFaq = $request->input("pagef");
-        Log::info("#PAGE FAQ :: ".$pageFaq);
-        Log::info(config('app.apiUrl'));
+        //Log::info("#PAGE FAQ :: ".$pageFaq);
+        //Log::info(config('app.apiUrl'));
 
         if(!$page){ $page=1;   };
 
@@ -264,9 +297,6 @@ class AdminController extends Controller
         $inputs["stFAQ"] = $stFAQ;
         return view('admin.about', $inputs);
     }
-
-
-
 
     public function contact(Request $request)
     {

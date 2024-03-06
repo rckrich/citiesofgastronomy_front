@@ -20,6 +20,8 @@ return [
     'btn_add'=>'ADD',
     'btn_download'=>'DOWNLOAD',
 
+    'obligatory_field'=>'Obligatory field',
+
 
     'main_site'=>[
         'section_banners'=>'BANNERS & OTHERS',

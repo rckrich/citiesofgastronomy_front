@@ -59,7 +59,7 @@
                         <label class="form-label" for="data_city">{{__('cities.edit.data_city')}}</label>
                         <input id="name" name="name" class="form-control" value="{{ $city['name'] }}"
                             placeholder="{{__('cities.edit.ph_city')}}"/>
-                        <div id="validation_name" class="invalid-feedback">Obligatory field</div>
+                        <div id="validation_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_continent">{{__('cities.edit.data_country')}}</label>
@@ -75,7 +75,7 @@
                                 ?>>{{ $continent["name"] }}</option>
                                 @endforeach
                         </select>
-                        <div id="validation_continent" class="invalid-feedback">Obligatory field</div>
+                        <div id="validation_continent" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_population">{{__('cities.edit.data_population')}}</label>
@@ -91,7 +91,7 @@
                         <label class="form-label" for="data_locations">{{__('cities.edit.data_dyear')}}</label>
                         <input id="data_dyear" name="data_dyear" class="form-control" value="{{ $city['designationyear'] }}"
                             placeholder="{{__('cities.edit.ph_dyear')}}" type="number" min="0"/>
-                        <div id="validation_data_dyear" class="invalid-feedback">Obligatory field</div>
+                        <div id="validation_data_dyear" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="bb-gray mt-4 mb-2"></div>
                     <div class="form-group py-2">
@@ -265,7 +265,7 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_pdf_name">{{__('cities.edit.data_pdf_name')}}</label>
                 <input id="titlePDF" name="titlePDF" class="form-control" placeholder="{{__('cities.edit.ph_pdf_name')}}"/>
-                <div id="validation_PDFtitle" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                <div id="validation_PDFtitle" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
             </div>
             <div class="py-2 row mx-0">
                 <p class="form-label px-0" for="new_city_img">{{__('cities.edit.data_pdf')}}</p>
@@ -275,7 +275,7 @@
                         <img class="mx-auto" src="{{asset('assets/icons/file.svg')}}" id="fileUpImg" width="20" height="24"/>
                     </label>
                     <div id="fileUpTxt" class="fw-lighter font-size-sm text-dark text-start p-0"></div>
-                <div id="validation_PDF" class="invalid-feedback text-start" style="display: none;">Obligatory field</div>
+                <div id="validation_PDF" class="invalid-feedback text-start" style="display: none;">{{__('admin.obligatory_field')}}</div>
                 </div>
             </div>
         </div>

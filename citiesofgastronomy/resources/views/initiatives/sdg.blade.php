@@ -73,12 +73,12 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_sdg_name">{{__('initiatives.filters.sdg.ph_type')}}</label>
                 <input id="data_sdg_name" name="data_sdg_name" class="form-control" placeholder="{{__('initiatives.filters.sdg.ph_type')}}"/>
-                <div id="validation_data_sdg_name" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_sdg_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_sdg_number">{{__('initiatives.filters.sdg.data_number')}}</label>
                 <input id="data_sdg_number" name="data_sdg_number" class="form-control" placeholder="{{__('initiatives.filters.sdg.ph_type')}}"/>
-                <div id="validation_data_sdg_number" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_sdg_number" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>
         </div>
         <div class="modal-footer b-none row mx-0">

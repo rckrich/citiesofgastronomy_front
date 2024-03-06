@@ -25,7 +25,7 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_name">{{__('initiatives.create.data_name')}}</label>
                         <input id="data_name" name="data_name" class="form-control" value="{{$iniciative['name']}}" placeholder="{{__('initiatives.create.ph_name')}}"/>
-                        <div id="data_name_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                        <div id="data_name_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_continent">{{__('initiatives.create.data_continent')}}</label>
@@ -36,7 +36,7 @@
                                 echo 'selected';};?>>{{$Continent["name"]}}</option>
                             @endforeach
                         </select>
-                        <div id="data_continent_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                        <div id="data_continent_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
 
 
@@ -98,7 +98,7 @@
                                 <?php if($iniciative['photo']){ echo __('cities.edit.btn_image');}else{echo 'SELECT IMAGE';};?>
                             </label>
                         </div>
-                        <div id="photo_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                        <div id="photo_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
 
                     <div class="bb-gray mt-4 mb-2"></div>
@@ -213,7 +213,7 @@
                                 <div class="col-6">
                                     <input id="data_startdate" name="data_startdate" class="form-control" type="date"
                                     value="{{$iniciative['startDate']}}" placeholder="{{__('initiatives.create.ph_startdate')}}"/>
-                                    <div id="data_startdate_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                                    <div id="data_startdate_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +225,7 @@
                                 <div class="col-6">
                                     <input id="data_enddate" name="data_enddate" class="form-control"  type="date"
                                     value="{{$iniciative['endDate']}}"  placeholder="{{__('initiatives.create.ph_enddate')}}"/>
-                                    <div id="data_enddate_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                                    <div id="data_enddate_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                                     <div id="validation_dateCompare" class="invalid-feedback" style="display: none;">Please select an End Date equal or after the Start Date</div>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_description">{{__('initiatives.edit.data_description')}}</label>
                         <textarea id="data_description" name="data_description" class="form-control">{{$iniciative['description']}}</textarea>
-                        <div id="data_description_validation" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                        <div id="data_description_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
 
                     <div class="bb-gray mt-4 mb-2"></div>
@@ -419,7 +419,7 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_pdf_name">{{__('cities.edit.data_pdf_name')}}</label>
                 <input id="titlePDF" name="titlePDF" class="form-control" placeholder="{{__('cities.edit.ph_pdf_name')}}"/>
-                <div id="validation_PDFtitle" class="invalid-feedback" style="display: none;">Obligatory field</div>
+                <div id="validation_PDFtitle" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
             </div>
             <div class="py-2 row mx-0">
                 <p class="form-label px-0" for="new_city_img">{{__('cities.edit.data_pdf')}}</p>
@@ -429,7 +429,7 @@
                         <img class="mx-auto" src="{{asset('assets/icons/file.svg')}}" id="fileUpImg" width="20" height="24"/>
                     </label>
                     <div id="fileUpTxt" class="fw-lighter font-size-sm text-dark text-start p-0"></div>
-                <div id="validation_PDF" class="invalid-feedback text-start" style="display: none;">Obligatory field</div>
+                <div id="validation_PDF" class="invalid-feedback text-start" style="display: none;">{{__('admin.obligatory_field')}}</div>
                 </div>
             </div>
         </div>

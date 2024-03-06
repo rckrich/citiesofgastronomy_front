@@ -70,7 +70,7 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_connection_name">{{__('initiatives.filters.connection.data_type')}}</label>
                 <input id="data_connection_name" name="data_connection_name" class="form-control" placeholder="{{__('initiatives.filters.connection.ph_type')}}"/>
-                <div id="validation_data_connection_name" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_connection_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>   
         </div>
         <div class="modal-footer b-none row mx-0">

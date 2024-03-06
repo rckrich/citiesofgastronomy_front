@@ -15,6 +15,12 @@
             <button class="nav-link <?php if($section=='cat'){echo ' active';}?>" id="pills-categories-tab" data-bs-toggle="pill" data-bs-target="#pills-categories" type="button" role="tab" aria-controls="pills-categories" aria-selected="false">{{__('tastier_life.categories.title')}}</button>
         </li>
     </ul>
+
+    <div class="alert alert-success" role="alert" id="alertTLMessage" style="display:none"></div>
+    @if (session()->has('error'))
+    <div class="alert alert-danger" role="alert" id="alertTLMessageAlert" style="display:none"></div>
+    @endif
+
     <div class="tab-content px-5" id="pills-tab-tastierlifeContent">
         <div class="tab-pane fade <?php if($section=='recipes'){echo ' show active';}?>" id="pills-recipes" role="tabpanel" aria-labelledby="pills-recipes-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
@@ -96,17 +102,28 @@
                             </tr>
                         </thead>
                         <tbody class="">
+                            @foreach($chefs as $chef)
                             <tr class="align-items-center">
-                                <td class="col-8">Name of the Chef</td>
+                                <td class="col-8">{{$chef['name']}}</td>
                                 <td class="col-auto my-auto">
-                                    <a class="btn btn-link" href="{{route('admin.chef_edit',['id'=>1])}}">{{__('tastier_life.btn_edit')}}</a>
+                                    <a class="btn btn-link" href="{{route('admin.chef_edit',['id'=>$chef['id']])}}">{{__('tastier_life.btn_edit')}}</a>
                                 </td>                            
                                 <td class="col-auto my-auto">
                                     <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteChefModal">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" onclick="paginatorChefs('prev')">Previous</a></li>
+                            @for($i=1;$i < $paginatorChefs +1; $i++)
+                            <li class="page-item"><a class="page-link" onclick="paginatorChefs('<?= $i?>')"><?= $i?></a></li>
+                            @endfor
+                            <li class="page-item"><a class="page-link" onclick="paginatorChefs('next')">Next</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -240,9 +257,77 @@
 </div>
 
 <script>
-$('#pills-recipes-tab').on('click',function(){window.location = '/admin/tastier_life?section=recipes'});
-$('#pills-chefs-tab').on('click',function(){window.location = '/admin/tastier_life?section=chefs'});
-$('#pills-categories-tab').on('click',function(){window.location = '/admin/tastier_life?section=cat'});
+$('#pills-recipes-tab').on('click',function(){window.location = '/admin/tastier_life?section=recipes&page=1'});
+$('#pills-chefs-tab').on('click',function(){window.location = '/admin/tastier_life?section=chefs&page=1'});
+$('#pills-categories-tab').on('click',function(){window.location = '/admin/tastier_life?section=cat&page=1'});
+
+function paginatorChefs(page){
+    let search = $("#search_box").val();
+    let paginatorCant = '<?= $paginator?>';
+    paginatorCant = parseInt(paginatorCant);
+    console.log(paginatorCant)
+    let paginaActual = document.getElementById('pageActual').value;
+    paginaActual= parseInt(paginaActual);
+    if (search != ''){
+        paginaActual = document.getElementById('page').value;
+        paginaActual= parseInt(paginaActual);
+    };
+
+    let nada = '';
+    if(page == 'prev' || page == 'next'){
+            //console.log("#0");
+        if(page == 'next' && paginaActual != paginatorCant){
+            page = paginaActual + 1;
+            //console.log("#1");
+        }else if(page == 'prev' && paginaActual > 1){
+            page = paginaActual - 1;
+            //console.log("#2");
+        }else{
+            nada = 'si';
+        };
+    }else{
+        page= parseInt(page);
+    };
+    //console.log(paginaActual);
+    //console.log(page);
+    if(nada == ''){
+        if (search == ''){
+            console.log("#not SEARCH");
+            window.location = '/admin/tastier_life?section=chefs&page='+page;
+        }else{
+            //window.location = '/admin/initiatives/?page='+paginaActual;
+            console.log("# SEARCH");console.log(search);
+            document.getElementById('page').value = page;
+            document.getElementById('formSearchChef').submit();
+        };
+    };
+}
+
+
+</script>
+
+<script>
+    <?php if (session()->has('error')){?>
+        localStorage.removeItem('tastierLifeMessage');
+
+                document.getElementById('alertTLMessageAlert').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('alertTLMessageAlert').style.display = 'none';
+                },5000);
+
+    <?php }else{?>
+        let message = localStorage.getItem('tastierLifeMessage');
+        if(message){
+                localStorage.removeItem('tastierLifeMessage');
+                document.getElementById('alertTLMessage').innerHTML = message;
+                document.getElementById('alertTLMessage').style.display = 'block';
+                setTimeout(() => {
+                    console.log("Delayed for 1 second.");
+                    document.getElementById('alertTLMessage').style.display = 'none';
+                },5000);
+        };
+    <?php }?>
+    
 
 </script>
 

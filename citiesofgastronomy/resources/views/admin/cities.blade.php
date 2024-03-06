@@ -107,7 +107,7 @@
             <div class="form-group py-2">
                 <label class="form-label" for="data_city">{{__('cities.admin.data_city')}}</label>
                 <input id="data_city" name="data_city"   class="form-control" placeholder="{{__('cities.admin.ph_city')}}"/>
-                <div id="validation_data_city" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_city" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_country">{{__('cities.admin.data_country')}}</label>
@@ -120,7 +120,7 @@
                     <option value="{{ $continent['id'] }}">{{ $continent["name"] }}</option>
                     @endforeach
                 </select>
-                <div id="validation_continent" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_continent" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>
             <div class="form-group py-2">
                 <label class="form-label" for="data_population">{{__('cities.admin.data_population')}}</label>
@@ -142,7 +142,7 @@
                 <input id="data_dyear" name="data_dyear" class="form-control" type="number" min="0"
                             placeholder="{{__('cities.admin.ph_dyear')}}"
                             onchange="numberverifi('data_dyear', 'validation_data_year_num')"/>
-                <div id="validation_data_year" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_year" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                 <div id="validation_data_year_num" class="invalid-feedback">Only positive integers are allowed</div>
             </div>
             <div class="form-group py-2 row mx-0">

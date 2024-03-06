@@ -71,7 +71,7 @@
                 <label class="form-label" for="data_topic_name">{{__('initiatives.filters.topic.data_type')}}</label>
                 <input id="data_topic_name" name="data_topic_name" class="form-control" placeholder="{{__('initiatives.filters.topic.ph_type')}}"/>
 
-                <div id="validation_data_topic_name" class="invalid-feedback">Obligatory field</div>
+                <div id="validation_data_topic_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>
         </div>
         <div class="modal-footer b-none row mx-0">

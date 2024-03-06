@@ -67,10 +67,9 @@
 
                         @if( count($list) == 0)
                             <tr class="align-items-center">
-                                    <td class="col-8">No results found</td>
-                                    <td class="col-auto"></td>
-                                    <td class="col-auto"></td>
-                                    <td class="col-auto"></td>
+                                <td class="col-8">{{__('general.no_results')}}</td>
+                                <td class="col-auto"></td>
+                                <td class="col-auto"></td>
                             </tr>
                         @endif
                     </tbody>
@@ -156,11 +155,6 @@
         });
 
 
-
-
-
-
-
         function searchBox(){
             console.log("--> SUBMIT");
 
@@ -176,16 +170,10 @@
         }
 
 
-
-
-
         function resetPageAndSearch(){
             document.getElementById('page').value = '1';
             searchBox();
         }
-
-
-
 
 
 //////////////////////////////////////////////
