@@ -30,6 +30,58 @@ class TastierLifeController extends Controller
         return view('tastier_life.show',$inputs);
     } 
 
+    public function tastier_life_search(Request $request)
+    {
+
+        $searchRecipe = '';
+        $searchChef = '';
+        $searchCAT = '';
+        $section = $request->input("section");
+        if($section == 'recipes'){$searchRecipe = $request->input("search_box_recipe");}
+        if($section == 'chefs'){$searchChef = $request->input("search_box_chef");}
+        if($section == 'cat'){$searchCAT = $request->input("search_box_cat");}
+
+        $page = $request->input("page");
+
+        if(!$page){ $page=1;};
+
+        $fields = array(
+            'searchChef' => $searchChef,
+            'searchCAT' => $searchCAT,
+        );
+
+        $fields_string = http_build_query($fields);
+
+        $url = config('app.apiUrl').'tastierLife';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        Log::info("#ADMIN TastierLife SEARCH List: Recipe - ".$searchRecipe." / Chef - ".$searchChef." / Cat - ".$searchCAT);
+        Log::info($res);
+
+        $inputs = [];      
+        $inputs["search_box_recipe"] = $searchRecipe;
+        $inputs["search_box_chef"] = $searchChef;
+        $inputs["search_box_cat"] = $searchCAT;
+        $inputs["page"] = $page;
+        $inputs["section"] = $section;
+        
+        $inputs["tot"] = $res["tot"];
+        $inputs["paginator"] = $res["paginator"];
+        $inputs["totChefs"] = $res["totCHEF"];
+        $inputs["paginatorChefs"] = $res["paginatorCHEF"];
+        $inputs["chefs"] = $res["chef"];
+
+
+        return view('admin.tastier_life',$inputs);
+    }
+
     public function recipe_new()
     {
         $url = config('app.apiUrl').'generalDatta';
@@ -48,8 +100,6 @@ class TastierLifeController extends Controller
 
         return view('tastier_life.new_recipe',$inputs);
     } 
-
-
 
     public function recipe_edit()
     {
@@ -171,6 +221,28 @@ class TastierLifeController extends Controller
         Log::info("CHEF STORE ::");
         //Log::info($res);
         return redirect( "admin/tastier_life?section=chefs&page=1" );
+    }
+
+    public function chef_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'chef/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("CHEF DELETE ::");
+        Log::info($res);
+
+        return $res;
     }
     
 

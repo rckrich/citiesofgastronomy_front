@@ -353,7 +353,7 @@ class InitiativesController extends Controller
         if(!$page){ $page=1;   };
         $st = $request->input("st");
 
-        Log::info("#SEARCH: ".$keyword.' - section: '.$section.' - sub: '.$sub . '/ filters: '.$actype .','.$topic .','.$sdg .','.$connection);
+        Log::info("#SEARCH INITIATIVEs: ".$keyword.' - section: '.$section.' - sub: '.$sub . '/ filters: '.$actype .','.$topic .','.$sdg .','.$connection);
         //Log::info(!$sub ? $keyword :  '');
         
         $fields = array(

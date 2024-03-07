@@ -205,11 +205,14 @@ class AdminController extends Controller
         //Log::info("#PAGE: ".$page);
 
         if(!$page){ $page=1;   };
-        $search_box = $request->input("search_box");
 
-        $fields = array('search' => $search_box, 'page' => $page);
-
-        $fields_string = http_build_query($fields);
+        $searchRecipe = '';
+        $searchChef = '';
+        $searchCAT = '';
+        $section = $request->input("section");
+        if($section == 'recipes'){$searchRecipe = $request->input("search_box_recipe");}
+        if($section == 'chefs'){$searchChef = $request->input("search_box_chef");}
+        if($section == 'cat'){$searchCAT = $request->input("search_box_cat");}
 
         $url = config('app.apiUrl').'tastierLife';
         $curl = curl_init();
@@ -225,7 +228,9 @@ class AdminController extends Controller
         //Log::info($res);
 
         $inputs = [];
-        $inputs["search_box"] = $search_box;
+        $inputs["search_box_recipe"] = $searchRecipe;
+        $inputs["search_box_chef"] = $searchChef;
+        $inputs["search_box_cat"] = $searchCAT;
         $inputs["page"] = $page;
         $inputs["section"] = $request->input("section");
         
@@ -237,7 +242,7 @@ class AdminController extends Controller
 
         return view('admin.tastier_life',$inputs);
     }
-
+    
     public function tours()
     {
         return view('admin.tours');

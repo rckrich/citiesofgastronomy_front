@@ -32,7 +32,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('tastier_life.recipes.search_ph')}}" aria-label="{{__('tastier_life.recipes.search_ph')}}" aria-describedby="basic-addon1">
+                            <input id="search_box_recipe" name="search_box_recipe" class="form-control me-2" type="search" placeholder="{{__('tastier_life.recipes.search_ph')}}" aria-label="{{__('tastier_life.recipes.search_ph')}}" aria-describedby="basic-addon1">
                         </div>
                         </div>
                     </div>
@@ -80,10 +80,15 @@
                     </div>
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
+                        <form action="../admin/tastier_life?section=chefs" method="POST" id="searchForm_chef">
+                        @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('tastier_life.chefs.search_ph')}}" aria-label="{{__('tastier_life.chefs.search_ph')}}" aria-describedby="basic-addon1">
+                            <input id="search_box_chef"  name="search_box_chef" class="form-control me-2" type="search" placeholder="{{__('tastier_life.chefs.search_ph')}}" aria-label="{{__('tastier_life.chefs.search_ph')}}" aria-describedby="basic-addon1">
+                            <input type="hidden" id="pageChef" name="pageChef" value="<?php if($search_box_chef!=''){echo  $page;}else{echo '1';};?>">
                         </div>
+                        </form>
+                        <input type="hidden" id="pageActualChef" name="pageActualChef" value="<?php echo  $page?>">
                         </div>
                     </div>
                     <div class="row col-12 px-0 py-2">
@@ -109,7 +114,7 @@
                                     <a class="btn btn-link" href="{{route('admin.chef_edit',['id'=>$chef['id']])}}">{{__('tastier_life.btn_edit')}}</a>
                                 </td>                            
                                 <td class="col-auto my-auto">
-                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteChefModal">{{__('admin.btn_delete')}}
+                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteChefModal" onclick="openDeleteModal_chef({{$chef['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
                             @endforeach
@@ -137,7 +142,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input name="search_box" class="form-control me-2" type="search" placeholder="{{__('tastier_life.categories.search_ph')}}" aria-label="{{__('tastier_life.categories.search_ph')}}" aria-describedby="basic-addon1">
+                            <input id="search_box_cat" name="search_box_cat" class="form-control me-2" type="search" placeholder="{{__('tastier_life.categories.search_ph')}}" aria-label="{{__('tastier_life.categories.search_ph')}}" aria-describedby="basic-addon1">
                         </div>
                         </div>
                     </div>
@@ -202,11 +207,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="hidden" id="delete_data_chef_id">
             <p>{{__('tastier_life.chefs.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="deleteChef()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -262,14 +268,14 @@ $('#pills-chefs-tab').on('click',function(){window.location = '/admin/tastier_li
 $('#pills-categories-tab').on('click',function(){window.location = '/admin/tastier_life?section=cat&page=1'});
 
 function paginatorChefs(page){
-    let search = $("#search_box").val();
-    let paginatorCant = '<?= $paginator?>';
+    let search = $("#search_box_chef").val();
+    let paginatorCant = '<?= $paginatorChefs?>';
     paginatorCant = parseInt(paginatorCant);
-    console.log(paginatorCant)
-    let paginaActual = document.getElementById('pageActual').value;
+    //console.log(paginatorCant)
+    let paginaActual = document.getElementById('pageActualChef').value;
     paginaActual= parseInt(paginaActual);
     if (search != ''){
-        paginaActual = document.getElementById('page').value;
+        paginaActual = document.getElementById('pageChef').value;
         paginaActual= parseInt(paginaActual);
     };
 
@@ -297,13 +303,61 @@ function paginatorChefs(page){
         }else{
             //window.location = '/admin/initiatives/?page='+paginaActual;
             console.log("# SEARCH");console.log(search);
-            document.getElementById('page').value = page;
-            document.getElementById('formSearchChef').submit();
+            document.getElementById('pageChef').value = page;
+            //document.getElementById('formSearchChef').submit();
         };
     };
 }
 
+function openDeleteModal_chef(id){
+    document.getElementById("delete_data_chef_id").value = id;
+}
+function deleteChef(){
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    datos.append('_token', token);
+    let data_id = document.getElementById("delete_data_chef_id").value;
+    datos.append('id', data_id);
+    if(data_id){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/tastier_life/chef/delete',
+            data: datos,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){},
+            success: function(msg){
+                closeModal('deleteChefModal');
+                if (msg.status===400) {
+                    alert("Error: " + msg.message);
+                } 
+                else {
+                    alert('{{trans('tastier_life.chefs.delete_success')}}');
+                    window.location = '/admin/tastier_life?section=chefs&page=1';
+                }
+            }
+        });
+    }
+}
 
+</script>
+
+<script>
+    $("#search_box_chef").keypress(function (e) {
+      var key = e.which;
+      if(key == 13)  // the enter key code
+      {
+        let keyword = $("#search_box_chef").val();
+
+        if(keyword){
+            $('#searchForm_chef').submit();
+        }
+        else{
+            window.location = '../../admin/tastier_life?section=chefs&page=1';
+        }
+      }
+     }); 
 </script>
 
 <script>
@@ -327,8 +381,6 @@ function paginatorChefs(page){
                 },5000);
         };
     <?php }?>
-    
-
 </script>
 
 @endsection
