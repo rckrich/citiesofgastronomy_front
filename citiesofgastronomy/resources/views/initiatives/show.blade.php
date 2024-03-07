@@ -10,8 +10,7 @@
                 <h5 class="title-sm mb-4">{{$initiative['name']}}</h5>
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('initiatives.data_city')}}</b>
                     @foreach($initiative['cities_filter'] as $city)
-                        {{$city['cities_datta']['name']}}
-                        @if(!$loop->last),@endif
+                        {{$city['cities_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
                 </h6>
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('initiatives.data_continent')}}</b>{{$initiative['continent']}}</h6>
@@ -33,15 +32,13 @@
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_type')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
                     @foreach($initiative['type_filter'] as $type)
-                        {{$type['type_datta']['name']}}
-                        @if(!$loop->last),@endif
+                        {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_topics')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
                     @foreach($initiative['topics_filter'] as $type)
-                        {{$type['topics_datta']['name']}}
-                        @if(!$loop->last),@endif
+                        {{$type['topics_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_startdate')}}</b></p>
@@ -50,16 +47,14 @@
                     <p class="pb-2 mb-2 text-white data">{{$initiative['endDate']}}</p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_other')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
-                    @foreach($initiative['connections_filter'] as $type)
-                        {{$type['connections_datta']['name']}}
-                        @if(!$loop->last),@endif
+                    @foreach($initiative['connections_filter'] as $cn)
+                        {{$cn['connections_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_sdg')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
                     @foreach($initiative['sdg_filter'] as $sdg)
-                        {{$sdg['sdg_datta']['name']}}
-                        @if(!$loop->last),@endif
+                        {{$sdg['sdg_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
                     </p>
                     <div class="pb-4">

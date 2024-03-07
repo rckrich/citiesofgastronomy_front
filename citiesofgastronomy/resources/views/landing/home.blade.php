@@ -773,8 +773,7 @@
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">
                                 @foreach($item["type_filter"] as $type)
-                                    {{$type['type_datta']['name']}}
-                                    @if(!$loop->last),@endif
+                                    {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                                 @endforeach
                             </p>
                             <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
@@ -835,8 +834,7 @@
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">
                                 @foreach($item["type_filter"] as $type)
-                                    {{$type['type_datta']['name']}}
-                                    @if(!$loop->last),@endif
+                                    {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                                 @endforeach
                             </p>
                             <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
@@ -896,8 +894,7 @@
                             <h6 class="text-blue activity mb-2"><b>{{__('landing.activity_type')}}</b></h6>
                             <p class="card-text mb-2">
                                 @foreach($item["type_filter"] as $type)
-                                    {{$type['type_datta']['name']}}
-                                    @if(!$loop->last),@endif
+                                    {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                                 @endforeach
                             </p>
                             <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
