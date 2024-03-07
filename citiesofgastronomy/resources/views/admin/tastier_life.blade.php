@@ -80,11 +80,11 @@
                     </div>
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
-                        <form action="../admin/tastier_life?section=chefs" method="POST" id="searchForm_chef">
+                        <form action="../admin/tastier_life?section=chefs&page=1" method="POST" id="searchForm_chef">
                         @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input id="search_box_chef"  name="search_box_chef" class="form-control me-2" type="search" placeholder="{{__('tastier_life.chefs.search_ph')}}" aria-label="{{__('tastier_life.chefs.search_ph')}}" aria-describedby="basic-addon1">
+                            <input id="search_box_chef"  name="search_box_chef" value="<?php $search_box_chef?>" class="form-control me-2" type="search" placeholder="{{__('tastier_life.chefs.search_ph')}}" aria-label="{{__('tastier_life.chefs.search_ph')}}" aria-describedby="basic-addon1">
                             <input type="hidden" id="pageChef" name="pageChef" value="<?php if($search_box_chef!=''){echo  $page;}else{echo '1';};?>">
                         </div>
                         </form>
