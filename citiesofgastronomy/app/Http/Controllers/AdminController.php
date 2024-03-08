@@ -202,7 +202,7 @@ class AdminController extends Controller
     {
 
         $page = $request->input("page");
-        //Log::info("#PAGE: ".$page);
+       // Log::info("#PAGE: ".$page);
 
         if(!$page){ $page=1;   };
 
@@ -214,11 +214,16 @@ class AdminController extends Controller
         if($section == 'chefs'){$searchChef = $request->input("search_box_chef");}
         if($section == 'cat'){$searchCAT = $request->input("search_box_cat");}
 
+        $fields = array('searchRecipe' => $searchRecipe, 'searchChef' => $searchChef, 'searchCAT' => $searchCAT, 'page' => $page);
+        $fields_string = http_build_query($fields);
+
         $url = config('app.apiUrl').'tastierLife';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
         $data = curl_exec($curl);
         curl_close($curl);
 
@@ -238,7 +243,9 @@ class AdminController extends Controller
         $inputs["paginator"] = $res["paginator"];
         $inputs["totChefs"] = $res["totCHEF"];
         $inputs["paginatorChefs"] = $res["paginatorCHEF"];
+        $inputs["recipes"] = $res["recipes"];
         $inputs["chefs"] = $res["chef"];
+        $inputs["categories"] = $res["categories"];
 
         return view('admin.tastier_life',$inputs);
     }

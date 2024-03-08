@@ -84,11 +84,11 @@
                         @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input id="search_box_chef"  name="search_box_chef" value="<?php $search_box_chef?>" class="form-control me-2" type="search" placeholder="{{__('tastier_life.chefs.search_ph')}}" aria-label="{{__('tastier_life.chefs.search_ph')}}" aria-describedby="basic-addon1">
+                            <input id="search_box_chef"  name="search_box_chef" value="<?php echo $search_box_chef?>" class="form-control me-2" type="search" placeholder="{{__('tastier_life.chefs.search_ph')}}" aria-label="{{__('tastier_life.chefs.search_ph')}}" aria-describedby="basic-addon1">
                             <input type="hidden" id="pageChef" name="pageChef" value="<?php if($search_box_chef!=''){echo  $page;}else{echo '1';};?>">
+                            <input type="hidden" id="pageActualChef" name="pageActualChef" value="<?php echo $page?>">
                         </div>
                         </form>
-                        <input type="hidden" id="pageActualChef" name="pageActualChef" value="<?php echo  $page?>">
                         </div>
                     </div>
                     <div class="row col-12 px-0 py-2">
@@ -118,6 +118,13 @@
                                 </button></td>
                             </tr>
                             @endforeach
+                            @if( count($chefs) == 0)
+                                <tr class="align-items-center">
+                                    <td class="col-8">{{__('general.no_results')}}</td>
+                                    <td class="col-auto"></td>
+                                    <td class="col-auto"></td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                     <nav aria-label="Page navigation example">
@@ -148,7 +155,7 @@
                     </div>
                     <div class="row col-12 px-0 py-2">
                         <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-                            <a class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#editCategoryModal">{{__('tastier_life.categories.btn_add')}}</a>
+                            <a class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#editCategoryModal" onclick="openModal_category()">{{__('tastier_life.categories.btn_add')}}</a>
                         </div>
                     </div>
                 </div>
@@ -162,15 +169,17 @@
                             </tr>
                         </thead>
                         <tbody class="">
+                            @foreach($categories as $cat)
                             <tr class="align-items-center">
-                                <td class="col-8">Category</td>
+                                <td class="col-8">{{$cat["name"]}}</td>
                                 <td class="col-auto my-auto">
-                                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editCategoryModal">{{__('tastier_life.btn_edit')}}</button>
+                                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editCategoryModal" onclick="openModal_category({{$cat['id']}},'{{$cat['name']}}')">{{__('tastier_life.btn_edit')}}</button>
                                 </td>                            
                                 <td class="col-auto my-auto">
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal">{{__('admin.btn_delete')}}
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal" onclick="openDeleteModal_category({{$cat['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -222,21 +231,24 @@
 <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
+        <input type="hidden" id="data_category_id">
         <div class="modal-header b-none px-4">
-            <h5 class="modal-title" id="createCategoryModalLabel">{{__('tastier_life.categories.create_modal_title')}}</h5>
-            <h5 class="modal-title" id="editCategoryModalLabel">{{__('tastier_life.categories.edit_modal_title')}}</h5>
+            <h5 class="modal-title create-modal-label" id="createCategoryModalLabel">{{__('tastier_life.categories.create_modal_title')}}</h5>
+            <h5 class="modal-title edit-modal-label" id="editCategoryModalLabel">{{__('tastier_life.categories.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>            
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
-                <label class="form-label" for="data_title">{{__('tastier_life.categories.data_title')}}</label>
-                <input id="data_title" name="data_title" class="form-control" placeholder="{{__('tastier_life.categories.ph_title')}}"/>
+                <label class="form-label" for="data_category_name">{{__('tastier_life.categories.data_title')}}</label>
+                <input id="data_category_name" name="data_category_name" class="form-control" placeholder="{{__('tastier_life.categories.ph_title')}}"/>
+                <div id="validation_data_cat_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
             </div>   
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto create-form-btn" id="cat_btn" onclick="saveCategory()">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto edit-form-btn" id="update_cat_btn" onclick="saveCategory()">{{__('admin.btn_edit')}}</buttton>
         </div>
         </form>
     </div>
@@ -251,12 +263,13 @@
         <h5 class="modal-title" id="deleteCategoryModalLabel">{{__('tastier_life.categories.delete_modal_title')}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body">            
+            <input type="hidden" id="delete_data_cat_id">
             <p>{{__('tastier_life.categories.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary"onclick="deleteCategory()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -265,7 +278,10 @@
 <script>
 $('#pills-recipes-tab').on('click',function(){window.location = '/admin/tastier_life?section=recipes&page=1'});
 $('#pills-chefs-tab').on('click',function(){window.location = '/admin/tastier_life?section=chefs&page=1'});
-$('#pills-categories-tab').on('click',function(){window.location = '/admin/tastier_life?section=cat&page=1'});
+$('#pills-categories-tab').on('click',function(){window.location = '/admin/tastier_life?section=cat'});
+
+
+//CHEFS
 
 function paginatorChefs(page){
     let search = $("#search_box_chef").val();
@@ -294,8 +310,8 @@ function paginatorChefs(page){
     }else{
         page= parseInt(page);
     };
-    //console.log(paginaActual);
-    //console.log(page);
+    console.log('actual page:' + paginaActual);
+    console.log('page:'+page);
     if(nada == ''){
         if (search == ''){
             console.log("#not SEARCH");
@@ -304,7 +320,7 @@ function paginatorChefs(page){
             //window.location = '/admin/initiatives/?page='+paginaActual;
             console.log("# SEARCH");console.log(search);
             document.getElementById('pageChef').value = page;
-            //document.getElementById('formSearchChef').submit();
+            document.getElementById('searchForm_chef').submit();
         };
     };
 }
@@ -339,6 +355,76 @@ function deleteChef(){
             }
         });
     }
+}
+
+//CATEGORY
+function openModal_category(id, name){
+    enableBtns();
+    document.getElementById("validation_data_cat_name").style.display = 'none';
+    if(!id){
+        $('#editCategoryModal').addClass('create-form');
+        $('#editCategoryModal').removeClass('edit-form');
+        document.getElementById("data_category_id").value = '';
+        document.getElementById("data_category_name").value = '';
+    };
+    if(id){
+        $('#editCategoryModal').removeClass('create-form');
+        $('#editCategoryModal').addClass('edit-form');
+
+        document.getElementById("data_category_id").value = id;
+        document.getElementById("data_category_name").value = name;
+    };
+}
+function saveCategory(){
+    disableBtns();
+    //reseteo todas las leyendas de validaciones
+    document.getElementById("validation_data_cat_name").style.display = 'none';
+
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    datos.append('_token', token);
+    let data_id = document.getElementById("data_category_id").value;
+    datos.append('id', data_id);
+    let data_name = document.getElementById("data_category_name").value;
+    datos.append('name', data_name);
+
+    if(data_name){
+        $.ajax({
+                type: 'POST',
+                url: '/admin/tastier_life/category/store',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){             },
+                success: function(msg){
+                    enableBtns();
+                    if (msg.status===400) {
+                        alert("Error: " + msg.message);
+                    } 
+                    else {
+                        closeModal('editCategoryModal');
+
+                        if(data_id != ''){alert('{{trans('tastier_life.categories.edit_success')}}');}
+                        else{alert('{{trans('tastier_life.categories.create_success')}}');}                        
+                        //alert('{{trans('tastier_life.categories.delete_success')}}');
+
+                        window.location = '../../admin/tastier_life?section=cat';
+                    }
+                }
+                });
+    }else{
+        enableBtns();
+        document.getElementById("validation_data_cat_name").style.display = 'block';
+    };
+}
+function disableBtns(){
+    document.getElementById("cat_btn").disabled = true;
+    document.getElementById("update_cat_btn").disabled = true;
+}
+function enableBtns(){
+    document.getElementById("cat_btn").disabled = false;
+    document.getElementById("update_cat_btn").disabled = false;
 }
 
 </script>

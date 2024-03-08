@@ -90,6 +90,8 @@ Route::get('/admin/tastier_life/chef/create', [TastierLifeController::class, 'ch
 Route::post('/admin/tastier_life/chef/store', [TastierLifeController::class, 'chef_save'])->name('admin.chef_save');
 Route::post('/admin/tastier_life/chef/delete', [TastierLifeController::class, 'chef_delete']);
 Route::get('/admin/tastier_life/chef/{id}', [TastierLifeController::class, 'chef_edit'])->name('admin.chef_edit');
+Route::post('/admin/tastier_life/category/store', [TastierLifeController::class, 'category_save']);
+
 
 
 Route::get('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours');

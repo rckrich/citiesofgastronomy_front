@@ -46,8 +46,10 @@ class TastierLifeController extends Controller
         if(!$page){ $page=1;};
 
         $fields = array(
+            'searchRecipe' => $searchRecipe,
             'searchChef' => $searchChef,
             'searchCAT' => $searchCAT,
+            'page' => $page
         );
 
         $fields_string = http_build_query($fields);
@@ -78,7 +80,9 @@ class TastierLifeController extends Controller
         $inputs["paginator"] = $res["paginator"];
         $inputs["totChefs"] = $res["totCHEF"];
         $inputs["paginatorChefs"] = $res["paginatorCHEF"];
+        $inputs["recipes"] = $res["recipes"];
         $inputs["chefs"] = $res["chef"];
+        $inputs["categories"] = $res["categories"];
 
 
         return view('admin.tastier_life',$inputs);
@@ -247,6 +251,55 @@ class TastierLifeController extends Controller
         return $res;
     }
     
+
+    public function category_save(Request $request)
+    {
+        $id = $request->input("id");
+        $name = $request->input("name");
+        $dattaSend = [
+            'id' => $id,
+            'name' => $name
+        ];
+
+        $url = config('app.apiUrl').'categories/store';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("CATEGORIES SAVE ::");
+        Log::info($res);
+
+        return $res;
+    }
+
+    public function category_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'categories/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("CATEGORIES DELETE ::");
+        //Log::info($res);
+
+        return $res;
+    }
+
 
 
 }

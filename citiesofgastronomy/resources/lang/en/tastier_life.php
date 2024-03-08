@@ -150,7 +150,11 @@ return [
         'edit_modal_title'=>'Edit Filter',
         'data_title'=>'Category',
         'ph_title'=>'Category',
+        'create_success'=>'The filter was successfully created',
+        'edit_success'=>'The filter was successfully edited',
+        'delete_success'=>'The filter was successfully deleted',        
         ''=>'',
+
     ],
     'btn_edit'=>'Edit',  
 
