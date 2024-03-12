@@ -114,7 +114,7 @@
                                     <a class="btn btn-link" href="{{route('admin.chef_edit',['id'=>$chef['id']])}}">{{__('tastier_life.btn_edit')}}</a>
                                 </td>                            
                                 <td class="col-auto my-auto">
-                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteChefModal" onclick="openDeleteModal_chef({{$chef['id']}})">{{__('admin.btn_delete')}}
+                                    <button class="btn btn-danger delete_btn" data-bs-toggle="modal" data-bs-target="#deleteChefModal" onclick="openDeleteModal_chef({{$chef['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
                             @endforeach
@@ -326,6 +326,8 @@ function paginatorChefs(page){
 }
 
 function openDeleteModal_chef(id){
+    $(".delete_chef_btn").prop('disabled', true);
+    $(".delete_chef_btn").prop('disabled', false);
     document.getElementById("delete_data_chef_id").value = id;
 }
 function deleteChef(){
@@ -343,7 +345,7 @@ function deleteChef(){
             cache: false,
             processData:false,
             beforeSend: function(){},
-            success: function(msg){
+            success: function(msg){                    
                 closeModal('deleteChefModal');
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
