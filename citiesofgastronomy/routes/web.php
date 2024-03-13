@@ -91,6 +91,8 @@ Route::post('/admin/tastier_life/chef/store', [TastierLifeController::class, 'ch
 Route::post('/admin/tastier_life/chef/delete', [TastierLifeController::class, 'chef_delete']);
 Route::get('/admin/tastier_life/chef/{id}', [TastierLifeController::class, 'chef_edit'])->name('admin.chef_edit');
 Route::post('/admin/tastier_life/category/store', [TastierLifeController::class, 'category_save']);
+Route::post('/admin/tastier_life/category/delete', [TastierLifeController::class, 'category_delete']);
+
 
 
 

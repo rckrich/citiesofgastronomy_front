@@ -51,7 +51,7 @@
                     <input id="youtube_link" name="youtube_link" class="form-control" value="<?= $youtube_link?>" placeholder="{{__('tastier_life.chefs.ph_youtube')}}"/>
                 </div>
                 <div class="row form-group py-5">
-                    <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life.chefs')}}" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
+                    <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life')}}?section=chefs&page=1" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
                     
                     <div class="col-auto me-auto">
                         <span class="btn btn-primary w-100" onclick="saveChef()">@if($id){{__('admin.btn_edit')}}@else{{__('admin.btn_create')}} @endif</span>

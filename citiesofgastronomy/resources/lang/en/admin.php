@@ -18,6 +18,8 @@ return [
     'btn_delete'=>'DELETE',
     'btn_edit'=>'EDIT',
     'btn_add'=>'ADD',
+    'btn_change_image'=>'CHANGE IMAGE',
+    'btn_add_image'=>'ADD IMAGE',
     'btn_download'=>'DOWNLOAD',
 
     'obligatory_field'=>'Obligatory field',

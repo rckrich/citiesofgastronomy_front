@@ -90,7 +90,7 @@ class TastierLifeController extends Controller
 
     public function recipe_new()
     {
-        $url = config('app.apiUrl').'generalDatta';
+        $url = config('app.apiUrl').'recipe/create';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -100,17 +100,72 @@ class TastierLifeController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("NEW RECIPE :: RESPONSE");
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
+        $inputs["id"] = '';
+        $inputs["chefsList"] = $res['Chef'];
+        $inputs["categoriesList"] = $res['categories'];
+        $inputs["citiesList"] = $res['Cities'];
+        $inputs["selectedChef"] = 'default';
+        $inputs["selectedCat"] = 'default';
+        $inputs["selectedCity"] = 'default';
+        $inputs["name"] = '';
+        $inputs["photo"] = '';
+        $inputs["description"] = '';
+        $inputs["difficulty"] = '';
+        $inputs["prepTime"] = '';
+        $inputs["totalTime"] = '';
+        $inputs["servings"] = '';
+        $inputs["ingredients"] = '';
+        $inputs["preparations"] = '';
+        $inputs["isActive"] = '';
+        $inputs["votes"] = '';
+        $inputs["gallery"] = '';
 
         return view('tastier_life.new_recipe',$inputs);
     } 
 
-    public function recipe_edit()
+    public function recipe_edit($id)
     {
-        return view('tastier_life.edit_recipe');
-    } 
+        $url = config('app.apiUrl').'recipe/findRecipe/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("EDIT RECIPE :: RESPONSE");
+        Log::info($res);
+
+        $recipe = $res['Recipes'];
+
+        $inputs = [];
+        $inputs["id"] = $id;
+        $inputs["chefsList"] = $res['Chef'];
+        $inputs["categoriesList"] = $res['categories'];
+        $inputs["citiesList"] = $res['Cities'];
+        $inputs["selectedChef"] = $recipe['idChef']?$recipe['idChef']:'default';
+        $inputs["selectedCity"] = $recipe['idCity']?$recipe['idCity']:'default';
+        $inputs["selectedCat"] = $recipe['idCategory']?$recipe['idCategory']:'default';
+        $inputs["name"] = $recipe['name'];
+        $inputs["photo"] = $recipe['photo'];
+        $inputs["description"] = $recipe['description'];
+        $inputs["difficulty"] = $recipe['difficulty'];
+        $inputs["prepTime"] = $recipe['prepTime'];
+        $inputs["totalTime"] = $recipe['totalTime'];
+        $inputs["servings"] = $recipe['servings'];
+        $inputs["ingredients"] = $recipe['ingredients'];
+        $inputs["preparations"] = $recipe['preparations'];
+        $inputs["isActive"] = $recipe['active'];
+        $inputs["votes"] = $recipe['vote'];
+        $inputs["gallery"] = $res['Gallery'];
+
+        return view('tastier_life.new_recipe',$inputs);    
+    }
+
     public function chef_new()
     {
         $url = config('app.apiUrl').'generalDatta';
