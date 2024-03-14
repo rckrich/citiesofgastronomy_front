@@ -20,10 +20,11 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_name">{{__('tastier_life.recipes.data_name')}}</label>
                         <input id="data_name" name="data_name" value="{{$name}}" class="form-control" placeholder="{{__('tastier_life.recipes.ph_name')}}"/>
+                        <div id="data_name_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
 
                     <div class="form-group py-2">
-                        <label class="form-label" for="data_photo">{{__('tastier_life.recipes.data_photo')}}</label>
+                        <label class="form-label" for="photo">{{__('tastier_life.recipes.data_photo')}}</label>
                         
                         <!--img obligatoria, si no existe imagen aún (solo aplica aquí)-->
                         <div class="my-3 w-25" id="phototbl" <?php  if(!$photo){echo 'style="display:none"';}?> >
@@ -64,6 +65,7 @@
                             </option>
                             @endforeach
                         </select>
+                        <div id="data_chef_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_city">{{__('tastier_life.recipes.data_city')}}</label>
@@ -78,6 +80,7 @@
                             </option>
                             @endforeach
                         </select>
+                        <div id="data_city_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_cat">{{__('tastier_life.recipes.data_cat')}}</label>
@@ -92,6 +95,7 @@
                             </option>
                             @endforeach
                         </select>
+                        <div id="data_cat_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
                     
                     <div class="bb-gray mt-4 mb-2"></div>
@@ -104,18 +108,22 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_difficulty">{{__('tastier_life.recipes.data_difficulty')}}</label>
                         <input id="data_difficulty" name="data_difficulty" value="<?= $difficulty?>" class="form-control" placeholder="{{__('tastier_life.recipes.ph_difficulty')}}"/>
+                        <div id="data_difficulty_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_preptime">{{__('tastier_life.recipes.data_preptime')}}</label>
                         <input id="data_preptime" name="data_preptime" value="<?= $prepTime?>" class="form-control" placeholder="{{__('tastier_life.recipes.ph_preptime')}}"/>
+                        <div id="data_preptime_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_totaltime">{{__('tastier_life.recipes.data_totaltime')}}</label>
                         <input id="data_totaltime" name="data_totaltime" value="<?= $totalTime?>" class="form-control" placeholder="{{__('tastier_life.recipes.ph_totaltime')}}"/>
+                        <div id="data_totaltime_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
                         <label class="form-label" for="data_servings">{{__('tastier_life.recipes.data_servings')}}</label>
                         <input id="data_servings" name="data_servings" value="<?= $servings?>" class="form-control" placeholder="{{__('tastier_life.recipes.ph_servings')}}"/>
+                        <div id="data_servings_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
 
                     <div class="form-group py-2">
@@ -123,6 +131,7 @@
                         <textarea id="data_ingredients" name="data_ingredients" class="form-control" placeholder="{{__('tastier_life.recipes.ph_ingredients')}}">
                             {{$ingredients}}
                         </textarea>
+                        <div id="data_ingredients_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
 
                     <div class="form-group py-2">
@@ -130,6 +139,7 @@
                         <textarea id="data_preparations" name="data_preparations" class="form-control" placeholder="{{__('tastier_life.recipes.ph_preparations')}}">
                             {{$preparations}}
                         </textarea>
+                        <div id="data_preparations_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
 
                     <div class="bb-gray mt-4 mb-2"></div>
@@ -181,7 +191,7 @@
 
                     <div class="row form-group py-5">
                         <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life')}}?section=recipes&page=1" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
-                        <div class="col-auto me-auto"><button class="btn btn-primary w-100">{{__('admin.btn_create')}}</buttton></div>
+                        <div class="col-auto me-auto"><button id="btnSubmit" class="btn btn-primary w-100">{{$id?__('admin.btn_edit'):__('admin.btn_create')}}</buttton></div>
                     </div>
                 </form>
             </div>
@@ -270,5 +280,170 @@
         document.getElementById("cant_gallery").value = item +1;
 
     }
+
+    function resetValidations(){
+        document.getElementById("data_name").className =  'form-control';
+        document.getElementById("data_name_validation").style.display =  'none';
+        //document.getElementById("photo").className =  'form-control';
+        document.getElementById("photo_validation").style.display =  'none';
+        document.getElementById("data_chef").className =  'form-control';
+        document.getElementById("data_chef_validation").style.display =  'none';
+        document.getElementById("data_city").className =  'form-control';
+        document.getElementById("data_city_validation").style.display =  'none';
+        document.getElementById("data_cat").className =  'form-control';
+        document.getElementById("data_cat_validation").style.display =  'none';
+        document.getElementById("data_difficulty_validation").style.display =  'none';
+        document.getElementById("data_preptime_validation").style.display =  'none';
+        document.getElementById("data_totaltime_validation").style.display =  'none';
+        document.getElementById("data_servings_validation").style.display =  'none';
+        document.getElementById("data_description").className =  'form-control';
+        document.getElementById("data_description_validation").style.display =  'none';
+        document.getElementById("data_ingredients").className =  'form-control';
+        document.getElementById("data_ingredients_validation").style.display =  'none';
+        document.getElementById("data_preparations").className =  'form-control';
+        document.getElementById("data_preparations_validation").style.display =  'none';
+    }
+
+    $("#recipeForm").on('submit', function(e){
+        e.preventDefault();
+        document.getElementById("btnSubmit").disabled = true;
+        let id = '<?= $id?>';
+        let data_name = document.getElementById("data_name").value;
+        let photo = document.getElementById("photo").value;
+        let data_chef = document.getElementById("data_chef").value;
+        let data_city = document.getElementById("data_city").value;
+        let data_cat = document.getElementById("data_cat").value;
+        let data_difficulty = document.getElementById("data_difficulty").value;
+        let data_preptime = document.getElementById("data_preptime").value;
+        let data_totaltime = document.getElementById("data_totaltime").value;
+        let data_servings = document.getElementById("data_servings").value;
+        let data_description  = editor_data_description.getData();//document.getElementById("data_description").value;
+        let data_ingredients  = editor_data_ingredients.getData();
+        let data_preparations  = editor_data_preparations.getData();
+                
+        let valida = 'si';let errorMessage = '';
+        
+        //reseteo validaciones
+        resetValidations();
+
+        //general DATTA
+        if(data_name=='' || data_chef=='' || data_city=='' || data_cat=='' 
+        || data_difficulty=='' || data_preptime=='' || data_totaltime=='' || data_servings==''
+        || data_description=='' || data_ingredients=='' || data_preparations==''
+        ){
+            valida = 'no';
+        };
+
+        if(photo=='' && id==''){
+            valida = 'no';
+        };
+
+        if(valida == 'si'){
+
+            let datos = new FormData(this);
+            datos.append('data_description', data_description);
+            datos.append('data_ingredients', data_ingredients);
+            datos.append('data_preparations', data_preparations);
+            datos.append('id', id);
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/tastier_life/recipe/store',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){
+                    //$('.submitBtn').attr("disabled","disabled");
+                    //$('#fupForm').css("opacity",".5");
+                },
+                success: function(msg){
+                    console.log("::msg");
+                    console.log(msg);
+                    console.log(msg.message);
+                    //let e = JSON.parse(msg);
+                    //console.log(e.datta);
+                    if(msg.status=='200'){
+                        <?php if($id){?>
+                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipe.edit_success')}}");
+                        <?php }else{?>
+                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipe.create_success')}}");
+                        <?php };?>
+                    }else{
+                        localStorage.setItem('errorTastierLifeMessage', msg);
+                    };
+                    window.location ='/admin/tastier_life?section=recipes&page=1';
+                    document.getElementById("btnSubmit").disabled = false;
+                },
+                error: function(msg){
+                    localStorage.setItem('errorTastierLifeMessage', msg);
+                    window.location ='/admin/tastier_life?section=recipes&page=1';
+                    document.getElementById("btnSubmit").disabled = false;
+                }
+            });
+            //*/
+            //alert("Iniciative was successfully saved");
+
+        }else{
+
+            if(data_name=='' || (photo=='' && id=='') || data_chef=='' || data_city=='' || data_cat==''
+            || data_difficulty=='' || data_preptime=='' || data_totaltime=='' || data_servings==''
+            || data_description=='' || data_ingredients=='' || data_preparations==''
+            ){
+                errorMessage = 'Fill out all fields. ' + errorMessage  ;
+                if(data_name==''){
+                    document.getElementById("data_name").className =  'form-control is-invalid';
+                    document.getElementById("data_name_validation").style.display =  'block';
+                };
+                if(photo==''){
+                    //document.getElementById("photo").className =  'form-control is-invalid';
+                    document.getElementById("photo_validation").style.display =  'block';
+                };
+                if(data_chef==''){
+                    document.getElementById("data_chef").className =  'form-control is-invalid';
+                    document.getElementById("data_chef_validation").style.display =  'block';
+                };
+                if(data_city==''){
+                    document.getElementById("data_city").className =  'form-control is-invalid';
+                    document.getElementById("data_city_validation").style.display =  'block';
+                };
+                if(data_cat==''){
+                    document.getElementById("data_cat").className =  'form-control is-invalid';
+                    document.getElementById("data_cat_validation").style.display =  'block';
+                };
+                if(data_difficulty==''){
+                    document.getElementById("data_difficulty").className =  'form-control is-invalid';
+                    document.getElementById("data_difficulty_validation").style.display =  'block';
+                };
+                if(data_preptime==''){
+                    document.getElementById("data_preptime").className =  'form-control is-invalid';
+                    document.getElementById("data_preptime_validation").style.display =  'block';
+                };
+                if(data_totaltime==''){
+                    document.getElementById("data_totaltime").className =  'form-control is-invalid';
+                    document.getElementById("data_totaltime_validation").style.display =  'block';
+                };
+                if(data_servings==''){
+                    document.getElementById("data_servings").className =  'form-control is-invalid';
+                    document.getElementById("data_servings_validation").style.display =  'block';
+                };
+                if(data_description==''){
+                    document.getElementById("data_description").className =  'form-control is-invalid';
+                    document.getElementById("data_description_validation").style.display =  'block';
+                }
+                if(data_ingredients==''){
+                    document.getElementById("data_ingredients").className =  'form-control is-invalid';
+                    document.getElementById("data_ingredients_validation").style.display =  'block';
+                }
+                if(data_preparations==''){
+                    document.getElementById("data_preparations").className =  'form-control is-invalid';
+                    document.getElementById("data_preparations_validation").style.display =  'block';
+                }
+            };
+
+            alert(errorMessage);
+            document.getElementById("btnSubmit").disabled = false;
+        };
+    });
 </script>
 @endsection

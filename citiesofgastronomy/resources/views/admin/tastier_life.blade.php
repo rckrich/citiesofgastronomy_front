@@ -557,26 +557,27 @@ function deleteCategory(){
 </script>
 
 <script>
-    <?php if (session()->has('error')){?>
-        localStorage.removeItem('tastierLifeMessage');
+    let message = localStorage.getItem('tastierLifeMessage');
+    let errorMessage = localStorage.getItem('errorTastierLifeMessage');
 
-                document.getElementById('alertTLMessageAlert').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('alertTLMessageAlert').style.display = 'none';
-                },5000);
-
-    <?php }else{?>
-        let message = localStorage.getItem('tastierLifeMessage');
-        if(message){
-                localStorage.removeItem('tastierLifeMessage');
-                document.getElementById('alertTLMessage').innerHTML = message;
-                document.getElementById('alertTLMessage').style.display = 'block';
-                setTimeout(() => {
-                    console.log("Delayed for 1 second.");
-                    document.getElementById('alertTLMessage').style.display = 'none';
-                },5000);
-        };
-    <?php }?>
+    if(message){
+            localStorage.removeItem('tastierLifeMessage');
+            document.getElementById('alertTLMessage').innerHTML = message;
+            document.getElementById('alertTLMessage').style.display = 'block';
+            setTimeout(() => {
+                console.log("Delayed for 1 second.");
+                document.getElementById('alertTLMessage').style.display = 'none';
+            },5000);
+    };
+    if(errorMessage){
+            localStorage.removeItem('errorIessageIniciative');
+            document.getElementById('alertTLMessageAlert').innerHTML = errorMessage;
+            document.getElementById('alertTLMessageAlert').style.display = 'block';
+            setTimeout(() => {
+                console.log("Delayed for 1 second.");
+                document.getElementById('alertTLMessageAlert').style.display = 'none';
+            },5000);
+    };
 </script>
 
 @endsection

@@ -169,6 +169,100 @@ class TastierLifeController extends Controller
         return view('tastier_life.new_recipe',$inputs);    
     }
 
+
+    public function recipe_save(Request $request){
+        Log::info("----> RECIPE STORE..");
+        $id = $request->input("id");
+        $name = $request->input("data_name");
+        $chef = $request->input("data_chef");
+        $city = $request->input("data_city");
+        $cat = $request->input("data_cat");
+        $difficulty = $request->input("data_difficulty");
+        $preptime = $request->input("data_preptime");
+        $totaltime = $request->input("data_totaltime");
+        $servings = $request->input("data_servings");
+        $description = $request->input("data_description");
+        $ingredients = $request->input("data_ingredients");
+        $preparations = $request->input("data_preparations");
+
+        $file =  $request->file('photo');
+        $photo='';
+        if($file){
+                    // You can store this but should validate it to avoid conflicts
+                    $original_name = $file->getClientOriginalName();
+                    // You can store this but should validate it to avoid conflicts
+                    $extension = $file->getClientOriginalExtension();
+                    // This would be used for the payload
+                    $file_path = $file->getPathName();
+                    $photo = new \CURLFile($file_path);
+        };
+
+
+        $dattaSend = [
+            'id' => $id,
+            'name' => $name,
+            'photo' => $photo,
+            'idChef' => $chef,
+            'idCity' => $city,
+            'idCategory' => $cat,
+            'difficulty' => $difficulty,
+            'prepTime' => $preptime,
+            'totalTime' => $totaltime,
+            'servings' => $servings,
+            'description' => $description,
+            'ingredients' => $ingredients,
+            'preparations' => $preparations,
+        ];
+
+        ///////////////////////////////////////
+
+        $cant_gallery =$request->input('cant_gallery');
+
+        $dattaSend["cant_gallery"] = $cant_gallery;
+        for($i = 1; $i < $cant_gallery;$i++){
+            $id1 = 'image'.$i;
+            $file =  $request->file($id1);
+            $image='';
+            if($file){
+                //Log::info("Sr configura la imagen - ".$i);
+                        // You can store this but should validate it to avoid conflicts
+                        $original_name = $file->getClientOriginalName();
+
+                        // You can store this but should validate it to avoid conflicts
+                        $extension = $file->getClientOriginalExtension();
+
+                        // This would be used for the payload
+                        $file_path = $file->getPathName();
+
+                        $image = new \CURLFile($file_path);
+            };
+            $dattaSend[$id1] = $image;
+            $id1 = 'idImage'.$i;
+            $idImage =  $request->input($id1);
+            $dattaSend[$id1] = $idImage;
+            $id1 = 'deleteImage'.$i;
+            $deleteImage =  $request->input($id1);
+            $dattaSend[$id1] = $deleteImage;
+        };
+
+        $url = config('app.apiUrl').'recipe/store';
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        //*/
+
+        return $res;
+
+    }
+
     public function chef_new()
     {
         $url = config('app.apiUrl').'generalDatta';
