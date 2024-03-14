@@ -203,7 +203,7 @@ class AdminController extends Controller
 
         $page = $request->input("page");
         $pageChef = $request->input("pageChef");
-        Log::info("#PAGE: ".$page.$pageChef);
+        //Log::info("#PAGE: ".$page.$pageChef);
 
         if(!$page){ $page=1;   };
         if(!$pageChef){ $pageChef=1;};
@@ -232,7 +232,7 @@ class AdminController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN TastierLife List");
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["search_box_recipe"] = $searchRecipe;

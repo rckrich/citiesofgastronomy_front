@@ -365,18 +365,13 @@
                     //console.log(e.datta);
                     if(msg.status=='200'){
                         <?php if($id){?>
-                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipe.edit_success')}}");
+                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipes.edit_success')}}");
                         <?php }else{?>
-                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipe.create_success')}}");
+                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipes.create_success')}}");
                         <?php };?>
                     }else{
-                        localStorage.setItem('errorTastierLifeMessage', msg);
+                        localStorage.setItem('tastierLifeMessageError', 'Error:' + msg.message);
                     };
-                    window.location ='/admin/tastier_life?section=recipes&page=1';
-                    document.getElementById("btnSubmit").disabled = false;
-                },
-                error: function(msg){
-                    localStorage.setItem('errorTastierLifeMessage', msg);
                     window.location ='/admin/tastier_life?section=recipes&page=1';
                     document.getElementById("btnSubmit").disabled = false;
                 }

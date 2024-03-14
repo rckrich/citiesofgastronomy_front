@@ -69,7 +69,7 @@ class TastierLifeController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN TastierLife SEARCH List: Recipe - ".$searchRecipe." / Chef - ".$searchChef." / Cat - ".$searchCAT);
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];      
         $inputs["search_box_recipe"] = $searchRecipe;
@@ -141,7 +141,7 @@ class TastierLifeController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("EDIT RECIPE :: RESPONSE");
-        Log::info($res);
+        //Log::info($res);
 
         $recipe = $res['Recipes'];
 
@@ -171,7 +171,6 @@ class TastierLifeController extends Controller
 
 
     public function recipe_save(Request $request){
-        Log::info("----> RECIPE STORE..");
         $id = $request->input("id");
         $name = $request->input("data_name");
         $chef = $request->input("data_chef");
@@ -258,6 +257,9 @@ class TastierLifeController extends Controller
 
         $res = json_decode( $data, true);
         //*/
+        
+        Log::info("NEW RECIPE :: STORE");
+        Log::info($res);
 
         return $res;
 

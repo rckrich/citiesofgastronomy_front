@@ -557,27 +557,34 @@ function deleteCategory(){
 </script>
 
 <script>
-    let message = localStorage.getItem('tastierLifeMessage');
-    let errorMessage = localStorage.getItem('errorTastierLifeMessage');
 
-    if(message){
-            localStorage.removeItem('tastierLifeMessage');
-            document.getElementById('alertTLMessage').innerHTML = message;
-            document.getElementById('alertTLMessage').style.display = 'block';
-            setTimeout(() => {
-                console.log("Delayed for 1 second.");
-                document.getElementById('alertTLMessage').style.display = 'none';
-            },5000);
-    };
-    if(errorMessage){
-            localStorage.removeItem('errorIessageIniciative');
-            document.getElementById('alertTLMessageAlert').innerHTML = errorMessage;
+    <?php if (session()->has('error')){?>
+        let message = localStorage.getItem('tastierLifeMessageError');
+
+        if(message){
+            localStorage.removeItem('tastierLifeMessageError');
+            document.getElementById('alertTLMessageAlert').innerHTML = message;
             document.getElementById('alertTLMessageAlert').style.display = 'block';
             setTimeout(() => {
-                console.log("Delayed for 1 second.");
                 document.getElementById('alertTLMessageAlert').style.display = 'none';
             },5000);
-    };
+        };
+
+    <?php }else{?>
+        let message = localStorage.getItem('tastierLifeMessage');
+        if(message){
+                localStorage.removeItem('tastierLifeMessage');
+                document.getElementById('alertTLMessage').innerHTML = message;
+                document.getElementById('alertTLMessage').style.display = 'block';
+                setTimeout(() => {
+                    console.log("Delayed for 1 second.");
+                    document.getElementById('alertTLMessage').style.display = 'none';
+                },5000);
+        };
+    <?php }?>
+
+
+
 </script>
 
 @endsection
