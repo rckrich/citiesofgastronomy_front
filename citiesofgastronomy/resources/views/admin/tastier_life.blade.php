@@ -32,7 +32,9 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                            <input id="search_box_recipe" name="search_box_recipe" class="form-control me-2" type="search" placeholder="{{__('tastier_life.recipes.search_ph')}}" aria-label="{{__('tastier_life.recipes.search_ph')}}" aria-describedby="basic-addon1">
+                            <input id="search_box_recipe" name="search_box_recipe" value="<?= $search_box_recipe?>" class="form-control me-2" type="search" placeholder="{{__('tastier_life.recipes.search_ph')}}" aria-label="{{__('tastier_life.recipes.search_ph')}}" aria-describedby="basic-addon1">
+                            <input type="hidden" id="page" name="page" value="<?php if($search_box_recipe!=''){echo  $page;}else{echo '1';};?>">
+                            <input type="hidden" id="pageActual" name="pageActual" value="<?php echo $page?>">
                         </div>
                         </div>
                     </div>
@@ -71,6 +73,15 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <nav aria-label="Page navigation recipes">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" onclick="paginatorRecipes('prev')">Previous</a></li>
+                            @for($i=1;$i < $paginator +1; $i++)
+                            <li class="page-item"><a class="page-link" onclick="paginatorRecipes('<?= $i?>')"><?= $i?></a></li>
+                            @endfor
+                            <li class="page-item"><a class="page-link" onclick="paginatorRecipes('next')">Next</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -82,13 +93,13 @@
                     </div>
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
-                        <form action="../admin/tastier_life?section=chefs&page=1" method="POST" id="searchForm_chef">
+                        <form action="{{'/admin/tastier_life?section=chefs&pageChef='.$pageChef}}" method="POST" id="searchForm_chef">
                         @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon2"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
                             <input id="search_box_chef"  name="search_box_chef" value="<?php echo $search_box_chef?>" class="form-control me-2" type="search" placeholder="{{__('tastier_life.chefs.search_ph')}}" aria-label="{{__('tastier_life.chefs.search_ph')}}" aria-describedby="basic-addon2">
-                            <input type="hidden" id="pageChef" name="pageChef" value="<?php if($search_box_chef!=''){echo  $page;}else{echo '1';};?>">
-                            <input type="hidden" id="pageActualChef" name="pageActualChef" value="<?php echo $page?>">
+                            <input type="hidden" id="pageChef" name="pageChef" value="<?php if($search_box_chef!=''){echo  $pageChef;}else{echo '1';};?>">
+                            <input type="hidden" id="pageActualChef" name="pageActualChef" value="<?php echo $pageChef?>">
                         </div>
                         </form>
                         </div>
@@ -129,7 +140,7 @@
                             @endif
                         </tbody>
                     </table>
-                    <nav aria-label="Page navigation example">
+                    <nav aria-label="Page navigation chefs">
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" onclick="paginatorChefs('prev')">Previous</a></li>
                             @for($i=1;$i < $paginatorChefs +1; $i++)
@@ -282,8 +293,52 @@
 
 <script>
 $('#pills-recipes-tab').on('click',function(){window.location = '/admin/tastier_life?section=recipes&page=1'});
-$('#pills-chefs-tab').on('click',function(){window.location = '/admin/tastier_life?section=chefs&page=1'});
+$('#pills-chefs-tab').on('click',function(){window.location = '/admin/tastier_life?section=chefs&pageChef=1'});
 $('#pills-categories-tab').on('click',function(){window.location = '/admin/tastier_life?section=cat'});
+
+
+//RECIPES
+unction paginatorRecipes(page){
+    let search = $("#search_box_recipe").val();
+    let paginatorCant = '<?= $paginatorChefs?>';
+    paginatorCant = parseInt(paginatorCant);
+    //console.log(paginatorCant)
+    let paginaActual = document.getElementById('pageActual').value;
+    paginaActual= parseInt(paginaActual);
+    if (search != ''){
+        paginaActual = document.getElementById('page').value;
+        paginaActual= parseInt(paginaActual);
+    };
+
+    let nada = '';
+    if(page == 'prev' || page == 'next'){
+            //console.log("#0");
+        if(page == 'next' && paginaActual != paginatorCant){
+            page = paginaActual + 1;
+            //console.log("#1");
+        }else if(page == 'prev' && paginaActual > 1){
+            page = paginaActual - 1;
+            //console.log("#2");
+        }else{
+            nada = 'si';
+        };
+    }else{
+        page= parseInt(page);
+    };
+    //alert('actual page:' + paginaActual);
+    //alert('page:'+page);
+    if(nada == ''){
+        if (search == ''){
+            console.log("#not SEARCH");
+            window.location = '/admin/tastier_life?section=recipes&page='+page;
+        }else{
+            //window.location = '/admin/initiatives/?page='+paginaActual;
+            console.log("# SEARCH");console.log(search);
+            document.getElementById('page').value = page;
+            //document.getElementById('searchForm_recipe').submit();
+        };
+    };
+}
 
 
 //CHEFS
@@ -315,12 +370,12 @@ function paginatorChefs(page){
     }else{
         page= parseInt(page);
     };
-    console.log('actual page:' + paginaActual);
-    console.log('page:'+page);
+    //alert('actual page:' + paginaActual);
+    //alert('page:'+page);
     if(nada == ''){
         if (search == ''){
             console.log("#not SEARCH");
-            window.location = '/admin/tastier_life?section=chefs&page='+page;
+            window.location = '/admin/tastier_life?section=chefs&pageChef='+page;
         }else{
             //window.location = '/admin/initiatives/?page='+paginaActual;
             console.log("# SEARCH");console.log(search);
@@ -354,11 +409,11 @@ function deleteChef(){
                 closeModal('deleteChefModal');
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
-                    window.location = '/admin/tastier_life?section=chefs&page=1';
+                    window.location = '/admin/tastier_life?section=chefs&pageChef=1';
                 } 
                 else {
                     alert('{{trans('tastier_life.chefs.delete_success')}}');
-                    window.location = '/admin/tastier_life?section=chefs&page=1';
+                    window.location = '/admin/tastier_life?section=chefs&pageChef=1';
                 }
             }
         });
@@ -481,7 +536,7 @@ function deleteCategory(){
             $('#searchForm_chef').submit();
         }
         else{
-            window.location = '../../admin/tastier_life?section=chefs&page=1';
+            window.location = '../../admin/tastier_life?section=chefs&pageChef=1';
         }
       }
      }); 

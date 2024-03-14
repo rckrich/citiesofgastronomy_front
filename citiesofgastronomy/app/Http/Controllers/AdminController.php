@@ -202,9 +202,11 @@ class AdminController extends Controller
     {
 
         $page = $request->input("page");
-       // Log::info("#PAGE: ".$page);
+        $pageChef = $request->input("pageChef");
+        Log::info("#PAGE: ".$page.$pageChef);
 
         if(!$page){ $page=1;   };
+        if(!$pageChef){ $pageChef=1;};
 
         $searchRecipe = '';
         $searchChef = '';
@@ -214,7 +216,7 @@ class AdminController extends Controller
         if($section == 'chefs'){$searchChef = $request->input("search_box_chef");}
         if($section == 'cat'){$searchCAT = $request->input("search_box_cat");}
 
-        $fields = array('searchRecipe' => $searchRecipe, 'searchChef' => $searchChef, 'searchCAT' => $searchCAT, 'page' => $page);
+        $fields = array('searchRecipe' => $searchRecipe, 'searchChef' => $searchChef, 'searchCAT' => $searchCAT, 'page' => $page, 'pageChef' => $pageChef);
         $fields_string = http_build_query($fields);
 
         $url = config('app.apiUrl').'tastierLife';
@@ -230,13 +232,14 @@ class AdminController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN TastierLife List");
-        //Log::info($res);
+        Log::info($res);
 
         $inputs = [];
         $inputs["search_box_recipe"] = $searchRecipe;
         $inputs["search_box_chef"] = $searchChef;
         $inputs["search_box_cat"] = $searchCAT;
         $inputs["page"] = $page;
+        $inputs["pageChef"] = $pageChef;
         $inputs["section"] = $request->input("section");
         
         $inputs["tot"] = $res["tot"];

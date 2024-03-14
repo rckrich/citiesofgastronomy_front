@@ -44,12 +44,14 @@ class TastierLifeController extends Controller
         $page = $request->input("page");
 
         if(!$page){ $page=1;};
+        if(!$pageChef){ $pageChef=1;};
 
         $fields = array(
             'searchRecipe' => $searchRecipe,
             'searchChef' => $searchChef,
             'searchCAT' => $searchCAT,
-            'page' => $page
+            'page' => $page,
+            'pageChef' => $pageChef,
         );
 
         $fields_string = http_build_query($fields);
@@ -74,6 +76,7 @@ class TastierLifeController extends Controller
         $inputs["search_box_chef"] = $searchChef;
         $inputs["search_box_cat"] = $searchCAT;
         $inputs["page"] = $page;
+        $inputs["pageChef"] = $pageChef;
         $inputs["section"] = $section;
         
         $inputs["tot"] = $res["tot"];
@@ -281,7 +284,7 @@ class TastierLifeController extends Controller
         $res = json_decode( $data, true);
         Log::info("CHEF STORE ::");
         //Log::info($res);
-        return redirect( "admin/tastier_life?section=chefs&page=1" );
+        return redirect( "admin/tastier_life?section=chefs&pageChef=1" );
     }
 
     public function chef_delete(Request $request)
