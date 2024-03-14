@@ -86,6 +86,7 @@ Route::get('/admin/tastier_life?section=recipes&page=1', [AdminController::class
 Route::post('/admin/tastier_life', [TastierLifeController::class, 'tastier_life_search'])->name('admin.tastier_life_search');
 Route::get('/admin/tastier_life/recipe/create', [TastierLifeController::class, 'recipe_new'])->name('admin.recipe_new');
 Route::post('/admin/tastier_life/recipe/store', [TastierLifeController::class, 'recipe_save'])->name('admin.recipe_save');
+Route::post('/admin/tastier_life/recipe/delete', [TastierLifeController::class, 'recipe_delete']);
 Route::get('/admin/tastier_life/recipe/{id}', [TastierLifeController::class, 'recipe_edit'])->name('admin.recipe_edit');
 Route::get('/admin/tastier_life/chef/create', [TastierLifeController::class, 'chef_new'])->name('admin.chef_new');
 Route::post('/admin/tastier_life/chef/store', [TastierLifeController::class, 'chef_save'])->name('admin.chef_save');

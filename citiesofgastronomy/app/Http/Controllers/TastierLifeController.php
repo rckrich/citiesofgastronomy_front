@@ -42,12 +42,13 @@ class TastierLifeController extends Controller
         if($section == 'cat'){$searchCAT = $request->input("search_box_cat");}
 
         $page = $request->input("page");
+        $pageChef = $request->input("pageChef");
 
         if(!$page){ $page=1;};
         if(!$pageChef){ $pageChef=1;};
 
         $fields = array(
-            'searchRecipe' => $searchRecipe,
+            'search' => $searchRecipe,
             'searchChef' => $searchChef,
             'searchCAT' => $searchCAT,
             'page' => $page,
@@ -169,6 +170,27 @@ class TastierLifeController extends Controller
         return view('tastier_life.new_recipe',$inputs);    
     }
 
+    public function recipe_delete(Request $request)
+    {
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'recipe/delete/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("RECIPE DELETE ::");
+        Log::info($res);
+
+        return $res;
+    }
 
     public function recipe_save(Request $request){
         $id = $request->input("id");
@@ -259,7 +281,7 @@ class TastierLifeController extends Controller
         //*/
         
         Log::info("NEW RECIPE :: STORE");
-        Log::info($res);
+        //Log::info($res);
 
         return $res;
 

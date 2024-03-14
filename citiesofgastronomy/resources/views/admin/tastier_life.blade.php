@@ -30,12 +30,15 @@
                     </div>
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
+                        <form action="{{'/admin/tastier_life?section=recipes&page='.$page}}" method="POST" id="searchForm_recipe">
+                        @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
                             <input id="search_box_recipe" name="search_box_recipe" value="<?= $search_box_recipe?>" class="form-control me-2" type="search" placeholder="{{__('tastier_life.recipes.search_ph')}}" aria-label="{{__('tastier_life.recipes.search_ph')}}" aria-describedby="basic-addon1">
                             <input type="hidden" id="page" name="page" value="<?php if($search_box_recipe!=''){echo  $page;}else{echo '1';};?>">
                             <input type="hidden" id="pageActual" name="pageActual" value="<?php echo $page?>">
                         </div>
+                        </form>
                         </div>
                     </div>
                     <div class="row col-12 px-0 py-2">
@@ -67,7 +70,7 @@
                                     <a class="btn btn-link" href="{{route('admin.recipe_edit',['id'=>$re['id']])}}">{{__('tastier_life.btn_edit')}}</a>
                                 </td>                            
                                 <td class="col-auto my-auto">
-                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteRecipeModal">{{__('admin.btn_delete')}}
+                                    <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteRecipeModal" onclick="openDeleteModal_recipe({{$re['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
                             </tr>
                             @endforeach
@@ -214,11 +217,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="hidden" id="delete_data_recipe_id">
             <p>{{__('tastier_life.recipes.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary"  onclick="deleteRecipe()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -339,7 +343,38 @@ function paginatorRecipes(page){
         };
     };
 }
-
+function openDeleteModal_recipe(id){
+    document.getElementById("delete_data_recipe_id").value = id;
+}
+function deleteRecipe(){
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    datos.append('_token', token);
+    let data_id = document.getElementById("delete_data_recipe_id").value;
+    datos.append('id', data_id);
+    if(data_id){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/tastier_life/recipe/delete',
+            data: datos,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){},
+            success: function(msg){                    
+                closeModal('deleteRecipeModal');
+                if (msg.status===400) {
+                    alert("Error: " + msg.message);
+                    window.location = '/admin/tastier_life?section=recipes&page=1';
+                } 
+                else {
+                    alert('{{trans('tastier_life.chefs.delete_success')}}');
+                    window.location = '/admin/tastier_life?section=recipes&page=1';
+                }
+            }
+        });
+    }
+}
 
 //CHEFS
 
@@ -526,6 +561,20 @@ function deleteCategory(){
 </script>
 
 <script>
+    $("#search_box_recipe").keypress(function (e) {
+      var key = e.which;
+      if(key == 13)  // the enter key code
+      {
+        let keyword = $("#search_box_recipe").val();
+
+        if(keyword){
+            $('#searchForm_recipe').submit();
+        }
+        else{
+            window.location = '../../admin/tastier_life?section=recipes&page=1';
+        }
+      }
+     }); 
     $("#search_box_chef").keypress(function (e) {
       var key = e.which;
       if(key == 13)  // the enter key code
