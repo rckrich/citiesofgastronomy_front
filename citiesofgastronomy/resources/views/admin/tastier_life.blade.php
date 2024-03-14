@@ -298,7 +298,7 @@ $('#pills-categories-tab').on('click',function(){window.location = '/admin/tasti
 
 
 //RECIPES
-unction paginatorRecipes(page){
+function paginatorRecipes(page){
     let search = $("#search_box_recipe").val();
     let paginatorCant = '<?= $paginatorChefs?>';
     paginatorCant = parseInt(paginatorCant);
