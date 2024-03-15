@@ -2,33 +2,22 @@
 
 @extends('commons.base')
 
-<!--
-recipe
-    'id' => 12,
-    'name' => 'test frontss',
-    'photo' => 'storage/images/recipes/20240314190300YYHSedJge5.jpg',
-    'description' => '<p>w</p>',
-    'difficulty' => '1',
-    'prepTime' => '1',
-    'totalTime' => '1',
-    'servings' => '12 porciones',
-    'ingredients' => '<p>w</p>',
-    'preparations' => '<p>w</p>',
-    'votes' => NULL,
-    'chefName' => 'Federico Muro',
-    'categoryName' => 'Breakfast',
-    'cityName' => 'Chengdu',
--->
 @section('content')
 <section id="show_tastierlife">
     <div class="container p-lg-5 p-md-5 pb-md-3 p-sm-3 p-3">
         <div class="my-5 row px-0 mx-0 align-items-center">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <h5 class="title-sm mb-4">{{__('tastier_life.lorem_title')}}</h5>
-                <h6 class="data-sm py-2">{{__('tastier_life.lorem_desc')}}</h6>
-                <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_city')}}</b>{{__('tastier_life.lorem_city')}}</h6>
-                <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_cat')}}</b>{{__('tastier_life.lorem_cat')}}</h6>
-                <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_chef')}}</b>{{__('tastier_life.lorem_chef')}}</h6>
+                <h5 class="title-sm mb-4">{{$name}}</h5>
+                <h6 class="data-sm py-2">
+                {{
+                    str_replace(['<br />','&nbsp;'], ' ', 
+                        nl2br(htmlspecialchars_decode(strip_tags($description)))
+                    )
+                }}
+                </h6>
+                <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_city')}}</b>{{$cityName}}</h6>
+                <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_cat')}}</b>{{$categoryName}}</h6>
+                <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_chef')}}</b>{{$chefName}}</h6>
                 <div class="row align-items-start">
                     <div class="col-auto">
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
@@ -40,7 +29,7 @@ recipe
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5 mt-5">
-                <img src="{{asset('assets/img/Elements/sample2.png')}}" class="mx-auto my-auto w-100 br-9" alt="...">
+                <img src="{{config('app.url').$photo}}" class="mx-auto my-auto w-100 br-9" alt="...">
             </div>
         </div>
     </div>
@@ -58,7 +47,7 @@ recipe
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_difficulty')}}</b></p>                    
-                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_difficulty')}}</p>
+                            <p class="pb-2 mb-1 text-white data">{{$difficulty}}</p>
                         </div>
                     </div>                    
                     <div class="row pt-2 px-0 mx-0 align-items-start">
@@ -67,7 +56,7 @@ recipe
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_preptime')}}</b></p>
-                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_preptime')}}</p>
+                            <p class="pb-2 mb-1 text-white data">{{$prepTime}}</p>
                         </div>
                     </div>                  
                     <div class="row pt-2 px-0 mx-0 align-items-start">
@@ -76,7 +65,7 @@ recipe
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_totaltime')}}</b></p>
-                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_totaltime')}}</p>
+                            <p class="pb-2 mb-1 text-white data">{{$totalTime}}</p>
                         </div>
                     </div>                    
                     <div class="row pt-2 px-0 mx-0 align-items-start">
@@ -85,7 +74,7 @@ recipe
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_servings')}}</b></p>
-                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_servings')}}</p>
+                            <p class="pb-2 mb-1 text-white data">{{$servings}}</p>
                         </div>
                     </div>                    
                     <div class="row pt-2 px-0 mx-0 align-items-start">
@@ -94,18 +83,23 @@ recipe
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">        
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_ingredients')}}</b></p>
-                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_ingredients1')}}</p>
-                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_ingredients2')}}</p>
-                            <p class="pb-2 mb-1 text-white data">{{__('tastier_life.lorem_ingredients3')}}</p>
+                            <p class="pb-2 mb-1 text-white data">
+                            {{
+                                str_replace(['<br />','&nbsp;'], ' ', 
+                                    nl2br(htmlspecialchars_decode(strip_tags($ingredients)))
+                                )
+                            }}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
-                <p class="py-2 data ">{{__('tastier_life.lorem_text0')}}</p>
-                <p class="py-2 data ">{{__('tastier_life.lorem_text1')}}</p>
-                <p class="py-2 data ">{{__('tastier_life.lorem_text2')}}</p>
-                <p class="py-2 data ">{{__('tastier_life.lorem_text3')}}</p>
+                <p class="py-2 data ">{{
+                    str_replace(['<br />','&nbsp;'], ' ', 
+                        nl2br(htmlspecialchars_decode(strip_tags($preparations)))
+                    )
+                }}</p>
             </div>
         </div>
     </div>
@@ -117,34 +111,20 @@ recipe
             </div>
         </div>
         <div class="row align-items-center mb-5">
-        <div class="row mx-0 p-0 max-height-gallery" data-lightbox="gallery">
-            
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
-                <a class="grid-item" href="{{asset('assets/img/Elements/sample2.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('assets/img/Elements/sample2.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
-                </a>
+            @if($gallery)
+            <div class="row mx-0 p-0 max-height-gallery" data-lightbox="gallery">
+                @foreach($gallery as $img)
+                <div class="col-lg-3 col-md-6 col-sm-6 col-6 p-2">
+                    <a class="grid-item" href="{{config('app.url').$img['image']}}" data-lightbox="gallery-item" >
+                        <img src="{{config('app.url').$img['image']}}" alt="Gallery Image" class="gallery-img" />
+                    </a>
+                </div>
+                @endforeach
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
-                <a class="grid-item" href="{{asset('assets/img/Elements/sample2.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('assets/img/Elements/sample2.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
-                </a>
+            @else
+            <p class="">{{__('general.no_gallery')}}</p>
+            @endif
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
-                <a class="grid-item" href="{{asset('assets/img/Elements/sample2.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('assets/img/Elements/sample2.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
-                <a class="grid-item" href="{{asset('assets/img/Elements/sample2.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('assets/img/Elements/sample2.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 p-2">
-                <a class="grid-item" href="{{asset('assets/img/Elements/sample2.png')}}" data-lightbox="gallery-item" >
-                    <img src="{{asset('assets/img/Elements/sample2.png')}}" alt="Gallery Image" class="gallery-img w-100 h-100" />
-                </a>
-            </div>
-        </div>
         </div>
         
         <div class="w-100 bb-orange py-5"></div>
@@ -155,7 +135,7 @@ recipe
         <div class="row align-items-center data-sm text-orange pb-5">
             <b class="col-auto pe-5">{{__('general.share')}}</b>
             <div class="col-auto px-2 fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
-                <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('tastier_life.view')}}">
+                <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('tastier_life.view',['id'=>$id])}}">
                     <img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/>
                 </a>
             </div>       
