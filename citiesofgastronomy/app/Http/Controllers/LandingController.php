@@ -227,10 +227,17 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("TASTIER LIFE ::");
-        Log::info($res["banner"]);
+        //Log::info($res);
 
         $inputs = [];
-        $inputs["tastierLife"] = $res["tastierLife"];
+        $inputs["recipes"] = $res["recipes"];  
+        $inputs["chefsList"] = $res["chef"];
+        $inputs["citiesList"] = $res["cities"];
+        $inputs["categoriesList"] = $res["categories"];
+        $inputs["selectedChef"] = 'default';
+        $inputs["selectedCat"] = 'default';
+        $inputs["selectedCity"] = 'default';
+        
         $inputs["banners"] = $res["banner"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];

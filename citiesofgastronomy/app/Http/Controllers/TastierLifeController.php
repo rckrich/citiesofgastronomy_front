@@ -8,25 +8,52 @@ use Illuminate\Support\Facades\Log;
 
 class TastierLifeController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $url = config('app.apiUrl').'home';
+        $url_home = config('app.apiUrl').'home';
+        $curl_home = curl_init();
+        curl_setopt($curl_home, CURLOPT_URL, $url_home);
+        curl_setopt($curl_home, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl_home, CURLOPT_HEADER, false);
+        $data_home = curl_exec($curl_home);
+        curl_close($curl_home);
+        $res_home = json_decode( $data_home, true);
+
+        $url = config('app.apiUrl').'recipe/show/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
         $data = curl_exec($curl);
         curl_close($curl);
+
         $res = json_decode( $data, true);
-        //Log::info("DAtta Result-- ::");
+
+        Log::info("#TASTIER LIFE :: VIEW");
+        //Log::info($res);
 
         $inputs = [];
-        $inputs["bannerAbout"] = $res["bannerAbout"];
-        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
-        //Log::info($inputs);
-        $inputs["cityList"] = $res["cities"];
-        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
-        $inputs["info"] = $res["info"];
+        $inputs["SocialNetworkType"] = $res_home["SocialNetworkType"];
+        $inputs["info"] = $res_home["info"];
+
+        $inputs["id"] = $id;
+        $inputs["name"] = $res['Recipes']['name'];
+        $inputs["photo"] = $res['Recipes']['photo'];
+        $inputs["description"] = $res['Recipes']['description'];
+        $inputs["difficulty"] = $res['Recipes']['difficulty'];
+        $inputs["prepTime"] = $res['Recipes']['prepTime'];
+        $inputs["totalTime"] = $res['Recipes']['totalTime'];
+        $inputs["servings"] = $res['Recipes']['servings'];
+        $inputs["ingredients"] = $res['Recipes']['ingredients'];
+        $inputs["preparations"] = $res['Recipes']['preparations'];
+        $inputs["votes"] = $res['Recipes']['votes'];
+        $inputs["chefName"] = $res['Recipes']['chefName'];
+        $inputs["categoryName"] = $res['Recipes']['categoryName'];
+        $inputs["cityName"] = $res['Recipes']['cityName'];
+        $inputs["gallery"] = $res['Gallery'];
+        Log::info($inputs);
+
+
         return view('tastier_life.show',$inputs);
     } 
 
@@ -170,28 +197,6 @@ class TastierLifeController extends Controller
         return view('tastier_life.new_recipe',$inputs);    
     }
 
-    public function recipe_delete(Request $request)
-    {
-        $id = $request->input("id");
-        $dattaSend = [];
-
-        $url = config('app.apiUrl').'recipe/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
-
-        $res = json_decode( $data, true);
-        Log::info("RECIPE DELETE ::");
-        Log::info($res);
-
-        return $res;
-    }
-
     public function recipe_save(Request $request){
         $id = $request->input("id");
         $name = $request->input("data_name");
@@ -287,17 +292,30 @@ class TastierLifeController extends Controller
 
     }
 
-    public function chef_new()
+    public function recipe_delete(Request $request)
     {
-        $url = config('app.apiUrl').'generalDatta';
+        $id = $request->input("id");
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'recipe/delete/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
         $data = curl_exec($curl);
         curl_close($curl);
 
         $res = json_decode( $data, true);
+        Log::info("RECIPE DELETE ::");
+        //Log::info($res);
+
+        return $res;
+    }
+
+    public function chef_new()
+    {
         Log::info("NEW CHEF :: RESPONSE");
         //Log::info($res);
 

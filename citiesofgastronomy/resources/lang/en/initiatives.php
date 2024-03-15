@@ -25,6 +25,14 @@ return [
     'lorem_sdg'=>'Promote inclusive and sustainable economic growth, employment and decent work for all, Revitalize the global partnership for sustainable development.',
     'data_author'=>'Author',
     'lorem_author'=>'Author 1',
+    'user'=>[
+        'select_city'=>'Cities',
+        'select_activity'=>'Type of Activity',
+        'select_topic'=>'Topics',
+        'select_sdg'=>'SDG',
+        'select_connection'=>'Connection to other creative fields',
+        ''=>'',
+    ],
     'view'=>[
         'links'=>'Related Links:',
     ],

@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <select class="form-control filter-select" name="select_city_filter">
                         <option <?php if($search_inputs['city']=='default'){echo 'selected';}?>
-                            value="default">Cities</option>
+                            value="default">{{__('initiatives.user.select_city')}}</option>
                         @foreach($cities as $city)
                         <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" <?php if($search_inputs['city']==$city['id']){echo 'selected';}?> 
                             value="{{$city['id']}}">{{$city['name']}}, {{$city['country']}}</option>
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <select class="form-control filter-select" name="select_activity_filter">
                         <option <?php if($search_inputs['actype']=='default'){echo 'selected';}?>
-                            value="default">Type of Activity{{__('initiatives.init.select_activity')}}</option>
+                            value="default">{{__('initiatives.user.select_activity')}}</option>
                         @foreach($typeOfActivity as $actype)
                         <option id="filter-{{$actype['id']}}" name="filter-{{$actype['id']}}" <?php if($search_inputs['actype']==$actype['id']){echo 'selected';}?> 
                             value="{{$actype['id']}}">{{$actype['name']}}</option>
@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <select class="form-control filter-select" name="select_topic_filter">
                         <option <?php if($search_inputs['topic']=='default'){echo 'selected';}?>  
-                            value="default">Topics {{__('initiatives.init.select_topic')}}</option>
+                            value="default">{{__('initiatives.user.select_topic')}}</option>
                         @foreach($Topics as $topic)
                         <option id="filter-{{$topic['id']}}" name="filter-{{$topic['id']}}" <?php if($search_inputs['topic']==$topic['id']){echo 'selected';}?> 
                             value="{{$topic['id']}}">{{$topic['name']}}</option>
@@ -78,7 +78,7 @@
                 <div class="form-group">
                     <select class="form-control filter-select" name="select_sdg_filter">
                         <option <?php if($search_inputs['sdg']=='default'){echo 'selected';}?>  
-                            value="default">SDG{{__('initiatives.init.select_sdg')}}</option>
+                            value="default">{{__('initiatives.user.select_sdg')}}</option>
                         @foreach($sdgs as $sdg)
                         <option id="filter-{{$sdg['id']}}" name="filter-{{$sdg['id']}}" <?php if($search_inputs['sdg']==$sdg['id']){echo 'selected';}?> 
                             value="{{$sdg['id']}}">{{$sdg['number']}} - {{$sdg['name']}}</option>
@@ -90,7 +90,7 @@
                 <div class="form-group">
                     <select class="form-control filter-select" name="select_connection_filter">
                         <option <?php if($search_inputs['connection']=='default'){echo 'selected';}?> 
-                            value="default">Connection to other creative fields{{__('initiatives.init.select_connection')}}</option>
+                            value="default">{{__('initiatives.user.select_connection')}}</option>
                         @foreach($ConnectionsToOther as $cn)
                         <option id="filter-{{$cn['id']}}" name="filter-{{$cn['id']}}" <?php if($search_inputs['connection']==$cn['id']){echo 'selected';}?>
                             value="{{$cn['id']}}">{{$cn['name']}}</option>

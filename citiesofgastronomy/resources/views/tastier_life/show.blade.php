@@ -2,6 +2,23 @@
 
 @extends('commons.base')
 
+<!--
+recipe
+    'id' => 12,
+    'name' => 'test frontss',
+    'photo' => 'storage/images/recipes/20240314190300YYHSedJge5.jpg',
+    'description' => '<p>w</p>',
+    'difficulty' => '1',
+    'prepTime' => '1',
+    'totalTime' => '1',
+    'servings' => '12 porciones',
+    'ingredients' => '<p>w</p>',
+    'preparations' => '<p>w</p>',
+    'votes' => NULL,
+    'chefName' => 'Federico Muro',
+    'categoryName' => 'Breakfast',
+    'cityName' => 'Chengdu',
+-->
 @section('content')
 <section id="show_tastierlife">
     <div class="container p-lg-5 p-md-5 pb-md-3 p-sm-3 p-3">

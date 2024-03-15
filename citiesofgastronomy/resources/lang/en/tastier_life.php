@@ -29,6 +29,12 @@ return [
     'lorem_ingredients3'=>'Ingredient 3',  
     '' => '',
 
+    'user'=>[
+        'select_chef' => 'Chef Name',
+        'select_city' => 'City',
+        'select_cat' => 'Category',
+        '' => '',
+    ],
     'recipes'=>[
         'title'=>'Recipes',
         'admin_title_1'=>'Tastier life/',

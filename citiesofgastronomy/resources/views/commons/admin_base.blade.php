@@ -57,10 +57,10 @@
                     <a class="nav-link" href="{{route('admin.cities')}}">{{__('admin.nav_cities')}}</a>
                 </li>
                 <li id="nav_initiatives" class="nav-item {{ request()->routeIs('admin.initiatives') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('admin.initiatives')}}">{{__('admin.nav_initiatives')}}</a>
+                    <a class="nav-link" href="{{route('admin.initiatives.in')}}">{{__('admin.nav_initiatives')}}</a>
                 </li>
                 <li id="nav_initiatives" class="nav-item {{ request()->routeIs('admin.tastier_life') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('admin.tastier_life')}}">{{__('admin.nav_tastier_life')}}</a>
+                    <a class="nav-link" href="{{route('admin.tastier_life.recipes')}}">{{__('admin.nav_tastier_life')}}</a>
                 </li>
                 <li id="nav_tours" class="nav-item {{ request()->routeIs('admin.tours') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.tours')}}">{{__('admin.nav_tours')}}</a>

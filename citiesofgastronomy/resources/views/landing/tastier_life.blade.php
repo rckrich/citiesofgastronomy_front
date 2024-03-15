@@ -32,28 +32,51 @@
             </div>
         </div>
 
-        @include('commons.work_in_progress')
-
-        <!--div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
+        <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option id="filter-" name="filter-" value="0">Category</option>
+                    <select id="data_chef" name="data_chef" class="form-control" placeholder="">
+                        <option <?php if($selectedChef=='default'){echo 'selected';}?> 
+                            value="default">{{__('tastier_life.user.select_chef')}}
+                        </option>
+                        @foreach($chefsList as $chef)
+                        <option id="filter-{{$chef['id']}}" name="filter-{{$chef['id']}}" 
+                            <?php if($selectedChef==$chef['id']){echo 'selected';}?> 
+                            value="{{$chef['id']}}">{{$chef['name']}}
+                        </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option id="filter-" name="filter-" value="0">City</option>
+                    <select id="data_city" name="data_city" class="form-control" placeholder="">
+                        <option <?php if($selectedCity=='default'){echo 'selected';}?> 
+                            value="default">{{__('tastier_life.user.select_city')}}
+                        </option>
+                        @foreach($citiesList as $city)
+                        <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" 
+                            <?php if($selectedCity==$city['id']){echo 'selected';}?> 
+                            value="{{$city['id']}}">{{$city['name']}}
+                        </option>
+                        @endforeach
                     </select>
+
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option id="filter-" name="filter-" value="0">Chef Name</option>
+                    <select id="data_cat" name="data_cat" class="form-control" placeholder="">
+                        <option <?php if($selectedCat=='default'){echo 'selected';}?> 
+                            value="default">{{__('tastier_life.user.select_cat')}}
+                        </option>
+                        @foreach($categoriesList as $cat)
+                        <option id="filter-{{$cat['id']}}" name="filter-{{$cat['id']}}" 
+                            <?php if($selectedCat==$cat['id']){echo 'selected';}?> 
+                            value="{{$cat['id']}}">{{$cat['name']}}
+                        </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -65,59 +88,28 @@
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row g-4">
+            @foreach($recipes as $re)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
+                        <a href="{{route('tastier_life.view',['id'=>$re['id']])}}" class="img-link">
+                            @if($re['photo']!=null || $re['photo'] != '')
+                            <img src="{{config('app.url').$re['photo']}}" class="card-img-top" alt="...">
+                            @else
+                            <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
+                            @endif
+                        </a>
                         <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tastier_life.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
+                            <h5 class="card-title mb-2">{{$re['name']}}</h5>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>{{$re['chefName']}}</p>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>{{$re['cityName']}}</p>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>{{$re['categoryName']}}</p>
+                            <a href="{{route('tastier_life.view',['id'=>$re['id']])}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tastier_life.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tastier_life.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tastier_life.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_chef')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tastier_life.data_cat')}}</b>Name</p>
-                            <a href="{{route('tastier_life.view')}}" class="btn btn-link px-0">{{__('tastier_life.btn_more')}}</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
+            @endforeach
             </div>
-        </div-->
+        </div>
 
     </section>
 @endsection
