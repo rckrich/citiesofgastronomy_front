@@ -8,13 +8,7 @@
         <div class="my-5 row px-0 mx-0 align-items-center">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h5 class="title-sm mb-4">{{$name}}</h5>
-                <h6 class="data-sm py-2">
-                {{
-                    str_replace(['<br />','&nbsp;'], ' ', 
-                        nl2br(htmlspecialchars_decode(strip_tags($description)))
-                    )
-                }}
-                </h6>
+                <h6 class="data-sm py-2">{!! $description !!}</h6>
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_city')}}</b>{{$cityName}}</h6>
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_cat')}}</b>{{$categoryName}}</h6>
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_chef')}}</b>{{$chefName}}</h6>
@@ -83,23 +77,16 @@
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">        
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_ingredients')}}</b></p>
-                            <p class="pb-2 mb-1 text-white data">
-                            {{
-                                str_replace(['<br />','&nbsp;'], ' ', 
-                                    nl2br(htmlspecialchars_decode(strip_tags($ingredients)))
-                                )
-                            }}
-                            </p>
+                            <p class="pb-2 mb-1 text-white data">{!! $ingredients !!}</p>
+                            <div class="row px-0">
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
-                <p class="py-2 data ">{{
-                    str_replace(['<br />','&nbsp;'], ' ', 
-                        nl2br(htmlspecialchars_decode(strip_tags($preparations)))
-                    )
-                }}</p>
+                <p class="py-2 data ">{!! $preparations !!}</p>
             </div>
         </div>
     </div>

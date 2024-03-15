@@ -51,7 +51,7 @@ class TastierLifeController extends Controller
         $inputs["categoryName"] = $res['Recipes']['categoryName'];
         $inputs["cityName"] = $res['Recipes']['cityName'];
         $inputs["gallery"] = $res['Gallery'];
-        Log::info($inputs);
+        //Log::info($inputs);
 
 
         return view('tastier_life.show',$inputs);
