@@ -46,12 +46,14 @@ class TastierLifeController extends Controller
         $inputs["servings"] = $res['Recipes']['servings'];
         $inputs["ingredients"] = $res['Recipes']['ingredients'];
         $inputs["preparations"] = $res['Recipes']['preparations'];
-        $inputs["votes"] = $res['Recipes']['votes'];
+        $votes = $res['Recipes']['votes'];
+        $inputs["votes"] = 0;
+        if($votes != null){$inputs["votes"] = $votes;}
         $inputs["chefName"] = $res['Recipes']['chefName'];
         $inputs["categoryName"] = $res['Recipes']['categoryName'];
         $inputs["cityName"] = $res['Recipes']['cityName'];
         $inputs["gallery"] = $res['Gallery'];
-        //Log::info($inputs);
+        Log::info($inputs);
 
 
         return view('tastier_life.show',$inputs);
@@ -290,6 +292,27 @@ class TastierLifeController extends Controller
 
         return $res;
 
+    }
+
+    public function recipe_vote($id)
+    {
+        $dattaSend = [];
+
+        $url = config('app.apiUrl').'recipe/vote/'.$id;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("RECIPE VOTE ::");
+        Log::info($res);
+
+        return $res;
     }
 
     public function recipe_delete(Request $request)

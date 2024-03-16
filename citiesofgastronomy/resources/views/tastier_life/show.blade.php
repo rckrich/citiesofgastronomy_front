@@ -78,15 +78,20 @@
                         <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">        
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_ingredients')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{!! $ingredients !!}</p>
-                            <div class="row px-0">
-
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
                 <p class="py-2 data ">{!! $preparations !!}</p>
+                <div class="row px-0">
+                    <div class="col-2 mx-auto">
+                        <button class="btn btn-primary w-100" onclick="vote({{$id}})">{{__('admin.btn_vote')}}</button>
+                    </div>
+                    <div class="col-2 mx-auto">
+                        <div class="bg-orange w-100">{{$votes}} - {{trans_choice('tastier_life.data_votes',['num' => $votes])}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -134,4 +139,29 @@
 
 
 </section>
+
+<script>
+    function vote(data_id){
+        if(data_id){
+            $.ajax({
+                type: 'GET',
+                url: '/admin/tastier_life/recipe/vote/'+data_id,
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function(){},
+                success: function(msg){                  
+                    if (msg.status===400) {
+                        alert("Error: " + msg.message);
+                    } 
+                    else {
+                        let counterKey = 'voteCounter_' + id;
+                        localStorage.setItem(counterKey, <?php $votes==null?0:$votes ?> + 1);
+                        <?php $votes=$votes+1?>
+                    }
+                }
+            });
+        }
+    }
+</script>
 @endsection
