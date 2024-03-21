@@ -20,7 +20,7 @@
                 <input type="hidden" id="id" name="id" value="<?= $id?>">
                 <div class="form-group py-2">
                     <label class="form-label" for="data_name">{{__('tastier_life.chefs.data_name')}}</label>
-                    <input id="data_name" name="data_name" class="form-control" value="<?= $data_name?>" placeholder="{{__('tastier_life.chefs.ph_name')}}"/>
+                    <input type="text" id="data_name" name="data_name" class="form-control" value="<?= $data_name?>" placeholder="{{__('tastier_life.chefs.ph_name')}}"/>
                     <div id="validation_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                 </div>
                 <div class="col-12 px-0 my-2">
@@ -28,27 +28,27 @@
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="facebook_link">{{__('tastier_life.chefs.data_facebook')}}</label>
-                    <input id="facebook_link" name="facebook_link" class="form-control" value="<?= $facebook_link?>" placeholder="{{__('tastier_life.chefs.ph_facebook')}}"/>
+                    <input type="url" id="facebook_link" name="facebook_link" class="form-control" value="<?= $facebook_link?>" placeholder="{{__('tastier_life.chefs.ph_facebook')}}"/>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="twitter_link">{{__('tastier_life.chefs.data_twitter')}}</label>
-                    <input id="twitter_link" name="twitter_link" class="form-control" value="<?= $twitter_link?>" placeholder="{{__('tastier_life.chefs.ph_twitter')}}"/>
+                    <input type="url" id="twitter_link" name="twitter_link" class="form-control" value="<?= $twitter_link?>" placeholder="{{__('tastier_life.chefs.ph_twitter')}}"/>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="linkedin_link">{{__('tastier_life.chefs.data_linkedin')}}</label>
-                    <input id="linkedin_link" name="linkedin_link" class="form-control" value="<?= $linkedin_link?>" placeholder="{{__('tastier_life.chefs.ph_linkedin')}}"/>
+                    <input type="url" id="linkedin_link" name="linkedin_link" class="form-control" value="<?= $linkedin_link?>" placeholder="{{__('tastier_life.chefs.ph_linkedin')}}"/>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="instagram_link">{{__('tastier_life.chefs.data_instagram')}}</label>
-                    <input id="instagram_link" name="instagram_link" class="form-control" value="<?= $instagram_link?>" placeholder="{{__('tastier_life.chefs.ph_instagram')}}"/>
+                    <input type="url" id="instagram_link" name="instagram_link" class="form-control" value="<?= $instagram_link?>" placeholder="{{__('tastier_life.chefs.ph_instagram')}}"/>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="tiktok_link">{{__('tastier_life.chefs.data_tiktok')}}</label>
-                    <input id="tiktok_link" name="tiktok_link" class="form-control" value="<?= $tiktok_link?>" placeholder="{{__('tastier_life.chefs.ph_tiktok')}}"/>
+                    <input type="url" id="tiktok_link" name="tiktok_link" class="form-control" value="<?= $tiktok_link?>" placeholder="{{__('tastier_life.chefs.ph_tiktok')}}"/>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="youtube_link">{{__('tastier_life.chefs.data_youtube')}}</label>
-                    <input id="youtube_link" name="youtube_link" class="form-control" value="<?= $youtube_link?>" placeholder="{{__('tastier_life.chefs.ph_youtube')}}"/>
+                    <input type="url" id="youtube_link" name="youtube_link" class="form-control" value="<?= $youtube_link?>" placeholder="{{__('tastier_life.chefs.ph_youtube')}}"/>
                 </div>
                 <div class="row form-group py-5">
                     <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life')}}?section=chefs&pageChef=1" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>

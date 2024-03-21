@@ -30,7 +30,7 @@ class TastierLifeController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#TASTIER LIFE :: VIEW");
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["SocialNetworkType"] = $res_home["SocialNetworkType"];
@@ -172,7 +172,7 @@ class TastierLifeController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("EDIT RECIPE :: RESPONSE");
-        //Log::info($res);
+        Log::info($res);
 
         $recipe = $res['Recipes'];
 
@@ -193,8 +193,8 @@ class TastierLifeController extends Controller
         $inputs["servings"] = $recipe['servings'];
         $inputs["ingredients"] = $recipe['ingredients'];
         $inputs["preparations"] = $recipe['preparations'];
-        $inputs["isActive"] = $recipe['active'];
-        $inputs["votes"] = $recipe['vote'];
+        //$inputs["isActive"] = $recipe['active'];
+        //$inputs["votes"] = $recipe['vote'];
         $inputs["gallery"] = $res['Gallery'];
 
         return view('tastier_life.new_recipe',$inputs);    
