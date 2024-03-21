@@ -30,7 +30,7 @@ class TastierLifeController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#TASTIER LIFE :: VIEW");
-        //Log::info($res);
+        Log::info($res);
 
         $inputs = [];
         $inputs["SocialNetworkType"] = $res_home["SocialNetworkType"];
@@ -52,8 +52,9 @@ class TastierLifeController extends Controller
         $inputs["chefName"] = $res['Recipes']['chefName'];
         $inputs["categoryName"] = $res['Recipes']['categoryName'];
         $inputs["cityName"] = $res['Recipes']['cityName'];
+        $inputs["socialMedia"] = $res['Recipes']['socialMedia'];
         $inputs["gallery"] = $res['Gallery'];
-        Log::info($inputs);
+        //Log::info($inputs);
 
 
         return view('tastier_life.show',$inputs);

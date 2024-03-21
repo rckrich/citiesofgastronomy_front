@@ -14,11 +14,14 @@
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_chef')}}</b>{{$chefName}}</h6>
                 <div class="row align-items-start">
                     <div class="col-auto">
-                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
+                        @foreach($socialMedia as $s)
+                        <a href="{{$s['value']}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/'.$s['icon'])}}" height="25" width="25"/></a>
+                        @endforeach
+                        <!--a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="19" width="23"/></a>
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
-                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/tiktok.svg')}}" height="19" width="23"/></a>
+                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/tiktok.svg')}}" height="19" width="23"/></a-->
                     </div>
                 </div>
             </div>
