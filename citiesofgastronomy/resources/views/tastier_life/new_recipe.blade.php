@@ -390,7 +390,7 @@
                     document.getElementById("data_name").className =  'form-control is-invalid';
                     document.getElementById("data_name_validation").style.display =  'block';
                 };
-                if(photo==''){
+                if(photo=='' && id==''){
                     //document.getElementById("photo").className =  'form-control is-invalid';
                     document.getElementById("photo_validation").style.display =  'block';
                 };
