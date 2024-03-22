@@ -213,7 +213,6 @@ class LandingController extends Controller
 
     }
 
-
     public function tastier_life()
     {
 
@@ -244,6 +243,60 @@ class LandingController extends Controller
 
         return view('landing.tastier_life', $inputs);
     }
+
+    public function tastierLife_search(Request $request)
+    {
+
+        $data_chef = $request->input("data_chef");
+        $data_city = $request->input("data_city");
+        $data_cat = $request->input("data_cat");
+
+        Log::info("TASTIER LIFE SEARCH :: chef-".$data_chef." / city-".$data_city." / category-".$data_cat);
+
+
+        $fields = array(
+            'search' => '',
+            'searchChef' => '',
+            'searchCAT' => '',
+            'page' => '',
+            'pageChef' => '',
+            'recipeChefFilter'=>($data_chef != 'default' ? $data_chef : ''),
+            'recipeCityFilter'=>($data_city != 'default' ? $data_city : ''),
+            'recipeCategoryFilter'=>($data_cat != 'default' ? $data_cat : '')
+        );
+
+        $fields_string = http_build_query($fields);       
+
+        $url = config('app.apiUrl').'tastierLife';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        //Log::info($res);
+
+        $inputs = [];
+        $inputs["recipes"] = $res["recipes"];  
+        $inputs["chefsList"] = $res["chef"];
+        $inputs["citiesList"] = $res["cities"];
+        $inputs["categoriesList"] = $res["categories"];
+        $inputs["selectedChef"] = $data_chef;
+        $inputs["selectedCity"] = $data_city;
+        $inputs["selectedCat"] = $data_cat;
+        
+        $inputs["banners"] = $res["banner"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"]; 
+
+        return view('landing.tastier_life', $inputs);
+
+    }
+
     public function tours()
     {
 

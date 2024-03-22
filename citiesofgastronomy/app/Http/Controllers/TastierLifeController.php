@@ -83,6 +83,9 @@ class TastierLifeController extends Controller
             'searchCAT' => $searchCAT,
             'page' => $page,
             'pageChef' => $pageChef,
+            'recipeCategoryFilter'=>'',
+            'recipeChefFilter'=>'',
+            'recipeCityFilter'=>'',
         );
 
         $fields_string = http_build_query($fields);

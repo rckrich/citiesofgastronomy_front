@@ -34,7 +34,9 @@
 
         <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
         <div class="row g-4">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1">
+        <form action="{{url('/tastier_life')}}" method="POST" id="searchForm_tl" class="d-contents">
+        @csrf
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 my-3">
                 <div class="form-group">
                     <select id="data_chef" name="data_chef" class="form-control" placeholder="">
                         <option <?php if($selectedChef=='default'){echo 'selected';}?> 
@@ -43,13 +45,13 @@
                         @foreach($chefsList as $chef)
                         <option id="filter-{{$chef['id']}}" name="filter-{{$chef['id']}}" 
                             <?php if($selectedChef==$chef['id']){echo 'selected';}?> 
-                            value="{{$chef['id']}}">{{$chef['name']}}
+                            value="{{$chef['id']}}">{{$chef['id']}}-{{$chef['name']}}
                         </option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
                     <select id="data_city" name="data_city" class="form-control" placeholder="">
                         <option <?php if($selectedCity=='default'){echo 'selected';}?> 
@@ -65,7 +67,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
                     <select id="data_cat" name="data_cat" class="form-control" placeholder="">
                         <option <?php if($selectedCat=='default'){echo 'selected';}?> 
@@ -80,8 +82,16 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6 ps-lg-1 pe-lg-2 px-md-1 px-sm-1 px-1">
-                <button class="btn btn-info w-100 h-100">Filter posts</button>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6 ps-lg-1 pe-lg-2 px-md-1 px-sm-1 px-1 my-3">
+                <button type="submit" class="btn btn-info w-100 h-100">Filter posts</button>
+            </div>
+        </form>
+        </div>
+        <div id="clear-filters-btn" class="row d-none">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 mb-3 text-left">
+                <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="reloadPage()">
+                    {{__('general.clear_filters')}}  X
+                </label>
             </div>
         </div>
         </div>
@@ -112,4 +122,21 @@
         </div>
 
     </section>
+
+    <script>
+        $(document).ready(function(e){
+            let chef = "<?= $selectedChef?>";
+            let cat = "<?= $selectedCat?>";
+            let city = "<?= $selectedCity?>";
+
+            if(chef !='default' || cat != 'default' || city != 'default'){
+                showResetFilterButton();
+            }
+            else{hideResetFilterButton();}
+        });
+        
+        function reloadPage(){
+            window.location = '../../tastier_life';
+        }
+    </script>
 @endsection

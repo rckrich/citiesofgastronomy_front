@@ -160,7 +160,7 @@
                             @endfor
                             <input type="hidden" id="cant_gallery" name="cant_gallery" value="<?= $i?>">
                             @else
-                            <input type="hidden" id="cant_gallery" name="cant_gallery" value="1">
+                            <input type="hidden" id="cant_gallery" name="cant_gallery" value="0">
                             @endif
 
 
