@@ -270,7 +270,7 @@
         padre3[1].id = 'plusIMG' + nuevovalor;
         padre3[1].name = 'plusIMG' + nuevovalor;
         var jss1 = "deletefuncion('"+nuevovalor+"', 'imageTBL', 'deleteImage')";
-        padre3[0].setAttribute("onchange", jss1);
+        padre3[0].setAttribute("onclick", jss1);
 
         let padre4 = document.getElementById(nuevaid).getElementsByTagName("img");
         padre4[1].id = 'thumbImage' + nuevovalor;
