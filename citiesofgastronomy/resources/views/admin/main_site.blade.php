@@ -63,11 +63,11 @@
                             <input id="<?= $info[$i]["key"]?>" name="<?= $info[$i]["key"]?>" class="form-control"
                                 value="<?php echo $info[$i]["value"] ?>" placeholder="{{__('admin.main_site.clusters.coordinator_ph')}}"/>
                             <?php if($info[$i]["key"] == 'clusterMail'){?>
-                                <div id="validation_clustermail" class="invalid-feedback" style="display: none;">Incorrect Email format</div>
+                                <div id="validation_clustermail" class="invalid-feedback" style="display: none;">{{__('admin.email_format_error')}}</div>
                             <?php }else if($info[$i]["key"] == 'clusterContactCities'){?>
-                                <div id="validation_clusterurl" class="invalid-feedback" style="display: none;">Incorrect URL format</div>
+                                <div id="validation_clusterurl" class="invalid-feedback" style="display: none;">{{__('admin.url_format_error')}}</div>
                             <?php }else if($info[$i]["key"] == 'coordinator'){?>
-                                <div id="validation_clustergeneral" class="invalid-feedback" style="display: none;">This information is required</div>
+                                <div id="validation_clustergeneral" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                             <?php };?>
                         </div>
                         @endfor

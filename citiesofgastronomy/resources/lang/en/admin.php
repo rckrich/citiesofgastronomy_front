@@ -24,6 +24,8 @@ return [
     'btn_vote'=>'VOTE',
 
     'obligatory_field'=>'Obligatory field',
+    'email_format_error'=>'Incorrect Email format',
+    'url_format_error'=>'Incorrect URL format',
 
 
     'main_site'=>[

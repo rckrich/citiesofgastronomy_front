@@ -29,26 +29,32 @@
                 <div class="form-group py-2">
                     <label class="form-label" for="facebook_link">{{__('tastier_life.chefs.data_facebook')}}</label>
                     <input type="url" id="facebook_link" name="facebook_link" class="form-control" value="<?= $facebook_link?>" placeholder="{{__('tastier_life.chefs.ph_facebook')}}"/>
+                    <div id="validation_facebook" class="invalid-feedback">{{__('admin.url_format_error')}}</div>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="twitter_link">{{__('tastier_life.chefs.data_twitter')}}</label>
                     <input type="url" id="twitter_link" name="twitter_link" class="form-control" value="<?= $twitter_link?>" placeholder="{{__('tastier_life.chefs.ph_twitter')}}"/>
+                    <div id="validation_twitter" class="invalid-feedback">{{__('admin.url_format_error')}}</div>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="linkedin_link">{{__('tastier_life.chefs.data_linkedin')}}</label>
                     <input type="url" id="linkedin_link" name="linkedin_link" class="form-control" value="<?= $linkedin_link?>" placeholder="{{__('tastier_life.chefs.ph_linkedin')}}"/>
+                    <div id="validation_linkedin" class="invalid-feedback">{{__('admin.url_format_error')}}</div>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="instagram_link">{{__('tastier_life.chefs.data_instagram')}}</label>
                     <input type="url" id="instagram_link" name="instagram_link" class="form-control" value="<?= $instagram_link?>" placeholder="{{__('tastier_life.chefs.ph_instagram')}}"/>
+                    <div id="validation_instagram" class="invalid-feedback">{{__('admin.url_format_error')}}</div>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="tiktok_link">{{__('tastier_life.chefs.data_tiktok')}}</label>
                     <input type="url" id="tiktok_link" name="tiktok_link" class="form-control" value="<?= $tiktok_link?>" placeholder="{{__('tastier_life.chefs.ph_tiktok')}}"/>
+                    <div id="validation_tiktok" class="invalid-feedback">{{__('admin.url_format_error')}}</div>
                 </div>
                 <div class="form-group py-2">
                     <label class="form-label" for="youtube_link">{{__('tastier_life.chefs.data_youtube')}}</label>
                     <input type="url" id="youtube_link" name="youtube_link" class="form-control" value="<?= $youtube_link?>" placeholder="{{__('tastier_life.chefs.ph_youtube')}}"/>
+                    <div id="validation_youtube" class="invalid-feedback">{{__('admin.url_format_error')}}</div>
                 </div>
                 <div class="row form-group py-5">
                     <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life')}}?section=chefs&pageChef=1" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
@@ -72,9 +78,33 @@
         let tiktok_link = document.getElementById("tiktok_link").value;
         let youtube_link = document.getElementById("youtube_link").value;
 
-        document.getElementById("validation_name").style.display = 'none';
+        let is_valid_name = false; //only name is mandatory
+        let is_valid_facebook = true;
+        let is_valid_twitter = true;
+        let is_valid_linkedin = true;
+        let is_valid_instagram = true;
+        let is_valid_tiktok = true;
+        let is_valid_youtube = true;
 
-        if(data_name){
+        document.getElementById("validation_name").style.display = 'none';
+        document.getElementById("validation_facebook").style.display = 'none';
+        document.getElementById("validation_twitter").style.display = 'none';
+        document.getElementById("validation_linkedin").style.display = 'none';
+        document.getElementById("validation_instagram").style.display = 'none';
+        document.getElementById("validation_tiktok").style.display = 'none';
+        document.getElementById("validation_youtube").style.display = 'none';
+
+
+        if(data_name){is_valid_name = true;}
+        if(facebook_link && !isValidUrl(facebook_link)){is_valid_facebook = false;}//if empty or valid url, continues as true
+        if(twitter_link && !isValidUrl(twitter_link)){is_valid_twitter = false;}
+        if(linkedin_link && !isValidUrl(linkedin_link)){is_valid_linkedin = false;}
+        if(instagram_link && !isValidUrl(instagram_link)){is_valid_instagram = false;}
+        if(tiktok_link && !isValidUrl(tiktok_link)){is_valid_tiktok = false;}
+        if(youtube_link && !isValidUrl(youtube_link)){is_valid_youtube = false;}
+
+        if(is_valid_name && is_valid_facebook && is_valid_twitter 
+        && is_valid_linkedin && is_valid_instagram && is_valid_tiktok && is_valid_youtube){
             <?php if($id){?>
             localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.chefs.edit_success')}}");
             <?php }else{?>
@@ -83,8 +113,15 @@
             let form = document.getElementById('chefForm');
             form.submit();
         }else{
-            if(!data_name){document.getElementById("validation_name").style.display = 'block';};
-        };
+            if(!is_valid_name){document.getElementById("validation_name").style.display = 'block';}
+            if(!is_valid_facebook){document.getElementById("validation_facebook").style.display = 'block';}
+            if(!is_valid_twitter){document.getElementById("validation_twitter").style.display = 'block';}
+            if(!is_valid_linkedin){document.getElementById("validation_linkedin").style.display = 'block';}
+            if(!is_valid_instagram){document.getElementById("validation_instagram").style.display = 'block';}
+            if(!is_valid_tiktok){document.getElementById("validation_tiktok").style.display = 'block';}
+            if(!is_valid_youtube){document.getElementById("validation_youtube").style.display = 'block';}
+        }
+        
     }
     
 </script>
