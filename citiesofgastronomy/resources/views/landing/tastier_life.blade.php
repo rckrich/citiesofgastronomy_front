@@ -45,7 +45,7 @@
                         @foreach($chefsList as $chef)
                         <option id="filter-{{$chef['id']}}" name="filter-{{$chef['id']}}" 
                             <?php if($selectedChef==$chef['id']){echo 'selected';}?> 
-                            value="{{$chef['id']}}">{{$chef['id']}}-{{$chef['name']}}
+                            value="{{$chef['id']}}">{{$chef['name']}}
                         </option>
                         @endforeach
                     </select>

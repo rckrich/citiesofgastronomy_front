@@ -48,7 +48,7 @@ class TastierLifeController extends Controller
         $inputs["preparations"] = $res['Recipes']['preparations'];
         $votes = $res['Recipes']['votes'];
         $inputs["votes"] = 0;
-        if($votes != null){$inputs["votes"] = $votes;}
+        if($votes != null || $votes != ''){$inputs["votes"] = $votes;}
         $inputs["chefName"] = $res['Recipes']['chefName'];
         $inputs["categoryName"] = $res['Recipes']['categoryName'];
         $inputs["cityName"] = $res['Recipes']['cityName'];
@@ -307,14 +307,12 @@ class TastierLifeController extends Controller
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
         $data = curl_exec($curl);
         curl_close($curl);
 
         $res = json_decode( $data, true);
         Log::info("RECIPE VOTE ::");
-        Log::info($res);
+        //Log::info($res);
 
         return $res;
     }

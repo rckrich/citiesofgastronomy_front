@@ -11,7 +11,7 @@ return [
     'data_totaltime'=>'Total Time',  
     'data_servings'=>'Servings',   
     'data_ingredients'=>'Ingredients',  
-    'data_votes'=>'{0}0 votes|vote|votes',  
+    'data_votes'=>'{0} votes|vote|votes',  
     '' => '',
 
     'user'=>[

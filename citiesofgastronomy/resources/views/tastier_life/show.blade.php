@@ -33,7 +33,7 @@
 
     <div class="container p-lg-5 p-md-5 py-md-3 p-sm-3 p-3">
         <div class="row">
-            <div class="col-lg-4 col-md-5 col-sm-12 col-12 p-xl-5 pt-xl-4 p-lg-4 p-md-4 pt-md-3 p-sm-3 p-3">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-12 p-xl-5 pt-xl-4 p-lg-4 p-md-4 pt-md-3 p-sm-3 p-3">
                 <div class="p-lg-4 p-md-4 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('tastier_life.about_title')}}</b>
                 </div>
@@ -85,14 +85,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
                 <p class="py-2 data ">{!! $preparations !!}</p>
                 <div class="row px-0">
-                    <div class="col-2 mx-auto">
-                        <button class="btn btn-primary w-100" onclick="vote({{$id}})">{{__('admin.btn_vote')}}</button>
+                    <div class="col-lg-3 col-md-3 col-4 mx-auto ms-0 my-auto">
+                        <button id="votes-btn" class="btn btn-primary w-100" onclick="vote({{$id}})">
+                        <img src="{{asset('assets/icons/heart.png')}}" width="25" height="auto"/>
+                        {{__('admin.btn_vote')}}</button>
                     </div>
-                    <div class="col-2 mx-auto">
-                        <div class="bg-orange w-100">{{$votes}} - {{trans_choice('tastier_life.data_votes',['num' => $votes])}}</div>
+                    <div class="col-lg-3 col-md-3 col-4 mx-auto me-0 my-auto text-right">
+                        <h4 class="w-100" id="votes_counter">{{$votes}} {{trans_choice('tastier_life.data_votes',['num' => $votes])}}</h4>
                     </div>
                 </div>
             </div>
@@ -144,6 +146,19 @@
 </section>
 
 <script>
+
+    var totalVotes = {{$votes}}
+    var data_id = {{$id}}
+
+    $(document).ready(function(e){
+        if (hasVotedBefore(data_id)) {
+            document.getElementById("votes-btn").disabled = true;
+
+        } else {
+            document.getElementById("votes-btn").disabled = false;
+        }
+    });
+
     function vote(data_id){
         if(data_id){
             $.ajax({
@@ -158,13 +173,22 @@
                         alert("Error: " + msg.message);
                     } 
                     else {
-                        let counterKey = 'voteCounter_' + id;
-                        localStorage.setItem(counterKey, <?php $votes==null?0:$votes ?> + 1);
-                        <?php $votes=$votes+1?>
+                        updateVotes(totalVotes+1);
                     }
                 }
             });
         }
+    }
+
+    function updateVotes(newCount){
+        let counterKey = 'voteCounter_' + data_id;
+        localStorage.setItem(counterKey,newCount);
+        let updatedText = "{{trans_choice('tastier_life.data_votes',['num' => $votes+1])}}";
+        document.getElementById('votes_counter').innerHTML = newCount + ' ' + updatedText;
+    }
+
+    function hasVotedBefore(itemId) {
+        return localStorage.getItem('voteCounter_' + data_id) !== null;
     }
 </script>
 @endsection
