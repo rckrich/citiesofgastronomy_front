@@ -129,6 +129,9 @@ a .text-white{color: #fff!important;}
 .btn-black{background-color: #070707; color: #fff;}
 .btn-black:hover,.btn-black:active,.btn-black:focus{background-color: #fff; color: #070707;}
 
+#votes-btn{height: 70px;}
+#votes-btn:disabled{background-color: #412507!important;}
+
 /*NAVBAR*/
 .navbar{background-color: #0D0D0D!important; color: #fff;height: 140px;}
 .navbar-height-margin{margin-top: 140px;}

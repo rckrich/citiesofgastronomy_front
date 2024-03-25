@@ -21,7 +21,6 @@ return [
     'btn_change_image'=>'CHANGE IMAGE',
     'btn_add_image'=>'ADD IMAGE',
     'btn_download'=>'DOWNLOAD',
-    'btn_vote'=>'VOTE',
 
     'obligatory_field'=>'Obligatory field',
     'email_format_error'=>'Incorrect Email format',

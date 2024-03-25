@@ -33,7 +33,7 @@
 
     <div class="container p-lg-5 p-md-5 py-md-3 p-sm-3 p-3">
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 col-12 p-xl-5 pt-xl-4 p-lg-4 p-md-4 pt-md-3 p-sm-3 p-3">
+            <div class="col-lg-4 col-md-5 col-sm-12 col-12 p-xl-5 pt-xl-4 p-lg-4 p-md-4 pt-md-3 p-sm-3 p-3">
                 <div class="p-lg-4 p-md-4 p-sm-3 p-3 title-xs bg-orange text-white text-center">
                     <b>{{__('tastier_life.about_title')}}</b>
                 </div>
@@ -85,13 +85,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
+            <div class="col-lg-8 col-md-7 col-sm-12 col-12 p-lg-4 p-md-3 p-sm-3 p-3">
                 <p class="py-2 data ">{!! $preparations !!}</p>
                 <div class="row px-0">
                     <div class="col-lg-3 col-md-3 col-4 mx-auto ms-0 my-auto">
-                        <button id="votes-btn" class="btn btn-primary w-100" onclick="vote({{$id}})">
-                        <img src="{{asset('assets/icons/heart.png')}}" width="25" height="auto"/>
-                        {{__('admin.btn_vote')}}</button>
+                        <button id="votes-btn" class="btn btn-secondary w-100" onclick="vote({{$id}})">
+                        <img class="my-auto" src="{{asset('assets/icons/heart.png')}}" width="18" height="auto"/>
+                        <span class="ps-1 my-auto">{{__('general.btn_vote')}}</span></button>
                     </div>
                     <div class="col-lg-3 col-md-3 col-4 mx-auto me-0 my-auto text-right">
                         <h4 class="w-100" id="votes_counter">{{$votes}} {{trans_choice('tastier_life.data_votes',['num' => $votes])}}</h4>
@@ -181,6 +181,7 @@
     }
 
     function updateVotes(newCount){
+        document.getElementById("votes-btn").disabled = true;
         let counterKey = 'voteCounter_' + data_id;
         localStorage.setItem(counterKey,newCount);
         let updatedText = "{{trans_choice('tastier_life.data_votes',['num' => $votes+1])}}";

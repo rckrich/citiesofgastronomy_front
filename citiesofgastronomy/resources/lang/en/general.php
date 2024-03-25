@@ -90,6 +90,7 @@ return [
 
     'btn_subscribe' => 'Subscribe',
     'btn_filter'=>'Filter posts',
+    'btn_vote'=>'Vote',
     'share'=>'Share on: ',
     'clear_filters'=>'Clear Filters',
     'no_results'=>'No results found.',
