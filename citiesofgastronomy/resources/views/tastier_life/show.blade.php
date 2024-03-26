@@ -39,46 +39,46 @@
                 </div>
                 <div class="bg-gray text-left row px-3 py-5 mx-0">
                     <div class="row pt-2 px-0 mx-0 align-items-start">
-                        <div class="col-lg-3 col-md-3 col-sm-2 col-2 text-right pe-2">
+                        <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_Difficulty.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_difficulty')}}</b></p>                    
                             <p class="pb-2 mb-1 text-white data">{{$difficulty}}</p>
                         </div>
                     </div>                    
                     <div class="row pt-2 px-0 mx-0 align-items-start">
-                        <div class="col-lg-3 col-md-3 col-sm-2 col-2 text-right pe-2">
+                        <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_PrepTime.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_preptime')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{{$prepTime}}</p>
                         </div>
                     </div>                  
                     <div class="row pt-2 px-0 mx-0 align-items-start">
-                        <div class="col-lg-3 col-md-3 col-sm-2 col-2 text-right pe-2">
+                        <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_TotalTime.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_totaltime')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{{$totalTime}}</p>
                         </div>
                     </div>                    
                     <div class="row pt-2 px-0 mx-0 align-items-start">
-                        <div class="col-lg-3 col-md-3 col-sm-2 col-2 text-right pe-2">
+                        <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_Servings.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_servings')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{{$servings}}</p>
                         </div>
                     </div>                    
                     <div class="row pt-2 px-0 mx-0 align-items-start">
-                        <div class="col-lg-3 col-md-3 col-sm-2 col-2 text-right pe-2">
+                        <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_Ingredients.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-10 ps-0">        
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">        
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_ingredients')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{!! $ingredients !!}</p>
                         </div>

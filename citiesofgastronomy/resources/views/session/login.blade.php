@@ -20,7 +20,7 @@
                             <input id="data_password" type="password" class="w-100" placeholder="{{__('session.data_password')}}"/>
                         </div>
                         <div class="text-right text-white py-4">
-                            <a class="text-orange-light nav-link-sm" href="{{route('admin.recover_password')}}"><b>{{__('session.forgot')}}</b></a>
+                            <a class="text-orange-light nav-link-sm" href="{{route('admin.reset_password')}}"><b>{{__('session.forgot')}}</b></a>
                         </div>
                         <div class="text-center">
                             <a class="btn btn-primary"  href="{{route('admin.index')}}">{{__('session.btn_sign')}}</a>

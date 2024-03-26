@@ -334,6 +334,9 @@ a .text-white{color: #fff!important;}
 @media screen and (min-width:768px) and (max-width:1399px){
 .recipe-icon{width: 30px;}
 }
+@media screen and (max-width:576px){
+.recipe-icon{width: 40px;}
+}
 
 
 /*NEWSLETTER*/
@@ -349,7 +352,7 @@ footer a{color: #fff;}
 /*FILTER SELECTS*/
  .filters select.form-control {
     height: 60px; background-color: transparent!important; border-radius: 0!important;
-    color: #FEA561!important; border: solid 1px #FEA561!important;}
+    color: #FEA561; border: solid 1px #FEA561!important;}
  .filters select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -366,7 +369,9 @@ footer a{color: #fff;}
   }
   .filters select.form-control, .filters button{font-family: 'Helvetica LT Std Black';font-size: 14px;}
   .filters button{width: 210px;}
-
+  .filters select option{color:#FEA561;}
+  .filters select option:checked{color:#fff!important; background-color: #FEA561;}
+  .filter-select.changed{color: #fff!important;}
 
 /*SHARE BUTTONS ON HIGHLIGHT----------------*/
 #share-btns {

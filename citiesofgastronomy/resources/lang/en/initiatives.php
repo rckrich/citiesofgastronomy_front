@@ -26,11 +26,11 @@ return [
     'data_author'=>'Author',
     'lorem_author'=>'Author 1',
     'user'=>[
-        'select_city'=>'Cities',
-        'select_activity'=>'Type of Activity',
-        'select_topic'=>'Topics',
-        'select_sdg'=>'SDG',
-        'select_connection'=>'Connection to other creative fields',
+        'select_city'=>'All Cities',
+        'select_activity'=>'All Activities',
+        'select_topic'=>'All Topics',
+        'select_sdg'=>'All SDGs',
+        'select_connection'=>'All Connections',
         ''=>'',
     ],
     'view'=>[

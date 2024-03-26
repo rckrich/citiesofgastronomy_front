@@ -18,9 +18,9 @@ class AdminController extends Controller
     {
         return view('session.login');
     }
-    public function recover_password()
+    public function reset_password()
     {
-        return view('session.recover_password');
+        return view('session.reset_password');
     }
 
 
@@ -84,10 +84,6 @@ class AdminController extends Controller
 
         return $res;
     }
-
-
-
-
 
     public function addPDF(Request $request){
         $idOwner =$request->input('idOwner');
@@ -197,7 +193,6 @@ class AdminController extends Controller
         return view('admin.initiatives', $inputs);
     }
 
-
     public function tastier_life(Request $request)
     {
 
@@ -253,8 +248,39 @@ class AdminController extends Controller
         return view('admin.tastier_life',$inputs);
     }
     
-    public function tours()
+    public function tours(Request $request)
     {
+     
+        $page = $request->input("page");
+        //Log::info("#PAGE: ".$page);
+
+        if(!$page){ $page=1;   };
+
+       
+        $search = $request->input("search_box");
+        $fields = array('search' => $search, 'page' => $page);
+        $fields_string = http_build_query($fields);
+
+        $url = config('app.apiUrl').'toursAdmin';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+
+        Log::info("#ADMIN Tours List");
+        //Log::info($res);
+
+        $inputs = [];
+        $inputs['tours'] = $res['tours'];
+        $inputs['tot'] = $res['tot'];
+        $inputs['paginator'] = $res['paginator'];
+
         return view('admin.tours');
     }
     public function about(Request $request, $page = 1)

@@ -52,7 +52,8 @@ Route::get('/terms_and_conditions', [LandingController::class, 'terms_conditions
 
 /*ADMIN PANEL*/
 Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
-Route::get('/recover_password', [AdminController::class, 'recover_password'])->name('admin.recover_password');
+Route::get('/reset_password', [AdminController::class, 'reset_password'])->name('admin.reset_password');
+//create_password
 
 //Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/admin/home', function(){return redirect()->route('admin.cities');})->name('admin.index');

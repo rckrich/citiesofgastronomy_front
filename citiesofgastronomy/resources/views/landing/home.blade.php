@@ -611,9 +611,9 @@
                                 <h5 class="card-title" id="name">Name</h5>
                                 <p class="card-text" id="country"><b>Country:</b> Name</p>
                                 <p class="card-text" id="continentName"><b>Continent:</b> Name</p>
-                                <p class="card-text" id="population"><b>Population:</b> 152</p>
+                                <p class="card-text" id="population"><b>Population:</b> xxx</p>
                                 <p class="card-text" id="restaurantFoodStablishments"><b>Restaurants & Food Stablishments:</b> 1</p>
-                                <p class="card-text" id="designationyear"><b>Designation Year:</b> 1996</p>
+                                <p class="card-text" id="designationyear"><b>Designation Year:</b> xxx</p>
                                 <a href="#" class="btn btn-info" id="completeInfo">{{__('landing.btn_explore')}}</a>
                             </div>
                         </div>
@@ -759,7 +759,7 @@
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
                             <p class="card-text mb-2">{{
                                 str_replace(['<br />','&nbsp;'], ' ', 
-                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                    nl2br(htmlspecialchars_decode(html_entity_decode(strip_tags($item["description"]))))
                                 )
                             }}
                             </p>
@@ -820,7 +820,7 @@
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
                             <p class="card-text mb-2">{{
                                 str_replace(['<br />','&nbsp;'], ' ', 
-                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                    nl2br(htmlspecialchars_decode(html_entity_decode(strip_tags($item["description"]))))
                                 )
                             }}
                             </p>
@@ -880,7 +880,7 @@
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
                             <p class="card-text mb-2">{{
                                 str_replace(['<br />','&nbsp;'], ' ', 
-                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                    nl2br(htmlspecialchars_decode(html_entity_decode(strip_tags($item["description"]))))
                                 )
                             }}
                             </p>
@@ -929,15 +929,18 @@
             if(found){
 
                 document.getElementById("name").innerHTML = found["name"];
-                document.getElementById("country").innerHTML = '<b>Country:</b> '+found["country"];
-                document.getElementById("continentName").innerHTML = '<b>Continent:</b> '+found["continentName"];
-                if(found["population"] != null){document.getElementById("population").innerHTML = '<b>Population: </b>'+found["population"];
-                }else{document.getElementById("population").innerHTML = '<b>Population: </b>';};
-                if(found["restaurantFoodStablishments"] != null){document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments:</b>'+found["restaurantFoodStablishments"];
-                }else{document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>';};
-                if(found["designationyear"] != null){document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>'+found["designationyear"];
-                }else{document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>';};
-
+                document.getElementById("country").innerHTML = '<b>Country: </b>'+found["country"];
+                document.getElementById("continentName").innerHTML = '<b>Continent: </b>'+found["continentName"];
+                if(found["population"] != null && found["population"]!= 0){
+                    document.getElementById("population").innerHTML = '<b>Population: </b>'+formatNumber(found["population"]);
+                }else{
+                    document.getElementById("population").innerHTML = '<b>Population: </b>N/A';};
+                if(found["restaurantFoodStablishments"] != null && found["restaurantFoodStablishments"]!= 0){
+                    document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>'+formatNumber(found["restaurantFoodStablishments"]);
+                }else{
+                    document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>N/A';};
+                if(found["designationyear"] != null && found["designationyear"]!= 0){ document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>'+formatNumber(found["designationyear"]);
+                }else{document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>N/A';};
                 if(found["completeInfo"] == 1){
                     document.getElementById("completeInfo").style.display = 'inline-block';
                     document.getElementById("completeInfo").href = '/cities/view/'+found["id"];

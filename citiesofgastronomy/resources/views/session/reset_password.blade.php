@@ -1,4 +1,4 @@
-<!-- resources/views/session/recover_password.blade.php -->
+<!-- resources/views/session/reset_password.blade.php -->
 
 @extends('commons.sessions_base')
 

@@ -128,7 +128,7 @@
                             <h5 class="card-title mb-2">{{$item["name"]}}</h5>
                             <p class="card-text mb-2">{{
                                 str_replace(['<br />','&nbsp;'], ' ', 
-                                nl2br(htmlspecialchars_decode(strip_tags($item["description"])))
+                                nl2br(htmlspecialchars_decode(html_entity_decode(strip_tags($item["description"]))))
                                 )
                             }}</p>
                             @if( count ($item["sdg_filter"]) != 0)

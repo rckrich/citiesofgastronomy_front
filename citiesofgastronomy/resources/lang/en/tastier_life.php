@@ -15,9 +15,9 @@ return [
     '' => '',
 
     'user'=>[
-        'select_chef' => 'Chef Name',
-        'select_city' => 'City',
-        'select_cat' => 'Category',
+        'select_chef' => 'All Chefs',
+        'select_city' => 'All Cities',
+        'select_cat' => 'All Categories',
         '' => '',
     ],
     'recipes'=>[

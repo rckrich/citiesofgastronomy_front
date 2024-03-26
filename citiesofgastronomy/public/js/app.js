@@ -18,7 +18,10 @@ $(document).ready(function () {
       $('body').removeAttr('data-bs-overflow');
     });  
     $("#map").on("click", function(){toggleMapLink()})
-    $(".filter-select").on("change", function(){showResetFilterButton()})
+    $(".filter-select").on("change", function(){
+      $(this).addClass("changed");
+      showResetFilterButton($(this))
+    });
     $("#search_box").keypress(function (e) {
       var key = e.which;
       if(key == 13)  // the enter key code
@@ -269,4 +272,13 @@ function hideResetFilterButton(){
 
 function openEditMailModal(){
   //function
+}
+
+function formatNumber(number) {
+  var str = number.toString();
+  var chunks = [];
+  for (var i = str.length - 1; i >= 0; i -= 3) {
+      chunks.unshift(str.substring(Math.max(0, i - 2), i + 1));
+  }
+  return chunks.join(',');
 }
