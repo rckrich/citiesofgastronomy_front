@@ -274,14 +274,16 @@ class AdminController extends Controller
         $res = json_decode( $data, true);
 
         Log::info("#ADMIN Tours List");
-        //Log::info($res);
+        Log::info($res);
 
         $inputs = [];
         $inputs['tours'] = $res['tours'];
         $inputs['tot'] = $res['tot'];
         $inputs['paginator'] = $res['paginator'];
+        $inputs['page'] = $page;
+        $inputs['search_box'] = $search;
 
-        return view('admin.tours');
+        return view('admin.tours',$inputs);
     }
     public function about(Request $request, $page = 1)
     {

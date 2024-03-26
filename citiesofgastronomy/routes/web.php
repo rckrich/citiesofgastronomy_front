@@ -99,9 +99,8 @@ Route::post('/admin/tastier_life/category/store', [TastierLifeController::class,
 Route::post('/admin/tastier_life/category/delete', [TastierLifeController::class, 'category_delete']);
 
 
-
-
 Route::get('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours');
+Route::post('/admin/tours', [AdminController::class, 'tours'])->name('admin.tours_search');
 Route::get('/admin/tours/create', [ToursController::class, 'tour_new'])->name('admin.tour_new');
 Route::get('/admin/tours/{id}', [ToursController::class, 'tour_edit'])->name('admin.tour_edit');
 

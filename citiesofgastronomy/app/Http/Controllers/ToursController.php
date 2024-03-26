@@ -27,6 +27,7 @@ class ToursController extends Controller
         $inputs["info"] = $res["info"];
         return view('tours.show',$inputs);
     }
+
     
     public function tour_new()
     {
