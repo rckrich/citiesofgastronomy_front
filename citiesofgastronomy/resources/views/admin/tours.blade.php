@@ -51,6 +51,13 @@
                             </td>
                         </tr>
                     @endforeach
+                    @if( count ($tours) == 0)
+                    <tr class="align-items-center">
+                        <td class="col-8">{{__('general.no_results')}}</td>
+                        <td class="col-auto"></td>
+                        <td class="col-auto"></td>
+                    </tr>
+                    @endif
                     </tbody>
                 </table>
                 <nav aria-label="Page navigation tours">

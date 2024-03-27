@@ -74,6 +74,13 @@
                                 </button></td>
                             </tr>
                             @endforeach
+                            @if( count ($recipes) == 0)
+                            <tr class="align-items-center">
+                                <td class="col-10">{{__('general.no_results')}}</td>
+                                <td class="col-auto"></td>
+                                <td class="col-auto"></td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                     <nav aria-label="Page navigation recipes">
