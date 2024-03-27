@@ -939,7 +939,7 @@
                     document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>'+formatNumber(found["restaurantFoodStablishments"]);
                 }else{
                     document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>N/A';};
-                if(found["designationyear"] != null && found["designationyear"]!= 0){ document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>'+formatNumber(found["designationyear"]);
+                if(found["designationyear"] != null && found["designationyear"]!= 0){ document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>'+found["designationyear"];
                 }else{document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>N/A';};
                 if(found["completeInfo"] == 1){
                     document.getElementById("completeInfo").style.display = 'inline-block';

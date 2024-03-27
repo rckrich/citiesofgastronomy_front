@@ -175,7 +175,7 @@ class TastierLifeController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("EDIT RECIPE :: RESPONSE");
-        Log::info($res);
+        //Log::info($res);
 
         $recipe = $res['Recipes'];
 

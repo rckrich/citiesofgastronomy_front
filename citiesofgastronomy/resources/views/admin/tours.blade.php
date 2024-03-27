@@ -6,6 +6,11 @@
     <section id="admin_tours">
         <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row mx-0">
+                <div class="alert alert-success" role="alert" id="alertTLMessage" style="display:none"></div>
+                @if (session()->has('error'))
+                <div class="alert alert-danger" role="alert" id="alertTLMessageAlert" style="display:none"></div>
+                @endif
+
                 <div class="col-12 px-0 py-2">
                     <h3 class="admin-title"><b>{{__('tours.admin.title')}}</b></h3>
                 </div>
@@ -87,14 +92,14 @@
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="deleteTour()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-    function paginator(page){
+function paginator(page){
     let search = $("#search_box").val();
     let paginatorCant = '<?= $paginator?>';
     paginatorCant = parseInt(paginatorCant);
@@ -139,6 +144,36 @@
 function openDeleteModal_tour(id){
     document.getElementById("delete_data_tour_id").value = id;
 }
+function deleteTour(){
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    datos.append('_token', token);
+    let data_id = document.getElementById("delete_data_tour_id").value;
+    datos.append('id', data_id);
+    if(data_id){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/tours/delete',
+            data: datos,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){},
+            success: function(msg){                    
+                closeModal('deleteTourModal');
+                if (msg.status===400) {
+                    alert("Error: " + msg.message);
+                    window.location = '/admin/tours?page=1';
+                } 
+                else {
+                    alert('{{trans('tastier_life.chefs.delete_success')}}');
+                    window.location = '/admin/tours?page=1';
+                }
+            }
+        });
+    }
+}
+
 
 $("#search_box").keypress(function (e) {
     var key = e.which;
@@ -154,6 +189,37 @@ $("#search_box").keypress(function (e) {
     }
     }
     }); 
+
+</script>
+
+<script>
+
+    <?php if (session()->has('error')){?>
+        let message = localStorage.getItem('toursMessageError');
+
+        if(message){
+            localStorage.removeItem('toursMessageError');
+            document.getElementById('alertTLMessageAlert').innerHTML = message;
+            document.getElementById('alertTLMessageAlert').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('alertTLMessageAlert').style.display = 'none';
+            },5000);
+        };
+
+    <?php }else{?>
+        let message = localStorage.getItem('toursMessage');
+        if(message){
+                localStorage.removeItem('toursMessage');
+                document.getElementById('alertTLMessage').innerHTML = message;
+                document.getElementById('alertTLMessage').style.display = 'block';
+                setTimeout(() => {
+                    console.log("Delayed for 1 second.");
+                    document.getElementById('alertTLMessage').style.display = 'none';
+                },5000);
+        };
+    <?php }?>
+
+
 
 </script>
 
