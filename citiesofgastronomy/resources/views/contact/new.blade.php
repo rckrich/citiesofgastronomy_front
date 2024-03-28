@@ -25,6 +25,12 @@
                         <div id="validation_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     </div>
                     <div class="form-group py-2">
+                        <label class="form-label" for="data_email">Email</label>
+                        <input id="data_email" name="data_email" class="form-control prevenir-envio"
+                        placeholder="Contact Email" value="{{$contact['email'] }}"/>
+                        <div id="validation_email" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
+                    </div>
+                    <div class="form-group py-2">
                         <label class="form-label" for="data_position">{{__('contact.create.data_position')}}</label>
                         <input id="data_position" name="data_position" class="form-control prevenir-envio"
                                 placeholder="{{__('contact.create.ph_position')}}" value="{{$contact['position'] }}"/>
@@ -94,6 +100,7 @@
             let data_name = document.getElementById("data_name").value;
             let data_position = document.getElementById("data_position").value;
             let data_city = document.getElementById("data_city").value;
+            let data_email =  document.getElementById("data_email").value;
 
             document.getElementById("validation_name").style.display = 'none';
             document.getElementById("validation_city").style.display = 'none';

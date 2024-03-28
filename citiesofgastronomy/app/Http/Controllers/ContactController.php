@@ -24,7 +24,7 @@ class ContactController extends Controller
         //Log::info($res);
 
         $inputs = [];
-        $inputs["contact"] = ['id' => '', 'idCity'=>'', 'name'=>'', 'position'=>''];
+        $inputs["contact"] = ['id' => '', 'idCity'=>'', 'name'=>'',  'email'=>'', 'position'=>''];
         $inputs["contactSocialNetwork"] = [];
         $inputs["continents"] = $res["continents"];
         $inputs["SocialNetworkType"] = $res["social"];
@@ -72,6 +72,7 @@ class ContactController extends Controller
     {
         $id = $request->input("id");
         $name = $request->input("data_name");
+        $email = $request->input("data_email");
         $idCity = $request->input("data_city");
         $position = $request->input("data_position");
         $linksTag = $request->input("linksTag");
@@ -81,6 +82,7 @@ class ContactController extends Controller
             'id' => $id,
             'idOwner' => $id,
             'name' => $name,
+            'email' => $email,
             'idCity' => $idCity,
             'position' => $position,
             'idSection' => $idSection
