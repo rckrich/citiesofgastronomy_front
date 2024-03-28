@@ -39,7 +39,7 @@ Route::post('/newslettersave', [LandingController::class, 'newsletter']);
 Route::get('/cities/view/{id}', [CitiesController::class, 'index'])->name('cities.view');
 Route::get('/initiatives/view/{id}', [InitiativesController::class, 'index'])->name('initiatives.view');
 Route::get('/tastier_life/view/{id}', [TastierLifeController::class, 'index'])->name('tastier_life.view');
-Route::get('/tours/view', [ToursController::class, 'index'])->name('tours.view');
+Route::get('/tours/view/{id}', [ToursController::class, 'index'])->name('tours.view');
 
 Route::get('/stats', [LandingController::class, 'stats'])->name('landing.stats');
 Route::get('/calendar', [LandingController::class, 'calendar'])->name('landing.calendar');

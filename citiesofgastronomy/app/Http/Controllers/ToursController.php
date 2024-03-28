@@ -8,9 +8,18 @@ use Illuminate\Support\Facades\Log;
 
 class ToursController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $url = config('app.apiUrl').'home';
+        $url_home = config('app.apiUrl').'home';
+        $curl_home = curl_init();
+        curl_setopt($curl_home, CURLOPT_URL, $url_home);
+        curl_setopt($curl_home, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl_home, CURLOPT_HEADER, false);
+        $data_home = curl_exec($curl_home);
+        curl_close($curl_home);
+        $res_home = json_decode( $data_home, true);
+
+        $url = config('app.apiUrl').'tours/show/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -18,15 +27,25 @@ class ToursController extends Controller
         $data = curl_exec($curl);
         curl_close($curl);
         $res = json_decode( $data, true);
-        //Log::info("DAtta Result-- ::");
+        Log::info("TOUR SHOW ::");
+        Log::info($res);
 
         $inputs = [];
-        $inputs["bannerAbout"] = $res["bannerAbout"];
-        $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
-        //Log::info($inputs);
-        $inputs["cityList"] = $res["cities"];
-        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
-        $inputs["info"] = $res["info"];
+        $inputs["SocialNetworkType"] = $res_home["SocialNetworkType"];
+        $inputs["info"] = $res_home["info"];
+        $inputs["bannerAbout"] = $res_home["bannerAbout"];
+
+        $tour = $res['tour'][0];
+
+        $inputs["id"] = $id;
+        $inputs["name"] = $tour['name'];
+        $inputs["photo"] = $tour['photo'];
+        $inputs["agency"] = $tour['travelAgency'];
+        $inputs["description"] = $tour['description'];
+        $inputs["cityName"] = $tour['cityName'];
+        $inputs["social_network"] = $tour['social_network'];
+        $inputs["gallery"] = $res['gallery'];
+
         return view('tours.show',$inputs);
     }
 

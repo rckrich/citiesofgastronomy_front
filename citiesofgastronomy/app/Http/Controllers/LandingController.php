@@ -310,7 +310,7 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("TOURS ::");
-        Log::info($res["banner"]);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["tours"] = $res["tours"];

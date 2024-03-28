@@ -35,9 +35,8 @@
             </div>
         </div>
 
-        @include('commons.work_in_progress')
 
-        <!--div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
+        <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
         <div class="row g-4">
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 me-auto">
                 <div class="form-group">
@@ -54,58 +53,34 @@
 
         <div class="container p-lg-5 p-md-5 p-sm-3 p-3">
         <div class="row g-4">
+            @foreach($tours as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
+                        <a href="{{route('tours.view',['id'=>$item['id']])}}" class="img-link">
+                            @if($item['photo']!=null || $item['photo'] != '')
+                            <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
+                            @else
+                            <img src="{{asset('assets/img/Home/sample.png')}}" class="card-img-top" alt="...">
+                            @endif
+                        </a>                        
                         <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
+                            <h5 class="card-title mb-2">{{$item['name']}}</h5>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>{{$item['travelAgency']}}</p>
+                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>{{$item['cityName']}}</p>
+                            <p class="card-text mb-2">
+                            {{
+                                str_replace(['<br />','&nbsp;'], ' ', 
+                                nl2br(htmlspecialchars_decode(html_entity_decode(strip_tags($item["description"]))))
+                                )
+                            }}
+                            </p>
+                            <a href="{{route('tours.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                        <img src="{{asset('assets/img/Elements/sample2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body px-0 bg-black text-white">
-                            <h5 class="card-title mb-2">{{__('tours.lorem_title')}}</h5>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_agency')}}</b>Name</p>
-                            <p class="card-text mb-2"><b class="text-blue">{{__('tours.data_city')}}</b>Name</p>
-                            <p class="card-text mb-2">{{__('tours.lorem')}}</p>
-                            <a href="{{route('tours.view')}}" class="btn btn-link px-0">{{__('tours.btn_more')}}</a>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div-->
+            @endforeach
+        </div>
+        </div>
 
 
     </section>

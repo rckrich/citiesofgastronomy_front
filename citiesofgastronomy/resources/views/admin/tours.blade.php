@@ -103,7 +103,6 @@ function paginator(page){
     let search = $("#search_box").val();
     let paginatorCant = '<?= $paginator?>';
     paginatorCant = parseInt(paginatorCant);
-    //console.log(paginatorCant)
     let paginaActual = document.getElementById('pageActual').value;
     paginaActual= parseInt(paginaActual);
     if (search != ''){
@@ -113,27 +112,21 @@ function paginator(page){
 
     let nada = '';
     if(page == 'prev' || page == 'next'){
-            //console.log("#0");
         if(page == 'next' && paginaActual != paginatorCant){
             page = paginaActual + 1;
-            //console.log("#1");
         }else if(page == 'prev' && paginaActual > 1){
             page = paginaActual - 1;
-            //console.log("#2");
         }else{
             nada = 'si';
         };
     }else{
         page= parseInt(page);
     };
-    //alert('actual page:' + paginaActual);
-    //alert('page:'+page);
     if(nada == ''){
         if (search == ''){
             console.log("#not SEARCH");
             window.location = '/admin/tours?page='+page;
         }else{
-            //window.location = '/admin/initiatives/?page='+paginaActual;
             console.log("# SEARCH");console.log(search);
             document.getElementById('page').value = page;
             document.getElementById('searchForm_tour').submit();
