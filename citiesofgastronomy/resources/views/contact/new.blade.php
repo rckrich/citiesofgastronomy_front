@@ -50,26 +50,26 @@
                     </div>
                     <?php $linksTag = '';?>
                         @for($i=1; $i < count($SocialNetworkType)+1; $i++)
-                        <?php   $s = $i-1;
-                                if($i!=1){$linksTag = $linksTag . ',';}
-                                $linksTag = $linksTag . $SocialNetworkType[$s]['codde'];
-                                //'contactSocialNetwork' => $objsocialContact
-                                $socialValue='';
-                                if(count($contactSocialNetwork) >0){
-                                    $found_key = array_search($SocialNetworkType[$s]['id'], array_column($contactSocialNetwork, 'id'));
-                                    if($found_key){
-                                        $socialValue =$contactSocialNetwork[$found_key]["value"];
-                                    };
-                                }
-                        ?>
-                        <div class="form-group py-2">
-                            <label class="form-label" for="<?= $SocialNetworkType[$s]['codde']?>_link">
-                                    <?= $SocialNetworkType[$s]['name']?>:
-                            </label>
-                            <input id="<?= $SocialNetworkType[$s]['codde']?>_link" name="<?= $SocialNetworkType[$s]['codde']?>_link"
-                                            class="form-control socialLinks prevenir-envio"  value="<?= $socialValue?>"
-                                            placeholder="{{__('admin.main_site.socials.ph')}}"/>
-                        </div>
+                            <?php   $s = $i-1;$found_key = '';
+                                    if($i!=1){$linksTag = $linksTag . ',';}
+                                    $linksTag = $linksTag . $SocialNetworkType[$s]['codde'];
+                                    //'contactSocialNetwork' => $objsocialContact
+                                    $socialValue='';
+                                    if(count($contactSocialNetwork) >0){
+                                        $found_key = array_search($SocialNetworkType[$s]['id'], array_column($contactSocialNetwork, 'id'));
+                                        if($found_key != -1){
+                                            $socialValue =$contactSocialNetwork[$found_key]["value"];
+                                        };
+                                    }
+                            ?>
+                            <div class="form-group py-2">
+                                <label class="form-label" for="<?= $SocialNetworkType[$s]['codde']?>_link">
+                                        <?= $SocialNetworkType[$s]['name']?>:
+                                </label>
+                                <input id="<?= $SocialNetworkType[$s]['codde']?>_link" name="<?= $SocialNetworkType[$s]['codde']?>_link"
+                                                class="form-control socialLinks prevenir-envio"  value="<?= $socialValue?>"
+                                                placeholder="{{__('admin.main_site.socials.ph')}}"/>
+                            </div>
                         @endfor
 
                         <div class="row form-group py-5">
