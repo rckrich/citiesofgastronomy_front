@@ -58,7 +58,7 @@ class TastierLifeController extends Controller
 
 
         return view('tastier_life.show',$inputs);
-    } 
+    }
 
     public function tastier_life_search(Request $request)
     {
@@ -105,14 +105,14 @@ class TastierLifeController extends Controller
         Log::info("#ADMIN TastierLife SEARCH List: Recipe - ".$searchRecipe." / Chef - ".$searchChef." / Cat - ".$searchCAT);
         //Log::info($res);
 
-        $inputs = [];      
+        $inputs = [];
         $inputs["search_box_recipe"] = $searchRecipe;
         $inputs["search_box_chef"] = $searchChef;
         $inputs["search_box_cat"] = $searchCAT;
         $inputs["page"] = $page;
         $inputs["pageChef"] = $pageChef;
         $inputs["section"] = $section;
-        
+
         $inputs["tot"] = $res["tot"];
         $inputs["paginator"] = $res["paginator"];
         $inputs["totChefs"] = $res["totCHEF"];
@@ -161,7 +161,7 @@ class TastierLifeController extends Controller
         $inputs["gallery"] = '';
 
         return view('tastier_life.new_recipe',$inputs);
-    } 
+    }
 
     public function recipe_edit($id)
     {
@@ -200,7 +200,7 @@ class TastierLifeController extends Controller
         //$inputs["votes"] = $recipe['vote'];
         $inputs["gallery"] = $res['Gallery'];
 
-        return view('tastier_life.new_recipe',$inputs);    
+        return view('tastier_life.new_recipe',$inputs);
     }
 
     public function recipe_save(Request $request){
@@ -290,7 +290,7 @@ class TastierLifeController extends Controller
 
         $res = json_decode( $data, true);
         //*/
-        
+
         Log::info("NEW RECIPE :: STORE");
         //Log::info($res);
 
@@ -355,7 +355,7 @@ class TastierLifeController extends Controller
         $inputs["youtube_link"] = '';
 
         return view('tastier_life.new_chef',$inputs);
-    }     
+    }
 
     public function chef_edit($id)
     {
@@ -391,24 +391,24 @@ class TastierLifeController extends Controller
                         $inputs["twitter_link"] = $social['value'];
                         break;
                     case 3:
-                        $inputs["tiktok_link"] = $social['value'];
+                        $inputs["tiktok_link"] = $social['social_network'];
                         break;
                     case 4:
                         $inputs["instagram_link"] = $social['value'];
                         break;
-                    case 5:                        
-                        $inputs["youtube_link"] = $social['value'];
+                    case 5:
+                        $inputs["youtube_link"] = $social['social_network'];
                         break;
                     case 6:
-                        $inputs["linkedin_link"] = $social['value'];
+                        $inputs["linkedin_link"] = $social['social_network'];
                         break;
                 }
             }
         }
 
         return view('tastier_life.new_chef',$inputs);
-    } 
-    
+    }
+
     public function chef_save(Request $request)
     {
         $id = $request->input("id");
@@ -469,7 +469,7 @@ class TastierLifeController extends Controller
 
         return $res;
     }
-    
+
 
     public function category_save(Request $request)
     {
