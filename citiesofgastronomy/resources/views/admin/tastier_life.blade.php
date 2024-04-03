@@ -346,7 +346,7 @@ function paginatorRecipes(page){
             //window.location = '/admin/initiatives/?page='+paginaActual;
             console.log("# SEARCH");console.log(search);
             document.getElementById('page').value = page;
-            //document.getElementById('searchForm_recipe').submit();
+            document.getElementById('searchForm_recipe').submit();
         };
     };
 }

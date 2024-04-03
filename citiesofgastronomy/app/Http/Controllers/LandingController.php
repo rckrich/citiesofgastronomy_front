@@ -310,15 +310,55 @@ class LandingController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("TOURS ::");
-        //Log::info($res);
+        Log::info($res);
 
         $inputs = [];
         $inputs["tours"] = $res["tours"];
+        //$inputs["citiesList"] = $res["cities"];
+        $inputs["citiesList"] = [];
+        $inputs["selectedCity"] = 'default';
         $inputs["banners"] = $res["banner"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
         $inputs["info"] = $res["info"];
 
         return view('landing.tours', $inputs);
+    }
+    public function tours_search(Request $request)
+    {
+
+        $data_city = $request->input("data_city");
+
+        Log::info("TOURS SEARCH :: city-".$data_city);
+
+        $fields = array(
+            'search' => '',
+            'recipeCityFilter'=>($data_city != 'default' ? $data_city : '')
+        );
+        $fields_string = http_build_query($fields);  
+
+        $url = config('app.apiUrl').'tours';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info($res);
+
+        $inputs = [];
+        $inputs["tours"] = $res["tours"];
+        $inputs["citiesList"] = $res["cities"];
+        $inputs["selectedCity"] = $data_city;
+        $inputs["banners"] = $res["banner"];
+        $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+        $inputs["info"] = $res["info"];
+
+        return view('landing.tours', $inputs);
+
     }
 
     public function stats()

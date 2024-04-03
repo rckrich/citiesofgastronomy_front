@@ -32,6 +32,7 @@ Route::post('/initiatives', [LandingController::class, 'initiatives_search'])->n
 Route::get('/tastier_life', [LandingController::class, 'tastier_life'])->name('landing.tastier_life');
 Route::post('/tastier_life', [LandingController::class, 'tastierLife_search'])->name('landing.tastierLife_search');
 Route::get('/tours', [LandingController::class, 'tours'])->name('landing.tours');
+Route::post('/tours', [LandingController::class, 'tours_search'])->name('landing.tours_search');
 Route::post('/search', [LandingController::class, 'search'])->name('search');
 
 Route::post('/newslettersave', [LandingController::class, 'newsletter']);

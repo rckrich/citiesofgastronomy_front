@@ -97,7 +97,7 @@ class ToursController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("EDIT TOUR :: RESPONSE");
-        //Log::info($res);
+        Log::info($res);
 
         $tour = $res['tour'];
 
@@ -125,16 +125,16 @@ class ToursController extends Controller
                         $inputs["twitter_link"] = $social['value'];
                         break;
                     case 3:
-                        $inputs["linkedin_link"] = $social['value'];
+                        $inputs["tiktok_link"] = $social['value'];
                         break;
                     case 4:
                         $inputs["instagram_link"] = $social['value'];
                         break;
-                    case 5:
-                        $inputs["tiktok_link"] = $social['value'];
+                    case 5:                        
+                        $inputs["youtube_link"] = $social['value'];
                         break;
                     case 6:
-                        $inputs["youtube_link"] = $social['value'];
+                        $inputs["linkedin_link"] = $social['value'];
                         break;
                 }
             }

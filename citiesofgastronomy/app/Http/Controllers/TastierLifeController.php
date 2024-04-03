@@ -385,22 +385,22 @@ class TastierLifeController extends Controller
             if($social){
                 switch($social['idSocialNetworkType']){
                     case 1:
-                        $inputs["facebook_link"] = $social['social_network'];
+                        $inputs["facebook_link"] = $social['value'];
                         break;
                     case 2:
-                        $inputs["twitter_link"] = $social['social_network'];
+                        $inputs["twitter_link"] = $social['value'];
                         break;
                     case 3:
-                        $inputs["linkedin_link"] = $social['social_network'];
+                        $inputs["tiktok_link"] = $social['value'];
                         break;
                     case 4:
-                        $inputs["instagram_link"] = $social['social_network'];
+                        $inputs["instagram_link"] = $social['value'];
                         break;
-                    case 5:
-                        $inputs["tiktok_link"] = $social['social_network'];
+                    case 5:                        
+                        $inputs["youtube_link"] = $social['value'];
                         break;
                     case 6:
-                        $inputs["youtube_link"] = $social['social_network'];
+                        $inputs["linkedin_link"] = $social['value'];
                         break;
                 }
             }

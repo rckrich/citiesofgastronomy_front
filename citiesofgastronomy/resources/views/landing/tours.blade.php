@@ -38,15 +38,33 @@
 
         <div class="container px-lg-5 px-md-5 px-sm-3 px-3 pt-5 filters">
         <div class="row g-4">
+        <form action="{{url('/tours')}}" method="POST" id="searchForm_tours" class="d-contents">
+        @csrf
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 me-auto">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option id="filter-" name="filter-" value="0">City</option>
+                    <select id="data_city" name="data_city" class="form-control filter-select" placeholder="">
+                        <option <?php if($selectedCity=='default'){echo 'selected';}?> 
+                            value="default">{{__('tastier_life.user.select_city')}}
+                        </option>
+                        @foreach($citiesList as $city)
+                        <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" 
+                            <?php if($selectedCity==$city['id']){echo 'selected';}?> 
+                            value="{{$city['id']}}">{{$city['name']}}
+                        </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 col-6 ms-auto">
-                <button class="btn btn-info w-100 h-100">Filter posts</button>
+                <button type="submit"  class="btn btn-info w-100 h-100">Filter posts</button>
+            </div>
+        <form>
+        </div>
+        <div id="clear-filters-btn" class="row d-none">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 mb-3 text-left">
+                <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="reloadPage()">
+                    {{__('general.clear_filters')}}  X
+                </label>
             </div>
         </div>
         </div>
@@ -84,4 +102,18 @@
 
 
     </section>
+    <script>
+        $(document).ready(function(e){
+            let city = "<?= $selectedCity?>";
+
+            if(city != 'default'){
+                showResetFilterButton();
+            }
+            else{hideResetFilterButton();}
+        });
+        
+        function reloadPage(){
+            window.location = '../../tours';
+        }
+    </script>
 @endsection

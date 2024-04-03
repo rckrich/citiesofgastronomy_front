@@ -23,6 +23,7 @@
                         <input name="search_box" class="form-control me-2" value="<?= $search_box?>" type="search" placeholder="{{__('tours.admin.search_ph')}}" aria-label="{{__('tours.admin.search_ph')}}" aria-describedby="basic-addon1">
                         <input type="hidden" id="page" name="page" value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
                         <input type="hidden" id="pageActual" name="pageActual" value="<?php echo $page?>">
+                        <?php echo $page?>
                     </div>
                     </form>
                     </div>
@@ -122,6 +123,7 @@ function paginator(page){
     }else{
         page= parseInt(page);
     };
+    alert('actual page:' + paginaActual + 'page:'+page);
     if(nada == ''){
         if (search == ''){
             console.log("#not SEARCH");
