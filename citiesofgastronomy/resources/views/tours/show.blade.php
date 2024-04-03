@@ -14,7 +14,30 @@
                 <div class="row align-items-start">
                     <div class="col-auto">
                         @foreach($social_network as $s)
-                        <a href="{{$s['value']}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/'.$s['icon'])}}" height="25" width="25"/></a>
+                        <a href="{{$s['social_network']}}" target="_blank" class="px-2"><img class="icon-social" 
+                        <?php
+                            switch($s['idSocialNetworkType']){
+                                case 1:
+                                    echo("src="."\"".asset('assets/icons/facebook.svg')."\"");
+                                    break;
+                                case 2:
+                                    echo("src="."\"".asset('assets/icons/twitter.svg')."\"");
+                                    break;
+                                case 3:
+                                    echo("src="."\"".asset('assets/icons/tiktok.svg')."\"");
+                                    break;
+                                case 4:
+                                    echo("src="."\"".asset('assets/icons/instagram.svg')."\"");
+                                    break;
+                                case 5:                        
+                                    echo("src="."\"".asset('assets/icons/youtube.svg')."\"");
+                                    break;
+                                case 6:
+                                    echo("src="."\"".asset('assets/icons/linked_in.svg')."\"");
+                                    break;
+                            }
+                        ?> 
+                        height="25" width="25"/></a>
                         @endforeach
                         <!--a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
                         <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/youtube.svg')}}" height="19" width="23"/></a>

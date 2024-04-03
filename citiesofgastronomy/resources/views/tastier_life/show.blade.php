@@ -94,7 +94,7 @@
                         <span class="ps-1 my-auto">{{__('general.btn_vote')}}</span></button>
                     </div>
                     <div class="col-lg-3 col-md-3 col-4 mx-auto me-0 my-auto text-right">
-                        <h4 class="w-100" id="votes_counter">{{$votes}} {{trans_choice('tastier_life.data_votes',['num' => $votes])}}</h4>
+                        <h4 class="w-100" id="votes_counter">{{__('tastier_life.data_votes')}} - {{$votes}}</h4>
                     </div>
                 </div>
             </div>

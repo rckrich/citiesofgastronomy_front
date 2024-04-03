@@ -125,6 +125,7 @@ Route::get('/admin/ContactDelete/{id}', [ContactController::class, 'delete']);
 
 Route::get('/admin/main_site', [AdminController::class, 'main'])->name('admin.main');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+Route::post('/admin/users', [AdminController::class, 'users'])->name('admin.users_search');
 Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');
 Route::post('/newsletter/DownloadVerify', [AdminController::class, 'newsletterDownloadVerify']);
 

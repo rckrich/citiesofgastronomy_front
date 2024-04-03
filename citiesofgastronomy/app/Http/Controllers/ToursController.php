@@ -28,7 +28,7 @@ class ToursController extends Controller
         curl_close($curl);
         $res = json_decode( $data, true);
         Log::info("TOUR SHOW ::");
-        Log::info($res);
+        //Log::info($res);
 
         $inputs = [];
         $inputs["SocialNetworkType"] = $res_home["SocialNetworkType"];
