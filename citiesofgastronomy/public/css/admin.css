@@ -136,3 +136,5 @@ input[type="file"]:active::before {}
 .create-form .edit-modal-label{display: none!important;}
 .edit-form .create-modal-label{display: none!important;}
 .edit-form .edit-modal-label{display: block!important;}
+.create-form .edit-field{display: none!important;}
+.edit-form .edit-field{display: block!important;}

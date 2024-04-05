@@ -24,6 +24,7 @@ return [
 
     'obligatory_field'=>'Obligatory field',
     'email_format_error'=>'Incorrect Email format',
+    'email_compare_error'=>'The Email must be the same',
     'url_format_error'=>'Incorrect URL format',
 
 

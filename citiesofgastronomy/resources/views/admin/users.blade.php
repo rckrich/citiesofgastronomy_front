@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-12 px-0 py-2">
                     <div class="col-lg-auto col-md-auto col-sm-12 col-12 px-2">
-                        <button class="btn btn-primary mx-auto"  data-bs-toggle="modal" data-bs-target="#createUserModal">{{__('users.btn_add')}}</button>
+                        <button class="btn btn-primary mx-auto"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="openModal_user()">{{__('users.btn_add')}}</button>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                             <td class="col-4">{{$item['name']}}</td>
                             <td class="col-4">{{$item['email']}}</td>
                             <td class="col-auto my-auto">
-                                <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editUserModal">{{__('users.btn_edit')}}</button>
+                                <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="openModal_user({{$item['id']}},'{{$item['name']}}','{{$item['email']}}')">{{__('users.btn_edit')}}</button>
                             </td>                           
                             <td class="col-auto my-auto">
                                 <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteUserModal">{{__('admin.btn_delete')}}</button>
@@ -68,96 +68,42 @@
 
 
 <!-- Modal CREATE USER-->
-<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header b-none px-4">
-            <h5 class="modal-title" id="createUserModalLabel">{{__('users.create_modal_title')}}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
-        <form class="">
-        <div class="modal-body px-4">
-            <div class="form-group py-2">
-                <label class="form-label" for="data_title">{{__('users.data_username')}}</label>
-                <input id="data_title" name="data_title" class="form-control" placeholder="{{__('users.ph_username')}}"/>
-            </div>
-            <div class="form-group py-2">
-                <label class="form-label" for="data_link">{{__('users.data_mail')}}</label>
-                <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
-            </div>  
-        </div>
-        <div class="modal-footer b-none row mx-0">
-            <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
-        </div>
-        </form>
-    </div>
-  </div>
-</div>
-
-<!-- Modal EDIT USER-->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
+        <input type="hidden" id="data_id">
         <div class="modal-header b-none px-4">
-            <h5 class="modal-title" id="editUserModalLabel">{{__('users.edit_modal_title')}}</h5>
+            <h5 class="modal-title create-modal-label" id="createUserModalLabel">{{__('users.create_modal_title')}}</h5>
+            <h5 class="modal-title edit-modal-label" id="editUserModalLabel">{{__('users.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>            
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
-                <label class="form-label" for="data_title">{{__('users.data_username')}}</label>
-                <input id="data_title" name="data_title" class="form-control" placeholder="{{__('users.ph_username')}}"/>
+                <label class="form-label" for="data_username">{{__('users.data_username')}}</label>
+                <input id="data_username" name="data_username" class="form-control" placeholder="{{__('users.ph_username')}}"/>
+                <div id="validation_data_username" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
+
             </div>
             <div class="form-group py-2">
-                <label class="form-label" for="data_link">{{__('users.data_mail')}}</label>
-                <div class="row m-0 p-0 align-items-center">
-                    <div class="col-8 px-0 form-group py-2">
-                        <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
-                    </div> 
-                    <div class="col-4 px-0">
-                        <button class="btn btn-secondary" type="button" id="editMailModalBtn" data-bs-toggle="modal" data-bs-target="#editMailModal">
-                            <img class="p-2" style="background-color:#000" src="{{asset('assets/icons/admin_edit.svg')}}"/>
-                        </button>
-                    </div>
+                <label class="form-label" for="data_mail">{{__('users.data_mail')}}</label>
+                <input id="data_mail" name="data_mail" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
+                <div id="validation_data_email" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
+                <div id="validation_format_email" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
 
-                </div>
-            </div>
-            <div class="form-group py-2"> 
+                <input id="data_mail_confirm" name="data_mail_confirm" class="form-control my-2" placeholder="{{__('users.ph_mail_confirm')}}"/>
+                <div id="validation_data_email2" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
+                <div id="validation_format_email2" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
+                <div id="validation_same_email" class="invalid-feedback my-2">{{__('admin.email_compare_error')}}</div>
+            </div>    
+            <div class="form-group py-2 edit-field"> 
                 <button class="btn btn-dark w-100">{{__('users.btn_new_password')}}</button>
             </div>   
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_edit')}}</buttton>
-        </div>
-        </form>
-    </div>
-  </div>
-</div>
-
-<!-- Modal EDIT MAIL-->
-<div class="modal fade" id="editMailModal" tabindex="-1" aria-labelledby="editMailModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header b-none px-4">
-            <h5 class="modal-title" id="editMailModalLabel">{{__('users.create_modal_title')}}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
-        <form class="">
-        <div class="modal-body px-4">
-            <div class="form-group py-2">
-                <label class="form-label" for="data_title">{{__('users.data_username')}}</label>
-                <input id="data_title" name="data_title" class="form-control" placeholder="{{__('users.ph_username')}}"/>
-            </div>
-            <div class="form-group py-2">
-                <label class="form-label" for="data_link">{{__('users.data_mail')}}</label>
-                <input id="data_link" name="data_link" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
-            </div>  
-        </div>
-        <div class="modal-footer b-none row mx-0">
-            <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
-            <button type="button" class="col-4 btn btn-primary me-auto">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto create-form-btn" id="create_user_btn" onclick="saveUser()">{{__('admin.btn_create')}}</buttton>
+            <button type="button" class="col-4 btn btn-primary me-auto edit-form-btn" id="update_user_btn" onclick="saveUser()">{{__('admin.btn_edit')}}</buttton>
         </div>
         </form>
     </div>
@@ -219,6 +165,102 @@ function paginator(page){
             document.getElementById('searchForm_user').submit();
         };
     };
+}
+
+function openModal_user(id, name, email){
+    resetValidations();
+    if(!id){
+        $('#editUserModal').addClass('create-form');
+        $('#editUserModal').removeClass('edit-form');
+
+        document.getElementById("data_id").value = '';
+        document.getElementById("data_username").value = '';
+        document.getElementById("data_mail").value = '';
+        document.getElementById("data_mail_confirm").value = '';
+    };
+    if(id){
+        $('#editUserModal').removeClass('create-form');
+        $('#editUserModal').addClass('edit-form');
+
+        document.getElementById("data_id").value = id;
+        document.getElementById("data_username").value = name;
+        document.getElementById("data_mail").value = email;
+        document.getElementById("data_mail_confirm").value = '';
+    };
+}
+
+function saveUser(){
+    resetValidations();
+
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    datos.append('_token', token);
+    let data_id = document.getElementById("data_id").value;
+    datos.append('id', data_id);
+    let data_name = document.getElementById("data_username").value;
+    datos.append('name', data_name);
+    let data_email = document.getElementById("data_mail").value;
+    let confirm_email = document.getElementById("data_mail").value;
+    datos.append('email', data_email);
+    
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    let isValidEmail = emailRegex.test(data_email);
+    let isValidEmail2 = emailRegex.test(confirm_email);
+
+    let isConfirmedEmail = false;
+
+    if(!data_id && isValidEmail2 && (data_email === confirm_email)){
+
+    }
+
+
+    let isConfirmedEmail = ();
+
+    if(data_id && confirm_email){
+
+    }
+
+    if(data_name && data_email && isValidEmail){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/users/store',
+            data: datos,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){},
+            success: function(msg){
+                if (msg.status===400) {
+                    alert("Error: " + msg.message);
+                } 
+                else {
+                    closeModal('editUserModal')
+                    if(data_id){alert('{{trans('user.edit_success')}}');}
+                    else{alert('{{trans('user.create_success')}}');}
+                    window.location = '../../admin/users';
+                }
+            }
+        });
+    }else{
+        if(!data_name){
+            document.getElementById("validation_data_username").style.display = 'block';
+        }
+        if(!data_email){
+            document.getElementById("validation_data_email").style.display = 'block';
+        }
+        if(!isValidEmail){
+            document.getElementById("validation_format_email").style.display = 'block';
+        }
+    };
+}
+
+function resetValidations(){
+    document.getElementById("validation_data_username").style.display = 'none';
+    document.getElementById("validation_data_email").style.display = 'none';
+    document.getElementById("validation_data_email2").style.display = 'none';
+    document.getElementById("validation_format_email").style.display = 'none';
+    document.getElementById("validation_format_email2").style.display = 'none';
+    document.getElementById("validation_same_email").style.display = 'none';
 }
 
 function openDeleteModal_tour(id){
