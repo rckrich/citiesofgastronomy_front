@@ -72,6 +72,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
         <input type="hidden" id="data_id">
+        <input type="hidden" id="data_temp_mail">
         <div class="modal-header b-none px-4">
             <h5 class="modal-title create-modal-label" id="createUserModalLabel">{{__('users.create_modal_title')}}</h5>
             <h5 class="modal-title edit-modal-label" id="editUserModalLabel">{{__('users.edit_modal_title')}}</h5>
@@ -92,7 +93,7 @@
                 <div id="validation_format_email" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
 
                 <input id="data_mail_confirm" name="data_mail_confirm" class="form-control my-2" placeholder="{{__('users.ph_mail_confirm')}}"/>
-                <div id="validation_data_email2" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
+                <div id="validation_data_email2" class="invalid-feedback">{{__('admin.obligatory_field_confirm')}}</div>
                 <div id="validation_format_email2" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
                 <div id="validation_same_email" class="invalid-feedback my-2">{{__('admin.email_compare_error')}}</div>
             </div>    
@@ -154,7 +155,7 @@ function paginator(page){
     }else{
         page= parseInt(page);
     };
-    alert('actual page:' + paginaActual + 'page:'+page);
+    //alert('actual page:' + paginaActual + 'page:'+page);
     if(nada == ''){
         if (search == ''){
             console.log("#not SEARCH");
@@ -176,6 +177,7 @@ function openModal_user(id, name, email){
         document.getElementById("data_id").value = '';
         document.getElementById("data_username").value = '';
         document.getElementById("data_mail").value = '';
+        document.getElementById("data_temp_mail").value = '';
         document.getElementById("data_mail_confirm").value = '';
     };
     if(id){
@@ -185,6 +187,7 @@ function openModal_user(id, name, email){
         document.getElementById("data_id").value = id;
         document.getElementById("data_username").value = name;
         document.getElementById("data_mail").value = email;
+        document.getElementById("data_temp_mail").value = email;
         document.getElementById("data_mail_confirm").value = '';
     };
 }
@@ -199,28 +202,31 @@ function saveUser(){
     datos.append('id', data_id);
     let data_name = document.getElementById("data_username").value;
     datos.append('name', data_name);
-    let data_email = document.getElementById("data_mail").value;
-    let confirm_email = document.getElementById("data_mail").value;
-    datos.append('email', data_email);
+    let data_new_email = document.getElementById("data_mail").value;
+    let data_og_email = document.getElementById("data_temp_mail").value;
+    let confirm_email = document.getElementById("data_mail_confirm").value;
+    datos.append('email', data_new_email);
     
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    let isValidEmail = emailRegex.test(data_email);
+    let isValidEmail = emailRegex.test(data_new_email);
     let isValidEmail2 = emailRegex.test(confirm_email);
 
     let isConfirmedEmail = false;
+    let needsConfirmedEmail = true;
 
-    if(!data_id && isValidEmail2 && (data_email === confirm_email)){
 
+    if(data_id && data_new_email === data_og_email){
+        isConfirmedEmail = true;        
+        needsConfirmedEmail = false;
+        //does not need to confirm email
+    }
+    if(data_new_email === confirm_email){
+        isConfirmedEmail = true;        
+        needsConfirmedEmail = false;
     }
 
+    if(data_name && data_new_email && isValidEmail && isConfirmedEmail && !needsConfirmedEmail){     
 
-    let isConfirmedEmail = ();
-
-    if(data_id && confirm_email){
-
-    }
-
-    if(data_name && data_email && isValidEmail){
         $.ajax({
             type: 'POST',
             url: '/admin/users/store',
@@ -235,21 +241,31 @@ function saveUser(){
                 } 
                 else {
                     closeModal('editUserModal')
-                    if(data_id){alert('{{trans('user.edit_success')}}');}
-                    else{alert('{{trans('user.create_success')}}');}
+                    if(data_id){alert('{{trans('users.edit_success')}}');}
+                    else{alert('{{trans('users.create_success')}}');}
                     window.location = '../../admin/users';
                 }
             }
         });
+
     }else{
         if(!data_name){
             document.getElementById("validation_data_username").style.display = 'block';
         }
-        if(!data_email){
+        if(!data_new_email){
             document.getElementById("validation_data_email").style.display = 'block';
         }
-        if(!isValidEmail){
+        if(!confirm_email){
+            document.getElementById("validation_data_email2").style.display = 'block';
+        }
+        if(data_new_email && !isValidEmail){
             document.getElementById("validation_format_email").style.display = 'block';
+        }
+        if(confirm_email && !isValidEmail2){
+            document.getElementById("validation_format_email2").style.display = 'block';
+        }
+        if(data_new_email != confirm_email){
+            document.getElementById("validation_same_email").style.display = 'block';
         }
     };
 }

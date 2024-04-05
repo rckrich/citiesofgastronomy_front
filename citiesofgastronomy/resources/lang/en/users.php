@@ -16,7 +16,6 @@ return [
     'ph_mail'=>'Mail',
     'ph_mail_confirm'=>'Confirm Mail',
     'btn_new_password'=>'Request new password',
-
     'create_success'=>'The user was successfully created',  
     'edit_success'=>'The user was successfully edited',  
     'delete_success'=>'The user was successfully deleted',  

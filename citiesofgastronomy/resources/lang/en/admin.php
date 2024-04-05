@@ -23,8 +23,9 @@ return [
     'btn_download'=>'DOWNLOAD',
 
     'obligatory_field'=>'Obligatory field',
+    'obligatory_field_confirm'=>'Confirmation is required',
     'email_format_error'=>'Incorrect Email format',
-    'email_compare_error'=>'The Email must be the same',
+    'email_compare_error'=>'Email and email confirmation must match',
     'url_format_error'=>'Incorrect URL format',
 
 
