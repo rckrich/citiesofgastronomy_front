@@ -47,7 +47,7 @@
                                 <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="openModal_user({{$item['id']}},'{{$item['name']}}','{{$item['email']}}')">{{__('users.btn_edit')}}</button>
                             </td>                           
                             <td class="col-auto my-auto">
-                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteUserModal">{{__('admin.btn_delete')}}</button>
+                                <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteUserModal" onclick="openDeleteModal_user({{$item['id']}})">{{__('admin.btn_delete')}}</button>
                             </td>
                         </tr>
                         @endforeach
@@ -67,7 +67,7 @@
     </section>
 
 
-<!-- Modal CREATE USER-->
+<!-- Modal CREATE/EDIT USER-->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -121,11 +121,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+            <input type="hidden" id="delete_data_user_id">
             <p>{{__('users.delete_modal_desc')}}</p>
       </div>
       <div class="modal-footer b-none">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</button>
-        <button type="button" class="btn btn-primary">{{__('admin.btn_delete')}}</button>
+        <button type="button" class="btn btn-primary" onclick="deleteUser()">{{__('admin.btn_delete')}}</button>
       </div>
     </div>
   </div>
@@ -279,14 +280,14 @@ function resetValidations(){
     document.getElementById("validation_same_email").style.display = 'none';
 }
 
-function openDeleteModal_tour(id){
-    document.getElementById("delete_data_tour_id").value = id;
+function openDeleteModal_user(id){
+    document.getElementById("delete_data_user_id").value = id;
 }
-function deleteTour(){
+function deleteUser(){
     let datos = new FormData();
     let token = document.getElementsByName("_token")[0].value;
     datos.append('_token', token);
-    let data_id = document.getElementById("delete_data_tour_id").value;
+    let data_id = document.getElementById("delete_data_user_id").value;
     datos.append('id', data_id);
     if(data_id){
         $.ajax({
@@ -298,13 +299,13 @@ function deleteTour(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){                    
-                closeModal('deleteTourModal');
+                closeModal('deleteUserModal');
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
                     window.location = '/admin/users?page=1';
                 } 
                 else {
-                    alert('{{trans('tastier_life.chefs.delete_success')}}');
+                    alert('{{trans('users.delete_success')}}');
                     window.location = '/admin/users?page=1';
                 }
             }
