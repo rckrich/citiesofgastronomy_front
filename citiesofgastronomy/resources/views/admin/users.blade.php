@@ -284,12 +284,13 @@ function openDeleteModal_user(id){
     document.getElementById("delete_data_user_id").value = id;
 }
 function deleteUser(){
+    let tot  = <?php echo $tot?>
     let datos = new FormData();
     let token = document.getElementsByName("_token")[0].value;
     datos.append('_token', token);
     let data_id = document.getElementById("delete_data_user_id").value;
     datos.append('id', data_id);
-    if(data_id){
+    if(data_id && tot>=1){
         $.ajax({
             type: 'POST',
             url: '/admin/users/delete',
@@ -310,6 +311,9 @@ function deleteUser(){
                 }
             }
         });
+    }
+    else{
+        alert('{{trans('users.more_users_required')}}')
     }
 }
 

@@ -19,6 +19,7 @@ return [
     'create_success'=>'The user was successfully created',  
     'edit_success'=>'The user was successfully edited',  
     'delete_success'=>'The user was successfully deleted',  
+    'more_users_required'=>'Ther must be at least one admin registered',
     ''=>'',
 
 ];

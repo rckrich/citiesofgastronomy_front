@@ -61,7 +61,7 @@
         <form>
         </div>
         <div id="clear-filters-btn" class="row d-none">
-            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 mb-3 text-left">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 my-3 text-left">
                 <label class="badge bg-blue text-white hover-pointer px-5 py-3 text-center" onclick="reloadPage()">
                     {{__('general.clear_filters')}}  X
                 </label>

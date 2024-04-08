@@ -314,8 +314,7 @@ class LandingController extends Controller
 
         $inputs = [];
         $inputs["tours"] = $res["tours"];
-        //$inputs["citiesList"] = $res["cities"];
-        $inputs["citiesList"] = [];
+        $inputs["citiesList"] = $res["cities"];
         $inputs["selectedCity"] = 'default';
         $inputs["banners"] = $res["banner"];
         $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
@@ -332,7 +331,7 @@ class LandingController extends Controller
 
         $fields = array(
             'search' => '',
-            'recipeCityFilter'=>($data_city != 'default' ? $data_city : '')
+            'cityFilter'=>($data_city != 'default' ? $data_city : '')
         );
         $fields_string = http_build_query($fields);  
 
