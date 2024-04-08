@@ -331,7 +331,7 @@ class LandingController extends Controller
 
         $fields = array(
             'search' => '',
-            'cityFilter'=>($data_city != 'default' ? $data_city : '')
+            'city'=>($data_city != 'default' ? $data_city : '')
         );
         $fields_string = http_build_query($fields);  
 

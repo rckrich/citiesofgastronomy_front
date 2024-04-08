@@ -284,7 +284,7 @@ function openDeleteModal_user(id){
     document.getElementById("delete_data_user_id").value = id;
 }
 function deleteUser(){
-    let tot  = <?php echo $tot?>
+    let tot  = <?php echo $tot?>;
     let datos = new FormData();
     let token = document.getElementsByName("_token")[0].value;
     datos.append('_token', token);
