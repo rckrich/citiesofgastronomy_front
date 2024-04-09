@@ -20,10 +20,9 @@
                     @csrf
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                        <input name="search_box" class="form-control me-2" value="<?= $search_box?>" type="search" placeholder="{{__('tours.admin.search_ph')}}" aria-label="{{__('tours.admin.search_ph')}}" aria-describedby="basic-addon1">
-                        <input type="hidden" id="page" name="page" value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
+                        <input id="search_box" name="search_box" class="form-control me-2" value="<?= $search_box?>" type="search" placeholder="{{__('tours.admin.search_ph')}}" aria-label="{{__('tours.admin.search_ph')}}" aria-describedby="basic-addon1">
+                        <input type="hidden" id="page" name="page" value="<?php echo  $page;//if($search_box!=''){echo  $page;}else{echo '1';};?>">
                         <input type="hidden" id="pageActual" name="pageActual" value="<?php echo $page?>">
-                        <?php echo $page?>
                     </div>
                     </form>
                     </div>
@@ -51,7 +50,7 @@
                             <td class="col-4">{{$tour['cityName']}}</td>
                             <td class="col-auto my-auto">
                                 <a class="btn btn-link" href="{{route('admin.tour_edit',['id'=>$tour['id']])}}">{{__('tours.admin.btn_edit')}}</a>
-                            </td>                           
+                            </td>
                             <td class="col-auto my-auto">
                                 <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTourModal" onclick="openDeleteModal_tour({{$tour['id']}})">{{__('admin.btn_delete')}}</button>
                             </td>
@@ -105,12 +104,14 @@ function paginator(page){
     let paginatorCant = '<?= $paginator?>';
     paginatorCant = parseInt(paginatorCant);
     let paginaActual = document.getElementById('pageActual').value;
+    console.log("ACTUAL: "+paginaActual);
     paginaActual= parseInt(paginaActual);
     if (search != ''){
         paginaActual = document.getElementById('page').value;
         paginaActual= parseInt(paginaActual);
     };
 
+    console.log("ACTUAL: "+paginaActual);
     let nada = '';
     if(page == 'prev' || page == 'next'){
         if(page == 'next' && paginaActual != paginatorCant){
@@ -123,7 +124,8 @@ function paginator(page){
     }else{
         page= parseInt(page);
     };
-    alert('actual page:' + paginaActual + 'page:'+page);
+    //alert('actual :' + paginaActual + ' - page:'+page);
+
     if(nada == ''){
         if (search == ''){
             console.log("#not SEARCH");
@@ -134,6 +136,7 @@ function paginator(page){
             document.getElementById('searchForm_tour').submit();
         };
     };
+    //*/
 }
 
 function openDeleteModal_tour(id){
@@ -154,12 +157,12 @@ function deleteTour(){
             cache: false,
             processData:false,
             beforeSend: function(){},
-            success: function(msg){                    
+            success: function(msg){
                 closeModal('deleteTourModal');
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
                     window.location = '/admin/tours?page=1';
-                } 
+                }
                 else {
                     alert('{{trans('tastier_life.chefs.delete_success')}}');
                     window.location = '/admin/tours?page=1';
@@ -171,19 +174,24 @@ function deleteTour(){
 
 
 $("#search_box").keypress(function (e) {
-    var key = e.which;
-    if(key == 13)  // the enter key code
-    {
-    let keyword = $("#search_box").val();
+        var key = e.which;
+        //console.log("key:::##"+key);
+        if(key == 13)  // the enter key code
+        {
+            e.preventDefault();
+            let keyword = $("#search_box").val();
 
-    if(keyword){
-        $('#searchForm_tour').submit();
-    }
-    else{
-        window.location = '../../admin/tours?page=1';
-    }
-    }
-    }); 
+            if(keyword){
+                document.getElementById("page").value = 1;
+                $('#searchForm_tour').submit();
+                //console.log("submit-->");
+            }
+            else{
+                window.location = '../../admin/tours?page=1';
+            }
+        };
+    });
+
 
 </script>
 

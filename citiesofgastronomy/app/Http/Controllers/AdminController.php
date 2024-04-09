@@ -183,7 +183,7 @@ class AdminController extends Controller
         $inputs["sub"] = $request->input("sub");
         //campos de búsqueda por defecto vacíos
         $inputs["search_inputs"] = $search_inputs;
-        
+
         $inputs["typeOfActivity"] = $res["typeOfActivity"];
         $inputs["Topics"] = $res["Topics"];
         $inputs["sdg"] = $res["sdg"];
@@ -236,7 +236,7 @@ class AdminController extends Controller
         $inputs["page"] = $page;
         $inputs["pageChef"] = $pageChef;
         $inputs["section"] = $request->input("section");
-        
+
         $inputs["tot"] = $res["tot"];
         $inputs["paginator"] = $res["paginator"];
         $inputs["totChefs"] = $res["totCHEF"];
@@ -247,16 +247,16 @@ class AdminController extends Controller
 
         return view('admin.tastier_life',$inputs);
     }
-    
+
     public function tours(Request $request)
     {
-     
+
         $page = $request->input("page");
         //Log::info("#PAGE: ".$page);
 
         if(!$page){ $page=1;   };
 
-       
+
         $search = $request->input("search_box");
         $fields = array('search' => $search, 'page' => $page);
         $fields_string = http_build_query($fields);
@@ -282,6 +282,7 @@ class AdminController extends Controller
         $inputs['paginator'] = $res['paginator'];
         $inputs['page'] = $page;
         $inputs['search_box'] = $search;
+        Log::info("#PAGE: ".$page);
 
         return view('admin.tours',$inputs);
     }
@@ -601,7 +602,7 @@ class AdminController extends Controller
 
         if(!$page){ $page=1;   };
 
-       
+
         $search = $request->input("search_box");
         $fields = array('search' => $search, 'page' => $page);
         $fields_string = http_build_query($fields);
