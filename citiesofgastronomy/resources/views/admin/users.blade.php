@@ -98,7 +98,7 @@
                 <div id="validation_same_email" class="invalid-feedback my-2">{{__('admin.email_compare_error')}}</div>
             </div>    
             <div class="form-group py-2 edit-field"> 
-                <button class="btn btn-dark w-100">{{__('users.btn_new_password')}}</button>
+                <button class="btn btn-dark w-100" onclick="resetPassword()">{{__('users.btn_new_password')}}</button>
             </div>   
         </div>
         <div class="modal-footer b-none row mx-0">
@@ -317,6 +317,36 @@ function deleteUser(){
     }
 }
 
+function resetPassword(){
+    let datos = new FormData();
+    let token = document.getElementsByName("_token")[0].value;
+    data_email = document.getElementById("data_mail").value;
+    datos.append('_token', token);
+    datos.append('data_mail', data_email);
+    if(data_email){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/users/reset_password',
+            data: datos,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){},
+            success: function(msg){                    
+                //closeModal('deleteUserModal');
+                if (msg.status===400) {
+                    alert("Error: " + msg.message);
+                    window.location = '/admin/users?page=1';
+                } 
+                else {
+                    alert('{{trans('users.reset_password_email_sent')}}');
+                    window.location = '/admin/users?page=1';
+                }
+            }
+        });
+    }
+
+}
 
 $("#search_box").keypress(function (e) {
     var key = e.which;

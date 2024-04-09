@@ -97,7 +97,7 @@ class ToursController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("EDIT TOUR :: RESPONSE");
-        Log::info($res);
+        //Log::info($res);
 
         $tour = $res['tour'];
 

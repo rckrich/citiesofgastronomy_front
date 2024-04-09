@@ -128,6 +128,7 @@ Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users
 Route::post('/admin/users', [AdminController::class, 'users'])->name('admin.users_search');
 Route::post('/admin/users/store', [AdminController::class, 'users_save'])->name('admin.users_save');
 Route::post('/admin/users/delete', [AdminController::class, 'users_delete'])->name('admin.users_delete');
+Route::post('/admin/users/reset_password', [AdminController::class, 'users_resetPassword'])->name('admin.reset_user_password');
 Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');
 Route::post('/newsletter/DownloadVerify', [AdminController::class, 'newsletterDownloadVerify']);
 
