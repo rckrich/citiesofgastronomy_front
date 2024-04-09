@@ -64,7 +64,7 @@ function resetPassword(){
                     alert("Error: " + msg.message);
                 } 
                 else {
-                    alert('{{trans('users.reset_password_email_sent')}}');
+                    alert('{{trans('users.recover_password_email_sent')}}');
                     window.location = '/login';
                 }
             }
