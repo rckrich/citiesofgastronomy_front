@@ -104,14 +104,14 @@ function paginator(page){
     let paginatorCant = '<?= $paginator?>';
     paginatorCant = parseInt(paginatorCant);
     let paginaActual = document.getElementById('pageActual').value;
-    console.log("ACTUAL: "+paginaActual);
+    //console.log("ACTUAL: "+paginaActual);
     paginaActual= parseInt(paginaActual);
     if (search != ''){
         paginaActual = document.getElementById('page').value;
         paginaActual= parseInt(paginaActual);
     };
 
-    console.log("ACTUAL: "+paginaActual);
+    //console.log("ACTUAL: "+paginaActual);
     let nada = '';
     if(page == 'prev' || page == 'next'){
         if(page == 'next' && paginaActual != paginatorCant){
