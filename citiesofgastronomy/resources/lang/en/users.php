@@ -21,7 +21,7 @@ return [
     'delete_success'=>'The user was successfully deleted',  
     'more_users_required'=>'There must be at least one admin registered',
     'reset_password_email_sent'=>'An email has been sent to reset your password',
-    'recover_password_email_sent'=>'An email has been sent to reset your password',
+    'recover_password_email_sent'=>'Done! Instructions has been sent to your email',
     ''=>'',
 
 ];

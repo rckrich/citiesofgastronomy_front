@@ -38,16 +38,10 @@ function resetPassword(){
     let token = document.getElementsByName("_token")[0].value;
     data_email = document.getElementById("data_mail").value;
     datos.append('_token', token);
-    datos.append('email', data_email);
+    datos.append('data_mail', data_email);
 
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     let isValidEmail = emailRegex.test(data_email);
-
-    /*if(data_email && isValidEmail){
-        localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.chefs.create_success')}}");
-        let form = document.getElementById('resetPassword_form');
-        form.submit();
-    }*/
 
     if(data_email && isValidEmail){
         $.ajax({
