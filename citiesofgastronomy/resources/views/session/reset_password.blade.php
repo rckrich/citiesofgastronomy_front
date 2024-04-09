@@ -52,7 +52,7 @@ function resetPassword(){
     if(data_email && isValidEmail){
         $.ajax({
             type: 'POST',
-            url: '/admin/users/reset_password',
+            url: '/account/reset_password',
             data: datos,
             contentType: false,
             cache: false,

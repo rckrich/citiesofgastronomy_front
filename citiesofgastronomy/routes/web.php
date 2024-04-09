@@ -54,6 +54,11 @@ Route::get('/terms_and_conditions', [LandingController::class, 'terms_conditions
 /*ADMIN PANEL*/
 Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('/reset_password', [AdminController::class, 'reset_password'])->name('admin.reset_password');
+Route::post('/account/reset_password', [AdminController::class, 'user_resetPassword'])->name('admin.reset_user_password'); //sends email
+Route::get('/create_password/{token}', [AdminController::class, 'show_resetPassword'])->name('admin.show_reset__password'); //url form email
+
+
+
 //create_password
 
 //Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.index');
@@ -128,10 +133,9 @@ Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users
 Route::post('/admin/users', [AdminController::class, 'users'])->name('admin.users_search');
 Route::post('/admin/users/store', [AdminController::class, 'users_save'])->name('admin.users_save');
 Route::post('/admin/users/delete', [AdminController::class, 'users_delete'])->name('admin.users_delete');
-Route::post('/admin/users/reset_password', [AdminController::class, 'users_resetPassword'])->name('admin.reset_user_password');
+
 Route::get('/admin/newsletter', [AdminController::class, 'newsletter'])->name('admin.newsletter');
 Route::post('/newsletter/DownloadVerify', [AdminController::class, 'newsletterDownloadVerify']);
-
 
 Route::post('/admin/addPDF', [AdminController::class, 'addPDF']);
 Route::post('/admin/bannerUpdate', [AdminController::class, 'mainBannerUp']);
