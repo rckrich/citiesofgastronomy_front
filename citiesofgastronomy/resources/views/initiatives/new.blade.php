@@ -902,7 +902,8 @@ function searchCheck (classGroup){
         let checkTopics = searchCheck ('checkTopics');
         let checkSDG = searchCheck ('checkSDG');
         let checkConnections = searchCheck ('checkConnections');
-        if(!checkCities || !checkType || !checkTopics || !checkSDG || !checkConnections){
+        if(!checkCities || !checkType || !checkTopics ){
+        //if(!checkCities || !checkType || !checkTopics || !checkSDG || !checkConnections){
             valida = 'no';
         };
 
@@ -958,7 +959,8 @@ function searchCheck (classGroup){
         }else{
             //checa FILTROS
             let cantFiltros = 0;let txt = 'is';
-            if(!checkCities || !checkType || !checkTopics || !checkSDG || !checkConnections){
+            if(!checkCities || !checkType || !checkTopics){
+            //if(!checkCities || !checkType || !checkTopics || !checkSDG || !checkConnections){
                 if(!checkCities){
                     errorMessage = 'cities';
                     cantFiltros = cantFiltros + 1;
@@ -973,6 +975,7 @@ function searchCheck (classGroup){
                     errorMessage = errorMessage+'topics';
                     cantFiltros = cantFiltros + 1;
                 };
+                /*
                 if(!checkSDG){
                     if(errorMessage != ''){errorMessage = errorMessage+', ';};
                     errorMessage = errorMessage+'SDG';
@@ -983,6 +986,7 @@ function searchCheck (classGroup){
                     errorMessage = errorMessage+'connection to other';
                     cantFiltros = cantFiltros + 1;
                 };
+                //*/
                 if(cantFiltros>1){txt = 'are';};
                 errorMessage = 'At least one filter of each must be selected ('+errorMessage+' '+txt+' missing)';
 

@@ -15,7 +15,7 @@
                     @csrf
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
-                        <input name="search_box" class="form-control me-2" value="<?= $search_box?>" type="search"  placeholder="{{__('users.search_ph')}}" aria-label="{{__('users.search_ph')}}" aria-describedby="basic-addon1">
+                        <input id="search_box"  name="search_box" class="form-control me-2" value="<?= $search_box?>" type="search"  placeholder="{{__('users.search_ph')}}" aria-label="{{__('users.search_ph')}}" aria-describedby="basic-addon1">
                         <input type="hidden" id="page" name="page" value="<?php if($search_box!=''){echo  $page;}else{echo '1';};?>">
                         <input type="hidden" id="pageActual" name="pageActual" value="<?php echo $page?>">
                     </div>
@@ -45,7 +45,7 @@
                             <td class="col-4">{{$item['email']}}</td>
                             <td class="col-auto my-auto">
                                 <button class="btn btn-link"  data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="openModal_user({{$item['id']}},'{{$item['name']}}','{{$item['email']}}')">{{__('users.btn_edit')}}</button>
-                            </td>                           
+                            </td>
                             <td class="col-auto my-auto">
                                 <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteUserModal" onclick="openDeleteModal_user({{$item['id']}})">{{__('admin.btn_delete')}}</button>
                             </td>
@@ -77,7 +77,7 @@
             <h5 class="modal-title create-modal-label" id="createUserModalLabel">{{__('users.create_modal_title')}}</h5>
             <h5 class="modal-title edit-modal-label" id="editUserModalLabel">{{__('users.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
+        </div>
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
@@ -207,7 +207,7 @@ function saveUser(){
     let data_og_email = document.getElementById("data_temp_mail").value;
     let confirm_email = document.getElementById("data_mail_confirm").value;
     datos.append('email', data_new_email);
-    
+
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     let isValidEmail = emailRegex.test(data_new_email);
     let isValidEmail2 = emailRegex.test(confirm_email);
@@ -217,16 +217,16 @@ function saveUser(){
 
 
     if(data_id && data_new_email === data_og_email){
-        isConfirmedEmail = true;        
+        isConfirmedEmail = true;
         needsConfirmedEmail = false;
         //does not need to confirm email
     }
     if(data_new_email === confirm_email){
-        isConfirmedEmail = true;        
+        isConfirmedEmail = true;
         needsConfirmedEmail = false;
     }
 
-    if(data_name && data_new_email && isValidEmail && isConfirmedEmail && !needsConfirmedEmail){     
+    if(data_name && data_new_email && isValidEmail && isConfirmedEmail && !needsConfirmedEmail){
 
         $.ajax({
             type: 'POST',
@@ -239,7 +239,7 @@ function saveUser(){
             success: function(msg){
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
-                } 
+                }
                 else {
                     closeModal('editUserModal')
                     if(data_id){alert('{{trans('users.edit_success')}}');}
@@ -299,12 +299,12 @@ function deleteUser(){
             cache: false,
             processData:false,
             beforeSend: function(){},
-            success: function(msg){                    
+            success: function(msg){
                 closeModal('deleteUserModal');
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
                     window.location = '/admin/users?page=1';
-                } 
+                }
                 else {
                     alert('{{trans('users.delete_success')}}');
                     window.location = '/admin/users?page=1';
@@ -349,19 +349,21 @@ function resetPassword(){
 }
 
 $("#search_box").keypress(function (e) {
-    var key = e.which;
-    if(key == 13)  // the enter key code
-    {
-    let keyword = $("#search_box").val();
+        var key = e.which;
+        if(key == 13)  // the enter key code
+        {
+            e.preventDefault();
+            let keyword = $("#search_box").val();
 
-    if(keyword){
-        $('#searchForm_user').submit();
-    }
-    else{
-        window.location = '../../admin/users?page=1';
-    }
-    }
-    }); 
+            if(keyword){
+                document.getElementById("page").value = 1;
+                $('#searchForm_user').submit();
+            }
+            else{
+                window.location = '../../admin/users?page=1';
+            };
+        };
+    });
 
 </script>
 
