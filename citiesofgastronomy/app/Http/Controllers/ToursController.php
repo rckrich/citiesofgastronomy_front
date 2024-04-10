@@ -43,7 +43,38 @@ class ToursController extends Controller
         $inputs["agency"] = $tour['travelAgency'];
         $inputs["description"] = $tour['description'];
         $inputs["cityName"] = $tour['cityName'];
-        $inputs["social_network"] = $tour['social_network'];
+
+        $social_network = $tour['social_network'];
+        $inputs["facebook_link"] = '';
+        $inputs["twitter_link"] = '';
+        $inputs["linkedin_link"] = '';
+        $inputs["instagram_link"] = '';
+        $inputs["tiktok_link"] = '';
+        $inputs["youtube_link"] = '';
+        foreach ($social_network as $social){
+            if($social){
+                switch($social['idSocialNetworkType']){
+                    case 1:
+                        $inputs["facebook_link"] = $social['social_network'];
+                        break;
+                    case 2:
+                        $inputs["twitter_link"] = $social['social_network'];
+                        break;
+                    case 3:
+                        $inputs["tiktok_link"] = $social['social_network'];
+                        break;
+                    case 4:
+                        $inputs["instagram_link"] = $social['social_network'];
+                        break;
+                    case 5:
+                        $inputs["youtube_link"] = $social['social_network'];
+                        break;
+                    case 6:
+                        $inputs["linkedin_link"] = $social['social_network'];
+                        break;
+                }
+            }
+        }
         $inputs["gallery"] = $res['gallery'];
 
         return view('tours.show',$inputs);

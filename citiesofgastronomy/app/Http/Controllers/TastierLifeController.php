@@ -52,7 +52,39 @@ class TastierLifeController extends Controller
         $inputs["chefName"] = $res['Recipes']['chefName'];
         $inputs["categoryName"] = $res['Recipes']['categoryName'];
         $inputs["cityName"] = $res['Recipes']['cityName'];
-        $inputs["socialMedia"] = $res['Recipes']['socialMedia'];
+        
+        $socialMedia = $res['Recipes']['socialMedia'];
+        $inputs["facebook_link"] = '';
+        $inputs["twitter_link"] = '';
+        $inputs["linkedin_link"] = '';
+        $inputs["instagram_link"] = '';
+        $inputs["tiktok_link"] = '';
+        $inputs["youtube_link"] = '';
+        foreach ($socialMedia as $social){
+            if($social){
+                switch($social['id']){
+                    case 1:
+                        $inputs["facebook_link"] = $social['value'];
+                        break;
+                    case 2:
+                        $inputs["twitter_link"] = $social['value'];
+                        break;
+                    case 3:
+                        $inputs["tiktok_link"] = $social['value'];
+                        break;
+                    case 4:
+                        $inputs["instagram_link"] = $social['value'];
+                        break;
+                    case 5:
+                        $inputs["youtube_link"] = $social['value'];
+                        break;
+                    case 6:
+                        $inputs["linkedin_link"] = $social['value'];
+                        break;
+                }
+            }
+        }
+
         $inputs["gallery"] = $res['Gallery'];
         //Log::info($inputs);
 

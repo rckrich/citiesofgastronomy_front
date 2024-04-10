@@ -14,14 +14,13 @@
                 <h6 class="data-sm py-2"><b class="text-orange">{{__('tastier_life.data_chef')}}</b>{{$chefName}}</h6>
                 <div class="row align-items-start">
                     <div class="col-auto">
-                        @foreach($socialMedia as $s)
-                        <a href="{{$s['value']}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/'.$s['icon'])}}" height="25" width="25"/></a>
-                        @endforeach
-                        <!--a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>
-                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
-                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="19" width="23"/></a>
-                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>
-                        <a href="" class="px-2"><img class="icon-social" src="{{asset('assets/icons/tiktok.svg')}}" height="19" width="23"/></a-->
+                        @if($facebook_link)<a href="{{$facebook_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/></a>@endif
+                        @if($twitter_link)<a href="{{$twitter_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>@endif
+                        @if($tiktok_link)<a href="{{$tiktok_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/tiktok.svg')}}" height="19" width="23"/></a>@endif
+                        @if($instagram_link)<a href="{{$instagram_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/instagram.svg')}}" height="23" width="23"/></a>@endif
+                        @if($youtube_link)<a href="{{$youtube_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/youtube.svg')}}" height="19" width="23"/></a>@endif
+                        @if($linkedin_link)<a href="{{$linkedin_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="19" width="23"/></a>@endif
+                    </div>
                     </div>
                 </div>
             </div>
