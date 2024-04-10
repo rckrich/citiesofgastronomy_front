@@ -26,7 +26,9 @@ return [
     'obligatory_field_confirm'=>'Confirmation is required',
     'email_format_error'=>'Incorrect Email format',
     'email_compare_error'=>'Email and email confirmation must match',
+    'password_compare_error'=>'Password doesn\'t match',
     'url_format_error'=>'Incorrect URL format',
+    'password_format_error'=>'Password must have 8 or more digits',
 
 
     'main_site'=>[

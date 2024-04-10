@@ -81,18 +81,18 @@
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
-                <label class="form-label" for="data_username">{{__('users.data_username')}}</label>
-                <input id="data_username" name="data_username" class="form-control" placeholder="{{__('users.ph_username')}}"/>
+                <label class="form-label" for="data_username">{{__('session.data_username')}}</label>
+                <input id="data_username" name="data_username" class="form-control" placeholder="{{__('session.ph_username')}}"/>
                 <div id="validation_data_username" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
 
             </div>
             <div class="form-group py-2">
-                <label class="form-label" for="data_mail">{{__('users.data_mail')}}</label>
-                <input id="data_mail" name="data_mail" class="form-control" placeholder="{{__('users.ph_mail')}}"/>
+                <label class="form-label" for="data_mail">{{__('session.data_mail')}}</label>
+                <input id="data_mail" name="data_mail" class="form-control" placeholder="{{__('session.ph_mail')}}"/>
                 <div id="validation_data_email" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                 <div id="validation_format_email" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
 
-                <input id="data_mail_confirm" name="data_mail_confirm" class="form-control my-2" placeholder="{{__('users.ph_mail_confirm')}}"/>
+                <input id="data_mail_confirm" name="data_mail_confirm" class="form-control my-2" placeholder="{{__('session.ph_mail_confirm')}}"/>
                 <div id="validation_data_email2" class="invalid-feedback">{{__('admin.obligatory_field_confirm')}}</div>
                 <div id="validation_format_email2" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
                 <div id="validation_same_email" class="invalid-feedback my-2">{{__('admin.email_compare_error')}}</div>

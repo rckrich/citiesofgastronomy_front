@@ -45,10 +45,43 @@ class AdminController extends Controller
         return $res;
     }
 
-    public function show_resetPassword(Request $request)
+    public function show_resetPassword($token)
     {
-        
+        $inputs = [];
+        $inputs['token'] = $token;
+        return view('session.set_password',$inputs);        
     }
+
+    public function setPassword(Request $request){
+        $email = $request->input("data_email");
+        $password = $request->input("data_password");
+        $passwordConfirmation = $request->input("confirm_password");
+        $token = $request->input("access_token");
+        $dattaSend = [
+            'email' => $email, 
+            'password' => $password, 
+            'passwordConfirmation' => $passwordConfirmation, 
+            'token' => $token, 
+        ];
+
+        $url = config('app.apiUrl').'user/resetPassword';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("SET USER PASSWORD ::");
+        Log::info($res);
+
+        return $res;        
+    }
+
+
 
     public function cities(Request $request)
     {
