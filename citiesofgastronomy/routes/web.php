@@ -53,10 +53,13 @@ Route::get('/terms_and_conditions', [LandingController::class, 'terms_conditions
 
 /*ADMIN PANEL*/
 Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::get('/reset_password', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 Route::post('/account/reset_password', [AdminController::class, 'user_resetPassword'])->name('admin.reset_user_password'); //sends email
-Route::get('account/set_password/{token}', [AdminController::class, 'show_resetPassword'])->where('token', '.*')->name('admin.show_reset__password'); //url form email
+Route::get('account/set_password/{token}', [AdminController::class, 'show_resetPassword'])->where('token', '.*')->name('admin.show_reset_password'); //url form email
 Route::post('/set_password', [AdminController::class, 'setPassword'])->name('admin.setPassword'); //sets password
+Route::post('account/change_password', [AdminController::class, 'show_changePassword'])->name('admin.show_change_password'); //requires active session
+Route::post('/change_password', [AdminController::class, 'setPassword'])->name('admin.changePassword'); //sets password with active session
 
 
 

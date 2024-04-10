@@ -18,7 +18,8 @@
 	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css" />
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <style>
         .inputImage{
             cursor: pointer;
@@ -82,16 +83,18 @@
                 </li>
             </ul>
             <div class="dropdown show mx-auto ms-lg-0 text-center">
-                <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     RCKgames
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <form action="">
+                            <span class="dropdown-item" onclick="changePassword()">{{__('session.change_password')}}</span>
+                        </form>
+                    </li>
+                    <li><a class="dropdown-item" href="{{route('admin.logout')}}">{{__('session.logout')}}</a></li>
+                </ul>
             </div>
-
         </div>
     </nav>
     <div class="navbar-height-margin min-h-100">
@@ -118,6 +121,9 @@
     <script src="{{asset('js/functions.js')}}"></script>
     <script src="{{asset('js/plugins.min.js')}}"></script>
     <script>
+        $("#dropdownMenuLink").on("click", function(){
+            $("#dropdownMenuLink").dropdown("toggle");
+        })
 		jQuery(window).on( 'pluginCarouselReady', function(){
 			$('#oc-features').owlCarousel({
 				items: 1,
@@ -132,6 +138,7 @@
 				},
 			});
 		});
+
 	</script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="d655f07n"></script>

@@ -31,9 +31,6 @@ $(document).ready(function () {
      }); 
      
      $("#editMailModalBtn").on("click", function(){openEditMailModal()})
-    
-
-
 });
 
 

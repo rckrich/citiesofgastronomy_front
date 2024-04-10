@@ -24,6 +24,9 @@ return [
     'confirm_password'=>'Confirm password',
     'ph_confirm_password'=>'Confirm your password',
     'password_set_success'=>'The password was successfully established',
+    
+    'logout'=>'Log Out',
+    'change_password'=>'Change Password',
     ''=>'',
 
 ];

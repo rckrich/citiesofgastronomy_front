@@ -18,6 +18,10 @@ class AdminController extends Controller
     {
         return view('session.login');
     }
+    public function logout()
+    {
+        return view('session.login');
+    }
     public function reset_password()
     {
         return view('session.reset_password');
@@ -81,6 +85,13 @@ class AdminController extends Controller
         return $res;        
     }
 
+    public function show_changePassword(Request $request)
+    {
+        $token = $request->input("access_token"); 
+        $inputs = [];
+        $inputs['token'] = $token;
+        return view('session.change_password',$inputs);        
+    }
 
 
     public function cities(Request $request)

@@ -13,12 +13,12 @@
                 </div>
                 <form>
                 @csrf
-                <!--div class="form-group py-1">
+                <div class="form-group py-1">
                     <label for="data_mail" class="text-white text-left py-2">{{__('session.data_email')}}</label>                
                     <input id="data_mail" type="text" class="w-100" placeholder="{{__('session.data_email_sample')}}"/>
                     <div id="validation_data_email" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
                     <div id="validation_format_email" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
-                </div-->
+                </div>
                 <div class="form-group py-1">
                     <label for="data_password" class="text-white text-left py-2">{{__('session.data_password')}}</label>                
                     <input id="data_password" type="password" class="w-100" placeholder="{{__('session.ph_data_password')}}"/>
@@ -46,19 +46,22 @@
 
 function setPassword(){
     resetValidations();
+    document.getElementById("validation_data_email").style.display = 'none';
+    document.getElementById("validation_format_email").style.display = 'none';
+
     let datos = new FormData();
     let form_token = document.getElementsByName("_token")[0].value;
-    //let data_email = document.getElementById("data_mail").value;
+    let data_email = document.getElementById("data_mail").value;
     let data_password = document.getElementById("data_password").value;
     let confirm_password = document.getElementById("confirm_password").value;
     datos.append('_token', form_token);
-    //datos.append('data_email', data_email);
+    datos.append('data_email', data_email);
     datos.append('data_password', data_password);
     datos.append('confirm_password', confirm_password);
     datos.append('access_token', access_token);
 
-    //let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    //let isValidEmail = emailRegex.test(data_email);
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    let isValidEmail = emailRegex.test(data_email);
     let isValidPassword = (data_password.length >= 8 ? true : false);
     let isValidConfirmPassword = (confirm_password.length >= 8 ? true : false);
     
@@ -70,8 +73,8 @@ function setPassword(){
         needsConfirmedPassword = false;
     }
 
-    //data_email && isValidEmail 
-    if(data_password && isValidPassword 
+    if(data_email && isValidEmail 
+    && data_password && isValidPassword 
     && isConfirmedPassword && !needsConfirmedPassword
     ){
         resetValidations();
@@ -95,12 +98,12 @@ function setPassword(){
         });
     }
     else{
-        /*if(!data_email){
+        if(!data_email){
             document.getElementById("validation_data_email").style.display = 'block';
         }
         if(data_email && !isValidEmail){
             document.getElementById("validation_format_email").style.display = 'block';
-        }*/
+        }
         if(!data_password){
             document.getElementById("validation_data_password").style.display = 'block';
         }
@@ -120,8 +123,8 @@ function setPassword(){
 
 }
 function resetValidations(){
-    //document.getElementById("validation_data_email").style.display = 'none';
-    //document.getElementById("validation_format_email").style.display = 'none';
+    document.getElementById("validation_data_email").style.display = 'none';
+    document.getElementById("validation_format_email").style.display = 'none';
     document.getElementById("validation_data_password").style.display = 'none';
     document.getElementById("validation_format_password").style.display = 'none';
     document.getElementById("validation_confirm_password").style.display = 'none';
