@@ -11,6 +11,12 @@ return [
     'btn_sign'=>'SIGN IN',
     'btn_cancel'=>'CANCEL',
     'btn_reset'=>'RESET PASSWORD',
+    
+    'data_username'=>'Name:',
+    'ph_username'=>'User Name',
+    'data_mail'=>'Mail:',
+    'ph_mail'=>'Mail',
+    'ph_mail_confirm'=>'Confirm Mail',
     'btn_set_password'=>'SET PASSWORD',
     'set_password'=>'Set your pasword',
     'setPassword_desc'=>'',
