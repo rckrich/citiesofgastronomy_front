@@ -88,10 +88,11 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li>
-                        <form action="">
-                            <span class="dropdown-item" onclick="changePassword()">{{__('session.change_password')}}</span>
+                        <form action ="{{route('admin.show_change_password')}}" method="POST" id="changePasswordForm">
+                            @csrf         
+                            <input id="access_token" name="access_token" type="hidden" value="1234"/>               
+                            <button type="submit" id="changePasswordBtn" class="dropdown-item">{{__('session.change_password')}}</button></li>
                         </form>
-                    </li>
                     <li><a class="dropdown-item" href="{{route('admin.logout')}}">{{__('session.logout')}}</a></li>
                 </ul>
             </div>
@@ -138,6 +139,51 @@
 				},
 			});
 		});
+
+        /*$("#changePasswordForm").on('submit', function(e){
+            e.preventDefault();
+            document.getElementById("changePasswordBtn").disabled = true;
+
+            let token = '1234';
+            let form_token = document.getElementsByName("_token")[0].value;
+
+            let datos = new FormData(this);    
+            datos.append('_token', form_token);
+            datos.append('access_token', token);
+            document.getElementById("changePasswordBtn").disabled = false;
+            $.ajax({
+                type: 'POST',
+                url: '../account/change_password',
+                data: datos,
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(msg){                    
+                if (msg.status===400) {
+                    alert("Error: " + msg.message);
+                } 
+                else {
+                    alert('{{trans('session.password_set_success')}}');
+                    window.location = '/account/change_password';
+                }
+            }
+            });
+        });*/
+
+        /*
+            $("#changePasswordForm").on('submit', function(e){
+            e.preventDefault();
+            let form =  document.getElementById("changePasswordForm");
+            document.getElementById("changePasswordBtn").disabled = true;
+
+            let token = '1234';
+            let form_token = document.getElementsByName("_token")[0].value;
+
+            let datos = new FormData(this);    
+            datos.append('_token', form_token);
+            datos.append('access_token', token);
+            $("#changePasswordForm").submit();
+        });*/
 
 	</script>
     <div id="fb-root"></div>

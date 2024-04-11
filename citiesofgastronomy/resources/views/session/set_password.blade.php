@@ -3,7 +3,7 @@
 @extends('commons.sessions_base')
 
 @section('content')
-<section id="login" class="bg-white min-h-100 row mx-0">
+<section id="set_password" class="bg-white min-h-100 row mx-0">
     <div class="p-lg-5 p-md-5 p-sm-3 p-3 align-self-center">
         <div class="container-sm card bg-dark p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="p-lg-5 p-md-5 p-sm-3 p-3 col-10 mx-auto">
@@ -16,21 +16,21 @@
                 <!--div class="form-group py-1">
                     <label for="data_mail" class="text-white text-left py-2">{{__('session.data_email')}}</label>                
                     <input id="data_mail" type="text" class="w-100" placeholder="{{__('session.data_email_sample')}}"/>
-                    <div id="validation_data_email" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
-                    <div id="validation_format_email" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
+                    <div id="validation_data_email" class="invalid-feedback text-orange">{{__('admin.obligatory_field')}}</div>
+                    <div id="validation_format_email" class="invalid-feedback text-orange">{{__('admin.email_format_error')}}</div>
                 </div-->
                 <div class="form-group py-1">
                     <label for="data_password" class="text-white text-left py-2">{{__('session.data_password')}}</label>                
                     <input id="data_password" type="password" class="w-100" placeholder="{{__('session.ph_data_password')}}"/>
-                    <div id="validation_data_password" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
-                    <div id="validation_format_password" class="invalid-feedback">{{__('admin.password_format_error')}}</div>
+                    <div id="validation_data_password" class="invalid-feedback text-orange">{{__('admin.obligatory_field')}}</div>
+                    <div id="validation_format_password" class="invalid-feedback text-orange">{{__('admin.password_format_error')}}</div>
                 </div>
                 <div class="form-group pt-1">
                     <label for="confirm_password" class="text-white text-left py-2">{{__('session.confirm_password')}}</label>                
                     <input id="confirm_password" type="password" class="w-100" placeholder="{{__('session.ph_confirm_password')}}"/>
                     <div id="validation_confirm_password" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
-                    <div id="validation_format_confirm_password" class="invalid-feedback">{{__('admin.password_format_error')}}</div>
-                    <div id="validation_same_password" class="invalid-feedback my-2">{{__('admin.password_compare_error')}}</div>
+                    <div id="validation_format_confirm_password" class="invalid-feedback text-orange">{{__('admin.password_format_error')}}</div>
+                    <div id="validation_same_password" class="invalid-feedback text-orange my-2">{{__('admin.password_compare_error')}}</div>
                 </div>
                 <div class="text-center pt-4">
                     <span class="btn btn-primary mx-3" onclick="setPassword()">{{__('session.btn_set_password')}}</span>

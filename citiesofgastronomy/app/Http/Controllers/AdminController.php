@@ -80,7 +80,7 @@ class AdminController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("SET USER PASSWORD ::");
-        Log::info($res);
+        //Log::info($res);
 
         return $res;        
     }
@@ -90,6 +90,9 @@ class AdminController extends Controller
         $token = $request->input("access_token"); 
         $inputs = [];
         $inputs['token'] = $token;
+        //obtener contraseña del usuario para hacer la comparación, desde aquí o en el blade
+        //Log::info($token);
+
         return view('session.change_password',$inputs);        
     }
 

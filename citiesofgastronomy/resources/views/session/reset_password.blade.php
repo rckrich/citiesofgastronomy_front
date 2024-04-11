@@ -3,7 +3,7 @@
 @extends('commons.sessions_base')
 
 @section('content')
-<section id="login" class="bg-white min-h-100 row mx-0">
+<section id="reset_password" class="bg-white min-h-100 row mx-0">
     <div class="p-lg-5 p-md-5 p-sm-3 p-3 align-self-center">
         <div class="container-sm card bg-dark p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="p-lg-5 p-md-5 p-sm-3 p-3 col-10 mx-auto">
@@ -16,8 +16,8 @@
                 <div class="form-group py-5">
                     <label for="data_mail" class="text-white text-left py-2">{{__('session.data_email')}}</label>                
                     <input id="data_mail" type="text" class="w-100" placeholder="{{__('session.data_email_sample')}}"/>
-                    <div id="validation_data_email" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
-                    <div id="validation_format_email" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
+                    <div id="validation_data_email" class="invalid-feedback text-orange">{{__('admin.obligatory_field')}}</div>
+                    <div id="validation_format_email" class="invalid-feedback text-orange">{{__('admin.email_format_error')}}</div>
                 </div>
                 <div class="text-center">
                     <a class="btn btn-primary inverted mx-3"  href="{{route('admin.login')}}">{{__('session.btn_cancel')}}</a>
