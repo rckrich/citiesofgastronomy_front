@@ -88,11 +88,12 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li>
-                        <form action ="{{route('admin.show_change_password')}}" method="POST" id="changePasswordForm">
+                        <!--form action ="{{route('admin.show_change_password')}}" method="POST" id="changePasswordForm">
                             @csrf         
                             <input id="access_token" name="access_token" type="hidden" value="1234"/>               
                             <button type="submit" id="changePasswordBtn" class="dropdown-item">{{__('session.change_password')}}</button></li>
-                        </form>
+                        </form!-->
+                        <a href="{{route('admin.show_change_password')}}" id="changePasswordBtn" class="dropdown-item">{{__('session.change_password')}}</a></li>
                     <li><a class="dropdown-item" href="{{route('admin.logout')}}">{{__('session.logout')}}</a></li>
                 </ul>
             </div>

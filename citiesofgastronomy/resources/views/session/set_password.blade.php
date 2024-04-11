@@ -113,7 +113,7 @@ function setPassword(){
         if(confirm_password && !isValidConfirmPassword){
             document.getElementById("validation_format_confirm_password").style.display = 'block';
         }
-        if(!confirm_password || data_password != confirm_password){
+        if(confirm_password && data_password != confirm_password){
             document.getElementById("validation_same_password").style.display = 'block';
         }
     }

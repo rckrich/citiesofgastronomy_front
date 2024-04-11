@@ -59,8 +59,8 @@ Route::get('/reset_password', [AdminController::class, 'reset_password'])->name(
 Route::post('/account/reset_password', [AdminController::class, 'user_resetPassword'])->name('admin.reset_user_password'); //sends email
 Route::get('account/set_password/{token}', [AdminController::class, 'show_resetPassword'])->where('token', '.*')->name('admin.show_reset_password'); //url form email
 Route::post('/set_password', [AdminController::class, 'setPassword'])->name('admin.setPassword'); //sets password
-Route::post('account/change_password', [AdminController::class, 'show_changePassword'])->name('admin.show_change_password'); //requires active session
-Route::post('/change_password', [AdminController::class, 'setPassword'])->name('admin.changePassword'); //sets password with active session
+Route::get('account/change_password', [AdminController::class, 'show_changePassword'])->name('admin.show_change_password'); //requires active session
+Route::post('/change_password', [AdminController::class, 'changePassword'])->name('admin.changePassword'); //sets password with active session
 
 
 

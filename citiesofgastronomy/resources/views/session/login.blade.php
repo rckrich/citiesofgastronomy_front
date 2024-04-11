@@ -15,12 +15,12 @@
                         <div class="form-group py-2">
                             <label for="data_user" class="text-white text-left py-2">{{__('session.data_user')}}</label>
                             <input id="data_user" name="data_user" type="text" class="w-100" placeholder="{{__('session.data_name')}}"/>
-                            <div id="data_user_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
+                            <div id="data_user_validation" class="invalid-feedback text-orange" style="display: none;">{{__('admin.obligatory_field')}}</div>
                         </div>
                         <div class="form-group py-2">
                             <label for="data_password" class="text-white text-left py-2">{{__('session.data_password')}}</label>
                             <input id="data_password" name="data_password" type="password" class="w-100" placeholder="{{__('session.data_password')}}"/>
-                            <div id="data_password_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
+                            <div id="data_password_validation" class="invalid-feedback text-orange" style="display: none;">{{__('admin.obligatory_field')}}</div>
                         </div>
                         <div class="text-right text-white py-4">
                             <a class="text-orange-light nav-link-sm" href="{{route('admin.reset_password')}}"><b>{{__('session.forgot')}}</b></a>

@@ -59,7 +59,7 @@ class AdminController extends Controller
 
     public function logout()
     {
-        return view('session.login');
+        return redirect()->route('admin.login');
     }
     public function reset_password()
     {
@@ -124,17 +124,48 @@ class AdminController extends Controller
         return $res;
     }
 
-    public function show_changePassword(Request $request)
+    public function show_changePassword()
     {
-        $token = $request->input("access_token");
         $inputs = [];
-        $inputs['token'] = $token;
-        //obtener contraseña del usuario para hacer la comparación, desde aquí o en el blade
-        //Log::info($token);
-
-        return view('session.change_password',$inputs);
+        $stoken = Cookie::get('stoken');
+        if($stoken==="" || $stoken === null){
+            return redirect()->route('admin.login');
+        }
+        else{
+            $inputs['stoken'] = $stoken; 
+            return view('session.change_password',$inputs);
+        }
     }
 
+    public function changePassword(Request $request)
+    {
+        $originalPassword = $request->input("original_password");
+        $password = $request->input("data_password");
+        $passwordConfirmation = $request->input("confirm_password");
+        $token = $request->input("access_token");
+        $dattaSend = [
+            'originalPassword' => $originalPassword,
+            'password' => $password,
+            'passwordConfirmation' => $passwordConfirmation,
+            'token' => $token,
+        ];
+
+        $url = config('app.apiUrl').'user/perfilPassword';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("USER - PASSWORD CHANGED::");
+        //Log::info($res);
+
+        return $res;
+    }
 
     public function cities(Request $request, $tipo = 'user')
     {

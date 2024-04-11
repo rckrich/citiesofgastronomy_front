@@ -9,7 +9,7 @@
             <div class="p-lg-5 p-md-5 p-sm-3 p-3 col-10 mx-auto">
                 <div>
                     <h3 class="text-center subtitle-md text-orange-light py-2"><b>{{__('session.change_password')}}</b></h3>
-                    <p class="text-left data text-white py-2">{{__('session.changePassword_desc')}} **the user token is {{$token}}**</p>
+                    <p class="text-left data text-white py-2">{{__('session.changePassword_desc')}} **the user token is {{$stoken}}**</p>
                 </div>
                 <form>
                 @csrf
@@ -35,7 +35,7 @@
                     <div id="validation_same_password" class="invalid-feedback text-orange my-2">{{__('admin.password_compare_error')}}</div>
                 </div>
                 <div class="text-center pt-4">
-                    <span class="btn btn-primary mx-3" onclick="setPassword()">{{__('session.btn_change_password')}}</span>
+                    <span class="btn btn-primary mx-3" onclick="changePassword()">{{__('session.btn_change_password')}}</span>
                 </div>
                 </form>
             </div>
@@ -44,9 +44,10 @@
 </section>
 
 <script>
-    var access_token =  '<?php echo $token;?>';
 
-function setPassword(){
+var access_token =  '<?php echo $stoken;?>';
+
+function changePassword(){
     resetValidations();
     let datos = new FormData();
     let form_token = document.getElementsByName("_token")[0].value;
@@ -59,8 +60,7 @@ function setPassword(){
     datos.append('confirm_password', confirm_password);
     datos.append('access_token', access_token);
 
-    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    let isValidEmail = emailRegex.test(original_password);
+    let isValidOriginalPassword = (original_password.length >= 8 ? true : false);
     let isValidPassword = (data_password.length >= 8 ? true : false);
     let isValidConfirmPassword = (confirm_password.length >= 8 ? true : false);
     
@@ -72,14 +72,14 @@ function setPassword(){
         needsConfirmedPassword = false;
     }
 
-    if(original_password && isValidEmail 
+    if(original_password && isValidOriginalPassword 
     && data_password && isValidPassword 
     && isConfirmedPassword && !needsConfirmedPassword
     ){
         resetValidations();
         $.ajax({
             type: 'POST',
-            url: '/set_password',
+            url: '/change_password',
             data: datos,
             contentType: false,
             cache: false,
@@ -91,7 +91,7 @@ function setPassword(){
                 } 
                 else {
                     alert('{{trans('session.password_set_success')}}');
-                    window.location = '/login';
+                    window.location = '/admin/home';
                 }
             }
         });
@@ -100,8 +100,8 @@ function setPassword(){
         if(!original_password){
             document.getElementById("validation_original_password").style.display = 'block';
         }
-        if(original_password && !isValidEmail){
-            document.getElementById("validation_format_email").style.display = 'block';
+        if(original_password && !isValidOriginalPassword){
+            document.getElementById("validation_format_original_password").style.display = 'block';
         }
         if(!data_password){
             document.getElementById("validation_data_password").style.display = 'block';
@@ -115,7 +115,7 @@ function setPassword(){
         if(confirm_password && !isValidConfirmPassword){
             document.getElementById("validation_format_confirm_password").style.display = 'block';
         }
-        if(!confirm_password || data_password != confirm_password){
+        if(confirm_password && data_password != confirm_password){
             document.getElementById("validation_same_password").style.display = 'block';
         }
     }
