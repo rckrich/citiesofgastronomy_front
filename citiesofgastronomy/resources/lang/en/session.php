@@ -14,6 +14,7 @@ return [
     'btn_cancel'=>'CANCEL',
     'btn_reset'=>'RESET PASSWORD',
     'btn_set_password'=>'SET PASSWORD',
+    'btn_change_password'=>'CHANGE PASSWORD',
 
     'data_user'=>'User',
     'data_password'=>'Password',

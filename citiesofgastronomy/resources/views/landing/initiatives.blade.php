@@ -39,7 +39,7 @@
         @csrf
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select" name="select_city_filter">
+                    <select class="form-control filter-select <?php if($search_inputs['city']!='default'){echo 'changed';}?>" name="select_city_filter">
                         <option <?php if($search_inputs['city']=='default'){echo 'selected';}?>
                             value="default">{{__('initiatives.user.select_city')}}</option>
                         @foreach($cities as $city)
@@ -52,7 +52,7 @@
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select" name="select_activity_filter">
+                    <select class="form-control filter-select <?php if($search_inputs['actype']!='default'){echo 'changed';}?>" name="select_activity_filter">
                         <option <?php if($search_inputs['actype']=='default'){echo 'selected';}?>
                             value="default">{{__('initiatives.user.select_activity')}}</option>
                         @foreach($typeOfActivity as $actype)
@@ -64,7 +64,7 @@
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select" name="select_topic_filter">
+                    <select class="form-control filter-select <?php if($search_inputs['topic']!='default'){echo 'changed';}?>" name="select_topic_filter">
                         <option <?php if($search_inputs['topic']=='default'){echo 'selected';}?>  
                             value="default">{{__('initiatives.user.select_topic')}}</option>
                         @foreach($Topics as $topic)
@@ -76,7 +76,7 @@
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select" name="select_sdg_filter">
+                    <select class="form-control filter-select <?php if($search_inputs['sdg']!='default'){echo 'changed';}?>" name="select_sdg_filter">
                         <option <?php if($search_inputs['sdg']=='default'){echo 'selected';}?>  
                             value="default">{{__('initiatives.user.select_sdg')}}</option>
                         @foreach($sdgs as $sdg)
@@ -88,7 +88,7 @@
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select class="form-control filter-select" name="select_connection_filter">
+                    <select class="form-control filter-select <?php if($search_inputs['connection']!='default'){echo 'changed';}?>" name="select_connection_filter">
                         <option <?php if($search_inputs['connection']=='default'){echo 'selected';}?> 
                             value="default">{{__('initiatives.user.select_connection')}}</option>
                         @foreach($ConnectionsToOther as $cn)
