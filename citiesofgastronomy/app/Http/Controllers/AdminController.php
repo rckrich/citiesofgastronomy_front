@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Cookie;
 
 class AdminController extends Controller
 {
@@ -18,6 +18,45 @@ class AdminController extends Controller
     {
         return view('session.login');
     }
+
+    public function noLoginFind(){
+        return 'landing.index';
+    }
+
+    public function doLogin(Request $request)
+    {
+        $email = $request->input("data_user");
+        $password = $request->input("data_password");
+        $dattaSend = ['email' => $email , 'password' => $password];
+
+        $url = config('app.apiUrl').'login';
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        $res = json_decode( $data, true);
+        Log::info("USER - LOGIN ::");
+        Log::info($res);
+        $input = [];
+        $input["message"] = $res["message"];
+        $input["status"] = $res["status"];
+
+        if($res["status"] == 200){
+            $minutos = '525600';//un AÑO
+            //$nueva_cookie = $request->cookie('stoken', $res["token"], $minutos);// cookie('stoken', $res["token"], $minutos);
+
+            Cookie::queue('stoken', $res["token"], 60 * 24 * 365);
+            //$nueva_cookie = cookie()->forever('stoken', 'mivalor');
+            //Request::cookie('stoken');
+        };
+        return $input;
+    }
+
     public function logout()
     {
         return view('session.login');
@@ -53,7 +92,7 @@ class AdminController extends Controller
     {
         $inputs = [];
         $inputs['token'] = $token;
-        return view('session.set_password',$inputs);        
+        return view('session.set_password',$inputs);
     }
 
     public function setPassword(Request $request){
@@ -62,10 +101,10 @@ class AdminController extends Controller
         $passwordConfirmation = $request->input("confirm_password");
         $token = $request->input("access_token");
         $dattaSend = [
-            'email' => $email, 
-            'password' => $password, 
-            'passwordConfirmation' => $passwordConfirmation, 
-            'token' => $token, 
+            'email' => $email,
+            'password' => $password,
+            'passwordConfirmation' => $passwordConfirmation,
+            'token' => $token,
         ];
 
         $url = config('app.apiUrl').'user/resetPassword';
@@ -82,24 +121,25 @@ class AdminController extends Controller
         Log::info("SET USER PASSWORD ::");
         //Log::info($res);
 
-        return $res;        
+        return $res;
     }
 
     public function show_changePassword(Request $request)
     {
-        $token = $request->input("access_token"); 
+        $token = $request->input("access_token");
         $inputs = [];
         $inputs['token'] = $token;
         //obtener contraseña del usuario para hacer la comparación, desde aquí o en el blade
         //Log::info($token);
 
-        return view('session.change_password',$inputs);        
+        return view('session.change_password',$inputs);
     }
 
 
-    public function cities(Request $request)
+    public function cities(Request $request, $tipo = 'user')
     {
         $page = $request->input("page");
+        $access_token = Cookie::get('stoken');
 
         if(!$page){ $page=1;   };
         $st = $request->input("st");
@@ -111,10 +151,19 @@ class AdminController extends Controller
         };
         $fields_string = http_build_query($fields);
 
-        $url = config('app.apiUrl').'cities';
+        if($tipo == 'user'){
+            $url = config('app.apiUrl').'citiesAdmin';
+        }else{
+            $url = config('app.apiUrl').'cities';
+        };
         $curl = curl_init();
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
@@ -122,18 +171,26 @@ class AdminController extends Controller
         curl_close($curl);
 
         $res = json_decode( $data, true);
-
-        $inputs = [];
-        $inputs["citiesTotal"] = $res["tot"];
-        $inputs["paginator"] = $res["paginator"];
-        $inputs["cityList"] = $res["cities"];
-        $inputs["continents"] = $res["continents"];
-        $inputs["search_box"] = $search_box;
-        $inputs["page"] = $page;
-        $inputs["st"] = $st;
-        return view('admin.cities', $inputs);
+        try{
+            $inputs = [];
+            $inputs["citiesTotal"] = $res["tot"];
+            $inputs["paginator"] = $res["paginator"];
+            $inputs["cityList"] = $res["cities"];
+            $inputs["continents"] = $res["continents"];
+            $inputs["search_box"] = $search_box;
+            $inputs["page"] = $page;
+            $inputs["st"] = $st;
+            return view('admin.cities', $inputs);
+        } catch ( \Exception $e ) {
+            $route = $this->noLoginFind();
+                    return redirect()->route($route);
+        }
     }
 
+    public function citiesAdmin(Request $request, $tipo = 'user')
+    {
+        return $this->cities($request, "admin");
+    }
 
     public function citiesFind($id)
     {

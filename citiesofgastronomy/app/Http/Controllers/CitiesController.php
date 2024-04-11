@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cookie;
 
 class CitiesController extends Controller
 {
@@ -27,13 +28,13 @@ class CitiesController extends Controller
 
             $inputs["city"] = $res["cities"];
 
-            if($inputs["city"]["population"] == '0' 
-            || $inputs["city"]["population"]=='00' 
+            if($inputs["city"]["population"] == '0'
+            || $inputs["city"]["population"]=='00'
             || $inputs["city"]["population"]=='000'){
                 $inputs["city"]["population"] = '';
             }
-            if($inputs["city"]["restaurantFoodStablishments"] == '0' 
-            || $inputs["city"]["restaurantFoodStablishments"]=='00' 
+            if($inputs["city"]["restaurantFoodStablishments"] == '0'
+            || $inputs["city"]["restaurantFoodStablishments"]=='00'
             || $inputs["city"]["restaurantFoodStablishments"]=='000'){
                 $inputs["city"]["restaurantFoodStablishments"] = '';
             }
@@ -131,16 +132,23 @@ class CitiesController extends Controller
                     $photo = new \CURLFile($file_path);
         };
         if($data_id){
-            $url = config('app.apiUrl').'citiesUpdate';
+            $url = config('app.apiUrl').'cities/update/'.$data_id;
         }else{
             $url = config('app.apiUrl').'citiesStore';
         };
         Log::info($url);
 
         $curl = curl_init();
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
+
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, [
             'photo' => $photo,
@@ -158,6 +166,11 @@ class CitiesController extends Controller
         $res = json_decode( $data, true);
 
         Log::info(  $res  );
+        if($res == ''){
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        };
         return json_encode($res );
         //return response() -> json( [ $res ], 200 );
 

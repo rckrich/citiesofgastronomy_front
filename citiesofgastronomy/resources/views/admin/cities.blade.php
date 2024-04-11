@@ -270,33 +270,38 @@ $(document).ready(function(e){
                             //$('#fupForm').css("opacity",".5");
                         },
                         success: function(msg){
-                            console.log("el id es :: "+data_id);
+                            //console.log("el id es :: "+data_id);
                             console.log(msg);
                             let e = JSON.parse(msg);
-                            console.log(e);
-                            console.log(e.cities);
-                            console.log("##el ID: " + data_id);
-                            if(data_id){
-                                console.log("----<EDIT");
-                                id1 = 'cityname' + data_id;
-                                document.getElementById(id1).innerHTML = data_city;
-                                document.getElementById('alertMessage').innerHTML = 'City was 	successfully edited';
-                                document.getElementById('alertMessage').style.display = 'block';
-                                cityModal.hide(modalToggle);
-                                setTimeout(() => {
-                                    console.log("Delayed for 1 second.");
-                                    document.getElementById('alertMessage').style.display = 'none';
+                            //console.log(e);
+                            //console.log(e.cities);
+                            //console.log("##el ID: " + data_id);
+                            if(msg.status == 200){
+                                if(data_id){
+                                    //console.log("----<EDIT");
+                                    id1 = 'cityname' + data_id;
+                                    document.getElementById(id1).innerHTML = data_city;
+                                    document.getElementById('alertMessage').innerHTML = 'City was 	successfully edited';
+                                    document.getElementById('alertMessage').style.display = 'block';
+                                    cityModal.hide(modalToggle);
+                                    setTimeout(() => {
+                                        //console.log("Delayed for 1 second.");
+                                        document.getElementById('alertMessage').style.display = 'none';
 
-                                },5000);
+                                    },5000);
 
+                                }else{
+                                    console.log("----<ADD");
+                                    localStorage.setItem('message', 'City was successfully created');
+                                    window.location ='/admin/cities/';
+                                };
+                                document.getElementById("loading").style.display = 'none';
+
+                                document.getElementById("btn_saveData").disabled = false;
                             }else{
-                                console.log("----<ADD");
-                                localStorage.setItem('message', 'City was successfully created');
-                                window.location ='/admin/cities/';
+                                console.log("Error");
+                                document.getElementById("btn_saveData").disabled = false;
                             };
-                            document.getElementById("loading").style.display = 'none';
-
-                            document.getElementById("btn_saveData").disabled = false;
                         }
                     });
                     //fin del AJAX
@@ -372,7 +377,7 @@ $(document).ready(function(e){
                     closeModal('deleteCityModal');
                     if (msg.status===400) {
                         alert("Error: " + msg.message);
-                    } 
+                    }
                     else {
                        alert('{{trans('cities.admin.delete_success')}}');
                         window.location = '/admin/cities/?page='+current_page;
