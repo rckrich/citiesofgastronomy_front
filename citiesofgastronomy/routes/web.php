@@ -53,6 +53,7 @@ Route::get('/terms_and_conditions', [LandingController::class, 'terms_conditions
 
 /*ADMIN PANEL*/
 Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('/doLogin', [AdminController::class, 'doLogin']);
 Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::get('/reset_password', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 Route::post('/account/reset_password', [AdminController::class, 'user_resetPassword'])->name('admin.reset_user_password'); //sends email

@@ -34,12 +34,14 @@
                     @foreach($initiative['type_filter'] as $type)
                         {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
+                    @if(!$initiative['type_filter']){{__('general.no_data')}}@endif
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_topics')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
                     @foreach($initiative['topics_filter'] as $type)
                         {{$type['topics_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
+                    @if(!$initiative['topics_filter']){{__('general.no_data')}}@endif
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_startdate')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">{{$initiative['startDate']}}</p>
@@ -50,12 +52,14 @@
                     @foreach($initiative['connections_filter'] as $cn)
                         {{$cn['connections_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
+                    @if(!$initiative['connections_filter']){{__('general.no_data')}}@endif
                     </p>
                     <p class="pt-2 mb-1 text-orange subtitle"><b>{{__('initiatives.data_sdg')}}</b></p>
                     <p class="pb-2 mb-2 text-white data">
                     @foreach($initiative['sdg_filter'] as $sdg)
                         {{$sdg['sdg_datta']['name'].(!$loop->last?',':'')}}
                     @endforeach
+                    @if(!$initiative['sdg_filter']){{__('general.no_data')}}@endif
                     </p>
                     <div class="pb-4">
                         @foreach($initiative['sdg_filter'] as $sdg)
