@@ -35,7 +35,7 @@
                     <div id="validation_same_password" class="invalid-feedback text-orange my-2">{{__('admin.password_compare_error')}}</div>
                 </div>
                 <div class="text-center pt-4">
-                    <span class="btn btn-primary mx-3" onclick="setPassword()">{{__('session.btn_set_password')}}</span>
+                    <span class="btn btn-primary mx-3" onclick="setPassword()">{{__('session.btn_change_password')}}</span>
                 </div>
                 </form>
             </div>

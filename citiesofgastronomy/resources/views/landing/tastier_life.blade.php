@@ -38,7 +38,7 @@
         @csrf
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 pe-lg-1 ps-lg-2 px-md-1 px-sm-1 px-1 my-3">
                 <div class="form-group">
-                    <select id="data_chef" name="data_chef" class="form-control filter-select" placeholder="">
+                    <select id="data_chef" name="data_chef" class="form-control filter-select <?php if($selectedChef!='default'){echo 'changed';}?>" placeholder="">
                         <option <?php if($selectedChef=='default'){echo 'selected';}?> 
                             value="default">{{__('tastier_life.user.select_chef')}}
                         </option>
@@ -53,7 +53,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select id="data_city" name="data_city" class="form-control filter-select" placeholder="">
+                    <select id="data_city" name="data_city" class="form-control filter-select <?php if($selectedCity!='default'){echo 'changed';}?>" placeholder="">
                         <option <?php if($selectedCity=='default'){echo 'selected';}?> 
                             value="default">{{__('tastier_life.user.select_city')}}
                         </option>
@@ -69,7 +69,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 px-1 my-3">
                 <div class="form-group">
-                    <select id="data_cat" name="data_cat" class="form-control filter-select" placeholder="">
+                    <select id="data_cat" name="data_cat" class="form-control filter-select <?php if($selectedCat!='default'){echo 'changed';}?>" placeholder="">
                         <option <?php if($selectedCat=='default'){echo 'selected';}?> 
                             value="default">{{__('tastier_life.user.select_cat')}}
                         </option>

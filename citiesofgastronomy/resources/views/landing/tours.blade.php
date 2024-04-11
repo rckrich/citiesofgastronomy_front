@@ -42,7 +42,7 @@
         @csrf
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 me-auto">
                 <div class="form-group">
-                    <select id="data_city" name="data_city" class="form-control filter-select" placeholder="">
+                    <select id="data_city" name="data_city" class="form-control filter-select <?php if($selectedCity!='default'){echo 'changed';}?>" placeholder="">
                         <option <?php if($selectedCity=='default'){echo 'selected';}?> 
                             value="default">{{__('tastier_life.user.select_city')}}
                         </option>
