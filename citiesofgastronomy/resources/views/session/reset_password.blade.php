@@ -54,7 +54,7 @@ function resetPassword(){
             beforeSend: function(){},
             success: function(msg){                    
                 //closeModal('deleteUserModal');
-                if (msg.status===400) {
+                if (msg.status===400 || msg.status===401) {
                     alert("Error: " + msg.message);
                 } 
                 else {

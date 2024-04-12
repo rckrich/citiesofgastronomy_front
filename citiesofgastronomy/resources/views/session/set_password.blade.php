@@ -84,7 +84,7 @@ function setPassword(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){                    
-                if (msg.status===400) {
+                if (msg.status===400 || msg.status===401) {
                     alert("Error: " + msg.message);
                 } 
                 else {
