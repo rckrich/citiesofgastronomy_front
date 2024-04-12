@@ -59,6 +59,29 @@ class AdminController extends Controller
 
     public function logout()
     {
+        try{
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                'Content-Type:application/json',
+                'Authorization:Bearer '.$access_token
+            );
+
+            $url = config('app.apiUrl').'logout';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            //curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+        } catch ( \Exception $e ) {
+                //$route = $this->noLoginFind();
+                    //return redirect()->route($route);
+        }
         return redirect()->route('admin.login');
     }
     public function reset_password()
@@ -132,7 +155,7 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
         else{
-            $inputs['stoken'] = $stoken; 
+            $inputs['stoken'] = $stoken;
             return view('session.change_password',$inputs);
         }
     }
