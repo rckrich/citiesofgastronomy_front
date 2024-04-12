@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cookie;
+use App\Http\Controllers\AdminController;
 
 class CitiesController extends Controller
 {
@@ -57,28 +58,41 @@ class CitiesController extends Controller
         $inputs = [];
         $inputs["banners"] = [];
 
-        $url = config('app.apiUrl').'cities/find/'.$id;
+        $access_token = Cookie::get('stoken');
+
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
+
+        $url = config('app.apiUrl').'cities/edit/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $data = curl_exec($curl);
         curl_close($curl);
+        try{
 
-        if($data){
-            $res = json_decode( $data, true);
+            if($data){
+                $res = json_decode( $data, true);
 
-            $inputs["id"] = $id;
-            $inputs["city"] = $res["cities"];
-            $inputs["banners"] = $res["bannerCities"];
-            $inputs["gallery"] = $res["gallery"];
-            $inputs["links"] = $res["links"];
-            $inputs["files"] = $res["files"];
-            $inputs["continents"] = $res["continents"];
-        }else{
-            $inputs = array( "city" => []);
-        };
-        return view('cities.edit', $inputs);
+                $inputs["id"] = $id;
+                $inputs["city"] = $res["cities"];
+                $inputs["banners"] = $res["bannerCities"];
+                $inputs["gallery"] = $res["gallery"];
+                $inputs["links"] = $res["links"];
+                $inputs["files"] = $res["files"];
+                $inputs["continents"] = $res["continents"];
+            }else{
+                $inputs = array( "city" => []);
+            };
+            return view('cities.edit', $inputs);
+        } catch ( \Exception $e ) {
+            $route = ( new AdminController )->noLoginFind();
+                        return redirect()->route($route);
+        }
     }
 
     public function cities_delete(Request $request)
@@ -106,67 +120,109 @@ class CitiesController extends Controller
     public function citiesStoreUpdate(Request $request)
     {
 
-        $data_id = $request->input("data_id");
-
-        $data_city = $request->input("data_city");
-        $data_country = $request->input("data_country");
-        $data_continent = $request->input("data_continent");
-        $data_population = $request->input("data_population");
-        $data_locations = $request->input("data_locations");
-        $data_dyear = $request->input("data_dyear");
-
-        //$data_photo = $request->data_photo;
-        // Get the UploadedFile object
-        $file =  $request->file('data_photo');
-        $photo='';
-        if($file){
-                    // You can store this but should validate it to avoid conflicts
-                    $original_name = $file->getClientOriginalName();
-
-                    // You can store this but should validate it to avoid conflicts
-                    $extension = $file->getClientOriginalExtension();
-
-                    // This would be used for the payload
-                    $file_path = $file->getPathName();
-
-                    $photo = new \CURLFile($file_path);
-        };
-        if($data_id){
-            $url = config('app.apiUrl').'cities/update/'.$data_id;
-        }else{
-            $url = config('app.apiUrl').'citiesStore';
-        };
-        Log::info($url);
-
-        $curl = curl_init();
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
             'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
 
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'photo' => $photo,
-            'id' => $data_id,
-            'name' => $data_city,
-            'country' => $data_country,
-            'idContinent' => $data_continent,
-            'population' => $data_population,
-            'restaurantFoodStablishments' => $data_locations,
-            'designationyear' => $data_dyear
-        ] );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        $loggedin = 200;
 
-        $res = json_decode( $data, true);
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        Log::info(  $res  );
-        if($res == ''){
+            $res = json_decode( $data, true);
+            Log::info("CITY  ::");
+            Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $data_id = $request->input("data_id");
+
+            $data_city = $request->input("data_city");
+            $data_country = $request->input("data_country");
+            $data_continent = $request->input("data_continent");
+            $data_population = $request->input("data_population");
+            $data_locations = $request->input("data_locations");
+            $data_dyear = $request->input("data_dyear");
+
+            //$data_photo = $request->data_photo;
+            // Get the UploadedFile object
+            $file =  $request->file('data_photo');
+            $photo='';
+            if($file){
+                        // You can store this but should validate it to avoid conflicts
+                        $original_name = $file->getClientOriginalName();
+
+                        // You can store this but should validate it to avoid conflicts
+                        $extension = $file->getClientOriginalExtension();
+
+                        // This would be used for the payload
+                        $file_path = $file->getPathName();
+
+                        $photo = new \CURLFile($file_path);
+            };
+            if($data_id){
+                $url = config('app.apiUrl').'cities/update/'.$data_id;
+            }else{
+                $url = config('app.apiUrl').'citiesStore';
+            };
+            Log::info($url);
+
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                'Content-Type:application/json',
+                'Authorization:Bearer '.$access_token
+            );
+            $dattaSend = [
+                'photo' => $photo,
+                'id' => $data_id,
+                'name' => $data_city,
+                'country' => $data_country,
+                'idContinent' => $data_continent,
+                'population' => $data_population,
+                'restaurantFoodStablishments' => $data_locations,
+                'designationyear' => $data_dyear
+            ];
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            //curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            Log::info( "---->" );
+            Log::info(  $res  );
+            if($res == ''){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+        }else{
             $res = [];
             $res["status"] = 401;
             $res["message"] = "Unauthorized";

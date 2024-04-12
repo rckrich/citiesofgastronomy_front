@@ -301,6 +301,7 @@ $(document).ready(function(e){
                             }else{
                                 console.log("Error");
                                 document.getElementById("btn_saveData").disabled = false;
+                                    window.location ='/login';
                             };
                         }
                     });
