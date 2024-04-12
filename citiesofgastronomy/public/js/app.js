@@ -16,6 +16,9 @@ $(document).ready(function () {
       $('body').removeClass('modal-open');
       $('body').attr('style', 'overflow:auto');
       $('body').removeAttr('data-bs-overflow');
+      $('button').removeClass('clicked');
+      $('button').blur(); 
+      $('button').prop('disabled', false);           
     });  
     $("#map").on("click", function(){toggleMapLink()})
     $(".filter-select").on("change", function(){
@@ -31,15 +34,21 @@ $(document).ready(function () {
      }); 
      
      $("#editMailModalBtn").on("click", function(){openEditMailModal()})
+
+
 });
 
 
-
 function closeModal(modalId){
-  $('#'+modalId).hide();
+  $('#'+modalId).modal('hide');
   $('body').removeClass('modal-open');
-  $('body').attr('style', 'overflow:auto');
+  $('body').css('overflow', 'auto');
   $('body').removeAttr('data-bs-overflow');
+  $('button').removeClass('clicked');
+  $('button').blur();
+  $('button').prop('disabled', false);
+
+
 }
 
 

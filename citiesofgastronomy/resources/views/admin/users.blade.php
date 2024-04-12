@@ -303,7 +303,6 @@ function deleteUser(){
                 closeModal('deleteUserModal');
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
-                    window.location = '/admin/users?page=1';
                 }
                 else {
                     alert('{{trans('users.delete_success')}}');
@@ -333,10 +332,8 @@ function resetPassword(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){                    
-                //closeModal('deleteUserModal');
-                if (msg.status===400) {
+                if (msg.status===400 || msg.status===401) {
                     alert("Error: " + msg.message);
-                    window.location = '/admin/users?page=1';
                 } 
                 else {
                     alert('{{trans('users.reset_password_email_sent')}}');

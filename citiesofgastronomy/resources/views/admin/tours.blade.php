@@ -161,7 +161,6 @@ function deleteTour(){
                 closeModal('deleteTourModal');
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
-                    window.location = '/admin/tours?page=1';
                 }
                 else {
                     alert('{{trans('tastier_life.chefs.delete_success')}}');
