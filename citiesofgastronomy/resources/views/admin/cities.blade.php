@@ -231,7 +231,7 @@ $(document).ready(function(e){
             let data_continent = document.getElementById('data_continent').value;
             let data_dyear = document.getElementById('data_dyear').value;
             console.log("data_city::");
-            console.log(data_city);
+            //console.log(data_city);
             if(data_city==''){
                 document.getElementById('data_city').className = 'form-control is-invalid';
                 document.getElementById('validation_data_city').style.display = 'block';
@@ -271,12 +271,19 @@ $(document).ready(function(e){
                         },
                         success: function(msg){
                             //console.log("el id es :: "+data_id);
-                            console.log(msg);
+                            //console.log(msg);
                             let e = JSON.parse(msg);
-                            //console.log(e);
-                            //console.log(e.cities);
-                            //console.log("##el ID: " + data_id);
-                            if(msg.status == 200){
+                            let status = '';
+
+
+                            if(e.cities != undefined){
+                                status = e.cities.status;
+                            }else{
+                                status = e.status;
+                            };
+
+                            console.log("##el status: " + status);
+                            if(status == 200){
                                 if(data_id){
                                     //console.log("----<EDIT");
                                     id1 = 'cityname' + data_id;
@@ -291,7 +298,7 @@ $(document).ready(function(e){
                                     },5000);
 
                                 }else{
-                                    console.log("----<ADD");
+                                    //console.log("----<ADD");
                                     localStorage.setItem('message', 'City was successfully created');
                                     window.location ='/admin/cities/';
                                 };
@@ -301,7 +308,9 @@ $(document).ready(function(e){
                             }else{
                                 console.log("Error");
                                 document.getElementById("btn_saveData").disabled = false;
+                                if(status == 401){
                                     window.location ='/login';
+                                };
                             };
                         }
                     });

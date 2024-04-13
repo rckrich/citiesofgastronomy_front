@@ -80,7 +80,7 @@ class ToursController extends Controller
         return view('tours.show',$inputs);
     }
 
-    
+
     public function tour_new()
     {
         $url = config('app.apiUrl').'tours/create';
@@ -112,9 +112,9 @@ class ToursController extends Controller
         $inputs["gallery"] = '';
         $inputs["socialType"] = $res['socialType'];
 
-        
+
         return view('tours.new', $inputs);
-    } 
+    }
     public function tour_edit($id)
     {
 
@@ -161,7 +161,7 @@ class ToursController extends Controller
                     case 4:
                         $inputs["instagram_link"] = $social['value'];
                         break;
-                    case 5:                        
+                    case 5:
                         $inputs["youtube_link"] = $social['value'];
                         break;
                     case 6:
@@ -175,7 +175,7 @@ class ToursController extends Controller
 
 
         return view('tours.new',$inputs);
-    }  
+    }
 
     public function tour_save(Request $request){
         $id = $request->input("id");
@@ -211,7 +211,7 @@ class ToursController extends Controller
             'description' => $description,
             'travelAgency' => $agency,
             'Facebok_link' => $facebook_link,
-            'Twitter_link' => $twitter_link,            
+            'Twitter_link' => $twitter_link,
             'Linkedin_link' => $linkedin_link,
             'Instagram_link' => $instagram_link,
             'Tiktok_link' => $tiktok_link,
@@ -263,7 +263,7 @@ class ToursController extends Controller
 
         $res = json_decode( $data, true);
         //*/
-        
+
         Log::info("NEW TOUR :: STORE");
         //Log::info($res);
 

@@ -97,20 +97,34 @@ class CitiesController extends Controller
 
     public function cities_delete(Request $request)
     {
-        $id = $request->input("id");
-        $dattaSend = [];
+        try{
+            $id = $request->input("id");
+            $dattaSend = [];
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                        'Content-Type:application/json',
+                        'Authorization:Bearer '.$access_token
+                    );
 
-        $url = config('app.apiUrl').'cities/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+            $url = config('app.apiUrl').'cities/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
+            $res = json_decode( $data, true);
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+
         Log::info("CITY DELETE ::");
         //Log::info($res);
 
