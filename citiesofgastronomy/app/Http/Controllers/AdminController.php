@@ -14,6 +14,11 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
+    public function message()
+    {
+        return view('message');
+    }
+
     public function login()
     {
         return view('session.login');

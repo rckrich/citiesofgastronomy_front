@@ -384,9 +384,15 @@ $(document).ready(function(e){
                 processData:false,
                 beforeSend: function(){},
                 success: function(msg){
+
+                    //console.log("---->");
+                    let e = JSON.parse(msg);
+                    //console.log(e);
+
                     closeModal('deleteCityModal');
-                    if (msg.status===400) {
-                        alert("Error: " + msg.message);
+                    if (e.status===400||e.status===401) {
+                        alert("Error: " + e.message);
+                        window.location = '/login';
                     }
                     else {
                        alert('{{trans('cities.admin.delete_success')}}');

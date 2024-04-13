@@ -149,3 +149,4 @@ Route::post('/admin/bannerChange', [AdminController::class, 'mainBannerChange'])
 
 Route::post('/admin/mainSiteContentLinks', [AdminController::class, 'mainLinksSave']);
 Route::post('/admin/mainSiteContentClusterInfo', [AdminController::class, 'mainClusterSave']);
+Route::get('/message', [AdminController::class, 'message']);

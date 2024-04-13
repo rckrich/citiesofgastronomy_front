@@ -119,6 +119,13 @@ class CitiesController extends Controller
 
             $res = json_decode( $data, true);
 
+            if($res==''){
+
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+            };
+
         } catch ( \Exception $e ) {
             $res = [];
             $res["status"] = 401;
@@ -126,9 +133,9 @@ class CitiesController extends Controller
         }
 
         Log::info("CITY DELETE ::");
-        //Log::info($res);
+        Log::info($res);
 
-        return $res;
+        return json_encode( $res);
     }
 
     public function citiesStoreUpdate(Request $request)
