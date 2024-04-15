@@ -392,7 +392,7 @@ $(document).ready(function(e){
                     closeModal('deleteCityModal');
                     if (e.status===400||e.status===401) {
                         alert("Error: " + e.message);
-                        window.location = '/login';
+                        if(e.status===401){window.location = '/login';};
                     }
                     else {
                        alert('{{trans('cities.admin.delete_success')}}');
