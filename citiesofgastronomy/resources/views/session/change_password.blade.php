@@ -9,7 +9,7 @@
             <div class="p-lg-5 p-md-5 p-sm-3 p-3 col-10 mx-auto">
                 <div>
                     <h3 class="text-center subtitle-md text-orange-light py-2"><b>{{__('session.change_password')}}</b></h3>
-                    <p class="text-left data text-white py-2">{{__('session.changePassword_desc')}} **the user token is {{$stoken}}**</p>
+                    <p class="text-left data text-white py-2">{{__('session.changePassword_desc')}}</p>
                 </div>
                 <form>
                 @csrf

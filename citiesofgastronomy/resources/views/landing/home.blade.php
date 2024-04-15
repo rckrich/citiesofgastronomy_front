@@ -612,7 +612,7 @@
                                 <p class="card-text" id="country"><b>Country:</b> Name</p>
                                 <p class="card-text" id="continentName"><b>Continent:</b> Name</p>
                                 <p class="card-text" id="population"><b>Population:</b> xxx</p>
-                                <p class="card-text" id="restaurantFoodStablishments"><b>Restaurants & Food Stablishments:</b> 1</p>
+                                <p class="card-text" id="restaurantFoodStablishments"><b>Restaurants & Food Establishments:</b> 1</p>
                                 <p class="card-text" id="designationyear"><b>Designation Year:</b> xxx</p>
                                 <a href="#" class="btn btn-info" id="completeInfo">{{__('landing.btn_explore')}}</a>
                             </div>
@@ -637,10 +637,9 @@
                                 <p class="card-text"><b>Country:</b> Name</p>
                                 <p class="card-text"><b>Continent:</b> Name</p>
                                 <p class="card-text"><b>Population:</b> 152</p>
-                                <p class="card-text"><b>Restaurants & Food Stablishments:</b> 1</p>
+                                <p class="card-text"><b>Restaurants & Food Establishments:</b> 1</p>
                                 <p class="card-text"><b>Designation Year:</b> 1996</p>
                                 <a href="#" class="btn btn-info">{{__('landing.btn_explore')}}</a>
-
                             </div>
                         </div>
                         <div class="modal-footer text-center px-5 pb-5">
@@ -742,14 +741,14 @@
                     <h1 class="title-xl">{{__('landing.initiatives.title')}}</h1>
                 </div>
                 <div class="col-auto ms-auto">
-                    <a href="{{route('landing.initiatives')}}" target="_blank" class="btn btn-primary">{{__('landing.btn_view')}}</a>
+                    <a href="{{route('landing.initiatives')}}" class="btn btn-primary">{{__('landing.btn_view')}}</a>
                 </div>
             </div>
             <div class="row g-4">
                 @foreach($initiatives as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-{{($loop->index)+1}}">
                     <div class="card">
-                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="img-link">
+                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
                             <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
@@ -776,7 +775,7 @@
                                     {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                                 @endforeach
                             </p>
-                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -794,7 +793,7 @@
                     <h1 class="title-xl">{{__('landing.news.title')}}</h1>
                 </div>
                 <div class="col-auto ms-auto"><!--id in production 8 -->
-                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_news" class="d-contents" target="_blank">
+                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_news" class="d-contents">
                         @csrf
                         <input type="hidden" name="select_activity_filter" value="8">
                         <input type="hidden" name="select_topic_filter" value="default">
@@ -809,7 +808,7 @@
                 @foreach($news as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-{{($loop->index)+1}}">
                     <div class="card">
-                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="img-link">
+                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
                             <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
@@ -837,7 +836,7 @@
                                     {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                                 @endforeach
                             </p>
-                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -854,7 +853,7 @@
                     <h1 class="title-xl">{{__('landing.open_calls.title')}}</h1>
                 </div>
                 <div class="col-auto ms-auto"> <!--id in production 7 -->
-                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_openCalls" class="d-contents" target="_blank">
+                    <form action="{{url('/initiatives')}}" method="POST" id="searchForm_openCalls" class="d-contents">
                         @csrf
                         <input type="hidden" name="select_activity_filter" value="7">
                         <input type="hidden" name="select_topic_filter" value="default">
@@ -869,7 +868,7 @@
                 @foreach($open_calls as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 card-{{($loop->index)+1}}">
                     <div class="card">
-                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="img-link">
+                        <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="img-link">
                             @if($item['photo']!=null || $item['photo'] != '')
                             <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
@@ -897,7 +896,7 @@
                                     {{$type['type_datta']['name'].(!$loop->last?',':'')}}
                                 @endforeach
                             </p>
-                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            <a href="{{route('initiatives.view',['id'=>$item['id']])}}" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                         </div>
                     </div>
                 </div>
@@ -936,9 +935,9 @@
                 }else{
                     document.getElementById("population").innerHTML = '<b>Population: </b>N/A';};
                 if(found["restaurantFoodStablishments"] != null && found["restaurantFoodStablishments"]!= 0){
-                    document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>'+formatNumber(found["restaurantFoodStablishments"]);
+                    document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Establishments: </b>'+formatNumber(found["restaurantFoodStablishments"]);
                 }else{
-                    document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Stablishments: </b>N/A';};
+                    document.getElementById("restaurantFoodStablishments").innerHTML = '<b>Restaurants & Food Establishments: </b>N/A';};
                 if(found["designationyear"] != null && found["designationyear"]!= 0){ document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>'+found["designationyear"];
                 }else{document.getElementById("designationyear").innerHTML = '<b>Designation Year: </b>N/A';};
                 if(found["completeInfo"] == 1){

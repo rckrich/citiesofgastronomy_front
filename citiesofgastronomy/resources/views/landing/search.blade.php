@@ -18,7 +18,7 @@
                             if($item['type'] == 'Initiatives'){echo route('initiatives.view',['id'=>$item['id']]);}
                             if($item['type'] == 'Recipes'){echo route('tastier_life.view',['id'=>$item['id']]);}
                             if($item['type'] == 'Tours'){echo route('tours.view',['id'=>$item['id']]);}
-                        ?>" target="_blank" class="img-link">
+                        ?>" class="img-link">
                             @if($item['photo'] !=null || $item['photo'] != '')
                             <img src="{{config('app.url').$item['photo']}}" class="card-img-top" alt="...">
                             @else
@@ -36,7 +36,7 @@
                                 if($item['type'] == 'Initiatives'){echo route('initiatives.view',['id'=>$item['id']]);}
                                 if($item['type'] == 'Recipes'){echo route('tastier_life.view',['id'=>$item['id']]);}
                                 if($item['type'] == 'Tours'){echo route('tours.view',['id'=>$item['id']]);}
-                            ?>" target="_blank" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
+                            ?>" class="btn btn-link px-0">{{__('landing.btn_read')}}</a>
                             
                         </div>
                     </div>

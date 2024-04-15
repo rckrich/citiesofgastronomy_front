@@ -87,11 +87,11 @@
                         console.log(msg.message);
                         //let e = JSON.parse(msg);
                         //console.log(e.datta);
-                        alert(msg.message);
                         if(msg.status=='200'){
                             //alert("200");
                             window.location ='/admin/cities';
                         }else{
+                            alert(msg.message);
                             //alert("401");
                         };
                         //document.getElementById("btnSubmit").disabled = false;

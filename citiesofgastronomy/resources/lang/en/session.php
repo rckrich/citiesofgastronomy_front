@@ -3,7 +3,7 @@
 return [
 
     'forgot'=>'Forgot your password?',
-    'forgot_desc'=>'No problem! Just fill in the email below and we\'ll send you password reset instructions!',
+    'forgot_desc'=>'No problem! Just fill in the email below and we\'ll send you password reset instructions',
     'set_password'=>'Set your pasword',
     'setPassword_desc'=>'',
     'change_password'=>'Change your pasword',
