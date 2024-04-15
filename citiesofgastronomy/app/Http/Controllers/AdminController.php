@@ -211,9 +211,9 @@ class AdminController extends Controller
         $fields_string = http_build_query($fields);
 
         if($tipo == 'user'){
-            $url = config('app.apiUrl').'citiesAdmin';
+            $url = config('app.apiUrl').'citiesAdmin?page='.$page;
         }else{
-            $url = config('app.apiUrl').'cities';
+            $url = config('app.apiUrl').'cities?page='.$page;
         };
         $curl = curl_init();
         $headers = array(
@@ -877,24 +877,35 @@ class AdminController extends Controller
 
         if(!$page){ $page=1;   };
 
-        $url = config('app.apiUrl').'newsletterAdmin?page='.$page;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                        'Content-Type:application/json',
+                        'Authorization:Bearer '.$access_token
+                    );
+            $url = config('app.apiUrl').'newsletterAdmin?page='.$page;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
-        //Log::info("Newsletter :::");
-        //Log::info($res);
+            $res = json_decode( $data, true);
+            //Log::info("Newsletter :::");
+            //Log::info($res);
 
-        $inputs = [];
-        $inputs["total"] = $res["total"];
-        $inputs["paginator"] = $res["paginator"];
-        $inputs["maillist"] = $res["maillist"];
-        $inputs["page"] = $page;
-        return view('admin.newsletter', $inputs);
+            $inputs = [];
+            $inputs["total"] = $res["total"];
+            $inputs["paginator"] = $res["paginator"];
+            $inputs["maillist"] = $res["maillist"];
+            $inputs["page"] = $page;
+            return view('admin.newsletter', $inputs);
+        } catch ( \Exception $e ) {
+            $route = $this->noLoginFind();
+                    return redirect()->route($route);
+        }
     }
 
     public function newsletterDownloadVerify(Request $request)
