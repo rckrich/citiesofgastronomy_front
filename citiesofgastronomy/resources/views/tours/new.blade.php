@@ -10,7 +10,7 @@
                     <h3 class="admin-title"><b>{{__('tours.data.title')}}</b></h3>
                 </div>
             </div>
-            
+
             <div class="row mx-0">
                 <form class="pb-5 my-3" action="/admin/tours/store" method="POST" id="tourForm">
                 @csrf
@@ -46,12 +46,12 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_city">{{__('tours.data.data_city')}}</label>
                         <select id="data_city" name="data_city" class="form-control" placeholder="">
-                            <option <?php if($selectedCity=='default'){echo 'selected';}?> 
+                            <option <?php if($selectedCity=='default'){echo 'selected';}?>
                                 value="default">{{__('tastier_life.recipes.ph_city')}}
                             </option>
                             @foreach($citiesList as $city)
-                            <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" 
-                                <?php if($selectedCity==$city['id']){echo 'selected';}?> 
+                            <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}"
+                                <?php if($selectedCity==$city['id']){echo 'selected';}?>
                                 value="{{$city['id']}}">{{$city['name']}}
                             </option>
                             @endforeach
@@ -68,7 +68,7 @@
                         </textarea>
                         <div id="data_description_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
-                    
+
                     <div class="bb-gray mt-4 mb-2"></div>
 
                     <div class="row mx-0 py-2">
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                         
+                    </div>
 
                     <div class="row form-group py-5">
                         <div class="col-auto ms-auto"><a href="{{route('admin.tours')}}" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
@@ -164,7 +164,7 @@
         </div>
     </section>
 
-    
+
     <!-- Modal Gallery -->
     <div class="col-2 py-2 mx-2 row text-center" id="imageTBL0" style="display:none">
         <div class="text-right" id="deleteIcon0" style="display:none">
@@ -254,7 +254,7 @@
             document.getElementById("data_agency_validation").style.display =  'none';
             document.getElementById("data_description").className =  'form-control';
             document.getElementById("data_description_validation").style.display =  'none';
-            
+
             document.getElementById("facebook_link").className =  'form-control';
             document.getElementById("twitter_link").className =  'form-control';
             document.getElementById("linkedin_link").className =  'form-control';
@@ -283,9 +283,9 @@
             let instagram_link = document.getElementById("instagram_link").value;
             let tiktok_link = document.getElementById("tiktok_link").value;
             let youtube_link = document.getElementById("youtube_link").value;
-            
+
             let data_description  = editor_data_description.getData();
-                    
+
             let valida = 'si';let errorMessage = '';
             let is_valid_facebook = true;
             let is_valid_twitter = true;
@@ -293,7 +293,7 @@
             let is_valid_instagram = true;
             let is_valid_tiktok = true;
             let is_valid_youtube = true;
-            
+
             //reseteo validaciones
             resetValidations();
 
@@ -306,7 +306,7 @@
             if(photo=='' && id==''){
                 valida = 'no';
             };
-            
+
             if(facebook_link && !isValidUrl(facebook_link)){is_valid_facebook = false; valida='no'}//if empty or valid url, continues as true
             if(twitter_link && !isValidUrl(twitter_link)){is_valid_twitter = false; valida='no'}
             if(linkedin_link && !isValidUrl(linkedin_link)){is_valid_linkedin = false; valida='no'}
@@ -333,20 +333,22 @@
                     },
                     success: function(msg){
                         console.log("::msg");
-                        console.log(msg);
-                        console.log(msg.message);
-                        //let e = JSON.parse(msg);
+                        let e = JSON.parse(msg);
+                        console.log(e);
+                        console.log(e.message);
+                        console.log(e.status);
                         //console.log(e.datta);
-                        if(msg.status=='200'){
+                        if(e.status===200){
                             <?php if($id){?>
                                 localStorage.setItem('toursMessage', "{{trans('tours.data.edit_success')}}");
                             <?php }else{?>
                                 localStorage.setItem('toursMessage', "{{trans('tours.data.create_success')}}");
                             <?php };?>
+                            window.location ='/admin/tours?page=1';
                         }else{
-                            localStorage.setItem('toursMessageError', 'Error:' + msg.message);
+                            localStorage.setItem('toursMessageError', 'Error:' + e.message);
+                            if(e.status===401){window.location = '/login';};
                         };
-                        window.location ='/admin/tours?page=1';
                         document.getElementById("btnSubmit").disabled = false;
                     }
                 });
