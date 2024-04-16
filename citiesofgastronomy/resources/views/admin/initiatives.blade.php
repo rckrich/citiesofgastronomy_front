@@ -329,7 +329,7 @@
                     window.scrollTo(0,0)
                     if (msg.status===400) {
                         alert("Error: " + msg.message);
-                        localStorage.setItem('errorIessageIniciative', "Error: " + msg.message);
+                        //localStorage.setItem('errorIessageIniciative', "Error: " + msg.message);
                     } 
                     else {
                         //alert('{{trans('initiatives.delete_success')}}');

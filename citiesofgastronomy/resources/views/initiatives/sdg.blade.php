@@ -165,7 +165,8 @@
                             } 
                             else {
                                 editModal_sdg.hide(modalToggle_sdg);
-                                alert(msg.message);
+                                //alert(msg.message);
+                                localStorage.setItem('messageIniciative', msg.message);
                                 window.location = '../../admin/initiatives?section=filters&sub=sdg';
                                
                             }
@@ -219,7 +220,8 @@
                         alert("Error: " + msg.message);
                     } 
                     else {
-                        alert('{{trans('initiatives.filters.delete_success')}}');
+                        //alert('{{trans('initiatives.filters.delete_success')}}');
+                        localStorage.setItem('messageIniciative', '{{trans('initiatives.filters.delete_success')}}');
                         window.location = '../../admin/initiatives?section=filters&sub=sdg';
                     }
                 }

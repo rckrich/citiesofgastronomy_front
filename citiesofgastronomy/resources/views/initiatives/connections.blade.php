@@ -152,7 +152,8 @@
                         } 
                         else {
                             editModal_connection.hide(modalToggle_connection);
-                            alert(msg.message);
+                            //alert(msg.message);
+                            localStorage.setItem('messageIniciative', msg.message);
                             window.location = '../../admin/initiatives?section=filters&sub=connections';
                         }
                     }
@@ -197,7 +198,8 @@
                         alert("Error: " + msg.message);
                     } 
                     else {
-                        alert('{{trans('initiatives.filters.delete_success')}}');
+                        //alert('{{trans('initiatives.filters.delete_success')}}');
+                        localStorage.setItem('messageIniciative', '{{trans('initiatives.filters.delete_success')}}');
                         window.location = '../../admin/initiatives?section=filters&sub=connections';
                     }
                 }
