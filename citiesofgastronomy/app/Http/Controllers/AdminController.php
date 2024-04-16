@@ -450,10 +450,16 @@ class AdminController extends Controller
         $fields_string = http_build_query($fields);
 
         $url = config('app.apiUrl').'toursAdmin';
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
         $data = curl_exec($curl);
@@ -463,16 +469,20 @@ class AdminController extends Controller
 
         Log::info("#ADMIN Tours List");
         //Log::info($res);
+        try{
+            $inputs = [];
+            $inputs['tours'] = $res['tours'];
+            $inputs['tot'] = $res['tot'];
+            $inputs['paginator'] = $res['paginator'];
+            $inputs['page'] = $page;
+            $inputs['search_box'] = $search;
+            Log::info("#PAGE: ".$page);
 
-        $inputs = [];
-        $inputs['tours'] = $res['tours'];
-        $inputs['tot'] = $res['tot'];
-        $inputs['paginator'] = $res['paginator'];
-        $inputs['page'] = $page;
-        $inputs['search_box'] = $search;
-        Log::info("#PAGE: ".$page);
-
-        return view('admin.tours',$inputs);
+            return view('admin.tours',$inputs);
+        } catch ( \Exception $e ) {
+            $route = $this->noLoginFind();
+                    return redirect()->route($route);
+        }
     }
     public function about(Request $request, $page = 1)
     {
@@ -910,31 +920,76 @@ class AdminController extends Controller
 
     public function newsletterDownloadVerify(Request $request)
     {
-        $data_startdate = $request->input("data_startdate");
-        $data_enddate = $request->input("data_enddate");
 
-        $url = config('app.apiUrl').'newsletter/DownloadVerify';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'data_startdate' => $data_startdate,
-            'data_enddate' => $data_enddate
-        ] );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $res = json_decode( $data, true);
-        Log::info("Newsletter :::");
-        //Log::info($res);
-        //$newsList = $res["newsletter"];
-        //print_r( $res );
-        //return Excel::download($res, 'Newletter.csv', \Maatwebsite\Excel\Excel::CSV);
-        //////////////////////////////////////////////////
-        $inputs = [];
+        $loggedin = 200;
+
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $data_startdate = $request->input("data_startdate");
+            $data_enddate = $request->input("data_enddate");
+
+            $url = config('app.apiUrl').'newsletter/DownloadVerify';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, [
+                'data_startdate' => $data_startdate,
+                'data_enddate' => $data_enddate
+            ] );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+            Log::info("Newsletter :::");
+            //Log::info($res);
+            //$newsList = $res["newsletter"];
+            //print_r( $res );
+            //return Excel::download($res, 'Newletter.csv', \Maatwebsite\Excel\Excel::CSV);
+            //////////////////////////////////////////////////
+            $inputs = [];
         //$inputs["total"] = $res["total"];
+        }else{
+            $data = [];
+            $data["status"] = 401;
+            $data["message"] = "Unauthorized";
+
+        $data =  json_encode($data );
+        };
+
         return $data;
 
         //return view('admin.newsletter', $inputs);

@@ -206,17 +206,25 @@ $(document).ready(function(e){
                                 success: function(msg){
                                     url = '<?= config('app.apiUrl')?>newsletter/Download?data_startdate='+data_startdate+'&data_enddate='+data_enddate;
                                     e = JSON.parse(msg);
-                                    //console.log(msg);
-                                    //console.log(e);
-                                    console.log(e["newsletter"].length);
-                                    console.log(url);
-                                    if(e["newsletter"].length == 0){
-                                            alert("No emails found on this date");
+                                    console.log(msg);
+                                    if(e.status == 200){
+                                        console.log(e["newsletter"].length);
+                                        console.log(url);
+                                        if(e["newsletter"].length == 0){
+                                                alert("No emails found on this date");
+                                        }else{
+                                            console.log("Si hay mails");
+                                            CSVModal.hide(modalToggle);
+                                            //window.location = url;
+                                            window.open(url, '_blank');
+                                        };
                                     }else{
-                                        console.log("Si hay mails");
-                                        CSVModal.hide(modalToggle);
-                                        //window.location = url;
-                                        window.open(url, '_blank');
+                                        if(e.status===401){window.location = '/login';
+                                        }else if(e.message == undefined){
+                                                alert("No emails found on this date");
+                                        }else{
+                                            alert("Error: " + e.message);
+                                        };
                                     };
                                 }
             });
