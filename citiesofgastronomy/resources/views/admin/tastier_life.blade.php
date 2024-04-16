@@ -374,7 +374,8 @@ function deleteRecipe(){
                     alert("Error: " + msg.message);
                 } 
                 else {
-                    alert('{{trans('tastier_life.chefs.delete_success')}}');
+                    //alert('{{trans('tastier_life.recipes.delete_success')}}');
+                    localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipes.delete_success')}}");
                     window.location = '/admin/tastier_life?section=recipes&page=1';
                 }
             }
@@ -452,7 +453,8 @@ function deleteChef(){
                     alert("Error: " + msg.message);
                 } 
                 else {
-                    alert('{{trans('tastier_life.chefs.delete_success')}}');
+                    //alert('{{trans('tastier_life.chefs.delete_success')}}');
+                    localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.chefs.delete_success')}}");
                     window.location = '/admin/tastier_life?section=chefs&pageChef=1';
                 }
             },
@@ -508,10 +510,14 @@ function saveCategory(){
                     else {
                         closeModal('editCategoryModal');
 
-                        if(data_id != ''){alert('{{trans('tastier_life.categories.edit_success')}}');}
-                        else{alert('{{trans('tastier_life.categories.create_success')}}');}                        
-                        //alert('{{trans('tastier_life.categories.delete_success')}}');
-
+                        if(data_id != ''){
+                            //alert('{{trans('tastier_life.categories.edit_success')}}');
+                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.categories.edit_success')}}");
+                        }
+                        else{
+                            //alert('{{trans('tastier_life.categories.create_success')}}');
+                            localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.categories.create_success')}}");
+                        }                        
                         window.location = '../../admin/tastier_life?section=cat';
                     }
                 }
@@ -554,7 +560,8 @@ function deleteCategory(){
                     alert("Error: " + msg.message);
                 } 
                 else {
-                    alert('{{trans('tastier_life.categories.delete_success')}}');
+                    //alert('{{trans('tastier_life.categories.delete_success')}}');
+                    localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.categories.delete_success')}}");
                     window.location = '/admin/tastier_life?section=cat';
                 }
             }
