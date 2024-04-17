@@ -260,7 +260,7 @@ function saveUser(){
                     setTimeout(() => {
                         document.getElementById('alertMessage').style.display = 'none';
                         window.location = '../../admin/users';
-                    },5000);
+                    },10000);
                 }
             }
         });
@@ -328,7 +328,7 @@ function deleteUser(){
                     setTimeout(() => {
                         document.getElementById('alertMessage').style.display = 'none';
                         window.location = '/admin/users?page=1';
-                    },5000);
+                    },10000);
                 }
             }
         });

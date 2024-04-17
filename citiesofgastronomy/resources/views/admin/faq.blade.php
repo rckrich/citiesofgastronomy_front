@@ -291,7 +291,7 @@ if(guardar == 1){
                                     document.getElementById(id1).innerHTML  = data_title;
                                     setTimeout(() => {
                                         document.getElementById('alertMessage').style.display = 'none';
-                                    },5000);
+                                    },10000);
                                 }else{
                                     //alert("The faq entry was successfully created");
                                     window.scrollTo(0,0)
@@ -300,7 +300,7 @@ if(guardar == 1){
                                     setTimeout(() => {
                                         document.getElementById('alertMessage').style.display = 'none';
                                         location.reload();
-                                    },5000);
+                                    },10000);
                                 };
                             }
             });

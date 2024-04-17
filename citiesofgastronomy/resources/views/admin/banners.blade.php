@@ -470,7 +470,7 @@
                                         document.getElementById('alertMessage').style.display = 'block';
                                         setTimeout(() => {
                                             document.getElementById('alertMessage').style.display = 'none';
-                                        },5000);
+                                        },10000);
                                         //document.getElementById("btnSubmit").disabled = false;
                                     }
                     });
@@ -506,7 +506,7 @@
                                         document.getElementById('alertMessage').style.display = 'block';
                                         setTimeout(() => {
                                             document.getElementById('alertMessage').style.display = 'none';
-                                        },5000);
+                                        },10000);
                                         //document.getElementById("btnSubmit").disabled = false;
                                     }
                     });
@@ -548,7 +548,7 @@
                                 document.getElementById('alertMessage').style.display = 'block';
                                 setTimeout(() => {
                                     document.getElementById('alertMessage').style.display = 'none';
-                                },5000);
+                                },10000);
                                 //document.getElementById("btnSubmit").disabled = false;
                             }
             });
@@ -627,7 +627,7 @@
                                 document.getElementById('alertMessage').style.display = 'block';
                                 setTimeout(() => {
                                     document.getElementById('alertMessage').style.display = 'none';
-                                },5000);
+                                },10000);
                                 //document.getElementById("btnSubmit").disabled = false;
                             }
             });

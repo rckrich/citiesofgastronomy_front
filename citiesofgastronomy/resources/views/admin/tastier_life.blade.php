@@ -16,12 +16,12 @@
         </li>
     </ul>
 
-    <div class="alert alert-success" role="alert" id="alertTLMessage" style="display:none"></div>
-    @if (session()->has('error'))
-    <div class="alert alert-danger" role="alert" id="alertTLMessageAlert" style="display:none"></div>
-    @endif
-
     <div class="tab-content px-5" id="pills-tab-tastierlifeContent">
+        <div class="alert alert-success mx-lg-5 mx-md-5 mx-3" role="alert" id="alertTLMessage" style="display:none"></div>
+        @if (session()->has('error'))
+        <div class="alert alert-danger mx-lg-5 mx-md-5 mx-3" role="alert" id="alertTLMessageAlert" style="display:none"></div>
+        @endif
+
         <div class="tab-pane fade <?php if($section=='recipes'){echo ' show active';}?>" id="pills-recipes" role="tabpanel" aria-labelledby="pills-recipes-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
@@ -627,7 +627,7 @@ function deleteCategory(){
             document.getElementById('alertTLMessageAlert').style.display = 'block';
             setTimeout(() => {
                 document.getElementById('alertTLMessageAlert').style.display = 'none';
-            },5000);
+            },10000);
         };
 
     <?php }else{?>
@@ -639,7 +639,7 @@ function deleteCategory(){
                 setTimeout(() => {
                     console.log("Delayed for 1 second.");
                     document.getElementById('alertTLMessage').style.display = 'none';
-                },5000);
+                },10000);
         };
     <?php }?>
 

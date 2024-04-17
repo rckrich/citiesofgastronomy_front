@@ -14,6 +14,8 @@
         </li>
     </ul>
     <div class="tab-content px-5" id="pills-tab-initiativesContent">
+        <div class="alert alert-success mx-lg-5 mx-md-5 mx-3" role="alert" id="alertMessage" style="display:none"></div>
+        <div class="alert alert-danger mx-lg-5 mx-md-5 mx-3" role="alert" id="alertErrorMessage" style="display:none"></div>
 
         <div class="tab-pane fade  <?php if($section=='in'){echo 'show active';}?>" id="pills-init" role="tabpanel" aria-labelledby="pills-init-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
@@ -94,12 +96,7 @@
                     </div>
                     </form>
                 </div>
-                <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
-                    Initiative was successfully created
-                </div>
-                <div class="alert alert-danger" role="alert" id="alertErrorMessage" style="display:none">
-                    The initiative couldn’t be edited, please try again.
-                </div>
+
                 <div class="row mx-0 pt-4">
                     <table class="table table-fixed">
                         <thead class="">
