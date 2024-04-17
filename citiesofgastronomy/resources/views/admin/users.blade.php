@@ -98,10 +98,10 @@
                 <div id="validation_data_email2" class="invalid-feedback">{{__('admin.obligatory_field_confirm')}}</div>
                 <div id="validation_format_email2" class="invalid-feedback">{{__('admin.email_format_error')}}</div>
                 <div id="validation_same_email" class="invalid-feedback my-2">{{__('admin.email_compare_error')}}</div>
-            </div>    
-            <div class="form-group py-2 edit-field"> 
+            </div>
+            <div class="form-group py-2 edit-field">
                 <button class="btn btn-dark w-100" onclick="resetPassword()">{{__('users.btn_new_password')}}</button>
-            </div>   
+            </div>
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
@@ -239,9 +239,14 @@ function saveUser(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){
-                if (msg.status===400) {
+                let e = JSON.parse(msg);
+                if (e.status===400) {
                     alert("Error: " + msg.message);
                 }
+                else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                 else {
                     closeModal('editUserModal')
                     let message = '';
@@ -316,10 +321,17 @@ function deleteUser(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){
+
+                let e = JSON.parse(msg);
+
                 closeModal('deleteUserModal');
-                if (msg.status===400) {
+                if (e.status===400) {
                     alert("Error: " + msg.message);
                 }
+                else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                 else {
                     //alert('{{trans('users.delete_success')}}');
                     window.scrollTo(0,0)
@@ -353,10 +365,10 @@ function resetPassword(){
             cache: false,
             processData:false,
             beforeSend: function(){},
-            success: function(msg){                    
+            success: function(msg){
                 if (msg.status===400 || msg.status===401) {
                     alert("Error: " + msg.message);
-                } 
+                }
                 else {
                     alert('{{trans('users.reset_password_email_sent')}}');
                     window.location = '/admin/users?page=1';

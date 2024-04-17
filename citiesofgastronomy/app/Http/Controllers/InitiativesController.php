@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use App\Http\Controllers\AdminController;
 
 class InitiativesController extends Controller
 {
@@ -64,11 +66,17 @@ class InitiativesController extends Controller
     public function initiatives_new()
     {
         $id='';
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
         $url = config('app.apiUrl').'initiatives/create';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $data = curl_exec($curl);
         curl_close($curl);
 
@@ -77,42 +85,54 @@ class InitiativesController extends Controller
         Log::info("#ADMIN INITIATIVE ");
         //Log::info($res);
 
-        $inputs = [];
+        try{
+            $inputs = [];
 
-        $inputs["iniciative"]["photo"] = '';
-        $inputs["iniciative"]["name"] = '';
-        $inputs["iniciative"]["id"] = '';
-        $inputs["iniciative"]["continent"] = '';
-        $inputs["iniciative"]["startDate"] = '';
-        $inputs["iniciative"]["endDate"] = '';
-        $inputs["iniciative"]["description"] = '';
-        $inputs["iniciative"]["sdg_filter"] = [];
-        $inputs["iniciative"]["type_filter"] = [];
-        $inputs["iniciative"]["conections_filter"] = [];
-        $inputs["iniciative"]["topics_filter"] = [];
-        $inputs["iniciative"]["cities_filter"] = [];
-        $inputs["id"] = $id;
-        $inputs["citiesFilter"] = $res["citiesFilter"];
-        $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
-        $inputs["TopicsFilter"] = $res["TopicsFilter"];
-        $inputs["sdgFilter"] = $res["sdgFilter"];
-        $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
-        $inputs["Continents"] = $res["Continent"];
-        $inputs["gallery"] = [];
-        $inputs["links"] = [];
-        $inputs["files"] = [];
+            $inputs["iniciative"]["photo"] = '';
+            $inputs["iniciative"]["name"] = '';
+            $inputs["iniciative"]["id"] = '';
+            $inputs["iniciative"]["continent"] = '';
+            $inputs["iniciative"]["startDate"] = '';
+            $inputs["iniciative"]["endDate"] = '';
+            $inputs["iniciative"]["description"] = '';
+            $inputs["iniciative"]["sdg_filter"] = [];
+            $inputs["iniciative"]["type_filter"] = [];
+            $inputs["iniciative"]["conections_filter"] = [];
+            $inputs["iniciative"]["topics_filter"] = [];
+            $inputs["iniciative"]["cities_filter"] = [];
+            $inputs["id"] = $id;
+            $inputs["citiesFilter"] = $res["citiesFilter"];
+            $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
+            $inputs["TopicsFilter"] = $res["TopicsFilter"];
+            $inputs["sdgFilter"] = $res["sdgFilter"];
+            $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
+            $inputs["Continents"] = $res["Continent"];
+            $inputs["gallery"] = [];
+            $inputs["links"] = [];
+            $inputs["files"] = [];
 
-        //Log::info($inputs["sdgFilter"]);
+            //Log::info($inputs["sdgFilter"]);
 
-        return view('initiatives.new', $inputs);
+            return view('initiatives.new', $inputs);
+        } catch ( \Exception $e ) {
+                    $route = (new AdminController() )->noLoginFind();
+                    return redirect()->route($route);
+        }
     }
     public function initiatives_edit($id)
     {
-        $url = config('app.apiUrl').'initiatives/find/'.$id;
+
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
+        $url = config('app.apiUrl').'initiatives/edit/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $data = curl_exec($curl);
         curl_close($curl);
 
@@ -121,187 +141,235 @@ class InitiativesController extends Controller
         Log::info("#ADMIN INITIATIVE :: EDIT");
         //Log::info(config('app.apiUrl').'initiatives/'.$id);
         //Log::info($res);
+        try{
 
-        $inputs = [];
+            $inputs = [];
 
-        $inputs["iniciative"] = $res["iniciative"];
-        $inputs["id"] = $id;
-        $inputs["citiesFilter"] = $res["citiesFilter"];
-        $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
-        $inputs["TopicsFilter"] = $res["TopicsFilter"];
-        $inputs["sdgFilter"] = $res["sdgFilter"];
-        $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
-        $inputs["Continents"] = $res["Continent"];
-        $inputs["gallery"] = $res["iniciative"]["images"];
-        $inputs["links"] = $res["iniciative"]["links"];
-        $inputs["files"] = $res["iniciative"]["pdf"];
+            $inputs["iniciative"] = $res["iniciative"];
+            $inputs["id"] = $id;
+            $inputs["citiesFilter"] = $res["citiesFilter"];
+            $inputs["typeOfActivityFilter"] = $res["typeOfActivityFilter"];
+            $inputs["TopicsFilter"] = $res["TopicsFilter"];
+            $inputs["sdgFilter"] = $res["sdgFilter"];
+            $inputs["ConnectionsToOtherFilter"] = $res["ConnectionsToOtherFilter"];
+            $inputs["Continents"] = $res["Continent"];
+            $inputs["gallery"] = $res["iniciative"]["images"];
+            $inputs["links"] = $res["iniciative"]["links"];
+            $inputs["files"] = $res["iniciative"]["pdf"];
 
-        //Log::info($inputs["sdgFilter"]);
+            //Log::info($inputs["sdgFilter"]);
 
-        return view('initiatives.new', $inputs);
+            return view('initiatives.new', $inputs);
+        } catch ( \Exception $e ) {
+            $route = (new AdminController() )->noLoginFind();
+                    return redirect()->route($route);
+        }
         //return view('initiatives.edit');
     }
     public function initiatives_store(Request $request){
-        Log::info("----> INITIATIVE STORE..");
-        $id = $request->input("id");
-        $name = $request->input("data_name");
-        $continent = $request->input("data_continent");
-        $startDate = $request->input("data_startdate");
-        $endDate = $request->input("data_enddate");
-        $description = $request->input("data_description");
 
-        $file =  $request->file('photo');
-        $photo='';
-        if($file){
-                    // You can store this but should validate it to avoid conflicts
-                    $original_name = $file->getClientOriginalName();
-                    // You can store this but should validate it to avoid conflicts
-                    $extension = $file->getClientOriginalExtension();
-                    // This would be used for the payload
-                    $file_path = $file->getPathName();
-                    $photo = new \CURLFile($file_path);
-        };
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
+        $loggedin = 200;
 
-        $dattaSend = [
-            'id' => $id,
-            'name' => $name,
-            'idContinent' => $continent,
-            'startDate' => $startDate,
-            'endDate' => $endDate,
-            'description' => $description,
-            'photo' => $photo
-        ];
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        ///////////////////////////////////////FILTERS
-        //CITIES
-        $idF0 = $request->input("citiesFilterrIds");
-        //Log::info("-----------------CITIES filters Ids");
-        $idF = explode(',', $idF0);
-        for($i = 0; $i < count($idF)  ; $i++){
-            $ifilter = 'citiesFilter'.$idF[$i];
-            $dattaSend[$ifilter] = $request->input($ifilter);
-            //Log::info($ifilter.' -> '.$request->input($ifilter));
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
         }
-        //type ----
-        $idF0 = $request->input("typeOfActivityFilterIds");
-        //Log::info("-----------------TYPE filters Ids");
-        $idF = explode(',', $idF0);
-        for($i = 0; $i < count($idF)  ; $i++){
-            $ifilter = 'typeOfActivityFilter'.$idF[$i];
-            $dattaSend[$ifilter] = $request->input($ifilter);
-            //Log::info($ifilter.' -> '.$request->input($ifilter));
-        }
-        //topics ----
-        $idF0 = $request->input("TopicsFilterIds");
-        //Log::info("-----------------Topics filters Ids");
-        $idF = explode(',', $idF0);
-        for($i = 0; $i < count($idF)  ; $i++){
-            $ifilter = 'topicsFilter'.$idF[$i];
-            $dattaSend[$ifilter] = $request->input($ifilter);
-            //Log::info($ifilter.' -> '.$request->input($ifilter));
-        }
-        //connections ----
-        $idF0 = $request->input("ConnectionsToOtherFilterIds");
-        //Log::info("-----------------Conexion filters Ids");
-        $idF = explode(',', $idF0);
-        for($i = 0; $i < count($idF)  ; $i++){
-            $ifilter = 'connectionsToOtherFilter'.$idF[$i];
-            $dattaSend[$ifilter] = $request->input($ifilter);
-            //Log::info($ifilter.' -> '.$request->input($ifilter));
-        }
-        //SDG
-        $idF0 = $request->input("sdgFilterIds");
-        //Log::info("-----------------SDG filters Ids");
-        $idF = explode(',', $idF0);
-        for($i = 0; $i < count($idF)  ; $i++){
-            $ifilter = 'sdgFilter'.$idF[$i];
-            $dattaSend[$ifilter] = $request->input($ifilter);
-            //Log::info($ifilter.' -> '.$request->input($ifilter));
-        }//*/
-        ///////////////////////////////////////
+        ///////////////////////////////
+        if($loggedin == 200){
+            Log::info("----> INITIATIVE STORE..");
+            $id = $request->input("id");
+            $name = $request->input("data_name");
+            $continent = $request->input("data_continent");
+            $startDate = $request->input("data_startdate");
+            $endDate = $request->input("data_enddate");
+            $description = $request->input("data_description");
 
-        $cant_gallery =$request->input('cant_gallery');
-
-        $dattaSend["cant_gallery"] = $cant_gallery;
-        for($i = 1; $i < $cant_gallery;$i++){
-            $id1 = 'image'.$i;
-            $file =  $request->file($id1);
-            $image='';
+            $file =  $request->file('photo');
+            $photo='';
             if($file){
-                //Log::info("Sr configura la imagen - ".$i);
                         // You can store this but should validate it to avoid conflicts
                         $original_name = $file->getClientOriginalName();
-
                         // You can store this but should validate it to avoid conflicts
                         $extension = $file->getClientOriginalExtension();
-
                         // This would be used for the payload
                         $file_path = $file->getPathName();
-
-                        $image = new \CURLFile($file_path);
+                        $photo = new \CURLFile($file_path);
             };
-            $dattaSend[$id1] = $image;
-            $id1 = 'idImage'.$i;
-            $idImage =  $request->input($id1);
-            $dattaSend[$id1] = $idImage;
-            $id1 = 'deleteImage'.$i;
-            $deleteImage =  $request->input($id1);
-            $dattaSend[$id1] = $deleteImage;
-        };
 
 
-        $cant_links =$request->input('cant_links');
-        Log::info("#Cant Links");
-        $dattaSend["cant_links"] = $cant_links;
-        for($i = 1; $i < $cant_links + 1;$i++){
-            $id1 = 'link'.$i;
-            $link =  $request->input($id1);
-            $dattaSend[$id1] = $link;
-            $id1 = 'titleLink'.$i;
-            $titleLink =  $request->input($id1);
-            $dattaSend[$id1] = $titleLink;
-            $id1 = 'idLink'.$i;
-            $idLink =  $request->input($id1);
-            $dattaSend[$id1] = $idLink;
-            $id1 = 'deleteLink'.$i;
-            $deleteLink =  $request->input($id1);
-            $dattaSend[$id1] = $deleteLink;
-            Log::info($titleLink);
-        };
+            $dattaSend = [
+                'id' => $id,
+                'name' => $name,
+                'idContinent' => $continent,
+                'startDate' => $startDate,
+                'endDate' => $endDate,
+                'description' => $description,
+                'photo' => $photo
+            ];
+
+            ///////////////////////////////////////FILTERS
+            //CITIES
+            $idF0 = $request->input("citiesFilterrIds");
+            //Log::info("-----------------CITIES filters Ids");
+            $idF = explode(',', $idF0);
+            for($i = 0; $i < count($idF)  ; $i++){
+                $ifilter = 'citiesFilter'.$idF[$i];
+                $dattaSend[$ifilter] = $request->input($ifilter);
+                //Log::info($ifilter.' -> '.$request->input($ifilter));
+            }
+            //type ----
+            $idF0 = $request->input("typeOfActivityFilterIds");
+            //Log::info("-----------------TYPE filters Ids");
+            $idF = explode(',', $idF0);
+            for($i = 0; $i < count($idF)  ; $i++){
+                $ifilter = 'typeOfActivityFilter'.$idF[$i];
+                $dattaSend[$ifilter] = $request->input($ifilter);
+                //Log::info($ifilter.' -> '.$request->input($ifilter));
+            }
+            //topics ----
+            $idF0 = $request->input("TopicsFilterIds");
+            //Log::info("-----------------Topics filters Ids");
+            $idF = explode(',', $idF0);
+            for($i = 0; $i < count($idF)  ; $i++){
+                $ifilter = 'topicsFilter'.$idF[$i];
+                $dattaSend[$ifilter] = $request->input($ifilter);
+                //Log::info($ifilter.' -> '.$request->input($ifilter));
+            }
+            //connections ----
+            $idF0 = $request->input("ConnectionsToOtherFilterIds");
+            //Log::info("-----------------Conexion filters Ids");
+            $idF = explode(',', $idF0);
+            for($i = 0; $i < count($idF)  ; $i++){
+                $ifilter = 'connectionsToOtherFilter'.$idF[$i];
+                $dattaSend[$ifilter] = $request->input($ifilter);
+                //Log::info($ifilter.' -> '.$request->input($ifilter));
+            }
+            //SDG
+            $idF0 = $request->input("sdgFilterIds");
+            //Log::info("-----------------SDG filters Ids");
+            $idF = explode(',', $idF0);
+            for($i = 0; $i < count($idF)  ; $i++){
+                $ifilter = 'sdgFilter'.$idF[$i];
+                $dattaSend[$ifilter] = $request->input($ifilter);
+                //Log::info($ifilter.' -> '.$request->input($ifilter));
+            }//*/
+            ///////////////////////////////////////
+
+            $cant_gallery =$request->input('cant_gallery');
+
+            $dattaSend["cant_gallery"] = $cant_gallery;
+            for($i = 1; $i < $cant_gallery;$i++){
+                $id1 = 'image'.$i;
+                $file =  $request->file($id1);
+                $image='';
+                if($file){
+                    //Log::info("Sr configura la imagen - ".$i);
+                            // You can store this but should validate it to avoid conflicts
+                            $original_name = $file->getClientOriginalName();
+
+                            // You can store this but should validate it to avoid conflicts
+                            $extension = $file->getClientOriginalExtension();
+
+                            // This would be used for the payload
+                            $file_path = $file->getPathName();
+
+                            $image = new \CURLFile($file_path);
+                };
+                $dattaSend[$id1] = $image;
+                $id1 = 'idImage'.$i;
+                $idImage =  $request->input($id1);
+                $dattaSend[$id1] = $idImage;
+                $id1 = 'deleteImage'.$i;
+                $deleteImage =  $request->input($id1);
+                $dattaSend[$id1] = $deleteImage;
+            };
 
 
-        $cant_files =$request->input('cant_files');
-        $dattaSend["cant_files"] = $cant_files;
-        for($i = 1; $i < $cant_files + 1;$i++){
-            $id1 = 'file'.$i;
+            $cant_links =$request->input('cant_links');
+            Log::info("#Cant Links");
+            $dattaSend["cant_links"] = $cant_links;
+            for($i = 1; $i < $cant_links + 1;$i++){
+                $id1 = 'link'.$i;
+                $link =  $request->input($id1);
+                $dattaSend[$id1] = $link;
+                $id1 = 'titleLink'.$i;
+                $titleLink =  $request->input($id1);
+                $dattaSend[$id1] = $titleLink;
+                $id1 = 'idLink'.$i;
+                $idLink =  $request->input($id1);
+                $dattaSend[$id1] = $idLink;
+                $id1 = 'deleteLink'.$i;
+                $deleteLink =  $request->input($id1);
+                $dattaSend[$id1] = $deleteLink;
+                Log::info($titleLink);
+            };
 
-            $id1 = 'title'.$i;
-            $id2 = 'titlefile'.$i;
-            $titleLink =  $request->input($id2);
-            $dattaSend[$id1] = $titleLink;
-            $id1 = 'idFile'.$i;
-            $idFile =  $request->input($id1);
-            $dattaSend[$id1] = $idFile;
-            $id1 = 'deleteFile'.$i;
-            $deleteLink =  $request->input($id1);
-            $dattaSend[$id1] = $deleteLink;
-        };
 
-        $url = config('app.apiUrl').'initiatives/store';
+            $cant_files =$request->input('cant_files');
+            $dattaSend["cant_files"] = $cant_files;
+            for($i = 1; $i < $cant_files + 1;$i++){
+                $id1 = 'file'.$i;
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+                $id1 = 'title'.$i;
+                $id2 = 'titlefile'.$i;
+                $titleLink =  $request->input($id2);
+                $dattaSend[$id1] = $titleLink;
+                $id1 = 'idFile'.$i;
+                $idFile =  $request->input($id1);
+                $dattaSend[$id1] = $idFile;
+                $id1 = 'deleteFile'.$i;
+                $deleteLink =  $request->input($id1);
+                $dattaSend[$id1] = $deleteLink;
+            };
 
-        $res = json_decode( $data, true);
+            $url = config('app.apiUrl').'initiatives/store';
+
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
         //*/
+        }else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        };
 
+        $res = json_encode( $res, true);
         return $res;
         //return redirect( "/admin/initiatives/" ) ->with('message', $res["message"]);
 
@@ -313,20 +381,39 @@ class InitiativesController extends Controller
         $id = $request->input("id");
         $dattaSend = [];
 
-        $url = config('app.apiUrl').'initiatives/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                        'Content-Type:application/json',
+                        'Authorization:Bearer '.$access_token
+                    );
+            $url = config('app.apiUrl').'initiatives/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
-        //Log::info($url);
-        //Log::info($res);
+            $res = json_decode( $data, true);
+            //Log::info($url);
+            //Log::info($res);
+            if($res==''){
 
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
         return $res;
     }
 
@@ -355,7 +442,7 @@ class InitiativesController extends Controller
 
         Log::info("#SEARCH INITIATIVEs: ".$keyword.' - section: '.$section.' - sub: '.$sub . '/ filters: '.$actype .','.$topic .','.$sdg .','.$connection);
         //Log::info(!$sub ? $keyword :  '');
-        
+
         $fields = array(
             'searchTypeOfActivity' => ($sub==='actype' ? $keyword :  ''),
             'searchTopics' => ($sub==='topics' ? $keyword :  ''),
@@ -414,26 +501,75 @@ class InitiativesController extends Controller
 
     public function typeOfActivity_save(Request $request)
     {
-        $id = $request->input("id");
-        $name = $request->input("name");
-        $dattaSend = [
-            'id' => $id,
-            'name' => $name
-        ];
 
-        $url = config('app.apiUrl').'typeOfActivity/store';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $res = json_decode( $data, true);
-        //Log::info("TIMELINE SAVE ::");
-        //Log::info($res);
+        $loggedin = 200;
+
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $id = $request->input("id");
+            $name = $request->input("name");
+            $dattaSend = [
+                'id' => $id,
+                'name' => $name
+            ];
+
+            $url = config('app.apiUrl').'typeOfActivity/store';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+            //Log::info("TIMELINE SAVE ::");
+            //Log::info($res);
+            if($res["status"] != 200){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+        } else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true );
+
 
         return $res;
     }
@@ -442,47 +578,113 @@ class InitiativesController extends Controller
     {
         $id = $request->input("id");
         $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
 
-        $url = config('app.apiUrl').'typeOfActivity/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $url = config('app.apiUrl').'typeOfActivity/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
-        Log::info("TYPE OF ACTIVITY DELETE ::");
-        //Log::info($res);
+            $res = json_decode( $data, true);
+            Log::info("TYPE OF ACTIVITY DELETE ::");
+            //Log::info($res);
+            if($res==''){
 
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
         return $res;
     }
 
     public function topics_save(Request $request)
     {
-        $id = $request->input("id");
-        $name = $request->input("name");
-        $dattaSend = [
-            'id' => $id,
-            'name' => $name
-        ];
 
-        $url = config('app.apiUrl').'topic/store';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $res = json_decode( $data, true);
-        Log::info("TOPICS SAVE ::");
-        //Log::info($res);
+        $loggedin = 200;
 
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $id = $request->input("id");
+            $name = $request->input("name");
+            $dattaSend = [
+                'id' => $id,
+                'name' => $name
+            ];
+
+            $url = config('app.apiUrl').'topic/store';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+            Log::info("TOPICS SAVE ::");
+            //Log::info($res);
+            if($res["status"] != 200){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+        } else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true );
         return $res;
     }
 
@@ -490,49 +692,116 @@ class InitiativesController extends Controller
     {
         $id = $request->input("id");
         $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
 
-        $url = config('app.apiUrl').'topic/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $url = config('app.apiUrl').'topic/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
-        Log::info("TOPICS DELETE ::");
-        //Log::info($res);
+            $res = json_decode( $data, true);
+            Log::info("TOPICS DELETE ::");
+            //Log::info($res);
+            if($res==''){
 
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
         return $res;
     }
 
     public function sdg_save(Request $request)
     {
-        $id = $request->input("id");
-        $name = $request->input("name");
-        $number = $request->input("number");
-        $dattaSend = [
-            'id' => $id,
-            'name' => $name,
-            'number' => $number
-        ];
 
-        $url = config('app.apiUrl').'sdg/store';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $res = json_decode( $data, true);
-        Log::info("SDG SAVE ::");
-        //Log::info($res);
+        $loggedin = 200;
 
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $id = $request->input("id");
+            $name = $request->input("name");
+            $number = $request->input("number");
+            $dattaSend = [
+                'id' => $id,
+                'name' => $name,
+                'number' => $number
+            ];
+
+            $url = config('app.apiUrl').'sdg/store';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+            Log::info("SDG SAVE ::");
+            //Log::info($res);
+
+            if($res["status"] != 200){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+        } else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true );
         return $res;
     }
 
@@ -540,46 +809,113 @@ class InitiativesController extends Controller
     {
         $id = $request->input("id");
         $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
 
-        $url = config('app.apiUrl').'sdg/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $url = config('app.apiUrl').'sdg/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
-        Log::info("SDG DELETE ::");
-        //Log::info($res);
+            $res = json_decode( $data, true);
+            Log::info("SDG DELETE ::");
+            //Log::info($res);
+            if($res==''){
 
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
         return $res;
     }
 
     public function connection_save(Request $request)
     {
-        $id = $request->input("id");
-        $name = $request->input("name");
-        $dattaSend = [
-            'id' => $id,
-            'name' => $name
-        ];
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $url = config('app.apiUrl').'connectionsToOther/store';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        $loggedin = 200;
 
-        $res = json_decode( $data, true);
-        Log::info("CONNECTION SAVE ::");
-        //Log::info($res);
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $id = $request->input("id");
+            $name = $request->input("name");
+            $dattaSend = [
+                'id' => $id,
+                'name' => $name
+            ];
+
+            $url = config('app.apiUrl').'connectionsToOther/store';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+            Log::info("CONNECTION SAVE ::");
+            //Log::info($res);
+
+            if($res["status"] != 200){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+        } else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true );
 
         return $res;
     }
@@ -589,20 +925,40 @@ class InitiativesController extends Controller
         $id = $request->input("id");
         $dattaSend = [];
 
-        $url = config('app.apiUrl').'connectionsToOther/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
 
-        $res = json_decode( $data, true);
-        Log::info("CONNECTION DELETE ::");
-        //Log::info($res);
+        try{
+            $url = config('app.apiUrl').'connectionsToOther/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
+            $res = json_decode( $data, true);
+            Log::info("CONNECTION DELETE ::");
+            //Log::info($res);
+            if($res==''){
+
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
         return $res;
     }
 }

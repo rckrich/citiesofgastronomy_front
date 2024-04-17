@@ -129,7 +129,7 @@
 
     function saveType(){
         //console.log("#-> ingresa al SAVE");
-        disableBtns();        
+        disableBtns();
         //reseteo todas las leyendas de validaciones
         document.getElementById("validation_data_type_name").style.display = 'none';
 
@@ -154,14 +154,21 @@
                         processData:false,
                         beforeSend: function(){},
                         success: function(msg){
+                            let e = JSON.parse(msg);
+                    console.log("#_>");
+                    console.log(e);
                             enableBtns();
-                            if (msg.status===400) {
-                                alert("Error: " + msg.message);
-                            } 
+                            if (e.status===400) {
+                                alert("Error: " + e.message);
+                            }
+                            else if(e.status===401){
+                                alert("Error: " + e.message);
+                                window.location = '/login';
+                            }
                             else {
                                 editModal_type.hide(modalToggle_type);
                                 //alert(msg.message);
-                                localStorage.setItem('messageIniciative', msg.message);
+                                localStorage.setItem('messageIniciative', e.message);
                                 window.location = '../../admin/initiatives?section=filters&sub=actype';
                             }
                         }
@@ -202,10 +209,17 @@
                 processData:false,
                 beforeSend: function(){},
                 success: function(msg){
+                    let e = JSON.parse(msg);
+                    console.log("#_>");
+                    console.log(e);
                     closeModal('deleteActivityModal');
-                    if (msg.status===400) {
-                        alert("Error: " + msg.message);
-                    } 
+                    if (e.status===400) {
+                        alert("Error: " + e.message);
+                    }
+                    else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                     else {
                         //alert('{{trans('initiatives.filters.delete_success')}}');
                         localStorage.setItem('messageIniciative', '{{trans('initiatives.filters.delete_success')}}');
@@ -232,5 +246,5 @@
             window.location = '../../admin/initiatives?section=filters&sub=actype';
         }
       }
-     }); 
+     });
 </script>

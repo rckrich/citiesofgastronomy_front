@@ -159,16 +159,23 @@
                         processData:false,
                         beforeSend: function(){},
                         success: function(msg){
+                            let e = JSON.parse(msg);
+                            console.log("#_>");
+                            console.log(e);
                             enableBtns();
-                            if (msg.status===400) {
-                                alert("Error: " + msg.message);
-                            } 
+                            if (e.status===400) {
+                                alert("Error: " + e.message);
+                            }
+                            else if(e.status===401){
+                                alert("Error: " + e.message);
+                                window.location = '/login';
+                            }
                             else {
                                 editModal_sdg.hide(modalToggle_sdg);
                                 //alert(msg.message);
-                                localStorage.setItem('messageIniciative', msg.message);
+                                localStorage.setItem('messageIniciative', e.message);
                                 window.location = '../../admin/initiatives?section=filters&sub=sdg';
-                               
+
                             }
                         }
                 });
@@ -215,10 +222,17 @@
                 processData:false,
                 beforeSend: function(){},
                 success: function(msg){
+                    let e = JSON.parse(msg);
+                    console.log("#_>");
+                    console.log(e);
                     closeModal('deleteSDGModal');
-                    if (msg.status===400) {
-                        alert("Error: " + msg.message);
-                    } 
+                    if (e.status===400) {
+                        alert("Error: " + e.message);
+                    }
+                    else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                     else {
                         //alert('{{trans('initiatives.filters.delete_success')}}');
                         localStorage.setItem('messageIniciative', '{{trans('initiatives.filters.delete_success')}}');
@@ -245,5 +259,5 @@
             window.location = '../../admin/initiatives?section=filters&sub=sdg';
         }
       }
-     }); 
+     });
 </script>
