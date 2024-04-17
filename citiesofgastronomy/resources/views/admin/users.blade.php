@@ -6,6 +6,8 @@
     <section id="admin_users">
     <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row mx-0">
+                <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
+
                 <div class="col-12 px-0 py-2">
                     <h3 class="admin-title"><b>{{__('users.title')}}</b></h3>
                 </div>
@@ -247,9 +249,23 @@ function saveUser(){
                     }
                 else {
                     closeModal('editUserModal')
-                    if(data_id){alert('{{trans('users.edit_success')}}');}
-                    else{alert('{{trans('users.create_success')}}');}
-                    window.location = '../../admin/users';
+                    let message = '';
+                    if(data_id){
+                        //alert('{{trans('users.edit_success')}}');
+                        message = ('{{trans('users.edit_success')}}');
+                    }
+                    else{
+                        //alert('{{trans('users.create_success')}}');
+                        message = ('{{trans('users.create_success')}}');
+                    }
+
+                    window.scrollTo(0,0)
+                    document.getElementById('alertMessage').innerHTML = message;
+                    document.getElementById('alertMessage').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('alertMessage').style.display = 'none';
+                        window.location = '../../admin/users';
+                    },5000);
                 }
             }
         });
@@ -317,8 +333,14 @@ function deleteUser(){
                         window.location = '/login';
                     }
                 else {
-                    alert('{{trans('users.delete_success')}}');
-                    window.location = '/admin/users?page=1';
+                    //alert('{{trans('users.delete_success')}}');
+                    window.scrollTo(0,0)
+                    document.getElementById('alertMessage').innerHTML = '{{trans('users.delete_success')}}';
+                    document.getElementById('alertMessage').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('alertMessage').style.display = 'none';
+                        window.location = '/admin/users?page=1';
+                    },5000);
                 }
             }
         });

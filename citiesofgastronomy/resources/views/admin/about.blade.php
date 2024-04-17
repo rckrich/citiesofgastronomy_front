@@ -15,6 +15,8 @@
             </li>
         </ul>
         <div class="tab-content px-5" id="pills-tab-aboutContent">
+            <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
+
             <div class="tab-pane fade <?php if($section==''){echo 'show active';}?>" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">
                 <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                     <div class="row mx-0">
@@ -640,14 +642,25 @@ if(guardar == 1){
                                 document.getElementById("btnSaveFaq").disabled = false;
                                 editModalFAQ.hide(modalToggleFAQ);
                                 if(data_id){
-                                    alert("The faq entry was successfully edited");
+                                    //alert("The faq entry was successfully edited");
+                                    window.scrollTo(0,0)
+                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully edited';
+                                    document.getElementById('alertMessage').style.display = 'block';
                                     id1 = 'faqTittle'+data_id;
                                     document.getElementById(id1).innerHTML  = data_faq;
+                                    setTimeout(() => {
+                                        document.getElementById('alertMessage').style.display = 'none';
+                                    },5000);
 
                                 }else{
-                                    alert("The faq entry was successfully created");
-                                    //location.reload();
-                                    window.location = '../../admin/about/?section=faq';
+                                    //alert("The faq entry was successfully created");
+                                    window.scrollTo(0,0)
+                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully created';
+                                    document.getElementById('alertMessage').style.display = 'block';
+                                    setTimeout(() => {
+                                        document.getElementById('alertMessage').style.display = 'none';                                    
+                                        window.location = '../../admin/about/?section=faq';
+                                    },5000);
                                 };
                             }
             });
@@ -707,25 +720,31 @@ function deleteFnc(type){
                                 //localStorage.setItem('message', 'Timeline info was successfully saved');
                                 //window.location ='/admin/cities/';
                                 if(type == 'timeline'){
-                                    alert("The timeline entry was successfully delete");
                                     delModal.hide(modalDelToggle);
-                                    url = '../../admin/about?page='+paginaActual;
+                                    window.scrollTo(0,0)
+                                    document.getElementById('alertMessage').innerHTML = 'The timeline entry was successfully deleted';
+                                    document.getElementById('alertMessage').style.display = 'block';
+                                    setTimeout(() => {
+                                        document.getElementById('alertMessage').style.display = 'none';
+                                        url = '../../admin/about?page='+paginaActual;
+                                    },5000);
+                                    //alert("The timeline entry was successfully delete");
                                 }else{
-                                    alert("The faq entry was successfully delete");
                                     delModalFAQ.hide(modalDelToggleFAQ);
-                                    url = '../../admin/about?section=faq&page='+paginaActual;
+                                    window.scrollTo(0,0)
+                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully deleted';
+                                    document.getElementById('alertMessage').style.display = 'block';
+                                    setTimeout(() => {
+                                        document.getElementById('alertMessage').style.display = 'none';
+                                        url = '../../admin/about?section=faq&page='+paginaActual;
+                                    },5000);
+                                    //alert("The faq entry was successfully delete");
                                 };
                                 console.log(url);
                                 window.location = url;
                             }
             });
 }
-
-
-
-
-
-
 
 
     function paginatorFAQ(page){

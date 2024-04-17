@@ -159,7 +159,8 @@
                             }
                         else {
                             editModal_connection.hide(modalToggle_connection);
-                            alert(e.message);
+                            //alert(msg.message);
+                            localStorage.setItem('messageIniciative', e.message);
                             window.location = '../../admin/initiatives?section=filters&sub=connections';
                         }
                     }
@@ -211,7 +212,8 @@
                             window.location = '/login';
                     }
                     else {
-                        alert('{{trans('initiatives.filters.delete_success')}}');
+                        //alert('{{trans('initiatives.filters.delete_success')}}');
+                        localStorage.setItem('messageIniciative', '{{trans('initiatives.filters.delete_success')}}');
                         window.location = '../../admin/initiatives?section=filters&sub=connections';
                     }
                 }

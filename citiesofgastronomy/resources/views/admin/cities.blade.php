@@ -32,9 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
-                City was successfully created
-            </div>
+            <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
             <div class="row mx-0 pt-4">
                 <table class="table table-fixed">
                     <thead class="">
@@ -288,7 +286,7 @@ $(document).ready(function(e){
                                     //console.log("----<EDIT");
                                     id1 = 'cityname' + data_id;
                                     document.getElementById(id1).innerHTML = data_city;
-                                    document.getElementById('alertMessage').innerHTML = 'City was 	successfully edited';
+                                    document.getElementById('alertMessage').innerHTML = 'City was successfully edited';
                                     document.getElementById('alertMessage').style.display = 'block';
                                     cityModal.hide(modalToggle);
                                     setTimeout(() => {
@@ -395,8 +393,14 @@ $(document).ready(function(e){
                         if(e.status===401){window.location = '/login';};
                     }
                     else {
-                       alert('{{trans('cities.admin.delete_success')}}');
-                        window.location = '/admin/cities/?page='+current_page;
+                       //alert('{{trans('cities.admin.delete_success')}}');
+                        window.scrollTo(0,0)
+                        document.getElementById('alertMessage').innerHTML = '{{trans('cities.admin.delete_success')}}';
+                        document.getElementById('alertMessage').style.display = 'block';
+                        setTimeout(() => {
+                            document.getElementById('alertMessage').style.display = 'none';
+                            window.location = '/admin/cities/?page='+current_page;
+                        },5000);
                     }
                 }
             });
