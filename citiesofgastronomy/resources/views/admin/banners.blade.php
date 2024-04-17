@@ -464,8 +464,13 @@
 
                                         sel_file('img' + capit + item, sectionName+'_banner'+item );
                                         //localStorage.setItem('message', 'Image was successfully changed');
-                                        //window.location ='/admin/cities/';
-                                        alert("Image was successfully changed");
+                                        //alert("Image was successfully changed");
+                                        window.scrollTo(0,0)
+                                        document.getElementById('alertMessage').innerHTML = 'Image was successfully changed';
+                                        document.getElementById('alertMessage').style.display = 'block';
+                                        setTimeout(() => {
+                                            document.getElementById('alertMessage').style.display = 'none';
+                                        },5000);
                                         //document.getElementById("btnSubmit").disabled = false;
                                     }
                     });
@@ -495,8 +500,13 @@
                                     },
                                     success: function(msg){
                                         //localStorage.setItem('message', 'Image was successfully delete');
-                                        //window.location ='/admin/cities/';
-                                        alert("Image was successfully delete");
+                                        //alert("Image was successfully deleted");
+                                        window.scrollTo(0,0)
+                                        document.getElementById('alertMessage').innerHTML = 'Image was successfully deleted';
+                                        document.getElementById('alertMessage').style.display = 'block';
+                                        setTimeout(() => {
+                                            document.getElementById('alertMessage').style.display = 'none';
+                                        },5000);
                                         //document.getElementById("btnSubmit").disabled = false;
                                     }
                     });
@@ -532,8 +542,13 @@
                             success: function(msg){
                                 addItem(sectionName, sectionId);
                                 //localStorage.setItem('message', 'Image was successfully added');
-                                //window.location ='/admin/cities/';
-                                alert("Image was successfully saved");
+                                //alert("Image was successfully saved");
+                                window.scrollTo(0,0)
+                                document.getElementById('alertMessage').innerHTML = 'Image was successfully saved';
+                                document.getElementById('alertMessage').style.display = 'block';
+                                setTimeout(() => {
+                                    document.getElementById('alertMessage').style.display = 'none';
+                                },5000);
                                 //document.getElementById("btnSubmit").disabled = false;
                             }
             });
@@ -606,8 +621,13 @@
                             },
                             success: function(msg){
                                 //localStorage.setItem('message', 'Image was successfully edited');
-                                //window.location ='/admin/cities/';
-                                alert("Image was successfully saved");
+                                //alert("Image was successfully saved");
+                                window.scrollTo(0,0)
+                                document.getElementById('alertMessage').innerHTML = 'Image was successfully saved';
+                                document.getElementById('alertMessage').style.display = 'block';
+                                setTimeout(() => {
+                                    document.getElementById('alertMessage').style.display = 'none';
+                                },5000);
                                 //document.getElementById("btnSubmit").disabled = false;
                             }
             });

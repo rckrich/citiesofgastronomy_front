@@ -158,7 +158,8 @@
                         }
                         else {
                             editModal_topic.hide(modalToggle_topic);
-                            alert(e.message);
+                            //alert(msg.message);
+                            localStorage.setItem('messageIniciative', e.message);
                             window.location = '../../admin/initiatives?section=filters&sub=topics';
                         }
                     }
@@ -211,7 +212,8 @@
                         window.location = '/login';
                     }
                     else {
-                        alert('{{trans('initiatives.filters.delete_success')}}');
+                        //alert('{{trans('initiatives.filters.delete_success')}}');
+                        localStorage.setItem('messageIniciative', '{{trans('initiatives.filters.delete_success')}}');
                         window.location = '../../admin/initiatives?section=filters&sub=topics';
                     }
                 }

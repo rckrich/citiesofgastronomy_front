@@ -139,8 +139,6 @@
             document.getElementById('id_del_contact').value = id;
         }
 
-
-
         const $elementos = document.querySelectorAll(".search");
 
         $elementos.forEach(elemento => {

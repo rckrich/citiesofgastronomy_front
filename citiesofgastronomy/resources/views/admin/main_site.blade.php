@@ -19,6 +19,8 @@
             </li>
         </ul>
         <div class="tab-content px-5" >
+            <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
+
             <div class="tab-pane  maincontent" id="pills-banners" style="display:block">
                 @include('admin.banners')
             </div>
@@ -144,9 +146,13 @@
                                     },
                                     success: function(msg){
                                         //localStorage.setItem('message', 'Cluster coordination info was successfully saved');
-                                        //window.location ='/admin/cities/';
-                                        alert("Cluster coordination info was successfully saved");
-                                        //document.getElementById("btnSubmit").disabled = false;
+                                        //alert("Cluster coordination info was successfully saved");
+                                        window.scrollTo(0,0)
+                                        document.getElementById('alertMessage').innerHTML = 'Cluster coordination info was successfully saved';
+                                        document.getElementById('alertMessage').style.display = 'block';
+                                        setTimeout(() => {
+                                            document.getElementById('alertMessage').style.display = 'none';
+                                        },5000);
                                         document.getElementById("saveclusterBTN").disabled = false;
                                     }
                     });
@@ -200,9 +206,13 @@
                                     },
                                     success: function(msg){
                                         //localStorage.setItem('message', 'Links was successfully saved');
-                                        //window.location ='/admin/cities/';
                                         alert("Links was successfully saved");
-                                        //document.getElementById("btnSubmit").disabled = false;
+                                        window.scrollTo(0,0)
+                                        document.getElementById('alertMessage').innerHTML = 'Link was successfully saved';
+                                        document.getElementById('alertMessage').style.display = 'block';
+                                        setTimeout(() => {
+                                            document.getElementById('alertMessage').style.display = 'none';
+                                        },5000);
                                     }
                     });
                     //*/
