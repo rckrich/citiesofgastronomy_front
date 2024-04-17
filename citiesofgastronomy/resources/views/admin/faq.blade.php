@@ -15,7 +15,6 @@
             </li>
         </ul>
         <div class="tab-content px-5" id="pills-tab-aboutContent">
-            <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
 
             <div class="tab-pane fade show active" id="pills-faq" role="tabpanel" aria-labelledby="pills-faq-tab">
                 <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
@@ -283,24 +282,12 @@ if(guardar == 1){
                                 document.getElementById("btnSaveFaq").disabled = false;
                                 editModal.hide(modalToggle);
                                 if(data_id){
-                                    //alert("The faq entry was successfully edited");
-                                    window.scrollTo(0,0)
-                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully edited';
-                                    document.getElementById('alertMessage').style.display = 'block';
+                                    alert("The faq entry was successfully edited");
                                     id1 = 'timeTittle'+data_id;
                                     document.getElementById(id1).innerHTML  = data_title;
-                                    setTimeout(() => {
-                                        document.getElementById('alertMessage').style.display = 'none';
-                                    },5000);
                                 }else{
-                                    //alert("The faq entry was successfully created");
-                                    window.scrollTo(0,0)
-                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully created';
-                                    document.getElementById('alertMessage').style.display = 'block';
-                                    setTimeout(() => {
-                                        document.getElementById('alertMessage').style.display = 'none';
-                                        location.reload();
-                                    },5000);
+                                    alert("The faq entry was successfully created");
+                                    location.reload();
                                 };
                             }
             });

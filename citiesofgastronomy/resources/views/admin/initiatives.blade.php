@@ -14,7 +14,6 @@
         </li>
     </ul>
     <div class="tab-content px-5" id="pills-tab-initiativesContent">
-
         <div class="tab-pane fade  <?php if($section=='in'){echo 'show active';}?>" id="pills-init" role="tabpanel" aria-labelledby="pills-init-tab">
             <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                 <div class="row mx-0">
@@ -329,7 +328,6 @@
                     console.log("#_>");
                     console.log(e);
                     closeModal('deleteInitiativeModal');
-                    window.scrollTo(0,0)
                     if (e.status===400) {
                         alert("Error: " + e.message);
                     }
@@ -338,8 +336,7 @@
                         window.location = '/login';
                     }
                     else {
-                        //alert('{{trans('initiatives.delete_success')}}');
-                        localStorage.setItem('messageIniciative', '{{trans('initiatives.delete_success')}}');
+                        alert('{{trans('initiatives.delete_success')}}');
                         window.location = '../../admin/initiatives?section=in&page='+current_page;
                     }
                 }

@@ -164,8 +164,7 @@ function deleteTour(){
                     if(msg.status===401){window.location = '/login';};
                 }
                 else {
-                    //alert('{{trans('tours.data.delete_success')}}');
-                    localStorage.setItem('toursMessage', "{{trans('tours.data.delete_success')}}");
+                    alert('{{trans('tastier_life.chefs.delete_success')}}');
                     window.location = '/admin/tours?page=1';
                 };
             }

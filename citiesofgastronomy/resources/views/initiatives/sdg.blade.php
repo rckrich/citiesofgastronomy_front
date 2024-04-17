@@ -172,8 +172,7 @@
                             }
                             else {
                                 editModal_sdg.hide(modalToggle_sdg);
-                                //alert(msg.message);
-                                localStorage.setItem('messageIniciative', e.message);
+                                alert(e.message);
                                 window.location = '../../admin/initiatives?section=filters&sub=sdg';
 
                             }
@@ -234,8 +233,7 @@
                         window.location = '/login';
                     }
                     else {
-                        //alert('{{trans('initiatives.filters.delete_success')}}');
-                        localStorage.setItem('messageIniciative', '{{trans('initiatives.filters.delete_success')}}');
+                        alert('{{trans('initiatives.filters.delete_success')}}');
                         window.location = '../../admin/initiatives?section=filters&sub=sdg';
                     }
                 }
