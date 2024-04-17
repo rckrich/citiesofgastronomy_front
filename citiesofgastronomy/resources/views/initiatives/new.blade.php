@@ -934,19 +934,24 @@ function searchCheck (classGroup){
                     //$('#fupForm').css("opacity",".5");
                 },
                 success: function(msg){
+                    let e = JSON.parse(msg);
                     console.log("::msg");
                     console.log(msg);
-                    console.log(msg.message);
+                    console.log(e.message);
                     //let e = JSON.parse(msg);
                     //console.log(e.datta);
-                    if(msg.status=='200'){
+                    if(e.status=='200'){
                         <?php if($id){?>
-                            localStorage.setItem('messageIniciative', msg.message);
+                            localStorage.setItem('messageIniciative', e.message);
                         <?php }else{?>
-                            localStorage.setItem('messageIniciative', msg.message);
+                            localStorage.setItem('messageIniciative', e.message);
                         <?php };?>
+                    }
+                    else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
                     }else{
-                            localStorage.setItem('errorIessageIniciative', msg.message);
+                            localStorage.setItem('errorIessageIniciative', e.message);
                     };
                     window.location ='/admin/initiatives?section=in&page=1';
                     document.getElementById("btnSubmit").disabled = false;

@@ -145,13 +145,20 @@
                     processData:false,
                     beforeSend: function(){             },
                     success: function(msg){
+                            let e = JSON.parse(msg);
+                            console.log("#_>");
+                            console.log(e);
                         enableBtns();
-                        if (msg.status===400) {
-                            alert("Error: " + msg.message);
-                        } 
+                        if (e.status===400) {
+                            alert("Error: " + e.message);
+                        }
+                        else if(e.status===401){
+                            alert("Error: " + e.message);
+                            window.location = '/login';
+                        }
                         else {
                             editModal_topic.hide(modalToggle_topic);
-                            alert(msg.message);
+                            alert(e.message);
                             window.location = '../../admin/initiatives?section=filters&sub=topics';
                         }
                     }
@@ -170,7 +177,7 @@
         document.getElementById("update_topic_btn").disabled = false;
     }
 
-    
+
     function openDeleteModal_topic(id){
         document.getElementById("delete_data_topic_id").value = id;
     }
@@ -191,10 +198,18 @@
                 processData:false,
                 beforeSend: function(){},
                 success: function(msg){
+
+                    let e = JSON.parse(msg);
+                    console.log("#_>");
+                    console.log(e);
                     closeModal('deleteTopicModal');
-                    if (msg.status===400) {
-                        alert("Error: " + msg.message);
-                    } 
+                    if (e.status===400) {
+                        alert("Error: " + e.message);
+                    }
+                    else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                     else {
                         alert('{{trans('initiatives.filters.delete_success')}}');
                         window.location = '../../admin/initiatives?section=filters&sub=topics';
@@ -219,5 +234,5 @@
             window.location = '../../admin/initiatives?section=filters&sub=topics';
         }
       }
-     }); 
+     });
 </script>
