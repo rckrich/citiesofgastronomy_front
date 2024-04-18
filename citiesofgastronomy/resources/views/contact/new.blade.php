@@ -132,7 +132,7 @@
             let is_valid_instagram = true;
             //let is_valid_tiktok = true;
             let is_valid_youtube = true;
-            
+
             resetValidations();
 
             let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
@@ -145,7 +145,7 @@
             if(instagram_link && !isValidUrl(instagram_link)){is_valid_instagram = false;}
             //if(tiktok_link && !isValidUrl(tiktok_link)){is_valid_tiktok = false;}
             if(youtube_link && !isValidUrl(youtube_link)){is_valid_youtube = false;}
-            
+
 
             if(data_name && data_position && data_city && is_valid_email
             && is_valid_facebook && is_valid_twitter && is_valid_linkedin && is_valid_instagram && is_valid_youtube
@@ -171,10 +171,10 @@
                 if(!is_valid_youtube){document.getElementById("validation_youtube").style.display = 'block';}
             };
         }
-    
-        const $elementos = document.querySelectorAll(".prevenir-envio");
 
-        $elementos.forEach(elemento => {
+        const elementos = document.querySelectorAll(".prevenir-envio");
+
+        elementos.forEach(elemento => {
             elemento.addEventListener("keydown", (evento) => {
                 if (evento.key == "Enter") {
                     // Prevenir

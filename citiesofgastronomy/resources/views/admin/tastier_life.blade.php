@@ -68,7 +68,7 @@
                                 <td class="col-2">{{$re['categoryName']}}</td>
                                 <td class="col-auto my-auto">
                                     <a class="btn btn-link" href="{{route('admin.recipe_edit',['id'=>$re['id']])}}">{{__('tastier_life.btn_edit')}}</a>
-                                </td>                            
+                                </td>
                                 <td class="col-auto my-auto">
                                     <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteRecipeModal" onclick="openDeleteModal_recipe({{$re['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
@@ -135,7 +135,7 @@
                                 <td class="col-8">{{$chef['name']}}</td>
                                 <td class="col-auto my-auto">
                                     <a class="btn btn-link" href="{{route('admin.chef_edit',['id'=>$chef['id']])}}">{{__('tastier_life.btn_edit')}}</a>
-                                </td>                            
+                                </td>
                                 <td class="col-auto my-auto">
                                     <button class="btn btn-danger delete_btn" data-bs-toggle="modal" data-bs-target="#deleteChefModal" onclick="openDeleteModal_chef({{$chef['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
@@ -171,7 +171,7 @@
                     <div class="col-12 px-0 text-right row mx-0 py-2">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 px-2 ms-0 ms-lg-auto ms-md-auto">
                         <form action="../admin/tastier_life?section=cat" method="POST" id="searchForm_cat">
-                        @csrf                        
+                        @csrf
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon3"><img src="{{asset('assets/icons/search_dark.svg')}}"/></span>
                             <input id="search_box_cat" name="search_box_cat" value="<?php echo $search_box_cat?>" class="form-control me-2" type="search" placeholder="{{__('tastier_life.categories.search_ph')}}" aria-label="{{__('tastier_life.categories.search_ph')}}" aria-describedby="basic-addon3">
@@ -200,7 +200,7 @@
                                 <td class="col-8">{{$cat["name"]}}</td>
                                 <td class="col-auto my-auto">
                                     <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editCategoryModal" onclick="openModal_category({{$cat['id']}},'{{$cat['name']}}')">{{__('tastier_life.btn_edit')}}</button>
-                                </td>                            
+                                </td>
                                 <td class="col-auto my-auto">
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal" onclick="openDeleteModal_category({{$cat['id']}})">{{__('admin.btn_delete')}}
                                 </button></td>
@@ -263,14 +263,14 @@
             <h5 class="modal-title create-modal-label" id="createCategoryModalLabel">{{__('tastier_life.categories.create_modal_title')}}</h5>
             <h5 class="modal-title edit-modal-label" id="editCategoryModalLabel">{{__('tastier_life.categories.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>            
+        </div>
         <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
                 <label class="form-label" for="data_category_name">{{__('tastier_life.categories.data_title')}}</label>
                 <input id="data_category_name" name="data_category_name" class="form-control" placeholder="{{__('tastier_life.categories.ph_title')}}"/>
                 <div id="validation_data_cat_name" class="invalid-feedback">{{__('admin.obligatory_field')}}</div>
-            </div>   
+            </div>
         </div>
         <div class="modal-footer b-none row mx-0">
             <button type="button" class="col-4 btn btn-outline-primary ms-auto" data-bs-dismiss="modal">{{__('admin.btn_cancel')}}</buttton>
@@ -290,7 +290,7 @@
         <h5 class="modal-title" id="deleteCategoryModalLabel">{{__('tastier_life.categories.delete_modal_title')}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">            
+      <div class="modal-body">
             <input type="hidden" id="delete_data_cat_id">
             <p>{{__('tastier_life.categories.delete_modal_desc')}}</p>
       </div>
@@ -368,11 +368,16 @@ function deleteRecipe(){
             cache: false,
             processData:false,
             beforeSend: function(){},
-            success: function(msg){                    
+            success: function(msg){
+                let e = JSON.parse(msg);
                 closeModal('deleteRecipeModal');
-                if (msg.status===400) {
-                    alert("Error: " + msg.message);
-                } 
+                if (e.status===400) {
+                    alert("Error: " + e.message);
+                }
+                else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                 else {
                     //alert('{{trans('tastier_life.recipes.delete_success')}}');
                     localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipes.delete_success')}}");
@@ -447,11 +452,17 @@ function deleteChef(){
             cache: false,
             processData:false,
             beforeSend: function(){},
-            success: function(msg){          
-                closeModal('deleteChefModal');    
-                if (msg.status===400) {
-                    alert("Error: " + msg.message);
-                } 
+            success: function(msg){
+
+                let e = JSON.parse(msg);
+                closeModal('deleteChefModal');
+                if (e.status===400) {
+                    alert("Error: " + e.message);
+                }
+                else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                 else {
                     //alert('{{trans('tastier_life.chefs.delete_success')}}');
                     localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.chefs.delete_success')}}");
@@ -506,7 +517,7 @@ function saveCategory(){
                     enableBtns();
                     if (msg.status===400) {
                         alert("Error: " + msg.message);
-                    } 
+                    }
                     else {
                         closeModal('editCategoryModal');
 
@@ -517,7 +528,7 @@ function saveCategory(){
                         else{
                             //alert('{{trans('tastier_life.categories.create_success')}}');
                             localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.categories.create_success')}}");
-                        }                        
+                        }
                         window.location = '../../admin/tastier_life?section=cat';
                     }
                 }
@@ -554,11 +565,17 @@ function deleteCategory(){
             cache: false,
             processData:false,
             beforeSend: function(){},
-            success: function(msg){                    
+            success: function(msg){
+
+                let e = JSON.parse(msg);
                 closeModal('deleteCategoryModal');
-                if (msg.status===400) {
-                    alert("Error: " + msg.message);
-                } 
+                if (e.status===400) {
+                    alert("Error: " + e.message);
+                }
+                else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
+                    }
                 else {
                     //alert('{{trans('tastier_life.categories.delete_success')}}');
                     localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.categories.delete_success')}}");
@@ -585,7 +602,7 @@ function deleteCategory(){
             window.location = '../../admin/tastier_life?section=recipes&page=1';
         }
       }
-     }); 
+     });
     $("#search_box_chef").keypress(function (e) {
       var key = e.which;
       if(key == 13)  // the enter key code
@@ -599,7 +616,7 @@ function deleteCategory(){
             window.location = '../../admin/tastier_life?section=chefs&pageChef=1';
         }
       }
-     }); 
+     });
     $("#search_box_cat").keypress(function (e) {
       var key = e.which;
       if(key == 13)  // the enter key code
@@ -613,7 +630,7 @@ function deleteCategory(){
             window.location = '../../admin/tastier_life?section=cat';
         }
       }
-     }); 
+     });
 </script>
 
 <script>

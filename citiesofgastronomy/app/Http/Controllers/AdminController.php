@@ -425,57 +425,97 @@ class AdminController extends Controller
 
     public function tastier_life(Request $request)
     {
+         /////////////VALIDAR AUTORIZACION
+         $dattaSend = [];
+         $access_token = Cookie::get('stoken');
+         $headers = array(
+             'Content-Type:application/json',
+             'Authorization:Bearer '.$access_token
+         );
 
-        $page = $request->input("page");
-        $pageChef = $request->input("pageChef");
-        //Log::info("#PAGE: ".$page.$pageChef);
+         $loggedin = 200;
 
-        if(!$page){ $page=1;   };
-        if(!$pageChef){ $pageChef=1;};
+         try{
+             $url = config('app.apiUrl').'routeValidate';
+             $curl = curl_init();
+             curl_setopt($curl, CURLOPT_URL, $url);
+             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+             curl_setopt($curl, CURLOPT_HEADER, false);
+             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+             curl_setopt($curl, CURLOPT_POST, 1);
+             curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+             $data = curl_exec($curl);
+             curl_close($curl);
 
-        $searchRecipe = '';
-        $searchChef = '';
-        $searchCAT = '';
-        $section = $request->input("section");
-        if($section == 'recipes'){$searchRecipe = $request->input("search_box_recipe");}
-        if($section == 'chefs'){$searchChef = $request->input("search_box_chef");}
-        if($section == 'cat'){$searchCAT = $request->input("search_box_cat");}
+             $res = json_decode( $data, true);
 
-        $fields = array('searchRecipe' => $searchRecipe, 'searchChef' => $searchChef, 'searchCAT' => $searchCAT, 'page' => $page, 'pageChef' => $pageChef);
-        $fields_string = http_build_query($fields);
+             //Log::info($res);
+             if($res["status"] != 200){
+                 $loggedin = 401;
+             };
+         } catch ( \Exception $e ) {
+             //$route = $this->noLoginFind();
+             //return redirect()->route($route);
+             Log::info("no autorizado  ::");
+             $loggedin = 401;
+         }
+         ///////////////////////////////
+         if($loggedin == 200){
+                $page = $request->input("page");
+                $pageChef = $request->input("pageChef");
+                //Log::info("#PAGE: ".$page.$pageChef);
 
-        $url = config('app.apiUrl').'tastierLife';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
-        $data = curl_exec($curl);
-        curl_close($curl);
+                if(!$page){ $page=1;   };
+                if(!$pageChef){ $pageChef=1;};
 
-        $res = json_decode( $data, true);
+                $searchRecipe = '';
+                $searchChef = '';
+                $searchCAT = '';
+                $section = $request->input("section");
+                if($section == 'recipes'){$searchRecipe = $request->input("search_box_recipe");}
+                if($section == 'chefs'){$searchChef = $request->input("search_box_chef");}
+                if($section == 'cat'){$searchCAT = $request->input("search_box_cat");}
 
-        Log::info("#ADMIN TastierLife List");
-        //Log::info($res);
+                $fields = array('searchRecipe' => $searchRecipe, 'searchChef' => $searchChef, 'searchCAT' => $searchCAT, 'page' => $page, 'pageChef' => $pageChef);
+                $fields_string = http_build_query($fields);
 
-        $inputs = [];
-        $inputs["search_box_recipe"] = $searchRecipe;
-        $inputs["search_box_chef"] = $searchChef;
-        $inputs["search_box_cat"] = $searchCAT;
-        $inputs["page"] = $page;
-        $inputs["pageChef"] = $pageChef;
-        $inputs["section"] = $request->input("section");
+                $url = config('app.apiUrl').'tastierLifeAdmin';
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_HEADER, false);
+                curl_setopt($curl, CURLOPT_POST, 1);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+                $data = curl_exec($curl);
+                curl_close($curl);
 
-        $inputs["tot"] = $res["tot"];
-        $inputs["paginator"] = $res["paginator"];
-        $inputs["totChefs"] = $res["totCHEF"];
-        $inputs["paginatorChefs"] = $res["paginatorCHEF"];
-        $inputs["recipes"] = $res["recipes"];
-        $inputs["chefs"] = $res["chef"];
-        $inputs["categories"] = $res["categories"];
+                $res = json_decode( $data, true);
 
-        return view('admin.tastier_life',$inputs);
+                Log::info("#ADMIN TastierLife List");
+                //Log::info($res);
+
+                $inputs = [];
+                $inputs["search_box_recipe"] = $searchRecipe;
+                $inputs["search_box_chef"] = $searchChef;
+                $inputs["search_box_cat"] = $searchCAT;
+                $inputs["page"] = $page;
+                $inputs["pageChef"] = $pageChef;
+                $inputs["section"] = $request->input("section");
+
+                $inputs["tot"] = $res["tot"];
+                $inputs["paginator"] = $res["paginator"];
+                $inputs["totChefs"] = $res["totCHEF"];
+                $inputs["paginatorChefs"] = $res["paginatorCHEF"];
+                $inputs["recipes"] = $res["recipes"];
+                $inputs["chefs"] = $res["chef"];
+                $inputs["categories"] = $res["categories"];
+
+                return view('admin.tastier_life',$inputs);
+            }else {
+                $route = $this->noLoginFind();
+                return redirect()->route($route);
+                //return redirect()->route('admin.login');
+            };
     }
 
     public function tours(Request $request)
@@ -584,42 +624,85 @@ class AdminController extends Controller
 
     public function contact(Request $request)
     {
-        $page = $request->input("page");
-        Log::info("#PAGE: ".$page);
 
-        if(!$page){ $page=1;   };
-        $st = $request->input("st");
-        $search_box = $request->input("search_box");
 
-        $fields = array('search' => $search_box, 'page' => $page);
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $fields_string = http_build_query($fields);
+        $loggedin = 200;
 
-        $url = config('app.apiUrl').'adminContacts';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
+            $res = json_decode( $data, true);
 
-        Log::info("#ADMIN Contact List");
-        //Log::info($res);
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
 
-        $inputs = [];
-        $inputs["total"] = $res["tot"];
-        $inputs["paginator"] = $res["paginator"];
-        $inputs["list"] = $res["contact"];
-        $inputs["search_box"] = $search_box;
-        $inputs["page"] = $page;
-        $inputs["st"] = $st;
-        //return view('admin.cities', $inputs);
+            $page = $request->input("page");
+            Log::info("#PAGE: ".$page);
 
-        return view('admin.contact', $inputs);
+            if(!$page){ $page=1;   };
+            $st = $request->input("st");
+            $search_box = $request->input("search_box");
+
+            $fields = array('search' => $search_box, 'page' => $page);
+
+            $fields_string = http_build_query($fields);
+
+            $url = config('app.apiUrl').'adminContacts';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            Log::info("#ADMIN Contact List");
+            //Log::info($res);
+
+            $inputs = [];
+            $inputs["total"] = $res["tot"];
+            $inputs["paginator"] = $res["paginator"];
+            $inputs["list"] = $res["contact"];
+            $inputs["search_box"] = $search_box;
+            $inputs["page"] = $page;
+            $inputs["st"] = $st;
+            //return view('admin.cities', $inputs);
+
+            return view('admin.contact', $inputs);
+        }else{
+            $route = $this->noLoginFind();
+                        return redirect()->route($route);
+            }
     }
     public function main()
     {
@@ -669,108 +752,257 @@ class AdminController extends Controller
 
     public function mainLinksSave(Request $request)
     {
-        $idSection = $request->input("idSection");
-        $idOwner = $request->input("idOwner");
-        $linksTag = $request->input("linksTag");
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $dattaSend = [
-            'idSection' => $idSection,
-            'linksTag' => $linksTag,
-            'idOwner' => $idOwner
-        ];
+        $loggedin = 200;
 
-        Log::info($linksTag);
-        $arrayTags = explode(",", $linksTag);
-        Log::info("arrayTags ::");
-        Log::info($arrayTags);
-        for($i = 0; $i < count($arrayTags)  ; $i++){
-            Log::info($i.' ##');
-            $idLink = $arrayTags[$i].'_link';
-            $dattaSend[$idLink] = $request->input($idLink);
-            //Instagram_link
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
         }
+        ///////////////////////////////
+        if($loggedin == 200){
+                $idSection = $request->input("idSection");
+                $idOwner = $request->input("idOwner");
+                $linksTag = $request->input("linksTag");
 
-        $url = config('app.apiUrl').'mainSiteContent/linkStore';
+                $dattaSend = [
+                    'idSection' => $idSection,
+                    'linksTag' => $linksTag,
+                    'idOwner' => $idOwner
+                ];
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+                Log::info($linksTag);
+                $arrayTags = explode(",", $linksTag);
+                Log::info("arrayTags ::");
+                Log::info($arrayTags);
+                for($i = 0; $i < count($arrayTags)  ; $i++){
+                    Log::info($i.' ##');
+                    $idLink = $arrayTags[$i].'_link';
+                    $dattaSend[$idLink] = $request->input($idLink);
+                    //Instagram_link
+                }
 
-        $res = json_decode( $data, true);
+                $url = config('app.apiUrl').'mainSiteContent/linkStore';
 
-        Log::info(  "#Main Content#"  );
-        Log::info(  $res  );
-        return json_encode($res );
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_HEADER, false);
+                curl_setopt($curl, CURLOPT_POST, 1);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+                $data = curl_exec($curl);
+                curl_close($curl);
+
+                $res = json_decode( $data, true);
+
+                Log::info(  "#Main Content#"  );
+                Log::info(  $res  );
+                if($res==''){
+
+                    $res = [];
+                    $res["status"] = 401;
+                    $res["message"] = "Unauthorized";
+                };
+
+            } else{
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            }
+
+            return json_encode($res );
+
     }
 
     public function mainClusterSave(Request $request)
     {
+
+        /////////////VALIDAR AUTORIZACION
         $dattaSend = [];
-        $indice = $request->input("indice");
-        Log::info("Indice: ".$indice);
-        $porciones = explode(",", $indice);
-        for($i = 0; $i < count($porciones); $i++ ){
-            $ya =$porciones[$i];
-            $dattaSend[$ya] =  $request->input($ya);
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
+
+        $loggedin = 200;
+
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
         }
+        ///////////////////////////////
+        if($loggedin == 200){
 
-        $url = config('app.apiUrl').'mainSiteContent/clustersave';
+            $dattaSend = [];
+            $indice = $request->input("indice");
+            Log::info("Indice: ".$indice);
+            $porciones = explode(",", $indice);
+            for($i = 0; $i < count($porciones); $i++ ){
+                $ya =$porciones[$i];
+                $dattaSend[$ya] =  $request->input($ya);
+            }
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+            $url = config('app.apiUrl').'mainSiteContent/clustersave';
 
-        $res = json_decode( $data, true);
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        Log::info(  "#Main Content#"  );
-        Log::info(  $res  );
+            $res = json_decode( $data, true);
+
+            Log::info(  "#Main Content#"  );
+            Log::info(  $res  );
+            if($res==''){
+
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
         return json_encode($res );
     }
 
     public function mainBannerUp(Request $request)
     {
-        $idSection = $request->input("idSection");
-        $idOwner = $request->input("idOwner");
-        $file =  $request->file('banner');
-        $banner='';
-        if($file){
-                    // You can store this but should validate it to avoid conflicts
-                    $original_name = $file->getClientOriginalName();
-                    // You can store this but should validate it to avoid conflicts
-                    $extension = $file->getClientOriginalExtension();
-                    // This would be used for the payload
-                    $file_path = $file->getPathName();
-                    $banner = new \CURLFile($file_path);
-        };
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $url = config('app.apiUrl').'banners/store';
+        $loggedin = 200;
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'idSection' => $idSection,
-            'banner' => $banner,
-            'idOwner' => $idOwner
-        ] );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
+            $res = json_decode( $data, true);
 
-        Log::info(  $res  );
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $idSection = $request->input("idSection");
+            $idOwner = $request->input("idOwner");
+            $file =  $request->file('banner');
+            $banner='';
+            if($file){
+                        // You can store this but should validate it to avoid conflicts
+                        $original_name = $file->getClientOriginalName();
+                        // You can store this but should validate it to avoid conflicts
+                        $extension = $file->getClientOriginalExtension();
+                        // This would be used for the payload
+                        $file_path = $file->getPathName();
+                        $banner = new \CURLFile($file_path);
+            };
+
+            $url = config('app.apiUrl').'banners/store';
+
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, [
+                'idSection' => $idSection,
+                'banner' => $banner,
+                'idOwner' => $idOwner
+            ] );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            Log::info(  $res  );
+            if($res==''){
+
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+
         return json_encode($res );
     }
 
@@ -779,58 +1011,131 @@ class AdminController extends Controller
         Log::info(  "##LLEGO al DELETE :::"   );
         $idBanner = $request->input("idBanner");
 
-        $url = config('app.apiUrl').'banners/delete';
+        $url = config('app.apiUrl').'banners/delete?idBanner='.$idBanner;
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'idBanner' => $idBanner
-        ] );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                        'Content-Type:application/json',
+                        'Authorization:Bearer '.$access_token
+                    );
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, [
+                'idBanner' => $idBanner
+            ] );
+            $data = curl_exec($curl);
+            curl_close($curl);
+            Log::info(  $data  );
 
-        $res = json_decode( $data, true);
+            if($data == ''){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            }else{
 
+            $res = json_decode( $data, true);
+            };
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        Log::info(  "###---> DELETE BANNER"  );
         Log::info(  $res  );
+        if($res == ''){
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        };
         return json_encode($res );
     }
 
     public function mainBannerChange(Request $request)
     {
-        Log::info(  "##LLEGO al CHANGE :::"   );
-        $idBanner = $request->input("idBanner");
-        $file =  $request->file('banner');
-        $banner='';
-        if($file){
-                    // You can store this but should validate it to avoid conflicts
-                    $original_name = $file->getClientOriginalName();
-                    // You can store this but should validate it to avoid conflicts
-                    $extension = $file->getClientOriginalExtension();
-                    // This would be used for the payload
-                    $file_path = $file->getPathName();
-                    $banner = new \CURLFile($file_path);
-        };
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $url = config('app.apiUrl').'banners/update';
+        $loggedin = 200;
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, [
-            'idBanner' => $idBanner,
-            'banner' => $banner
-        ] );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
+            $res = json_decode( $data, true);
 
-        Log::info(  $res  );
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            Log::info(  "##LLEGO al CHANGE :::"   );
+            $idBanner = $request->input("idBanner");
+            $file =  $request->file('banner');
+            $banner='';
+            if($file){
+                        // You can store this but should validate it to avoid conflicts
+                        $original_name = $file->getClientOriginalName();
+                        // You can store this but should validate it to avoid conflicts
+                        $extension = $file->getClientOriginalExtension();
+                        // This would be used for the payload
+                        $file_path = $file->getPathName();
+                        $banner = new \CURLFile($file_path);
+            };
+
+            $url = config('app.apiUrl').'banners/update';
+
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, [
+                'idBanner' => $idBanner,
+                'banner' => $banner
+            ] );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            Log::info(  $res  );
+            if($res==''){
+
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } else{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
         return json_encode($res );
     }
 

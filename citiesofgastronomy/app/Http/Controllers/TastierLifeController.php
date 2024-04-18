@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Cookie;
+
 
 
 class TastierLifeController extends Controller
@@ -52,7 +55,7 @@ class TastierLifeController extends Controller
         $inputs["chefName"] = $res['Recipes']['chefName'];
         $inputs["categoryName"] = $res['Recipes']['categoryName'];
         $inputs["cityName"] = $res['Recipes']['cityName'];
-        
+
         $socialMedia = $res['Recipes']['socialMedia'];
         $inputs["facebook_link"] = '';
         $inputs["twitter_link"] = '';
@@ -159,80 +162,104 @@ class TastierLifeController extends Controller
 
     public function recipe_new()
     {
-        $url = config('app.apiUrl').'recipe/create';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        $data = curl_exec($curl);
-        curl_close($curl);
 
-        $res = json_decode( $data, true);
-        Log::info("NEW RECIPE :: RESPONSE");
-        //Log::info($res);
+        try{
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                'Content-Type:application/json',
+                'Authorization:Bearer '.$access_token
+            );
+            $url = config('app.apiUrl').'recipe/create';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $inputs = [];
-        $inputs["id"] = '';
-        $inputs["chefsList"] = $res['Chef'];
-        $inputs["categoriesList"] = $res['categories'];
-        $inputs["citiesList"] = $res['Cities'];
-        $inputs["selectedChef"] = 'default';
-        $inputs["selectedCat"] = 'default';
-        $inputs["selectedCity"] = 'default';
-        $inputs["name"] = '';
-        $inputs["photo"] = '';
-        $inputs["description"] = '';
-        $inputs["difficulty"] = '';
-        $inputs["prepTime"] = '';
-        $inputs["totalTime"] = '';
-        $inputs["servings"] = '';
-        $inputs["ingredients"] = '';
-        $inputs["preparations"] = '';
-        $inputs["isActive"] = '';
-        $inputs["votes"] = '';
-        $inputs["gallery"] = '';
+            $res = json_decode( $data, true);
+            Log::info("NEW RECIPE :: RESPONSE");
+            Log::info($res);
 
-        return view('tastier_life.new_recipe',$inputs);
+            $inputs = [];
+            $inputs["id"] = '';
+            $inputs["chefsList"] = $res['Chef'];
+            $inputs["categoriesList"] = $res['categories'];
+            $inputs["citiesList"] = $res['Cities'];
+            $inputs["selectedChef"] = 'default';
+            $inputs["selectedCat"] = 'default';
+            $inputs["selectedCity"] = 'default';
+            $inputs["name"] = '';
+            $inputs["photo"] = '';
+            $inputs["description"] = '';
+            $inputs["difficulty"] = '';
+            $inputs["prepTime"] = '';
+            $inputs["totalTime"] = '';
+            $inputs["servings"] = '';
+            $inputs["ingredients"] = '';
+            $inputs["preparations"] = '';
+            $inputs["isActive"] = '';
+            $inputs["votes"] = '';
+            $inputs["gallery"] = '';
+
+            return view('tastier_life.new_recipe',$inputs);
+        } catch ( \Exception $e ) {
+            $route = ( new AdminController )->noLoginFind();
+                        return redirect()->route($route);
+            }
     }
 
     public function recipe_edit($id)
     {
-        $url = config('app.apiUrl').'recipe/findRecipe/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        $data = curl_exec($curl);
-        curl_close($curl);
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
 
-        $res = json_decode( $data, true);
-        Log::info("EDIT RECIPE :: RESPONSE");
-        //Log::info($res);
+        try{
+            $url = config('app.apiUrl').'recipe/findRecipeAdmin/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $recipe = $res['Recipes'];
+            $res = json_decode( $data, true);
+            Log::info("EDIT RECIPE :: RESPONSE");
+            //Log::info($res);
 
-        $inputs = [];
-        $inputs["id"] = $id;
-        $inputs["chefsList"] = $res['Chef'];
-        $inputs["categoriesList"] = $res['categories'];
-        $inputs["citiesList"] = $res['Cities'];
-        $inputs["selectedChef"] = $recipe['idChef']?$recipe['idChef']:'default';
-        $inputs["selectedCity"] = $recipe['idCity']?$recipe['idCity']:'default';
-        $inputs["selectedCat"] = $recipe['idCategory']?$recipe['idCategory']:'default';
-        $inputs["name"] = $recipe['name'];
-        $inputs["photo"] = $recipe['photo'];
-        $inputs["description"] = $recipe['description'];
-        $inputs["difficulty"] = $recipe['difficulty'];
-        $inputs["prepTime"] = $recipe['prepTime'];
-        $inputs["totalTime"] = $recipe['totalTime'];
-        $inputs["servings"] = $recipe['servings'];
-        $inputs["ingredients"] = $recipe['ingredients'];
-        $inputs["preparations"] = $recipe['preparations'];
-        //$inputs["isActive"] = $recipe['active'];
-        //$inputs["votes"] = $recipe['vote'];
-        $inputs["gallery"] = $res['Gallery'];
+            $recipe = $res['Recipes'];
 
-        return view('tastier_life.new_recipe',$inputs);
+            $inputs = [];
+            $inputs["id"] = $id;
+            $inputs["chefsList"] = $res['Chef'];
+            $inputs["categoriesList"] = $res['categories'];
+            $inputs["citiesList"] = $res['Cities'];
+            $inputs["selectedChef"] = $recipe['idChef']?$recipe['idChef']:'default';
+            $inputs["selectedCity"] = $recipe['idCity']?$recipe['idCity']:'default';
+            $inputs["selectedCat"] = $recipe['idCategory']?$recipe['idCategory']:'default';
+            $inputs["name"] = $recipe['name'];
+            $inputs["photo"] = $recipe['photo'];
+            $inputs["description"] = $recipe['description'];
+            $inputs["difficulty"] = $recipe['difficulty'];
+            $inputs["prepTime"] = $recipe['prepTime'];
+            $inputs["totalTime"] = $recipe['totalTime'];
+            $inputs["servings"] = $recipe['servings'];
+            $inputs["ingredients"] = $recipe['ingredients'];
+            $inputs["preparations"] = $recipe['preparations'];
+            //$inputs["isActive"] = $recipe['active'];
+            //$inputs["votes"] = $recipe['vote'];
+            $inputs["gallery"] = $res['Gallery'];
+
+            return view('tastier_life.new_recipe',$inputs);
+        } catch ( \Exception $e ) {
+            $route = ( new AdminController )->noLoginFind();
+                    return redirect()->route($route);
+        }
     }
 
     public function recipe_save(Request $request){
@@ -351,23 +378,41 @@ class TastierLifeController extends Controller
 
     public function recipe_delete(Request $request)
     {
-        $id = $request->input("id");
-        $dattaSend = [];
+        try{
+                $id = $request->input("id");
+                $dattaSend = [];
+                $access_token = Cookie::get('stoken');
+                $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
+                $url = config('app.apiUrl').'recipe/delete/'.$id;
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_HEADER, false);
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($curl, CURLOPT_POST, 1);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+                $data = curl_exec($curl);
+                curl_close($curl);
 
-        $url = config('app.apiUrl').'recipe/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+                $res = json_decode( $data, true);
+                Log::info("RECIPE DELETE ::");
+                //Log::info($res);
+                if($res==''){
 
-        $res = json_decode( $data, true);
-        Log::info("RECIPE DELETE ::");
-        //Log::info($res);
+                    $res = [];
+                    $res["status"] = 401;
+                    $res["message"] = "Unauthorized";
+                };
 
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
         return $res;
     }
 
@@ -482,22 +527,41 @@ class TastierLifeController extends Controller
 
     public function chef_delete(Request $request)
     {
-        $id = $request->input("id");
-        $dattaSend = [];
+        try{
+            $id = $request->input("id");
+            $dattaSend = [];
+            $access_token = Cookie::get('stoken');
+            $headers = array(
+                        'Content-Type:application/json',
+                        'Authorization:Bearer '.$access_token
+                    );
+            $url = config('app.apiUrl').'chef/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $url = config('app.apiUrl').'chef/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+            $res = json_decode( $data, true);
+            Log::info("CHEF DELETE ::");
+            Log::info($res);
+            if($res==''){
 
-        $res = json_decode( $data, true);
-        Log::info("CHEF DELETE ::");
-        Log::info($res);
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
 
         return $res;
     }
@@ -531,22 +595,44 @@ class TastierLifeController extends Controller
 
     public function category_delete(Request $request)
     {
-        $id = $request->input("id");
-        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Content-Type:application/json',
+                    'Authorization:Bearer '.$access_token
+                );
 
-        $url = config('app.apiUrl').'categories/delete/'.$id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            $id = $request->input("id");
+            $dattaSend = [];
 
-        $res = json_decode( $data, true);
-        Log::info("CATEGORIES DELETE ::");
-        //Log::info($res);
+            $url = config('app.apiUrl').'categories/delete/'.$id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+            Log::info("CATEGORIES DELETE ::");
+            //Log::info($res);if($res==''){
+
+            if($res==''){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
+
 
         return $res;
     }

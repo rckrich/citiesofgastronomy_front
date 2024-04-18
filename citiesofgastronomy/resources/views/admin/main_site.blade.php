@@ -145,15 +145,22 @@
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-                                        //localStorage.setItem('message', 'Cluster coordination info was successfully saved');
-                                        //alert("Cluster coordination info was successfully saved");
-                                        window.scrollTo(0,0)
-                                        document.getElementById('alertMessage').innerHTML = 'Cluster coordination info was successfully saved';
-                                        document.getElementById('alertMessage').style.display = 'block';
-                                        setTimeout(() => {
-                                            document.getElementById('alertMessage').style.display = 'none';
-                                        },10000);
-                                        document.getElementById("saveclusterBTN").disabled = false;
+                                        let e = JSON.parse(msg);
+                                        if(e.status===401){
+                                                alert("Error: " + e.message);
+                                                window.location = '/login';
+                                            }
+                                        else {
+                                            //localStorage.setItem('message', 'Cluster coordination info was successfully saved');
+                                            //alert("Cluster coordination info was successfully saved");
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'Cluster coordination info was successfully saved';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                            },10000);
+                                            document.getElementById("saveclusterBTN").disabled = false;
+                                        };
                                     }
                     });
                 }else{
@@ -205,14 +212,21 @@
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-                                        //localStorage.setItem('message', 'Links was successfully saved');
-                                        alert("Links was successfully saved");
-                                        window.scrollTo(0,0)
-                                        document.getElementById('alertMessage').innerHTML = 'Link was successfully saved';
-                                        document.getElementById('alertMessage').style.display = 'block';
-                                        setTimeout(() => {
-                                            document.getElementById('alertMessage').style.display = 'none';
-                                        },10000);
+                                        let e = JSON.parse(msg);
+                                        if(e.status===401){
+                                                alert("Error: " + e.message);
+                                                window.location = '/login';
+                                            }
+                                        else {
+                                            //localStorage.setItem('message', 'Links was successfully saved');
+                                            alert("Links was successfully saved");
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'Link was successfully saved';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                            },10000);
+                                        };
                                     }
                     });
                     //*/

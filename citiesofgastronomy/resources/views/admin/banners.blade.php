@@ -461,17 +461,23 @@
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-
-                                        sel_file('img' + capit + item, sectionName+'_banner'+item );
-                                        //localStorage.setItem('message', 'Image was successfully changed');
-                                        //alert("Image was successfully changed");
-                                        window.scrollTo(0,0)
-                                        document.getElementById('alertMessage').innerHTML = 'Image was successfully changed';
-                                        document.getElementById('alertMessage').style.display = 'block';
-                                        setTimeout(() => {
-                                            document.getElementById('alertMessage').style.display = 'none';
-                                        },10000);
-                                        //document.getElementById("btnSubmit").disabled = false;
+                                        let e = JSON.parse(msg);
+                                        if(e.status===401){
+                                                alert("Error: " + e.message);
+                                                window.location = '/login';
+                                            }
+                                        else {
+                                            sel_file('img' + capit + item, sectionName+'_banner'+item );
+                                            //localStorage.setItem('message', 'Image was successfully changed');
+                                            //alert("Image was successfully changed");
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'Image was successfully changed';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                            },10000);
+                                            //document.getElementById("btnSubmit").disabled = false;
+                                        };
                                     }
                     });
                 };
@@ -499,15 +505,22 @@
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-                                        //localStorage.setItem('message', 'Image was successfully delete');
-                                        //alert("Image was successfully deleted");
-                                        window.scrollTo(0,0)
-                                        document.getElementById('alertMessage').innerHTML = 'Image was successfully deleted';
-                                        document.getElementById('alertMessage').style.display = 'block';
-                                        setTimeout(() => {
-                                            document.getElementById('alertMessage').style.display = 'none';
-                                        },10000);
-                                        //document.getElementById("btnSubmit").disabled = false;
+                                        let e = JSON.parse(msg);
+                                        if(e.status===401){
+                                                alert("Error: " + e.message);
+                                                window.location = '/login';
+                                            }
+                                        else {
+                                            //localStorage.setItem('message', 'Image was successfully delete');
+                                            //alert("Image was successfully deleted");
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'Image was successfully deleted';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                            },10000);
+                                            //document.getElementById("btnSubmit").disabled = false;
+                                        };
                                     }
                     });
                 };
@@ -540,16 +553,23 @@
                                 //$('#fupForm').css("opacity",".5");
                             },
                             success: function(msg){
-                                addItem(sectionName, sectionId);
-                                //localStorage.setItem('message', 'Image was successfully added');
-                                //alert("Image was successfully saved");
-                                window.scrollTo(0,0)
-                                document.getElementById('alertMessage').innerHTML = 'Image was successfully saved';
-                                document.getElementById('alertMessage').style.display = 'block';
-                                setTimeout(() => {
-                                    document.getElementById('alertMessage').style.display = 'none';
-                                },10000);
-                                //document.getElementById("btnSubmit").disabled = false;
+                                let e = JSON.parse(msg);
+                                if(e.status===401){
+                                        alert("Error: " + e.message);
+                                         window.location = '/login';
+                                     }
+                                else {
+                                    addItem(sectionName, sectionId);
+                                    //localStorage.setItem('message', 'Image was successfully added');
+                                    //alert("Image was successfully saved");
+                                    window.scrollTo(0,0)
+                                    document.getElementById('alertMessage').innerHTML = 'Image was successfully saved';
+                                    document.getElementById('alertMessage').style.display = 'block';
+                                    setTimeout(() => {
+                                        document.getElementById('alertMessage').style.display = 'none';
+                                    },10000);
+                                    //document.getElementById("btnSubmit").disabled = false;
+                                };
                             }
             });
         }
@@ -620,15 +640,22 @@
                                 //$('#fupForm').css("opacity",".5");
                             },
                             success: function(msg){
-                                //localStorage.setItem('message', 'Image was successfully edited');
-                                //alert("Image was successfully saved");
-                                window.scrollTo(0,0)
-                                document.getElementById('alertMessage').innerHTML = 'Image was successfully saved';
-                                document.getElementById('alertMessage').style.display = 'block';
-                                setTimeout(() => {
-                                    document.getElementById('alertMessage').style.display = 'none';
-                                },10000);
-                                //document.getElementById("btnSubmit").disabled = false;
+                                let e = JSON.parse(msg);
+                                if(e.status===401){
+                                        alert("Error: " + e.message);
+                                        window.location = '/login';
+                                     }
+                                else {
+                                    //localStorage.setItem('message', 'Image was successfully edited');
+                                    //alert("Image was successfully saved");
+                                    window.scrollTo(0,0)
+                                    document.getElementById('alertMessage').innerHTML = 'Image was successfully saved';
+                                    document.getElementById('alertMessage').style.display = 'block';
+                                    setTimeout(() => {
+                                        document.getElementById('alertMessage').style.display = 'none';
+                                    },10000);
+                                    //document.getElementById("btnSubmit").disabled = false;
+                                };
                             }
             });
         }
