@@ -6,6 +6,15 @@
     <section id="admin_home">
         <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row mx-0">
+                <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
+                    Contact was successfully
+                </div>
+                @if (session()->has('error'))
+                <div class="alert alert-danger" role="alert" id="alertMessageAlert" style="display:none">
+                    There was an unexpected error, please try again
+                </div>
+                @endif
+
                 <div class="col-12 px-0 py-2">
                     <h3 class="admin-title"><b>{{__('contact.admin.title')}}</b></h3>
                 </div>
@@ -31,15 +40,6 @@
                 </div>
             </div>
             <div class="row mx-0 pt-4">
-
-                <div class="alert alert-success" role="alert" id="alertMessage" style="display:none">
-                    Contact was successfully
-                </div>
-                @if (session()->has('error'))
-                <div class="alert alert-danger" role="alert" id="alertMessageAlert" style="display:none">
-                    There was an unexpected error, please try again
-                </div>
-                @endif
 
                 <table class="table table-fixed">
                     <thead class="">

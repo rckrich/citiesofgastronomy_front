@@ -5,7 +5,9 @@
 @section('content')
     <section id="admin_cities">
         <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
-            <div class="row mx-0">
+            <div class="row mx-0">            
+                <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
+
                 <div class="col-12 px-0 py-2">
                     <h3 class="admin-title"><b>{{__('cities.admin.title')}}</b></h3>
                 </div>
@@ -32,7 +34,6 @@
                     </div>
                 </div>
             </div>
-            <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
             <div class="row mx-0 pt-4">
                 <table class="table table-fixed">
                     <thead class="">

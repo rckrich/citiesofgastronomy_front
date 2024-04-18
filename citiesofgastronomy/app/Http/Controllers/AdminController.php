@@ -156,11 +156,13 @@ class AdminController extends Controller
     {
         $inputs = [];
         $stoken = Cookie::get('stoken');
+        Log::info($stoken);
+
         if($stoken==="" || $stoken === null){
             return redirect()->route('admin.login');
         }
         else{
-            $inputs['stoken'] = $stoken;
+            //$inputs['stoken'] = $stoken;
             return view('session.change_password',$inputs);
         }
     }
@@ -177,7 +179,6 @@ class AdminController extends Controller
             'passwordConfirmation' => $passwordConfirmation,
         ];
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
         $url = config('app.apiUrl').'user/perfilPassword';
@@ -561,7 +562,7 @@ class AdminController extends Controller
             $inputs['paginator'] = $res['paginator'];
             $inputs['page'] = $page;
             $inputs['search_box'] = $search;
-            Log::info("#PAGE: ".$page);
+            //Log::info("#PAGE: ".$page);
 
             return view('admin.tours',$inputs);
         } catch ( \Exception $e ) {

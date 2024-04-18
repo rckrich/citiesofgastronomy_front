@@ -15,8 +15,9 @@
             </li>
         </ul>
         <div class="tab-content px-5" id="pills-tab-aboutContent">
-            <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
-
+            <div class="container px-lg-5 px-md-5 px-sm-3 px-3"><div class="row mx-0">
+                <div class="alert alert-success mt-3" role="alert" id="alertMessage" style="display:none"></div>
+            </div></div>
             <div class="tab-pane fade <?php if($section==''){echo 'show active';}?>" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">
                 <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
                     <div class="row mx-0">

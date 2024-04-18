@@ -15,7 +15,6 @@
                 @csrf
                 <div class="form-group py-1">
                     <label for="original_password" class="text-white text-left py-2">{{__('session.original_Password')}}</label>                
-                    <input id="temp_original_password" type="hidden" class="w-100" placeholder="{{__('session.ph_original_password')}}"/>
                     <input id="original_password" type="password" class="w-100" placeholder="{{__('session.ph_original_password')}}"/>
                     <div id="validation_original_password" class="invalid-feedback text-orange">{{__('admin.obligatory_field')}}</div>
                     <div id="validation_format_original_password" class="invalid-feedback text-orange">{{__('admin.password_format_error')}}</div>
@@ -45,8 +44,6 @@
 
 <script>
 
-var access_token =  '<?php echo $stoken;?>';
-
 function changePassword(){
     resetValidations();
     let datos = new FormData();
@@ -58,7 +55,6 @@ function changePassword(){
     datos.append('original_password', original_password);
     datos.append('data_password', data_password);
     datos.append('confirm_password', confirm_password);
-    datos.append('access_token', access_token);
 
     let isValidOriginalPassword = (original_password.length >= 8 ? true : false);
     let isValidPassword = (data_password.length >= 8 ? true : false);
