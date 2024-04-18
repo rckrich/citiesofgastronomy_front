@@ -170,19 +170,22 @@ class AdminController extends Controller
         $originalPassword = $request->input("original_password");
         $password = $request->input("data_password");
         $passwordConfirmation = $request->input("confirm_password");
-        $token = $request->input("access_token");
+        $access_token = Cookie::get('stoken');
         $dattaSend = [
             'originalPassword' => $originalPassword,
             'password' => $password,
             'passwordConfirmation' => $passwordConfirmation,
-            'token' => $token,
         ];
-
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
         $url = config('app.apiUrl').'user/perfilPassword';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
         $data = curl_exec($curl);
