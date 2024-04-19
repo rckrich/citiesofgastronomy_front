@@ -55,10 +55,7 @@ class ContactController extends Controller
             'id' => $id
         ];
         $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
+        $headers = array('Authorization:Bearer '.$access_token);
         try{
             $url = config('app.apiUrl').'contact/findAdmin?id='.$id;
             $curl = curl_init();

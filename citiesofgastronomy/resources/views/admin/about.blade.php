@@ -365,14 +365,18 @@ var delModalFAQ; var modalDelToggleFAQ;
                     //let res = res0["cities"];
                     console.log(":: respuesta fel FIND");
                     console.log(res);
-
-                    document.getElementById("data_id").value = res["id"];
-                    document.getElementById("data_title").value = res["tittle"];
-                    document.getElementById("data_link").value = res["link"];
-                    document.getElementById("data_startdate").value = res["startDate"];
-                    document.getElementById("data_enddate").value = res["endDate"];
-                    //*/
-                    document.getElementById("loading").style.display = 'none';
+                    if(res.status===401){
+                        alert("Error: " + res.message);
+                        window.location = '/login';
+                    }else{
+                        document.getElementById("data_id").value = res["timeline"]["id"];
+                        document.getElementById("data_title").value = res["timeline"]["tittle"];
+                        document.getElementById("data_link").value = res["timeline"]["link"];
+                        document.getElementById("data_startdate").value = res["timeline"]["startDate"];
+                        document.getElementById("data_enddate").value = res["timeline"]["endDate"];
+                        //*/
+                        document.getElementById("loading").style.display = 'none';
+                    };
                 }
                 xhttp.open("GET", "/admin/timelineFind/"+id, true);
                 xhttp.send();
@@ -464,20 +468,31 @@ var delModalFAQ; var modalDelToggleFAQ;
                                         //$('#fupForm').css("opacity",".5");
                                     },
                                     success: function(msg){
-                                        //localStorage.setItem('message', 'Timeline info was successfully saved');
-                                        //window.location ='/admin/cities/';
-                                        document.getElementById("btnSaveTimeline").disabled = false;
-                                        editModal.hide(modalToggle);
-                                        if(data_id){
-                                            alert("The timeline entry was successfully edited");
-                                            id1 = 'timeTittle'+data_id;
-                                            document.getElementById(id1).innerHTML  = data_title;
-                                        }else{
-                                            alert("The timeline entry was successfully created");
-                                            //location.reload();
-                                            window.location = '../../admin/about/';
+
+                                        let e = JSON.parse(msg);
+                                        if (e.status===400) {
+                                            alert("Error: " + e.message);
+                                        }
+                                        else if(e.status===401){
+                                            alert("Error: " + e.message);
+                                            window.location = '/login';
+                                        }
+                                        else {
+                                            //localStorage.setItem('message', 'Timeline info was successfully saved');
+                                            //window.location ='/admin/cities/';
+                                            document.getElementById("btnSaveTimeline").disabled = false;
+                                            editModal.hide(modalToggle);
+                                            if(data_id){
+                                                alert("The timeline entry was successfully edited");
+                                                id1 = 'timeTittle'+data_id;
+                                                document.getElementById(id1).innerHTML  = data_title;
+                                            }else{
+                                                alert("The timeline entry was successfully created");
+                                                //location.reload();
+                                                window.location = '../../admin/about/';
+                                            };
+                                            document.getElementById("btnAddTime").disabled = false;
                                         };
-                                        document.getElementById("btnAddTime").disabled = false;
                                     }
                     });
         }else{
@@ -575,15 +590,20 @@ if(id == '' || id == undefined){
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
             let res =  JSON.parse(this.responseText);
+            if(res.status===401){
+                        alert("Error: " + res.message);
+                        window.location = '/login';
+                    }
+            else {
+                console.log(":: respuesta FAQ FIND");
+                console.log(res);
 
-            console.log(":: respuesta FAQ FIND");
-            console.log(res);
-
-            document.getElementById("data_idfaq").value = res["id"];
-            document.getElementById("data_faq").value = res["faq"];
-            document.getElementById("data_answer").value = res["answer"];
-            //*/
-            document.getElementById("loading").style.display = 'none';
+                document.getElementById("data_idfaq").value = res["faq"]["id"];
+                document.getElementById("data_faq").value = res["faq"]["faq"];
+                document.getElementById("data_answer").value = res["faq"]["answer"];
+                //*/
+                document.getElementById("loading").style.display = 'none';
+            };
         }
         xhttp.open("GET", "/admin/faqFind/"+id, true);
         xhttp.send();
@@ -638,31 +658,43 @@ if(guardar == 1){
                                 //$('#fupForm').css("opacity",".5");
                             },
                             success: function(msg){
-                                //localStorage.setItem('message', 'Timeline info was successfully saved');
-                                //window.location ='/admin/cities/';
-                                document.getElementById("btnSaveFaq").disabled = false;
-                                editModalFAQ.hide(modalToggleFAQ);
-                                if(data_id){
-                                    //alert("The faq entry was successfully edited");
-                                    window.scrollTo(0,0)
-                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully edited';
-                                    document.getElementById('alertMessage').style.display = 'block';
-                                    id1 = 'faqTittle'+data_id;
-                                    document.getElementById(id1).innerHTML  = data_faq;
-                                    setTimeout(() => {
-                                        document.getElementById('alertMessage').style.display = 'none';
-                                    },10000);
+                                let e = JSON.parse(msg);
+                                console.log(e);
 
-                                }else{
-                                    //alert("The faq entry was successfully created");
-                                    window.scrollTo(0,0)
-                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully created';
-                                    document.getElementById('alertMessage').style.display = 'block';
-                                    setTimeout(() => {
-                                        document.getElementById('alertMessage').style.display = 'none';                                    
-                                        window.location = '../../admin/about/?section=faq';
-                                    },10000);
-                                };
+                                if (e.status===400) {
+                                    alert("Error: " + e.message);
+                                }
+                                else if(e.status===401){
+                                        alert("Error: " + e.message);
+                                        window.location = '/login';
+                                    }
+                                else {
+                                        //localStorage.setItem('message', 'Timeline info was successfully saved');
+                                        //window.location ='/admin/cities/';
+                                        document.getElementById("btnSaveFaq").disabled = false;
+                                        editModalFAQ.hide(modalToggleFAQ);
+                                        if(data_id){
+                                            //alert("The faq entry was successfully edited");
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully edited';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            id1 = 'faqTittle'+data_id;
+                                            document.getElementById(id1).innerHTML  = data_faq;
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                            },10000);
+
+                                        }else{
+                                            //alert("The faq entry was successfully created");
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully created';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                                window.location = '../../admin/about/?section=faq';
+                                            },10000);
+                                        };
+                                    };
                             }
             });
 }else{
@@ -718,31 +750,43 @@ function deleteFnc(type){
                                 //$('#fupForm').css("opacity",".5");
                             },
                             success: function(msg){
-                                //localStorage.setItem('message', 'Timeline info was successfully saved');
-                                //window.location ='/admin/cities/';
-                                if(type == 'timeline'){
-                                    delModal.hide(modalDelToggle);
-                                    window.scrollTo(0,0)
-                                    document.getElementById('alertMessage').innerHTML = 'The timeline entry was successfully deleted';
-                                    document.getElementById('alertMessage').style.display = 'block';
-                                    setTimeout(() => {
-                                        document.getElementById('alertMessage').style.display = 'none';
-                                        url = '../../admin/about?page='+paginaActual;
-                                    },5000);
-                                    //alert("The timeline entry was successfully delete");
-                                }else{
-                                    delModalFAQ.hide(modalDelToggleFAQ);
-                                    window.scrollTo(0,0)
-                                    document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully deleted';
-                                    document.getElementById('alertMessage').style.display = 'block';
-                                    setTimeout(() => {
-                                        document.getElementById('alertMessage').style.display = 'none';
-                                        url = '../../admin/about?section=faq&page='+paginaActual;
-                                    },5000);
-                                    //alert("The faq entry was successfully delete");
-                                };
-                                console.log(url);
-                                window.location = url;
+                                let e = JSON.parse(msg);
+                                        console.log(e);
+
+                                if (e.status===400) {
+                                    alert("Error: " + e.message);
+                                }
+                                else if(e.status===401){
+                                        alert("Error: " + e.message);
+                                        window.location = '/login';
+                                    }
+                                else {
+                                        //localStorage.setItem('message', 'Timeline info was successfully saved');
+                                        //window.location ='/admin/cities/';
+                                        if(type == 'timeline'){
+                                            delModal.hide(modalDelToggle);
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'The timeline entry was successfully deleted';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                                url = '../../admin/about?page='+paginaActual;
+                                            },5000);
+                                            //alert("The timeline entry was successfully delete");
+                                        }else{
+                                            delModalFAQ.hide(modalDelToggleFAQ);
+                                            window.scrollTo(0,0)
+                                            document.getElementById('alertMessage').innerHTML = 'The faq entry was successfully deleted';
+                                            document.getElementById('alertMessage').style.display = 'block';
+                                            setTimeout(() => {
+                                                document.getElementById('alertMessage').style.display = 'none';
+                                                url = '../../admin/about?section=faq&page='+paginaActual;
+                                            },5000);
+                                            //alert("The faq entry was successfully delete");
+                                        };
+                                        console.log(url);
+                                        window.location = url;
+                                    };
                             }
             });
 }

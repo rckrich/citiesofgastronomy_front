@@ -515,9 +515,14 @@ function saveCategory(){
                 processData:false,
                 beforeSend: function(){             },
                 success: function(msg){
+                    let e = JSON.parse(msg);
                     enableBtns();
-                    if (msg.status===400) {
-                        alert("Error: " + msg.message);
+                    if (e.status===400) {
+                        alert("Error: " + e.message);
+                    }
+                    else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
                     }
                     else {
                         closeModal('editCategoryModal');

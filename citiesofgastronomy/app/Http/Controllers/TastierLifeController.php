@@ -124,12 +124,14 @@ class TastierLifeController extends Controller
         );
 
         $fields_string = http_build_query($fields);
-
-        $url = config('app.apiUrl').'tastierLife';
+        $access_token = Cookie::get('stoken');
+        $headers = array('Authorization:Bearer '.$access_token);
+        $url = config('app.apiUrl').'tastierLifeAdmin';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
         $data = curl_exec($curl);
@@ -139,7 +141,7 @@ class TastierLifeController extends Controller
 
         Log::info("#ADMIN TastierLife SEARCH List: Recipe - ".$searchRecipe." / Chef - ".$searchChef." / Cat - ".$searchCAT);
         //Log::info($res);
-
+        try{
         $inputs = [];
         $inputs["search_box_recipe"] = $searchRecipe;
         $inputs["search_box_chef"] = $searchChef;
@@ -158,6 +160,11 @@ class TastierLifeController extends Controller
 
 
         return view('admin.tastier_life',$inputs);
+        /////////////////////////////////7
+        } catch ( \Exception $e ) {
+                $route = (new AdminController)->noLoginFind();
+                    return redirect()->route($route);
+        }
     }
 
     public function recipe_new()
@@ -337,21 +344,40 @@ class TastierLifeController extends Controller
         };
 
         $url = config('app.apiUrl').'recipe/store';
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+                    'Authorization:Bearer '.$access_token
+                );
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-        $data = curl_exec($curl);
-        curl_close($curl);
+        try{
+            //$dattaSend = json_encode( $dattaSend, true);
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
 
-        $res = json_decode( $data, true);
-        //*/
+            $res = json_decode( $data, true);
+            //*/
 
-        Log::info("NEW RECIPE :: STORE");
-        //Log::info($res);
+            Log::info("NEW RECIPE :: STORE");
+            //Log::info($res);
+            if($res==''){
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+
+        } catch ( \Exception $e ) {
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        $res = json_encode( $res, true);
 
         return $res;
 
@@ -420,27 +446,71 @@ class TastierLifeController extends Controller
     {
         Log::info("NEW CHEF :: RESPONSE");
         //Log::info($res);
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:Bearer '.$access_token
+        );
 
-        $inputs = [];
-        $inputs["id"] = '';
-        $inputs["data_name"] = '';
-        $inputs["facebook_link"] = '';
-        $inputs["twitter_link"] = '';
-        $inputs["linkedin_link"] = '';
-        $inputs["instagram_link"] = '';
-        $inputs["tiktok_link"] = '';
-        $inputs["youtube_link"] = '';
+        $loggedin = 200;
 
-        return view('tastier_life.new_chef',$inputs);
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            $inputs = [];
+            $inputs["id"] = '';
+            $inputs["data_name"] = '';
+            $inputs["facebook_link"] = '';
+            $inputs["twitter_link"] = '';
+            $inputs["linkedin_link"] = '';
+            $inputs["instagram_link"] = '';
+            $inputs["tiktok_link"] = '';
+            $inputs["youtube_link"] = '';
+
+            return view('tastier_life.new_chef',$inputs);
+        }else{
+            $route = (new AdminController)->noLoginFind();
+            return redirect()->route($route);
+        };
     }
 
     public function chef_edit($id)
     {
+
+        $access_token = Cookie::get('stoken');
+        $headers = array('Authorization:Bearer '.$access_token);
+
         $url = config('app.apiUrl').'chef/findChef/'.$id;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $data = curl_exec($curl);
         curl_close($curl);
 
@@ -448,42 +518,48 @@ class TastierLifeController extends Controller
         $res = $res_dec['chef'];
         Log::info("EDIT CHEF :: FIND");
         //Log::info($res);
+        try{
 
-        $inputs = [];
-        $inputs["id"] = $id;
-        $inputs["data_name"] = $res['name'];
-        $inputs["facebook_link"] = '';
-        $inputs["twitter_link"] = '';
-        $inputs["linkedin_link"] = '';
-        $inputs["instagram_link"] = '';
-        $inputs["tiktok_link"] = '';
-        $inputs["youtube_link"] = '';
-        foreach ($res['social_network'] as $social){
-            if($social){
-                switch($social['idSocialNetworkType']){
-                    case 1:
-                        $inputs["facebook_link"] = $social['social_network'];
-                        break;
-                    case 2:
-                        $inputs["twitter_link"] = $social['social_network'];
-                        break;
-                    case 3:
-                        $inputs["tiktok_link"] = $social['social_network'];
-                        break;
-                    case 4:
-                        $inputs["instagram_link"] = $social['social_network'];
-                        break;
-                    case 5:
-                        $inputs["youtube_link"] = $social['social_network'];
-                        break;
-                    case 6:
-                        $inputs["linkedin_link"] = $social['social_network'];
-                        break;
+            $inputs = [];
+            $inputs["id"] = $id;
+            $inputs["data_name"] = $res['name'];
+            $inputs["facebook_link"] = '';
+            $inputs["twitter_link"] = '';
+            $inputs["linkedin_link"] = '';
+            $inputs["instagram_link"] = '';
+            $inputs["tiktok_link"] = '';
+            $inputs["youtube_link"] = '';
+            foreach ($res['social_network'] as $social){
+                if($social){
+                    switch($social['idSocialNetworkType']){
+                        case 1:
+                            $inputs["facebook_link"] = $social['social_network'];
+                            break;
+                        case 2:
+                            $inputs["twitter_link"] = $social['social_network'];
+                            break;
+                        case 3:
+                            $inputs["tiktok_link"] = $social['social_network'];
+                            break;
+                        case 4:
+                            $inputs["instagram_link"] = $social['social_network'];
+                            break;
+                        case 5:
+                            $inputs["youtube_link"] = $social['social_network'];
+                            break;
+                        case 6:
+                            $inputs["linkedin_link"] = $social['social_network'];
+                            break;
+                    }
                 }
             }
-        }
 
-        return view('tastier_life.new_chef',$inputs);
+            return view('tastier_life.new_chef',$inputs);
+            /////////////////////////////////7
+        } catch ( \Exception $e ) {
+        $route = (new AdminController)->noLoginFind();
+                    return redirect()->route($route);
+        }
     }
 
     public function chef_save(Request $request)
@@ -509,11 +585,14 @@ class TastierLifeController extends Controller
             'idSection' => 12 //indicates chefs on entity social_network
         ];
 
+        $access_token = Cookie::get('stoken');
+        $headers = array('Authorization:Bearer '.$access_token);
         $url = config('app.apiUrl').'chef/store';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
         $data = curl_exec($curl);
@@ -521,8 +600,19 @@ class TastierLifeController extends Controller
 
         $res = json_decode( $data, true);
         Log::info("CHEF STORE ::");
-        //Log::info($res);
-        return redirect( "admin/tastier_life?section=chefs&pageChef=1" );
+        Log::info($res);
+        try{
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+            $res = json_encode( $res, true);
+
+            return redirect( "admin/tastier_life?section=chefs&pageChef=1" );
+        } catch ( \Exception $e ) {
+
+            return redirect()->route('admin.login');
+        };
+
     }
 
     public function chef_delete(Request $request)
@@ -575,12 +665,14 @@ class TastierLifeController extends Controller
             'id' => $id,
             'name' => $name
         ];
-
+        $access_token = Cookie::get('stoken');
+        $headers = array('Authorization:Bearer '.$access_token);
         $url = config('app.apiUrl').'categories/store';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
         $data = curl_exec($curl);
@@ -589,7 +681,13 @@ class TastierLifeController extends Controller
         $res = json_decode( $data, true);
         Log::info("CATEGORIES SAVE ::");
         Log::info($res);
+        if($res==''){
 
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        };
+        $res = json_encode( $res, true );
         return $res;
     }
 

@@ -213,20 +213,19 @@ class AdminController extends Controller
             $fields = array('page' => $page);
         };
         $fields_string = http_build_query($fields);
+        $headers = array(
+            'Authorization:Bearer '.$access_token
+        );
 
+        $curl = curl_init();
         if($tipo == 'user'){
             $url = config('app.apiUrl').'citiesAdmin?page='.$page;
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         }else{
             $url = config('app.apiUrl').'cities?page='.$page;
         };
-        $curl = curl_init();
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
@@ -324,42 +323,7 @@ class AdminController extends Controller
     public function initiatives(Request $request)
     {
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
 
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
             $page = $request->input("page");
             //Log::info("#PAGE: ".$page);
 
@@ -377,12 +341,15 @@ class AdminController extends Controller
 
             $fields_string = http_build_query($fields);
             //Log::info(config('app.apiUrl'));
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
 
             $url = config('app.apiUrl').'initiativesAdmin';
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
             $data = curl_exec($curl);
@@ -392,35 +359,35 @@ class AdminController extends Controller
 
             Log::info("#ADMIN INITIATIVE List");
             //Log::info($res);
+            try{
+                $inputs = [];
+                $inputs["initiatives"] = $res["initiatives"];
+                //Total de registros encontrados
+                $inputs["total"] = $res["tot"];
+                //Cantidad de paginas
+                $inputs["paginator"] = $res["paginator"];
+                //contenido del buscador
+                $inputs["search_box"] = $search_box;
+                //pagina en la que estamos
+                $inputs["page"] = $page;
+                $inputs["st"] = $st;
 
-            $inputs = [];
-            $inputs["initiatives"] = $res["initiatives"];
-            //Total de registros encontrados
-            $inputs["total"] = $res["tot"];
-            //Cantidad de paginas
-            $inputs["paginator"] = $res["paginator"];
-            //contenido del buscador
-            $inputs["search_box"] = $search_box;
-            //pagina en la que estamos
-            $inputs["page"] = $page;
-            $inputs["st"] = $st;
+                //Seccion en la que nos encontramos (esta vacia en el caso de ser initiatives e = 'filters' para habilitar los filtros)
+                $inputs["section"] = $request->input("section");
+                //Subsecciones de los filtros los valores que puede tomar esto es: topics, sdg
+                //si esta vacio se considera que esta en  "type of act" (falta definir el valor de conections to other)
+                $inputs["sub"] = $request->input("sub");
+                //campos de búsqueda por defecto vacíos
+                $inputs["search_inputs"] = $search_inputs;
 
-            //Seccion en la que nos encontramos (esta vacia en el caso de ser initiatives e = 'filters' para habilitar los filtros)
-            $inputs["section"] = $request->input("section");
-            //Subsecciones de los filtros los valores que puede tomar esto es: topics, sdg
-            //si esta vacio se considera que esta en  "type of act" (falta definir el valor de conections to other)
-            $inputs["sub"] = $request->input("sub");
-            //campos de búsqueda por defecto vacíos
-            $inputs["search_inputs"] = $search_inputs;
+                $inputs["typeOfActivity"] = $res["typeOfActivity"];
+                $inputs["Topics"] = $res["Topics"];
+                $inputs["sdg"] = $res["sdg"];
+                $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
+                //return view('admin.cities', $inputs);
 
-            $inputs["typeOfActivity"] = $res["typeOfActivity"];
-            $inputs["Topics"] = $res["Topics"];
-            $inputs["sdg"] = $res["sdg"];
-            $inputs["ConnectionsToOther"] = $res["ConnectionsToOther"];
-            //return view('admin.cities', $inputs);
-
-            return view('admin.initiatives', $inputs);
-        }else {
+                return view('admin.initiatives', $inputs);
+        } catch ( \Exception $e ) {
             $route = $this->noLoginFind();
             return redirect()->route($route);
          }
@@ -429,42 +396,7 @@ class AdminController extends Controller
 
     public function tastier_life(Request $request)
     {
-         /////////////VALIDAR AUTORIZACION
-         $dattaSend = [];
-         $access_token = Cookie::get('stoken');
-         $headers = array(
-             'Content-Type:application/json',
-             'Authorization:Bearer '.$access_token
-         );
 
-         $loggedin = 200;
-
-         try{
-             $url = config('app.apiUrl').'routeValidate';
-             $curl = curl_init();
-             curl_setopt($curl, CURLOPT_URL, $url);
-             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-             curl_setopt($curl, CURLOPT_HEADER, false);
-             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-             curl_setopt($curl, CURLOPT_POST, 1);
-             curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-             $data = curl_exec($curl);
-             curl_close($curl);
-
-             $res = json_decode( $data, true);
-
-             //Log::info($res);
-             if($res["status"] != 200){
-                 $loggedin = 401;
-             };
-         } catch ( \Exception $e ) {
-             //$route = $this->noLoginFind();
-             //return redirect()->route($route);
-             Log::info("no autorizado  ::");
-             $loggedin = 401;
-         }
-         ///////////////////////////////
-         if($loggedin == 200){
                 $page = $request->input("page");
                 $pageChef = $request->input("pageChef");
                 //Log::info("#PAGE: ".$page.$pageChef);
@@ -483,11 +415,14 @@ class AdminController extends Controller
                 $fields = array('searchRecipe' => $searchRecipe, 'searchChef' => $searchChef, 'searchCAT' => $searchCAT, 'page' => $page, 'pageChef' => $pageChef);
                 $fields_string = http_build_query($fields);
 
+                $access_token = Cookie::get('stoken');
+                $headers = array('Authorization:Bearer '.$access_token);
                 $url = config('app.apiUrl').'tastierLifeAdmin';
                 $curl = curl_init();
                 curl_setopt($curl, CURLOPT_URL, $url);
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($curl, CURLOPT_HEADER, false);
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
                 curl_setopt($curl, CURLOPT_POST, 1);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
                 $data = curl_exec($curl);
@@ -497,29 +432,32 @@ class AdminController extends Controller
 
                 Log::info("#ADMIN TastierLife List");
                 //Log::info($res);
+                try{
+                    $inputs = [];
+                    $inputs["search_box_recipe"] = $searchRecipe;
+                    $inputs["search_box_chef"] = $searchChef;
+                    $inputs["search_box_cat"] = $searchCAT;
+                    $inputs["page"] = $page;
+                    $inputs["pageChef"] = $pageChef;
+                    $inputs["section"] = $request->input("section");
 
-                $inputs = [];
-                $inputs["search_box_recipe"] = $searchRecipe;
-                $inputs["search_box_chef"] = $searchChef;
-                $inputs["search_box_cat"] = $searchCAT;
-                $inputs["page"] = $page;
-                $inputs["pageChef"] = $pageChef;
-                $inputs["section"] = $request->input("section");
+                    $inputs["tot"] = $res["tot"];
+                    $inputs["paginator"] = $res["paginator"];
+                    $inputs["totChefs"] = $res["totCHEF"];
+                    $inputs["paginatorChefs"] = $res["paginatorCHEF"];
+                    $inputs["recipes"] = $res["recipes"];
+                    $inputs["chefs"] = $res["chef"];
+                    $inputs["categories"] = $res["categories"];
 
-                $inputs["tot"] = $res["tot"];
-                $inputs["paginator"] = $res["paginator"];
-                $inputs["totChefs"] = $res["totCHEF"];
-                $inputs["paginatorChefs"] = $res["paginatorCHEF"];
-                $inputs["recipes"] = $res["recipes"];
-                $inputs["chefs"] = $res["chef"];
-                $inputs["categories"] = $res["categories"];
+                    return view('admin.tastier_life',$inputs);
 
-                return view('admin.tastier_life',$inputs);
-            }else {
-                $route = $this->noLoginFind();
-                return redirect()->route($route);
-                //return redirect()->route('admin.login');
-            };
+
+                } catch ( \Exception $e ) {
+                    $route = $this->noLoginFind();
+                    return redirect()->route($route);
+                    //return redirect()->route('admin.login');
+                }
+
     }
 
     public function tours(Request $request)
@@ -538,7 +476,6 @@ class AdminController extends Controller
         $url = config('app.apiUrl').'toursAdmin';
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
         $curl = curl_init();
@@ -594,12 +531,14 @@ class AdminController extends Controller
 
 
         $fields_string = http_build_query($fields);
-
+        $access_token = Cookie::get('stoken');
+        $headers = array('Authorization:Bearer '.$access_token);
         $url = config('app.apiUrl').'about/timeline/list';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
         $data = curl_exec($curl);
@@ -608,64 +547,32 @@ class AdminController extends Controller
         $res = json_decode( $data, true);
 
         $section = $request->input("section");
-
-        $inputs = [];
-        $inputs["timelineTotal"] = $res["tot"];
-        $inputs["paginator"] = $res["paginator"];
-        $inputs["timeline"] = $res["timeline"];
-        $inputs["search_box"] = $search_box;
-        $inputs["page"] = $page;
-        $inputs["section"] = $section;
-        $inputs["faq"] = $res["faq"];
-        $inputs["pageFaq"] = $res["pageFaq"];
-        $inputs["totFAQ"] = $res["totFAQ"];
-        $inputs["paginatorFAQ"] = $res["paginatorFAQ"];
-        $inputs["searchFaq"] = $searchFaq;
-        $inputs["st"] = $st;
-        $inputs["stFAQ"] = $stFAQ;
-        return view('admin.about', $inputs);
+        try{
+            $inputs = [];
+            $inputs["timelineTotal"] = $res["tot"];
+            $inputs["paginator"] = $res["paginator"];
+            $inputs["timeline"] = $res["timeline"];
+            $inputs["search_box"] = $search_box;
+            $inputs["page"] = $page;
+            $inputs["section"] = $section;
+            $inputs["faq"] = $res["faq"];
+            $inputs["pageFaq"] = $res["pageFaq"];
+            $inputs["totFAQ"] = $res["totFAQ"];
+            $inputs["paginatorFAQ"] = $res["paginatorFAQ"];
+            $inputs["searchFaq"] = $searchFaq;
+            $inputs["st"] = $st;
+            $inputs["stFAQ"] = $stFAQ;
+            return view('admin.about', $inputs);
+        } catch ( \Exception $e ) {
+            $route = (new AdminController)->noLoginFind();
+                        return redirect()->route($route);
+            }
     }
 
     public function contact(Request $request)
     {
 
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
-
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
 
             $page = $request->input("page");
             Log::info("#PAGE: ".$page);
@@ -677,12 +584,14 @@ class AdminController extends Controller
             $fields = array('search' => $search_box, 'page' => $page);
 
             $fields_string = http_build_query($fields);
-
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $url = config('app.apiUrl').'adminContacts';
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
             $data = curl_exec($curl);
@@ -692,7 +601,7 @@ class AdminController extends Controller
 
             Log::info("#ADMIN Contact List");
             //Log::info($res);
-
+        try{
             $inputs = [];
             $inputs["total"] = $res["tot"];
             $inputs["paginator"] = $res["paginator"];
@@ -703,7 +612,7 @@ class AdminController extends Controller
             //return view('admin.cities', $inputs);
 
             return view('admin.contact', $inputs);
-        }else{
+        } catch ( \Exception $e ) {
             $route = $this->noLoginFind();
                         return redirect()->route($route);
             }
@@ -1349,10 +1258,7 @@ class AdminController extends Controller
 
         try{
             $access_token = Cookie::get('stoken');
-            $headers = array(
-                        'Content-Type:application/json',
-                        'Authorization:Bearer '.$access_token
-                    );
+            $headers = array('Authorization:Bearer '.$access_token);
             $url = config('app.apiUrl').'newsletterAdmin?page='.$page;
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
@@ -1381,42 +1287,8 @@ class AdminController extends Controller
     public function newsletterDownloadVerify(Request $request)
     {
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
-
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $data_startdate = $request->input("data_startdate");
             $data_enddate = $request->input("data_enddate");
 
@@ -1442,13 +1314,13 @@ class AdminController extends Controller
             //////////////////////////////////////////////////
             $inputs = [];
         //$inputs["total"] = $res["total"];
-        }else{
+        if($res==''){
             $data = [];
             $data["status"] = 401;
             $data["message"] = "Unauthorized";
 
-        $data =  json_encode($data );
         };
+        $data =  json_encode($data );
 
         return $data;
 
