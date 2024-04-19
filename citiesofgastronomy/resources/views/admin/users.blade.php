@@ -7,6 +7,9 @@
     <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
             <div class="row mx-0">
                 <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
+                @if (session()->has('error'))
+                <div class="alert alert-danger" role="alert" id="alertMessageAlert" style="display:none"></div>
+                @endif
 
                 <div class="col-12 px-0 py-2">
                     <h3 class="admin-title"><b>{{__('users.title')}}</b></h3>
@@ -258,19 +261,11 @@ function saveUser(){
                         //alert('{{trans('users.create_success')}}');
                         message = ('{{trans('users.create_success')}}');
                     }
-
-                    window.scrollTo(0,0)
-                    document.getElementById('alertMessage').innerHTML = message;
-                    document.getElementById('alertMessage').style.display = 'block';
-                    setTimeout(() => {
-                        document.getElementById('alertMessage').style.display = 'none';
-                    },5000);
+                    localStorage.setItem('usersMessage', message);
                 }
             },
-            complete: function(){
-                setTimeout(() => {
-                    window.location = '/admin/users?page=1';
-                },2000);            
+            complete: function(){                    
+                window.location = '/admin/users?page=1';           
             }
         });
 
@@ -338,18 +333,12 @@ function deleteUser(){
                     }
                 else {
                     //alert('{{trans('users.delete_success')}}');
-                    window.scrollTo(0,0)
-                    document.getElementById('alertMessage').innerHTML = '{{trans('users.delete_success')}}';
-                    document.getElementById('alertMessage').style.display = 'block';
-                    setTimeout(() => {
-                        document.getElementById('alertMessage').style.display = 'none';
-                    },5000);
+                    localStorage.setItem('usersMessage', '{{trans('users.delete_success')}}');
+
                 }
             },
-            complete: function(){
-                setTimeout(() => {
-                    window.location = '/admin/users?page=1';
-                },2000);            
+            complete: function(){                    
+                window.location = '/admin/users?page=1';           
             }
         });
     }
@@ -379,25 +368,47 @@ function resetPassword(){
                 }
                 else {
                     closeModal('editUserModal');
-                    window.scrollTo(0,0)
-                    document.getElementById('alertMessage').innerHTML = '{{trans('users.reset_password_email_sent')}}';
-                    document.getElementById('alertMessage').style.display = 'block';
-                    setTimeout(() => {
-                        document.getElementById('alertMessage').style.display = 'none';
-                    },10000);
+                    localStorage.setItem('usersMessage', '{{trans('users.reset_password_email_sent')}}');
                 }
             },
             complete: function(){
-                setTimeout(() => {
-                    window.location = '/admin/users?page=1';
-                },10000);
+                window.location = '/admin/users?page=1';
             }
         });
     }
 
 }
 
-$("#search_box").keypress(function (e) {
+</script>
+
+<script>
+
+    <?php if (session()->has('error')){?>
+        let message = localStorage.getItem('usersMessageError');
+
+        if(message){
+            localStorage.removeItem('usersMessageError');
+            document.getElementById('alertMessageAlert').innerHTML = message;
+            document.getElementById('alertMessageAlert').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('alertMessageAlert').style.display = 'none';
+            },5000);
+        };
+
+    <?php }else{?>
+        let message = localStorage.getItem('usersMessage');
+        if(message){
+                localStorage.removeItem('usersMessage');
+                document.getElementById('alertMessage').innerHTML = message;
+                document.getElementById('alertMessage').style.display = 'block';
+                setTimeout(() => {
+                    console.log("Delayed for 1 second.");
+                    document.getElementById('alertMessage').style.display = 'none';
+                },5000);
+        };
+    <?php }?>
+
+    $("#search_box").keypress(function (e) {
         var key = e.which;
         if(key == 13)  // the enter key code
         {
