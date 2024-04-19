@@ -489,10 +489,14 @@ var delModalFAQ; var modalDelToggleFAQ;
                                             }else{
                                                 alert("The timeline entry was successfully created");
                                                 //location.reload();
-                                                window.location = '../../admin/about/';
                                             };
                                             document.getElementById("btnAddTime").disabled = false;
                                         };
+                                    },
+                                    complete: function(){
+                                        setTimeout(() => {
+                                            window.location = '../../admin/about?page=1';
+                                        },10000);
                                     }
                     });
         }else{
@@ -691,10 +695,14 @@ if(guardar == 1){
                                             document.getElementById('alertMessage').style.display = 'block';
                                             setTimeout(() => {
                                                 document.getElementById('alertMessage').style.display = 'none';
-                                                window.location = '../../admin/about/?section=faq';
                                             },10000);
                                         };
                                     };
+                            },
+                            complete: function(){
+                                setTimeout(() => {
+                                    window.location = '../../admin/about/?section=faq';
+                                },10000);
                             }
             });
 }else{
@@ -770,7 +778,6 @@ function deleteFnc(type){
                                             document.getElementById('alertMessage').style.display = 'block';
                                             setTimeout(() => {
                                                 document.getElementById('alertMessage').style.display = 'none';
-                                                url = '../../admin/about?page='+paginaActual;
                                             },5000);
                                             //alert("The timeline entry was successfully delete");
                                         }else{
@@ -780,13 +787,21 @@ function deleteFnc(type){
                                             document.getElementById('alertMessage').style.display = 'block';
                                             setTimeout(() => {
                                                 document.getElementById('alertMessage').style.display = 'none';
-                                                url = '../../admin/about?section=faq&page='+paginaActual;
                                             },5000);
                                             //alert("The faq entry was successfully delete");
                                         };
                                         console.log(url);
                                         window.location = url;
                                     };
+                            },
+                            complete: function(){
+                                setTimeout(() => {
+                                    if(type == 'timeline'){                                        
+                                        url = '../../admin/about?page='+paginaActual;
+                                    }else{
+                                        url = '../../admin/about?section=faq&page='+paginaActual;
+                                    };
+                                },10000);
                             }
             });
 }

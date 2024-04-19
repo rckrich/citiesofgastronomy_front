@@ -264,9 +264,13 @@ function saveUser(){
                     document.getElementById('alertMessage').style.display = 'block';
                     setTimeout(() => {
                         document.getElementById('alertMessage').style.display = 'none';
-                        window.location = '../../admin/users';
-                    },10000);
+                    },5000);
                 }
+            },
+            complete: function(){
+                setTimeout(() => {
+                    window.location = '/admin/users?page=1';
+                },2000);            
             }
         });
 
@@ -339,9 +343,13 @@ function deleteUser(){
                     document.getElementById('alertMessage').style.display = 'block';
                     setTimeout(() => {
                         document.getElementById('alertMessage').style.display = 'none';
-                        window.location = '/admin/users?page=1';
-                    },10000);
+                    },5000);
                 }
+            },
+            complete: function(){
+                setTimeout(() => {
+                    window.location = '/admin/users?page=1';
+                },2000);            
             }
         });
     }
@@ -370,9 +378,19 @@ function resetPassword(){
                     alert("Error: " + msg.message);
                 }
                 else {
-                    alert('{{trans('users.reset_password_email_sent')}}');
-                    window.location = '/admin/users?page=1';
+                    closeModal('editUserModal');
+                    window.scrollTo(0,0)
+                    document.getElementById('alertMessage').innerHTML = '{{trans('users.reset_password_email_sent')}}';
+                    document.getElementById('alertMessage').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('alertMessage').style.display = 'none';
+                    },10000);
                 }
+            },
+            complete: function(){
+                setTimeout(() => {
+                    window.location = '/admin/users?page=1';
+                },10000);
             }
         });
     }

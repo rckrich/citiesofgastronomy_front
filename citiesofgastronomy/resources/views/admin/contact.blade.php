@@ -115,7 +115,7 @@
                 document.getElementById('alertMessageAlert').style.display = 'block';
                 setTimeout(() => {
                     document.getElementById('alertMessageAlert').style.display = 'none';
-                },10000);
+                },5000);
 
     <?php }else{?>
         let message = localStorage.getItem('contactMessage');
@@ -126,7 +126,7 @@
                 setTimeout(() => {
                     console.log("Delayed for 1 second.");
                     document.getElementById('alertMessage').style.display = 'none';
-                },10000);
+                },5000);
         };
     <?php }?>
 

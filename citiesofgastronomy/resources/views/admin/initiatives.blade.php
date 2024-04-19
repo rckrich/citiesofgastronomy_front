@@ -244,7 +244,7 @@
             setTimeout(() => {
                 console.log("Delayed for 1 second.");
                 document.getElementById('alertMessage').style.display = 'none';
-            },10000);
+            },5000);
     };
     if(errorMessage){
         console.log("Local Storage DELETE");
@@ -254,7 +254,7 @@
             setTimeout(() => {
                 console.log("Delayed for 1 second.");
                 document.getElementById('alertErrorMessage').style.display = 'none';
-            },10000);
+            },5000);
     };
 
 

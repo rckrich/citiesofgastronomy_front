@@ -214,7 +214,7 @@ $(document).ready(function(e){
                 setTimeout(() => {
                     console.log("Delayed for 1 second.");
                     document.getElementById('alertMessage').style.display = 'none';
-                },10000);
+                },5000);
         };
 
 
@@ -294,7 +294,7 @@ $(document).ready(function(e){
                                         //console.log("Delayed for 1 second.");
                                         document.getElementById('alertMessage').style.display = 'none';
 
-                                    },10000);
+                                    },5000);
 
                                 }else{
                                     //console.log("----<ADD");
@@ -401,7 +401,7 @@ $(document).ready(function(e){
                         setTimeout(() => {
                             document.getElementById('alertMessage').style.display = 'none';
                             window.location = '/admin/cities/?page='+current_page;
-                        },10000);
+                        },5000);
                     }
                 }
             });

@@ -650,7 +650,7 @@ function deleteCategory(){
             document.getElementById('alertTLMessageAlert').style.display = 'block';
             setTimeout(() => {
                 document.getElementById('alertTLMessageAlert').style.display = 'none';
-            },10000);
+            },5000);
         };
 
     <?php }else{?>
@@ -662,7 +662,7 @@ function deleteCategory(){
                 setTimeout(() => {
                     console.log("Delayed for 1 second.");
                     document.getElementById('alertTLMessage').style.display = 'none';
-                },10000);
+                },5000);
         };
     <?php }?>
 

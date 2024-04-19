@@ -299,9 +299,13 @@ if(guardar == 1){
                                     document.getElementById('alertMessage').style.display = 'block';
                                     setTimeout(() => {
                                         document.getElementById('alertMessage').style.display = 'none';
-                                        location.reload();
                                     },10000);
                                 };
+                            },
+                            complete: function(){
+                                setTimeout(() => {
+                                    location.reload();
+                                },10000);
                             }
             });
 }else{

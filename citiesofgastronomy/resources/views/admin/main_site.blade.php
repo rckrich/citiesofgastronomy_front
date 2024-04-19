@@ -158,7 +158,7 @@
                                             document.getElementById('alertMessage').style.display = 'block';
                                             setTimeout(() => {
                                                 document.getElementById('alertMessage').style.display = 'none';
-                                            },10000);
+                                            },5000);
                                             document.getElementById("saveclusterBTN").disabled = false;
                                         };
                                     }
@@ -225,7 +225,7 @@
                                             document.getElementById('alertMessage').style.display = 'block';
                                             setTimeout(() => {
                                                 document.getElementById('alertMessage').style.display = 'none';
-                                            },10000);
+                                            },5000);
                                         };
                                     }
                     });
