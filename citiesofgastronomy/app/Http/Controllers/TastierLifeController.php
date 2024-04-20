@@ -173,7 +173,6 @@ class TastierLifeController extends Controller
         try{
             $access_token = Cookie::get('stoken');
             $headers = array(
-                'Content-Type:application/json',
                 'Authorization:Bearer '.$access_token
             );
             $url = config('app.apiUrl').'recipe/create';
@@ -221,7 +220,6 @@ class TastierLifeController extends Controller
     {
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
 
@@ -409,7 +407,6 @@ class TastierLifeController extends Controller
                 $dattaSend = [];
                 $access_token = Cookie::get('stoken');
                 $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
                 $url = config('app.apiUrl').'recipe/delete/'.$id;
@@ -450,7 +447,6 @@ class TastierLifeController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
 
@@ -622,7 +618,6 @@ class TastierLifeController extends Controller
             $dattaSend = [];
             $access_token = Cookie::get('stoken');
             $headers = array(
-                        'Content-Type:application/json',
                         'Authorization:Bearer '.$access_token
                     );
             $url = config('app.apiUrl').'chef/delete/'.$id;
@@ -695,7 +690,6 @@ class TastierLifeController extends Controller
     {
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
 

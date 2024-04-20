@@ -87,7 +87,6 @@ class ToursController extends Controller
     {
         $url = config('app.apiUrl').'tours/create';$access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
         $curl = curl_init();
@@ -132,7 +131,6 @@ class ToursController extends Controller
     {
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
         $url = config('app.apiUrl').'tours/find/'.$id;
@@ -208,7 +206,6 @@ class ToursController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
 
@@ -350,7 +347,6 @@ class ToursController extends Controller
         try{
             $access_token = Cookie::get('stoken');
             $headers = array(
-                        'Content-Type:application/json',
                         'Authorization:Bearer '.$access_token
                     );
             $url = config('app.apiUrl').'tours/delete/'.$id;

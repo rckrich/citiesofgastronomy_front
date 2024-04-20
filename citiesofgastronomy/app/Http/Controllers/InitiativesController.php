@@ -68,7 +68,6 @@ class InitiativesController extends Controller
         $id='';
         $access_token = Cookie::get('stoken');
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
         $url = config('app.apiUrl').'initiatives/create';
@@ -124,7 +123,6 @@ class InitiativesController extends Controller
 
         $access_token = Cookie::get('stoken');
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
         $url = config('app.apiUrl').'initiatives/edit/'.$id;
@@ -168,42 +166,7 @@ class InitiativesController extends Controller
     }
     public function initiatives_store(Request $request){
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
 
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
             Log::info("----> INITIATIVE STORE..");
             $id = $request->input("id");
             $name = $request->input("data_name");
@@ -351,19 +314,23 @@ class InitiativesController extends Controller
             };
 
             $url = config('app.apiUrl').'initiatives/store';
-
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
             $data = curl_exec($curl);
             curl_close($curl);
 
             $res = json_decode( $data, true);
-        //*/
-        }else{
+        try{
+            $status = $res["status"];
+            Log::info("ini STORE -------------->");
+        } catch ( \Exception $e ) {
             $res = [];
             $res["status"] = 401;
             $res["message"] = "Unauthorized";
@@ -384,7 +351,6 @@ class InitiativesController extends Controller
         try{
             $access_token = Cookie::get('stoken');
             $headers = array(
-                        'Content-Type:application/json',
                         'Authorization:Bearer '.$access_token
                     );
             $url = config('app.apiUrl').'initiatives/delete/'.$id;
@@ -502,18 +468,16 @@ class InitiativesController extends Controller
     public function typeOfActivity_save(Request $request)
     {
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
 
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
+            $id = $request->input("id");
+            $name = $request->input("name");
+            $dattaSend = [
+                'id' => $id,
+                'name' => $name
+            ];
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
+            $url = config('app.apiUrl').'typeOfActivity/store';
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -525,45 +489,15 @@ class InitiativesController extends Controller
             curl_close($curl);
 
             $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
-            $id = $request->input("id");
-            $name = $request->input("name");
-            $dattaSend = [
-                'id' => $id,
-                'name' => $name
-            ];
-
-            $url = config('app.apiUrl').'typeOfActivity/store';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
             //Log::info("TIMELINE SAVE ::");
             //Log::info($res);
+        try{
             if($res["status"] != 200){
                 $res = [];
                 $res["status"] = 401;
                 $res["message"] = "Unauthorized";
             };
-        } else{
+        } catch ( \Exception $e ) {
             $res = [];
             $res["status"] = 401;
             $res["message"] = "Unauthorized";
@@ -580,7 +514,6 @@ class InitiativesController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
 
@@ -622,7 +555,6 @@ class InitiativesController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
 
@@ -694,7 +626,6 @@ class InitiativesController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
 
@@ -736,7 +667,6 @@ class InitiativesController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
 
@@ -811,7 +741,6 @@ class InitiativesController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
 
@@ -852,7 +781,6 @@ class InitiativesController extends Controller
         $dattaSend = [];
         $access_token = Cookie::get('stoken');
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
 
@@ -927,7 +855,6 @@ class InitiativesController extends Controller
 
         $access_token = Cookie::get('stoken');
         $headers = array(
-                    'Content-Type:application/json',
                     'Authorization:Bearer '.$access_token
                 );
 
