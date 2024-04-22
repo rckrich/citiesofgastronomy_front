@@ -61,7 +61,6 @@ class CitiesController extends Controller
         $access_token = Cookie::get('stoken');
 
         $headers = array(
-            'Content-Type:application/json',
             'Authorization:Bearer '.$access_token
         );
 
@@ -102,7 +101,6 @@ class CitiesController extends Controller
             $dattaSend = [];
             $access_token = Cookie::get('stoken');
             $headers = array(
-                        'Content-Type:application/json',
                         'Authorization:Bearer '.$access_token
                     );
 
@@ -141,42 +139,6 @@ class CitiesController extends Controller
     public function citiesStoreUpdate(Request $request)
     {
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
-
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-            Log::info("CITY  ::");
-            Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
             $data_id = $request->input("data_id");
 
             $data_city = $request->input("data_city");
@@ -210,10 +172,7 @@ class CitiesController extends Controller
             Log::info($url);
 
             $access_token = Cookie::get('stoken');
-            $headers = array(
-                'Content-Type:application/json',
-                'Authorization:Bearer '.$access_token
-            );
+            $headers = array('Authorization:Bearer '.$access_token);
             $dattaSend = [
                 'photo' => $photo,
                 'id' => $data_id,
@@ -228,6 +187,7 @@ class CitiesController extends Controller
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
             //curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -238,12 +198,14 @@ class CitiesController extends Controller
 
             Log::info( "---->" );
             Log::info(  $res  );
+        try{
+            $status = $res["status"];
             if($res == ''){
                 $res = [];
                 $res["status"] = 401;
                 $res["message"] = "Unauthorized";
             };
-        }else{
+        } catch ( \Exception $e ) {
             $res = [];
             $res["status"] = 401;
             $res["message"] = "Unauthorized";

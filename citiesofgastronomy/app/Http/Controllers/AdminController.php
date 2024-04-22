@@ -21,7 +21,45 @@ class AdminController extends Controller
 
     public function login()
     {
-        return view('session.login');
+        /////////////VALIDAR AUTORIZACION
+        $dattaSend = [];
+        $access_token = Cookie::get('stoken');
+        $headers = array(
+            'Authorization:Bearer '.$access_token
+        );
+
+        $loggedin = 200;
+
+        try{
+            $url = config('app.apiUrl').'routeValidate';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $res = json_decode( $data, true);
+
+            //Log::info($res);
+            if($res["status"] != 200){
+                $loggedin = 401;
+            };
+        } catch ( \Exception $e ) {
+            //$route = $this->noLoginFind();
+            //return redirect()->route($route);
+            Log::info("no autorizado  ::");
+            $loggedin = 401;
+        }
+        ///////////////////////////////
+        if($loggedin == 200){
+            return redirect()->route('admin.cities');
+        }else{
+            return view('session.login');
+        }
     }
 
     public function noLoginFind(){
@@ -67,7 +105,6 @@ class AdminController extends Controller
         try{
             $access_token = Cookie::get('stoken');
             $headers = array(
-                'Content-Type:application/json',
                 'Authorization:Bearer '.$access_token
             );
 
@@ -632,75 +669,49 @@ class AdminController extends Controller
         $inputs["Calendar"] = [];
         $inputs["Contact"] = [];
 
+        $access_token = Cookie::get('stoken');
+        $headers = array('Authorization:Bearer '.$access_token);
         $url = config('app.apiUrl').'mainSiteContent/home';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $data = curl_exec($curl);
         curl_close($curl);
 
         Log::info("MAIN SITE :::. ");
         Log::info( $data );
+        try{
+            if($data){
+                $res = json_decode( $data, true);
+                $inputs["Contact"] = $res["Contact"];
+                $inputs["Calendar"] = $res["Calendar"];
+                $inputs["Tour"] = $res["Tour"];
+                $inputs["Testier"] = $res["Testier"];
+                $inputs["About"] = $res["About"];
+                $inputs["Initiatives"] = $res["Initiatives"];
+                $inputs["bannerAbout"] = $res["bannerAbout"];
+                $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
+                $inputs["bannerCities"] = $res["bannerCities"];
+                $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
+                $inputs["info"] = $res["info"];
 
-        if($data){
-            $res = json_decode( $data, true);
-            $inputs["Contact"] = $res["Contact"];
-            $inputs["Calendar"] = $res["Calendar"];
-            $inputs["Tour"] = $res["Tour"];
-            $inputs["Testier"] = $res["Testier"];
-            $inputs["About"] = $res["About"];
-            $inputs["Initiatives"] = $res["Initiatives"];
-            $inputs["bannerAbout"] = $res["bannerAbout"];
-            $inputs["bannerNumberAndStats"] = $res["bannerNumberAndStats"];
-            $inputs["bannerCities"] = $res["bannerCities"];
-            $inputs["SocialNetworkType"] = $res["SocialNetworkType"];
-            $inputs["info"] = $res["info"];
+            };
 
-        };
+            //Log::info($inputs);
+            return view('admin.main_site', $inputs);
 
-        //Log::info($inputs);
-        return view('admin.main_site', $inputs);
+            /////////////////////////////////7
+        } catch ( \Exception $e ) {
+            $route = (new AdminController)->noLoginFind();
+                        return redirect()->route($route);
+            }
     }
 
     public function mainLinksSave(Request $request)
     {
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
 
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
                 $idSection = $request->input("idSection");
                 $idOwner = $request->input("idOwner");
                 $linksTag = $request->input("linksTag");
@@ -723,11 +734,13 @@ class AdminController extends Controller
                 }
 
                 $url = config('app.apiUrl').'mainSiteContent/linkStore';
-
+                $access_token = Cookie::get('stoken');
+                $headers = array('Authorization:Bearer '.$access_token);
                 $curl = curl_init();
                 curl_setopt($curl, CURLOPT_URL, $url);
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($curl, CURLOPT_HEADER, false);
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
                 curl_setopt($curl, CURLOPT_POST, 1);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
                 $data = curl_exec($curl);
@@ -737,6 +750,9 @@ class AdminController extends Controller
 
                 Log::info(  "#Main Content#"  );
                 Log::info(  $res  );
+            try{
+                $status = $res["status"];
+
                 if($res==''){
 
                     $res = [];
@@ -744,7 +760,7 @@ class AdminController extends Controller
                     $res["message"] = "Unauthorized";
                 };
 
-            } else{
+            } catch ( \Exception $e ) {
                 $res = [];
                 $res["status"] = 401;
                 $res["message"] = "Unauthorized";
@@ -757,42 +773,6 @@ class AdminController extends Controller
     public function mainClusterSave(Request $request)
     {
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
-
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
 
             $dattaSend = [];
             $indice = $request->input("indice");
@@ -804,49 +784,8 @@ class AdminController extends Controller
             }
 
             $url = config('app.apiUrl').'mainSiteContent/clustersave';
-
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            Log::info(  "#Main Content#"  );
-            Log::info(  $res  );
-            if($res==''){
-
-                $res = [];
-                $res["status"] = 401;
-                $res["message"] = "Unauthorized";
-            };
-
-        } else{
-            $res = [];
-            $res["status"] = 401;
-            $res["message"] = "Unauthorized";
-        }
-        return json_encode($res );
-    }
-
-    public function mainBannerUp(Request $request)
-    {
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
-
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -858,19 +797,28 @@ class AdminController extends Controller
             curl_close($curl);
 
             $res = json_decode( $data, true);
+        try{
+            Log::info(  "#Main Content#"  );
+            Log::info(  $res  );
+            $status = $res["status"];
+            if($res==''){
 
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
             };
+
         } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
         }
-        ///////////////////////////////
-        if($loggedin == 200){
+        return json_encode($res );
+    }
+
+    public function mainBannerUp(Request $request)
+    {
+
             $idSection = $request->input("idSection");
             $idOwner = $request->input("idOwner");
             $file =  $request->file('banner');
@@ -886,11 +834,13 @@ class AdminController extends Controller
             };
 
             $url = config('app.apiUrl').'banners/store';
-
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, [
                 'idSection' => $idSection,
@@ -903,6 +853,8 @@ class AdminController extends Controller
             $res = json_decode( $data, true);
 
             Log::info(  $res  );
+        try{
+            $status = $res["status"];
             if($res==''){
 
                 $res = [];
@@ -910,7 +862,7 @@ class AdminController extends Controller
                 $res["message"] = "Unauthorized";
             };
 
-        } else{
+        } catch ( \Exception $e ) {
             $res = [];
             $res["status"] = 401;
             $res["message"] = "Unauthorized";
@@ -929,7 +881,6 @@ class AdminController extends Controller
         try{
             $access_token = Cookie::get('stoken');
             $headers = array(
-                        'Content-Type:application/json',
                         'Authorization:Bearer '.$access_token
                     );
             $curl = curl_init();
@@ -970,42 +921,7 @@ class AdminController extends Controller
 
     public function mainBannerChange(Request $request)
     {
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
 
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
             Log::info(  "##LLEGO al CHANGE :::"   );
             $idBanner = $request->input("idBanner");
             $file =  $request->file('banner');
@@ -1021,11 +937,13 @@ class AdminController extends Controller
             };
 
             $url = config('app.apiUrl').'banners/update';
-
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, [
                 'idBanner' => $idBanner,
@@ -1037,6 +955,8 @@ class AdminController extends Controller
             $res = json_decode( $data, true);
 
             Log::info(  $res  );
+        try{
+            $status = $res["status"];
             if($res==''){
 
                 $res = [];
@@ -1044,7 +964,7 @@ class AdminController extends Controller
                 $res["message"] = "Unauthorized";
             };
 
-        } else{
+        } catch ( \Exception $e ) {
             $res = [];
             $res["status"] = 401;
             $res["message"] = "Unauthorized";
@@ -1056,42 +976,6 @@ class AdminController extends Controller
     public function users(Request $request)
     {
 
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
-
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
-
-            Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
             $page = $request->input("page");
             //Log::info("#PAGE: ".$page);
 
@@ -1101,12 +985,14 @@ class AdminController extends Controller
             $search = $request->input("search_box");
             $fields = array('search' => $search, 'page' => $page);
             $fields_string = http_build_query($fields);
-
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $url = config('app.apiUrl').'user';
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string );
             $data = curl_exec($curl);
@@ -1116,7 +1002,7 @@ class AdminController extends Controller
 
             Log::info("#ADMIN Users List");
             //Log::info($res);
-
+        try{
             $inputs = [];
             $inputs['users'] = $res['Users'];
             $inputs['tot'] = $res['tot'];
@@ -1125,25 +1011,25 @@ class AdminController extends Controller
             $inputs['search_box'] = $search;
 
             return view('admin.users',$inputs);
-        }else{
+        } catch ( \Exception $e ) {
                         $route = $this->noLoginFind();
                         return redirect()->route($route);
         };
     }
 
     public function users_save(Request $request){
-        /////////////VALIDAR AUTORIZACION
-        $dattaSend = [];
-        $access_token = Cookie::get('stoken');
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization:Bearer '.$access_token
-        );
 
-        $loggedin = 200;
-
-        try{
-            $url = config('app.apiUrl').'routeValidate';
+            $id = $request->input("id");
+            $name = $request->input("name");
+            $email = $request->input("email");
+            $dattaSend = [
+                'id' => $id,
+                'name' => $name,
+                'email' => $email
+            ];
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
+            $url = config('app.apiUrl').'user/store';
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -1155,48 +1041,15 @@ class AdminController extends Controller
             curl_close($curl);
 
             $res = json_decode( $data, true);
-
-            //Log::info($res);
-            if($res["status"] != 200){
-                $loggedin = 401;
-            };
-        } catch ( \Exception $e ) {
-            //$route = $this->noLoginFind();
-            //return redirect()->route($route);
-            Log::info("no autorizado  ::");
-            $loggedin = 401;
-        }
-        ///////////////////////////////
-        if($loggedin == 200){
-            $id = $request->input("id");
-            $name = $request->input("name");
-            $email = $request->input("email");
-            $dattaSend = [
-                'id' => $id,
-                'name' => $name,
-                'email' => $email
-            ];
-
-            $url = config('app.apiUrl').'user/store';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $dattaSend );
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            $res = json_decode( $data, true);
             Log::info("USER SAVE ::");
             //Log::info($res);
-
+        try{
             if($res["status"] != 200){
                 $res = [];
                 $res["status"] = 401;
                 $res["message"] = "Unauthorized";
             };
-        } else{
+        } catch ( \Exception $e ) {
             $res = [];
             $res["status"] = 401;
             $res["message"] = "Unauthorized";
@@ -1215,7 +1068,6 @@ class AdminController extends Controller
         try{
             $access_token = Cookie::get('stoken');
             $headers = array(
-                        'Content-Type:application/json',
                         'Authorization:Bearer '.$access_token
                     );
             $url = config('app.apiUrl').'user/delete/'.$id;
