@@ -401,6 +401,7 @@ function resetPassword(){
                 localStorage.removeItem('usersMessage');
                 document.getElementById('alertMessage').innerHTML = message;
                 document.getElementById('alertMessage').style.display = 'block';
+                console.log(message);
                 setTimeout(() => {
                     console.log("Delayed for 1 second.");
                     document.getElementById('alertMessage').style.display = 'none';
