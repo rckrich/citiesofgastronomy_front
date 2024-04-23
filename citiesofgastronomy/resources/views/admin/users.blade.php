@@ -363,11 +363,11 @@ function resetPassword(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){
-                closeModal('editUserModal');
                 if (msg.status===400 || msg.status===401) {
                     alert("Error: " + msg.message);
                 }
                 else {
+                    //closeModal('editUserModal');
                     localStorage.setItem('usersMessage', '{{trans('users.reset_password_email_sent')}}');
                 }
             },

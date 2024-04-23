@@ -138,3 +138,6 @@ input[type="file"]:active::before {}
 .edit-form .edit-modal-label{display: block!important;}
 .create-form .edit-field{display: none!important;}
 .edit-form .edit-field{display: block!important;}
+
+
+.filter-select.changed{color: #D87C16!important;}
