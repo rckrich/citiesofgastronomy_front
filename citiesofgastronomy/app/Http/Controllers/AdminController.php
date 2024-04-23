@@ -657,7 +657,7 @@ class AdminController extends Controller
                         return redirect()->route($route);
             }
     }
-    public function main()
+    public function main(Request $request)
     {
         $inputs = [];
         $inputs["info"] = [];
@@ -671,6 +671,9 @@ class AdminController extends Controller
         $inputs["Tour"] = [];
         $inputs["Calendar"] = [];
         $inputs["Contact"] = [];
+
+        $inputs["section"] = $request->input("section");
+        $inputs["sub"] = $request->input("sub");
 
         $access_token = Cookie::get('stoken');
         $headers = array('Authorization:Bearer '.$access_token);
