@@ -84,7 +84,7 @@
             </ul>
             <div class="dropdown show mx-auto ms-lg-0 text-center">
                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    RCKgames
+                    {{Cookie::get('username');}}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li>

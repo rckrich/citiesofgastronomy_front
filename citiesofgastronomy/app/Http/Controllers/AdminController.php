@@ -94,6 +94,9 @@ class AdminController extends Controller
             //$nueva_cookie = $request->cookie('stoken', $res["token"], $minutos);// cookie('stoken', $res["token"], $minutos);
 
             Cookie::queue('stoken', $res["token"], 60 * 24 * 365);
+            Cookie::queue('username', 'profile', 60 * 24 * 365); //eliminar esta y descomentar la otra
+            //Cookie::queue('username', $res["username"], 60 * 24 * 365);
+
             //$nueva_cookie = cookie()->forever('stoken', 'mivalor');
             //Request::cookie('stoken');
         };
