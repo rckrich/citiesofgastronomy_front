@@ -460,6 +460,9 @@ footer a{color: #fff;}
     /*#navbarLogo{width: 250px!important;height: 66px!important;}*/
     
 }
+@media screen and (min-width: 992px) and (max-width:1400px){
+    #page_contact .card-group.col-lg-2{width: 25%;}
+}
 @media screen and (min-width: 992px) and (max-width:1189px){
     #navbarLogo{width: 150px!important;height: 39px!important;}
     .navbar-expand-lg .navbar-nav .nav-link{ font-size: 15px;}

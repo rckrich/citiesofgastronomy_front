@@ -44,7 +44,7 @@
                             <a class="btn btn-primary mx-auto w-100" href="{{route('admin.initiatives_new')}}">{{__('initiatives.init.btn_add')}}</a>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group ms-auto">
-                            <select name="select_activity_filter" id="select_activity_filter" class="form-control filter-select">
+                            <select name="select_activity_filter" id="select_activity_filter" class="form-control filter-select <?php if($search_inputs['actype']!='default'){echo 'changed';}?>">
                                 <option <?php if($search_inputs['actype']=='default'){echo 'selected';}?>
                                 value="default">{{__('initiatives.init.select_activity')}}</option>
                                 @foreach($typeOfActivity as $actype)
@@ -54,7 +54,7 @@
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
-                            <select name="select_topic_filter" id="select_topic_filter" class="form-control filter-select">
+                            <select name="select_topic_filter" id="select_topic_filter" class="form-control filter-select <?php if($search_inputs['topic']!='default'){echo 'changed';}?>">
                                 <option <?php if($search_inputs['topic']=='default'){echo 'selected';}?>
                                 value="default">{{__('initiatives.init.select_topic')}}</option>
                                 @foreach($Topics as $topic)
@@ -64,7 +64,7 @@
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
-                            <select name="select_sdg_filter" id="select_sdg_filter" class="form-control filter-select">
+                            <select name="select_sdg_filter" id="select_sdg_filter" class="form-control filter-select <?php if($search_inputs['sdg']!='default'){echo 'changed';}?>">
                                 <option <?php if($search_inputs['sdg']=='default'){echo 'selected';}?>
                                 value="default">{{__('initiatives.init.select_sdg')}}</option>
                                 @foreach($sdg as $sdgg)
@@ -74,7 +74,7 @@
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-12 px-2 form-group">
-                            <select name="select_connection_filter" id="select_connection_filter" class="form-control filter-select">
+                            <select name="select_connection_filter" id="select_connection_filter" class="form-control filter-select <?php if($search_inputs['connection']!='default'){echo 'changed';}?>">
                                 <option <?php if($search_inputs['connection']=='default'){echo 'selected';}?>
                                 value="default">{{__('initiatives.init.select_connection')}}</option>
                                 @foreach($ConnectionsToOther as $cn)
