@@ -21,7 +21,6 @@
                         @if($youtube_link)<a href="{{$youtube_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/youtube.svg')}}" height="19" width="23"/></a>@endif
                         @if($linkedin_link)<a href="{{$linkedin_link}}" target="_blank" class="px-2"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="19" width="23"/></a>@endif
                     </div>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-5 mt-5">

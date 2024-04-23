@@ -184,9 +184,9 @@
 
                             <div class="col-12 px-0 py-2 row mx-0">
                                 <div class="col-auto ps-0"><button type="button" class="btn btn-dark w-100" onclick="addLinkFN()"
-                                  >{{__('cities.edit.btn_link')}}</buttton></div>
+                                  >{{__('cities.edit.btn_link')}}</button></div>
                                 <div class="col-auto"><button type="button" class="btn btn-dark w-100" onclick="editFileFN()"
-                                >{{__('cities.edit.btn_pdf')}}</buttton></div>
+                                >{{__('cities.edit.btn_pdf')}}</button></div>
                             </div>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                         <div class="col-auto ms-auto"><a href="{{route('admin.cities')}}"
                         class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
                         <div class="col-auto me-auto"><button onclick="submitForm()" id="btnSubmit"
-                                class="btn btn-primary w-100">{{__('admin.btn_edit')}}</buttton></div>
+                                class="btn btn-primary w-100">{{__('admin.btn_edit')}}</button></div>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@
                     </div>
                 </div>
                 <div class="modal-footer b-none row mx-0">
-                    <button type="button" class="col-auto btn btn-primary mx-auto" onclick="saveLink()" id="btnsavelink">{{__('admin.btn_add')}}</buttton>
+                    <button type="button" class="col-auto btn btn-primary mx-auto" onclick="saveLink()" id="btnsavelink">{{__('admin.btn_add')}}</button>
                 </div>
                 <input type="hidden" id="idLinkGral">
             </form>
@@ -280,7 +280,7 @@
             </div>
         </div>
         <div class="modal-footer b-none row mx-0">
-            <!--<button type="button"  onclick="submitFormPDF()" class="col-auto btn btn-primary mx-auto">{{__('admin.btn_add')}}</buttton>-->
+            <!--<button type="button"  onclick="submitFormPDF()" class="col-auto btn btn-primary mx-auto">{{__('admin.btn_add')}}</button>-->
             <input type="submit" class="col-auto btn btn-primary mx-auto" value="{{__('admin.btn_add')}}"
                      id="btnSubmitPDF">
         </div>
@@ -552,8 +552,8 @@ $("#deepInfoForm").on('submit', function(e){
                 document.getElementById('validation_data_dyear').style.display = 'none';
 
                 let description  = editor.getData();//document.getElementById("description").value;
-                console.log("---->description");
-                console.log(description);
+                //console.log("---->description");
+                //console.log(description);
             ///////////////////////////////////////
                     let datos = new FormData(this);
                     datos.append('description', description);
@@ -570,7 +570,7 @@ $("#deepInfoForm").on('submit', function(e){
                     },
                     success: function(msg){
                         localStorage.setItem('message', 'City was successfully edited');
-                        window.location ='/admin/cities/';
+                        //window.location ='/admin/cities/';
                         //alert("City was successfully saved");
                         document.getElementById("btnSubmit").disabled = false;
                     }
