@@ -155,7 +155,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 align-self-start">
                     <div class="row g-2">
-                        <p>{{__('general.copyright')}}</p>
+                        <p>{{__('general.copyright1')}}<?php echo date("Y"); ?>{{__('general.copyright2')}}</p>
                         <div class="col-auto">
                             <a href="{{route('landing.privacy_policy')}}">{{__('general.privacy_policy')}}</a>
                         </div>

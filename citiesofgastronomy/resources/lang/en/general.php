@@ -26,7 +26,8 @@ return [
         'mail' => 'Contact Mail',
         'cities' => 'Contact Cities',
     ],
-    'copyright' => 'COPYRIGHT © 2023 CITIES OF GASTRONOMY',
+    'copyright1' => 'COPYRIGHT © ',
+    'copyright2' => ' CITIES OF GASTRONOMY',
     'privacy_policy' => 'Privacy Policy',
     'terms_of_use' => 'Terms of Use',
 
