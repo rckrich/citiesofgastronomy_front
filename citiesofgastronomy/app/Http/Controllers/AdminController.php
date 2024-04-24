@@ -94,8 +94,8 @@ class AdminController extends Controller
             //$nueva_cookie = $request->cookie('stoken', $res["token"], $minutos);// cookie('stoken', $res["token"], $minutos);
 
             Cookie::queue('stoken', $res["token"], 60 * 24 * 365);
-            Cookie::queue('username', 'profile', 60 * 24 * 365); //eliminar esta y descomentar la otra
-            //Cookie::queue('username', $res["username"], 60 * 24 * 365);
+            //Cookie::queue('username', 'profile', 60 * 24 * 365); //eliminar esta y descomentar la otra
+            Cookie::queue('username', $res["username"], 60 * 24 * 365);
 
             //$nueva_cookie = cookie()->forever('stoken', 'mivalor');
             //Request::cookie('stoken');
@@ -1151,10 +1151,13 @@ class AdminController extends Controller
             $data_enddate = $request->input("data_enddate");
 
             $url = config('app.apiUrl').'newsletter/DownloadVerify';
+            $access_token = Cookie::get('stoken');
+            $headers = array('Authorization:Bearer '.$access_token);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, [
                 'data_startdate' => $data_startdate,
@@ -1165,7 +1168,7 @@ class AdminController extends Controller
 
             $res = json_decode( $data, true);
             Log::info("Newsletter :::");
-            //Log::info($res);
+            Log::info($res);
             //$newsList = $res["newsletter"];
             //print_r( $res );
             //return Excel::download($res, 'Newletter.csv', \Maatwebsite\Excel\Excel::CSV);
@@ -1173,12 +1176,12 @@ class AdminController extends Controller
             $inputs = [];
         //$inputs["total"] = $res["total"];
         if($res==''){
-            $data = [];
-            $data["status"] = 401;
-            $data["message"] = "Unauthorized";
+            $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
 
         };
-        $data =  json_encode($data );
+        $data =  json_encode($res );
 
         return $data;
 

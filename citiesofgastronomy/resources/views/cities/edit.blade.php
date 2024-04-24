@@ -193,8 +193,9 @@
                     <div class="row form-group py-5">
                         <div class="col-auto ms-auto"><a href="{{route('admin.cities')}}"
                         class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
-                        <div class="col-auto me-auto"><button onclick="submitForm()" id="btnSubmit"
-                                class="btn btn-primary w-100">{{__('admin.btn_edit')}}</button></div>
+                        <div class="col-auto me-auto"><button id="btnSubmit"
+                                class="btn btn-primary w-100">{{__('admin.btn_edit')}}</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -569,10 +570,21 @@ $("#deepInfoForm").on('submit', function(e){
                         //$('#fupForm').css("opacity",".5");
                     },
                     success: function(msg){
-                        localStorage.setItem('message', 'City was successfully edited');
-                        //window.location ='/admin/cities/';
-                        //alert("City was successfully saved");
-                        document.getElementById("btnSubmit").disabled = false;
+                        let e = JSON.parse(msg);
+
+                        if (e.status===400) {
+                            alert("Error: " + e.message);
+                        }
+                        else if(e.status===401){
+                                alert("Error: " + e.message);
+                                window.location = '/login';
+                            }
+                        else {
+                            localStorage.setItem('message', 'City was successfully edited');
+                            window.location ='/admin/cities/';
+                            //alert("City was successfully saved");
+                            document.getElementById("btnSubmit").disabled = false;
+                        };
                     }
                 });
         }else{
