@@ -536,6 +536,12 @@ footer a{color: #fff;}
         max-width: 800px!important;
     }
 }
+@media (min-width: 768px) and (max-width:992px){
+    #page_contact .container{
+        max-width: 800px!important;
+    }
+    #page_contact .card-group.col-md-3{width: 33.3%!important;}
+}
 @media (max-width: 767px){
     #map{margin-bottom: 10rem;}
     .banner-title-overlay{padding: 5rem!important;}
@@ -549,11 +555,15 @@ footer a{color: #fff;}
 
    /* footer .col-auto{margin-left: auto!important;margin-right: auto!important;}*/
 }
+@media (min-width: 576px) and (max-width:768px){
+    #page_contact .container {
+        max-width: 580px;
+    }
+}
 @media (min-width: 576px) and (max-width:767px){
     .container, .container-sm {
         max-width: 580px;
     }
-
 }
 @media (max-width: 576px){
     #page_cities .card-img-top{height: 298px;}

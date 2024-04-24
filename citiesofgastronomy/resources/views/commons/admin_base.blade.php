@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-12 align-self-center text-center">
                     <div class="row g-2">
-                        <p>{{__('general.copyright')}}</p>
+                        <p>{{__('general.copyright1')}}<?php echo date("Y"); ?>{{__('general.copyright2')}}</p>
                     </div>
                 </div>
             </div>

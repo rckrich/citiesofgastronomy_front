@@ -137,7 +137,7 @@
                             @elseif($i == 1)
                                 <p class="py-1 mb-1">{{__('general.coord_email')}}<br/>{{$info[$i]["value"]}}</p>
                             @elseif($i == 2)
-                                <a class="nav-link py-1" href="{{$info[$i]['value']}}" target="_blank">{{__('general.coord_link')}}</a>
+                                <a class="nav-link py-1" href="{{$info[$i]['value']}}" >{{__('general.coord_link')}}</a>
                             @else()
                                 <a class="nav-link py-1">{{$info[$i]["value"]}}</a>
                             @endif
