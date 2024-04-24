@@ -365,11 +365,14 @@ class CitiesController extends Controller
         };
 
         $url = config('app.apiUrl').'cities/updateCompleteInfo/'.$data_id;
+        $access_token = Cookie::get('stoken');
+        $headers = array('Authorization:Bearer '.$access_token);
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $arrPOST );
         $data = curl_exec($curl);
@@ -377,9 +380,29 @@ class CitiesController extends Controller
 
         $res = json_decode( $data, true);
 
-        Log::info(  $res   );
+        Log::info(  "COMPLETE INFO EDIT"  );
+        try{
+            Log::info(  $res   );
+            $status = $res["status"];
 
-        //return redirect( "/admin/cities" );
-        return redirect()->route('admin.cities',['st'=>'1']);
+            //return redirect( "/admin/cities" );
+            //return redirect()->route('admin.cities',['st'=>'1']);
+            if($res==''){
+
+                $res = [];
+                $res["status"] = 401;
+                $res["message"] = "Unauthorized";
+            };
+            /////////////////////////////////7
+        } catch ( \Exception $e ) {
+                    // $route = (new AdminController)->noLoginFind();
+                    // return redirect()->route($route);
+                   // return redirect()->route('admin.login');
+                   $res = [];
+            $res["status"] = 401;
+            $res["message"] = "Unauthorized";
+        }
+        return json_encode( $res, true);
+
     }
 }

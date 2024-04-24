@@ -3,8 +3,8 @@
 @extends('commons.admin_base')
 
 @section('content')
-    <section id="admin_cities" class="">
-        <ul class="nav nav-pills mb-3 px-5 pt-5 pb-4" id="pills-tab-cities">
+    <section id="admin_main" class="">
+        <ul class="nav nav-pills mb-3 px-5 pt-5 pb-4" id="pills-tab-main">
             <li class="nav-item" >
                 <button class="nav-link active" onclick="showHide('maincontent', 'pills-banners', 'pills-banners-tab')"
                 id="pills-banners-tab"  type="button">{{__('admin.main_site.section_banners')}}</button>
@@ -18,13 +18,13 @@
                 id="pills-clusters-tab"  type="button" >{{__('admin.main_site.section_cluster')}}</button>
             </li>
         </ul>
-        <div class="tab-content px-5" >
+        <div class="tab-content px-5" id="pills-tab-mainContent">
             <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
 
-            <div class="tab-pane  maincontent" id="pills-banners" style="display:block">
+            <div class="tab-pane maincontent" id="pills-banners" style="display:block">
                 @include('admin.banners')
             </div>
-            <div class="tab-pane  maincontent" id="pills-socials" style="display:none">
+            <div class="tab-pane maincontent" id="pills-socials" style="display:none">
                 <div class="py-3">
                     <h3 class="admin-title"><b>{{__('admin.main_site.socials.title')}}</b></h3>
                     <div class="pb-5 my-3">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane  maincontent" id="pills-clusters" style="display:none">
+            <div class="tab-pane maincontent" id="pills-clusters" style="display:none">
                 <div class="py-3">
                     <h3 class="admin-title"><b>{{__('admin.main_site.clusters.title')}}</b></h3>
 

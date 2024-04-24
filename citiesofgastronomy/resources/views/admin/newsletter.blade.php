@@ -176,8 +176,8 @@ $(document).ready(function(e){
             var f1 = new Date(data_startdate);
             var f2 = new Date(data_enddate);
 
-            console.log("f1 > f2");
-            console.log(f1 > f2);
+            //console.log("f1 > f2");
+            //console.log(f1 > f2);
             if(f1 > f2){
                 document.getElementById("validation_timelineDateCompare").style.display = 'block';
                 descargar = 2;
@@ -190,7 +190,7 @@ $(document).ready(function(e){
             datos.append('data_startdate', data_startdate);
             datos.append('data_enddate', data_enddate);
 
-            console.log("::dOWN");
+            //console.log("::dOWN");
 
             $.ajax({
                                 type: 'POST',
@@ -206,20 +206,26 @@ $(document).ready(function(e){
                                 success: function(msg){
                                     url = '<?= config('app.apiUrl')?>newsletter/Download?data_startdate='+data_startdate+'&data_enddate='+data_enddate;
                                     e = JSON.parse(msg);
-                                    console.log(msg);
+                                    //console.log(e);
                                     if(e.status == 200){
-                                        console.log(e["newsletter"].length);
-                                        console.log(url);
-                                        if(e["newsletter"].length == 0){
+                                        //console.log("CANT "+ e["newsletter"].length);
+                                        //console.log(url);
+                                        if(e["newsletter"] == ''){
                                                 alert("No emails found on this date");
                                         }else{
-                                            console.log("Si hay mails");
-                                            CSVModal.hide(modalToggle);
-                                            //window.location = url;
-                                            window.open(url, '_blank');
+                                            let news = e["newsletter"];
+                                            //console.log(news);
+                                            if(news.length >0){
+                                                //console.log("Si hay mails");
+                                                window.open(url, '_blank');
+                                                CSVModal.hide(modalToggle);
+                                                //window.location = url;
+                                            };
                                         };
                                     }else{
-                                        if(e.status===401){window.location = '/login';
+                                        if(e.status===401){
+                                            console.log("Error 401: " + e.message);
+                                            window.location = '/login';
                                         }else if(e.message == undefined){
                                                 alert("No emails found on this date");
                                         }else{

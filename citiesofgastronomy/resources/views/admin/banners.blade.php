@@ -559,7 +559,10 @@
                                          window.location = '/login';
                                      }
                                 else {
-                                    addItem(sectionName, sectionId);
+                                    console.log("DATTA:");
+                                    console.log(e);
+                                    let datta = e.datta;
+                                    addItem(sectionName, sectionId, datta["id"]);
                                     //localStorage.setItem('message', 'Image was successfully added');
                                     //alert("Image was successfully saved");
                                     window.scrollTo(0,0)
@@ -574,7 +577,7 @@
             });
         }
 
-        function addItem(sectionName, sectionId){
+        function addItem(sectionName, sectionId, id){
             //tblBannerCity -->destiny
             //tblBanner0 --> plantilla
             let capit = sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
@@ -595,7 +598,7 @@
                 let padre = document.getElementById(nuevaid).getElementsByTagName("input");
                 padre[0].id = sectionName + '_banner' + nuevovalor;
                 padre[0].name = sectionName + '_banner' + nuevovalor;
-                let jss1 = "editBanner('"+nuevovalor+"', '"+sectionName+"', '"+sectionId+"')";
+                let jss1 = "editBanner('"+nuevovalor+"', '"+sectionName+"', '"+sectionId+"', '"+id+"')";
                 padre[0].setAttribute("onclick", jss1);
                 //delCity0
                 padre[1].id = 'del' + capit + nuevovalor;;
@@ -605,7 +608,7 @@
                 padre2[0].id = 'img' + capit + nuevovalor;
 
                 let padre3 = document.getElementById(nuevaid).getElementsByTagName("button");
-                let jss2 = "delBanner('"+nuevovalor+"', '"+sectionName+"', '"+sectionId+"', '')";
+                let jss2 = "delBanner('"+nuevovalor+"', '"+sectionName+"', '"+sectionId+"', '"+id+"')";
                 padre3[0].setAttribute("onclick", jss2);
                 //imgCity0
 

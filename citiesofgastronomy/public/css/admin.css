@@ -51,9 +51,9 @@ th:last-child,td:last-child{padding-right: 30px;}
 
 
 /*MAIN SITE*/
-#pills-tab-cities, #pills-tab-initiatives{background-color: #272727;}
-#pills-tab-cities button, #pills-tab-initiatives button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
-#pills-tab-cities button.active, #pills-tab-initiatives button.active{text-decoration: underline;}
+#pills-tab-cities, #pills-tab-initiatives, #pills-tab-main{background-color: #272727;}
+#pills-tab-cities button, #pills-tab-initiatives button,#pills-tab-main button{background-color: #272727; color: #D7D308; font-size: 20px; font-family: 'Calibri';}
+#pills-tab-cities button.active, #pills-tab-initiatives button.active, #pills-tab-main button.active{text-decoration: underline;}
 #pills-tab-banner button, #pills-tab-filters button{background-color: transparent; color: #707070; border:solid 1px #707070; border-radius: 23px; padding:11px 20px; text-decoration: none; font-size: 16px; font-family: 'Calibri';}
 #pills-tab-banner button.active, #pills-tab-filters button.active{background-color: #5479FA; color: #fff;border-color: transparent;}
 .banner-img,.load-img{
