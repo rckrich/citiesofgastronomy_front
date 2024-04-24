@@ -30,6 +30,15 @@ th{font-size: 18px;}
 .btn-outline-primary:hover,.btn-outline-primary:active,.btn-outline-primary:focus{background-color: #D87C16!important; color: #fff!important;}
 .btn-search{min-width: unset!important; padding:0 20px!important}
 
+#dropdownMenuLink{
+    max-width: 250px;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 1 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
 td .btn-link, a .btn-link{color: #303030!important;font-family:'Calibri'; font-weight: bold;}
 th,td{vertical-align: middle;}
 th{background-color: #18191D!important; color: #fff!important;height: 62px!important;}
