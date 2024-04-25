@@ -152,7 +152,7 @@ a .text-white{color: #fff!important;}
 .card{border: none;}
 #contact-cards .card-group:nth-child(odd) .card-body{background-color: #D87C16!important;color:#fff}
 #contact-cards .card-group:nth-child(even) .card-body{background-color: #5479FA!important;color:#fff}
-.card-text{
+.card-text:not(.full){
     display: -webkit-box!important; 
     -webkit-box-orient: vertical!important; 
     -webkit-line-clamp: 3!important; 
