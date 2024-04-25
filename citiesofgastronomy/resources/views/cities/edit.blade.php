@@ -375,10 +375,10 @@ let clonedDiv = $('#imageTBL0').clone();
     padre3[0].name = 'deleteIcon' + nuevovalor;
     padre3[1].id = 'plusIMG' + nuevovalor;
     padre3[1].name = 'plusIMG' + nuevovalor;
-    var jss1 = "deletefuncion('"+nuevovalor+"', 'imageTBL', 'deleteImage')";
-    padre3[0].setAttribute("onchange", jss1);
 
     let padre4 = document.getElementById(nuevaid).getElementsByTagName("img");
+    var jss1 = "deletefuncion('"+nuevovalor+"', 'imageTBL', 'deleteImage')";
+    padre4[0].setAttribute("onclick", jss1);
     padre4[1].id = 'thumbImage' + nuevovalor;
     padre4[1].name = 'thumbImage' + nuevovalor;
 
