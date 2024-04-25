@@ -44,7 +44,7 @@
                             @foreach($city["contacts"] as $contact)
                             <div class="mb-3">
                                 <p class="card-text mb-0"><b>{{ $contact["name"] }}</b></p>
-                                <p class="card-text mb-0 px-3">{{ $contact["position"] }}</p>
+                                <p class="card-text mb-0 px-5">{{ $contact["position"] }}</p>
                                 <p class="card-text mb-2"><i>{{ $contact["email"] }}</i></p>
                                 @if(count($contact["social_network"])!=0)
                                 <div class="row align-items-end ">
