@@ -243,8 +243,9 @@ function saveUser(){
             beforeSend: function(){},
             success: function(msg){
                 let e = JSON.parse(msg);
+
                 if (e.status===400) {
-                    alert("Error: " + msg.message);
+                    alert("Error: " + e.message);
                 }
                 else if(e.status===401){
                         alert("Error: " + e.message);
@@ -262,10 +263,11 @@ function saveUser(){
                         message = ('{{trans('users.create_success')}}');
                     }
                     localStorage.setItem('usersMessage', message);
+                    window.location = '/admin/users?page=1';
                 }
             },
-            complete: function(){                    
-                window.location = '/admin/users?page=1';           
+            complete: function(){
+                //window.location = '/admin/users?page=1';
             }
         });
 
@@ -337,8 +339,8 @@ function deleteUser(){
 
                 }
             },
-            complete: function(){                    
-                window.location = '/admin/users?page=1';           
+            complete: function(){
+                window.location = '/admin/users?page=1';
             }
         });
     }

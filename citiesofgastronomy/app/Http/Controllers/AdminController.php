@@ -1047,9 +1047,10 @@ class AdminController extends Controller
 
             $res = json_decode( $data, true);
             Log::info("USER SAVE ::");
-            //Log::info($res);
+            Log::info($res);
+            Log::info($res["status"]);
         try{
-            if($res["status"] != 200){
+            if($res["status"] != 200 && $res["status"] != 400 ){
                 $res = [];
                 $res["status"] = 401;
                 $res["message"] = "Unauthorized";
