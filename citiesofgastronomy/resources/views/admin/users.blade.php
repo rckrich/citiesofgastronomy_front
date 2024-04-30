@@ -83,7 +83,6 @@
             <h5 class="modal-title edit-modal-label" id="editUserModalLabel">{{__('users.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
                 <label class="form-label" for="data_username">{{__('session.data_username')}}</label>
@@ -111,7 +110,6 @@
             <button type="button" class="col-4 btn btn-primary me-auto create-form-btn" id="create_user_btn" onclick="saveUser()">{{__('admin.btn_create')}}</buttton>
             <button type="button" class="col-4 btn btn-primary me-auto edit-form-btn" id="update_user_btn" onclick="saveUser()">{{__('admin.btn_edit')}}</buttton>
         </div>
-        </form>
     </div>
   </div>
 </div>
