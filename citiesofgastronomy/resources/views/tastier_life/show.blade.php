@@ -41,10 +41,10 @@
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_Difficulty.png')}}"/>
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">
-                            <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_difficulty')}}</b></p>                    
+                            <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_difficulty')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{{$difficulty}}</p>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_PrepTime.png')}}"/>
@@ -53,7 +53,7 @@
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_preptime')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{{$prepTime}}</p>
                         </div>
-                    </div>                  
+                    </div>
                     <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_TotalTime.png')}}"/>
@@ -62,7 +62,7 @@
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_totaltime')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{{$totalTime}}</p>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_Servings.png')}}"/>
@@ -71,12 +71,12 @@
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_servings')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{{$servings}}</p>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="row pt-2 px-0 mx-0 align-items-start">
                         <div class="col-lg-3 col-md-3 col-sm-2 col-3 text-right pe-2">
                             <img class="recipe-icon" src="{{asset('assets/icons/Icon_Ingredients.png')}}"/>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">        
+                        <div class="col-lg-9 col-md-9 col-sm-10 col-9 ps-0">
                             <p class="mb-1 text-orange subtitle"><b>{{__('tastier_life.data_ingredients')}}</b></p>
                             <p class="pb-2 mb-1 text-white data">{!! $ingredients !!}</p>
                         </div>
@@ -92,13 +92,13 @@
                         <span class="ps-1 my-auto">{{__('general.btn_vote')}}</span></button>
                     </div>
                     <div class="col-lg-3 col-md-3 col-4 mx-auto me-0 my-auto text-right">
-                        <h4 class="w-100" id="votes_counter">{{__('tastier_life.data_votes')}} - {{$votes}}</h4>
+                        <h4 class="w-100" id="votes_counter">{{__('tastier_life.data_votes')}}  {{$votes}}</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="container p-lg-5 p-md-5 py-md-3 p-sm-3 p-3">
         <div class="row align-items-center mb-5">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -121,7 +121,7 @@
             @endif
             </div>
         </div>
-        
+
         <div class="w-100 bb-orange py-5"></div>
 
     </div>
@@ -133,7 +133,7 @@
                 <a class="" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{route('tastier_life.view',['id'=>$id])}}">
                     <img class="icon-social" src="{{asset('assets/icons/facebook.svg')}}" height="25" width="25"/>
                 </a>
-            </div>       
+            </div>
             <!--a class="col-auto px-2"  onclick="shareLinkedIn(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/linked_in.svg')}}" height="25" width="25"/></a-->
             <a class="col-auto px-2" href="" onclick="shareTwitter(window.location.href)"><img class="icon-social" src="{{asset('assets/icons/twitter.svg')}}" height="19" width="23"/></a>
         </div>
@@ -166,10 +166,10 @@
                 cache: false,
                 processData:false,
                 beforeSend: function(){},
-                success: function(msg){                  
+                success: function(msg){
                     if (msg.status===400) {
                         alert("Error: " + msg.message);
-                    } 
+                    }
                     else {
                         updateVotes(totalVotes+1);
                     }

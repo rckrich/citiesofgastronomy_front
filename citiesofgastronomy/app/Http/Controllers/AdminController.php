@@ -94,6 +94,7 @@ class AdminController extends Controller
             //$nueva_cookie = $request->cookie('stoken', $res["token"], $minutos);// cookie('stoken', $res["token"], $minutos);
 
             Cookie::queue('stoken', $res["token"], 60 * 24 * 365);
+            Cookie::queue('userid', $res["userid"], 60 * 24 * 365);
             Cookie::queue('username', $res["username"], 60 * 24 * 365);
 
             //$nueva_cookie = cookie()->forever('stoken', 'mivalor');
@@ -152,6 +153,7 @@ class AdminController extends Controller
         Log::info("USER - SEND EMAIL TO RECOVER A USER PASSWORD ::");
         //Log::info($res);
 
+        $res = json_encode( $res, true);
         return $res;
     }
 
@@ -1047,9 +1049,10 @@ class AdminController extends Controller
 
             $res = json_decode( $data, true);
             Log::info("USER SAVE ::");
-            //Log::info($res);
+            Log::info($res);
+            Log::info($res["status"]);
         try{
-            if($res["status"] != 200){
+            if($res["status"] != 200 && $res["status"] != 400 ){
                 $res = [];
                 $res["status"] = 401;
                 $res["message"] = "Unauthorized";
@@ -1060,7 +1063,13 @@ class AdminController extends Controller
             $res["message"] = "Unauthorized";
         }
         $res = json_encode( $res, true );
-        Cookie::queue('username', $name, 60 * 24 * 365);
+
+        $access_userid = Cookie::get('userid');
+        Log::info("USER MODIFY: ".$id);
+        Log::info("USER SESSION: ".$access_userid);
+        if($id==$access_userid){
+            Cookie::queue('username', $name, 60 * 24 * 365);
+        };
 
         return $res;
 

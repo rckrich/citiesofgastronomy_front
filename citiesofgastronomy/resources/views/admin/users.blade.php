@@ -83,7 +83,6 @@
             <h5 class="modal-title edit-modal-label" id="editUserModalLabel">{{__('users.edit_modal_title')}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form class="">
         <div class="modal-body px-4">
             <div class="form-group py-2">
                 <label class="form-label" for="data_username">{{__('session.data_username')}}</label>
@@ -111,7 +110,6 @@
             <button type="button" class="col-4 btn btn-primary me-auto create-form-btn" id="create_user_btn" onclick="saveUser()">{{__('admin.btn_create')}}</buttton>
             <button type="button" class="col-4 btn btn-primary me-auto edit-form-btn" id="update_user_btn" onclick="saveUser()">{{__('admin.btn_edit')}}</buttton>
         </div>
-        </form>
     </div>
   </div>
 </div>
@@ -243,8 +241,9 @@ function saveUser(){
             beforeSend: function(){},
             success: function(msg){
                 let e = JSON.parse(msg);
+
                 if (e.status===400) {
-                    alert("Error: " + msg.message);
+                    alert("Error: " + e.message);
                 }
                 else if(e.status===401){
                         alert("Error: " + e.message);
@@ -262,10 +261,11 @@ function saveUser(){
                         message = ('{{trans('users.create_success')}}');
                     }
                     localStorage.setItem('usersMessage', message);
+                    window.location = '/admin/users?page=1';
                 }
             },
-            complete: function(){                    
-                window.location = '/admin/users?page=1';           
+            complete: function(){
+                //window.location = '/admin/users?page=1';
             }
         });
 
@@ -337,8 +337,8 @@ function deleteUser(){
 
                 }
             },
-            complete: function(){                    
-                window.location = '/admin/users?page=1';           
+            complete: function(){
+                window.location = '/admin/users?page=1';
             }
         });
     }
@@ -363,13 +363,20 @@ function resetPassword(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){
-                if (msg.status===400 || msg.status===401) {
-                    alert("Error: " + msg.message);
+                let e = JSON.parse(msg);
+
+
+                if (e.status===400) {
+                    alert("Error: " + e.message);
+                }
+                else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
                 }
                 else {
                     //closeModal('editUserModal');
                     localStorage.setItem('usersMessage', '{{trans('users.reset_password_email_sent')}}');
-                }
+                };
             },
             complete: function(){
                 window.location = '/admin/users?page=1';
