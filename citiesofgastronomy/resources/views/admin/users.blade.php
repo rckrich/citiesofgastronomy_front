@@ -365,13 +365,20 @@ function resetPassword(){
             processData:false,
             beforeSend: function(){},
             success: function(msg){
-                if (msg.status===400 || msg.status===401) {
-                    alert("Error: " + msg.message);
+                let e = JSON.parse(msg);
+
+
+                if (e.status===400) {
+                    alert("Error: " + e.message);
+                }
+                else if(e.status===401){
+                        alert("Error: " + e.message);
+                        window.location = '/login';
                 }
                 else {
                     //closeModal('editUserModal');
                     localStorage.setItem('usersMessage', '{{trans('users.reset_password_email_sent')}}');
-                }
+                };
             },
             complete: function(){
                 window.location = '/admin/users?page=1';
