@@ -89,8 +89,8 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li>
                         <!--form action ="{{route('admin.show_change_password')}}" method="POST" id="changePasswordForm">
-                            @csrf         
-                            <input id="access_token" name="access_token" type="hidden" value="1234"/>               
+                            @csrf
+                            <input id="access_token" name="access_token" type="hidden" value="1234"/>
                             <button type="submit" id="changePasswordBtn" class="dropdown-item">{{__('session.change_password')}}</button></li>
                         </form!-->
                         <a href="{{route('admin.show_change_password')}}" id="changePasswordBtn" class="dropdown-item">{{__('session.change_password')}}</a></li>
@@ -148,7 +148,7 @@
             let token = '1234';
             let form_token = document.getElementsByName("_token")[0].value;
 
-            let datos = new FormData(this);    
+            let datos = new FormData(this);
             datos.append('_token', form_token);
             datos.append('access_token', token);
             document.getElementById("changePasswordBtn").disabled = false;
@@ -159,10 +159,10 @@
                 contentType: false,
                 cache: false,
                 processData:false,
-                success: function(msg){                    
+                success: function(msg){
                 if (msg.status===400) {
                     alert("Error: " + msg.message);
-                } 
+                }
                 else {
                     alert('{{trans('session.password_set_success')}}');
                     window.location = '/account/change_password';
@@ -180,7 +180,7 @@
             let token = '1234';
             let form_token = document.getElementsByName("_token")[0].value;
 
-            let datos = new FormData(this);    
+            let datos = new FormData(this);
             datos.append('_token', form_token);
             datos.append('access_token', token);
             $("#changePasswordForm").submit();
@@ -210,7 +210,6 @@
     }
 
     function isValidUrl(string) {
-        console.log(string);
             try {     new URL(string);       return true;
             } catch (err) { return false;        }
         }

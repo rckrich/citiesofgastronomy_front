@@ -5,7 +5,7 @@
 @section('content')
     <section id="admin_cities">
         <div id="" class="container p-lg-5 p-md-5 p-sm-3 p-3">
-            <div class="row mx-0">            
+            <div class="row mx-0">
                 <div class="alert alert-success" role="alert" id="alertMessage" style="display:none"></div>
 
                 <div class="col-12 px-0 py-2">
@@ -204,15 +204,11 @@ $(document).ready(function(e){
 
 
         let message = localStorage.getItem('message');
-        console.log("##message");
-        console.log(message);
         if(message){
-            console.log("Local Storage DELETE");
                 localStorage.removeItem('message');
                 document.getElementById('alertMessage').innerHTML = message;
                 document.getElementById('alertMessage').style.display = 'block';
                 setTimeout(() => {
-                    console.log("Delayed for 1 second.");
                     document.getElementById('alertMessage').style.display = 'none';
                 },5000);
         };
@@ -229,8 +225,6 @@ $(document).ready(function(e){
             //let data_country = document.getElementById('data_country').value;
             let data_continent = document.getElementById('data_continent').value;
             let data_dyear = document.getElementById('data_dyear').value;
-            console.log("data_city::");
-            //console.log(data_city);
             if(data_city==''){
                 document.getElementById('data_city').className = 'form-control is-invalid';
                 document.getElementById('validation_data_city').style.display = 'block';
@@ -269,8 +263,6 @@ $(document).ready(function(e){
                             //$('#fupForm').css("opacity",".5");
                         },
                         success: function(msg){
-                            //console.log("el id es :: "+data_id);
-                            //console.log(msg);
                             let e = JSON.parse(msg);
                             let status = '';
 
@@ -281,23 +273,19 @@ $(document).ready(function(e){
                                 status = e.status;
                             };
 
-                            console.log("##el status: " + status);
                             if(status == 200){
                                 if(data_id){
-                                    //console.log("----<EDIT");
                                     id1 = 'cityname' + data_id;
                                     document.getElementById(id1).innerHTML = data_city;
                                     document.getElementById('alertMessage').innerHTML = 'City was successfully edited';
                                     document.getElementById('alertMessage').style.display = 'block';
                                     cityModal.hide(modalToggle);
                                     setTimeout(() => {
-                                        //console.log("Delayed for 1 second.");
                                         document.getElementById('alertMessage').style.display = 'none';
 
                                     },5000);
 
                                 }else{
-                                    //console.log("----<ADD");
                                     localStorage.setItem('message', 'City was successfully created');
                                     window.location ='/admin/cities/';
                                 };
@@ -305,7 +293,6 @@ $(document).ready(function(e){
 
                                 document.getElementById("btn_saveData").disabled = false;
                             }else{
-                                console.log("Error");
                                 document.getElementById("btn_saveData").disabled = false;
                                 if(status == 401){
                                     window.location ='/login';
@@ -324,7 +311,6 @@ $(document).ready(function(e){
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
         //search_box
-        //console.log("-->PAG");
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
         if (search != ''){
@@ -334,28 +320,21 @@ $(document).ready(function(e){
 
         let nada = '';
         if(page == 'prev' || page == 'next'){
-                //console.log("#0");
             if(page == 'next' && paginaActual != paginatorCant){
                 page = paginaActual + 1;
-                //console.log("#1");
             }else if(page == 'prev' && paginaActual > 1){
                 page = paginaActual - 1;
-                //console.log("#2");
             }else{
                 nada = 'si';
             };
         }else{
             page= parseInt(page);
         };
-        //console.log(paginaActual);
-        //console.log(page);
         if(nada == ''){
             if (search == ''){
-                console.log("#not SERCH");
                 window.location = '/admin/cities/?page='+page;
             }else{
                 //window.location = '/admin/cities/?page='+paginaActual;
-                console.log("# SERCH");console.log(search);
                 document.getElementById('page').value = page;
                 document.getElementById('formSerch').submit();
             };
@@ -384,9 +363,7 @@ $(document).ready(function(e){
                 beforeSend: function(){},
                 success: function(msg){
 
-                    //console.log("---->");
                     let e = JSON.parse(msg);
-                    //console.log(e);
 
                     closeModal('deleteCityModal');
                     if (e.status===400||e.status===401) {
@@ -440,18 +417,14 @@ $(document).ready(function(e){
             document.getElementById("editCityModalLabel").innerHTML =  "<?php echo __('cities.admin.create_modal_title')?>";
             document.getElementById("btn_saveData").value =  "<?php echo __('admin.btn_create')?>";
         }else{
-            console.log("Modifica");
             document.getElementById("loading").style.display = 'block';
             document.getElementById("editCityModalLabel").innerHTML =  "<?php echo __('cities.admin.edit_modal_title')?>";
             document.getElementById("btn_saveData").value =  "<?php echo __('admin.btn_save')?>";
-            console.log("<?php echo __('admin.btn_save')?>");
 
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 let res0 =  JSON.parse(this.responseText);
                 let res = res0["cities"];
-                console.log(":: respuesta fel FIND");
-                console.log(res);
                 document.getElementById("data_id").value = res["id"];
                 document.getElementById("data_city").value = res["name"];
                 document.getElementById("data_country").value = res["country"];
@@ -462,7 +435,6 @@ $(document).ready(function(e){
 
                 if(res["photo"]){
                     let img = "<?= config('app.url')?>" + res["photo"];
-                    console.log(img);
                     document.getElementById("imgFile").src =img ;
                 };
                 document.getElementById("loading").style.display = 'none';
@@ -512,10 +484,6 @@ $(document).ready(function(e){
         let mas = verifiTXT.indexOf("+");
         let menos = verifiTXT.indexOf("-");
 
-        //console.log("----------" + id);
-        //console.log("PUNTO: " + punto);
-        //console.log("MAS: " + mas);
-        //console.log("MENOS: " + menos);
 
         if(punto >= '0' || mas   >= '0' || menos  >= '0' ){
                 document.getElementById(id).className = 'form-control is-invalid';

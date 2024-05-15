@@ -337,7 +337,6 @@
             document.getElementById("validation_timelineenddate").style.display = 'none';
             document.getElementById("validation_timelineDateCompare").style.display = 'none';
 
-        console.log("# modal tlup")
             editModal.show(modalToggle);
 
             document.getElementById("data_id").value = '';
@@ -348,14 +347,11 @@
 
         if(id == '' || id == undefined){
             document.getElementById("btnSaveTimeline").innerHTML = '<?= __('admin.btn_create')?>';
-            console.log("CREATE::");
             document.getElementById('createTimelineModalLabel').style.display = 'block';
             document.getElementById('editTimelineModalLabel').style.display = 'none';
         }else{
 
             document.getElementById("btnSaveTimeline").innerHTML = '<?= __('admin.btn_edit')?>';
-            console.log("UPDATE::");
-            console.log(id);
                 document.getElementById("loading").style.display = 'block';
             document.getElementById('createTimelineModalLabel').style.display = 'none';
             document.getElementById('editTimelineModalLabel').style.display = 'block';
@@ -364,8 +360,6 @@
             xhttp.onload = function() {
                     let res =  JSON.parse(this.responseText);
                     //let res = res0["cities"];
-                    console.log(":: respuesta fel FIND");
-                    console.log(res);
                     if(res.status===401){
                         alert("Error: " + res.message);
                         window.location = '/login';
@@ -388,7 +382,6 @@
 </script>
 <script>
     function saveTimeline(){
-        console.log("#-> ingresa al SAVE");
         let guardar = 1;
         document.getElementById("btnSaveTimeline").disabled = true;
         document.getElementById("btnAddTime").disabled = true;
@@ -419,24 +412,20 @@
         if(!data_title){
             document.getElementById("validation_timelineTittle").style.display = 'block';
             guardar = 2;
-            console.log("#falta titulo");
         };
         if(!data_startdate){
             document.getElementById("validation_timelinestartdate").style.display = 'block';
             guardar = 2;
-            console.log("#falta f ini");
         };
         if(!data_enddate){
             document.getElementById("validation_timelineenddate").style.display = 'block';
             guardar = 2;
-            console.log("#falta fin");
         };
 
         //VALIDA URL
         /*if( isValidUrl(data_link) ){}else{
                 document.getElementById("validation_timelineLink").style.display = 'block';
                 guardar = 2;
-                console.log("#falta fin");
         };//*/
 
         //comparar fechas
@@ -444,8 +433,6 @@
             var f1 = new Date(data_startdate);
             var f2 = new Date(data_enddate);
 
-            console.log("f1 > f2");
-            console.log(f1 > f2);
             if(f1 > f2){
                 document.getElementById("validation_timelineDateCompare").style.display = 'block';
                 guardar = 2;
@@ -514,20 +501,16 @@
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
 
-        //console.log("-->PAG");
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
 
 
         let nada = '';
         if(page == 'prev' || page == 'next'){
-                //console.log("#0");
             if(page == 'next' && paginaActual != paginatorCant){
                 page = paginaActual + 1;
-                //console.log("#1");
             }else if(page == 'prev' && paginaActual > 1){
                 page = paginaActual - 1;
-                //console.log("#2");
             }else{
                 nada = 'si';
             };
@@ -537,7 +520,6 @@
 
 
         let st = document.getElementById('st').value;
-        console.log(page);
         if(nada == '' && st==''){
             window.location = '../../admin/about/?page=' + page;
         }else{
@@ -558,7 +540,6 @@
         document.getElementById("validation_faq").style.display = 'none';
         document.getElementById("validation_faqANW").style.display = 'none';
 
-        console.log("# modal FAQ UP")
             editModalFAQ.show(modalToggleFAQ);
 
             document.getElementById("data_faq").value = '';
@@ -567,14 +548,11 @@
 
         if(id == '' || id == undefined){
             document.getElementById("btnSaveFaq").innerHTML = '<?= __('admin.btn_create')?>';
-            console.log("CREATE::");
             document.getElementById('createFAQModalLabel').style.display = 'block';
             document.getElementById('editFAQModalLabel').style.display = 'none';
         }else{
 
             document.getElementById("btnSaveFaq").innerHTML = '<?= __('admin.btn_edit')?>';
-            console.log("UPDATE::");
-            console.log(id);
                 document.getElementById("loading").style.display = 'block';
             document.getElementById('createFAQModalLabel').style.display = 'none';
             document.getElementById('editFAQModalLabel').style.display = 'block';
@@ -587,8 +565,6 @@
                                 window.location = '/login';
                             }
                     else {
-                        console.log(":: respuesta FAQ FIND");
-                        console.log(res);
 
                         document.getElementById("data_idfaq").value = res["faq"]["id"];
                         document.getElementById("data_faq").value = res["faq"]["faq"];
@@ -604,7 +580,6 @@
     }
 
 function saveFaq(){
-    console.log("#-> ingresa al SAVE");
     let guardar = 1;
     document.getElementById("btnSaveFaq").disabled = true;
 
@@ -627,12 +602,10 @@ function saveFaq(){
     if(!data_faq){
         document.getElementById("validation_faq").style.display = 'block';
         guardar = 2;
-        console.log("#falta faq");
     };
     if(!data_answer){
         document.getElementById("validation_faqANW").style.display = 'block';
         guardar = 2;
-        console.log("#falta f ini");
     };
 
     //if(false){
@@ -651,7 +624,6 @@ function saveFaq(){
                             },
                             success: function(msg){
                                 let e = JSON.parse(msg);
-                                console.log(e);
 
                                 if (e.status===400) {
                                     alert("Error: " + e.message);
@@ -734,7 +706,6 @@ function deleteFnc(type){
                             },
                             success: function(msg){
                                 let e = JSON.parse(msg);
-                                        console.log(e);
 
                                 if (e.status===400) {
                                     alert("Error: " + e.message);
@@ -755,12 +726,11 @@ function deleteFnc(type){
                                             localStorage.setItem('aboutMessage', 'The faq entry was successfully deleted');
                                             //alert("The faq entry was successfully delete");
                                         };
-                                        console.log(url);
                                         window.location = url;
                                     };
                             },
                             complete: function(){
-                                if(type == 'timeline'){                                        
+                                if(type == 'timeline'){
                                     url = '../../admin/about?page='+paginaActual;
                                 }else{
                                     url = '../../admin/about?section=faq&page='+paginaActual;
@@ -774,20 +744,16 @@ function deleteFnc(type){
         let paginatorCant = '<?= $paginatorFAQ?>';
         paginatorCant = parseInt(paginatorCant);
 
-        //console.log("-->PAG");
         let paginaActual = document.getElementById('pageActualFAQ').value;
         paginaActual= parseInt(paginaActual);
 
 
         let nada = '';
         if(page == 'prev' || page == 'next'){
-                //console.log("#0");
             if(page == 'next' && paginaActual != paginatorCant){
                 page = paginaActual + 1;
-                //console.log("#1");
             }else if(page == 'prev' && paginaActual > 1){
                 page = paginaActual - 1;
-                //console.log("#2");
             }else{
                 nada = 'si';
             };
@@ -809,7 +775,6 @@ function deleteFnc(type){
 
 
     function searchBox(type){
-            console.log("--> SUBMIT");
 
             let idST = '';let box = '';
 
@@ -824,16 +789,13 @@ function deleteFnc(type){
                         window.location = '../../admin/about';
                     };
             }else{
-                //console.log("llego search");
                 box = document.getElementById('search_boxFAQ').value;
                 if(box != ''){
-                    //console.log("#1");
                     document.getElementById('st').value = '';
                     document.getElementById('pagef').value = '1';
                     document.getElementById('stFAQ').value = '1';
                     document.getElementById("faqSearchForm").submit();
                 }else{
-                    //console.log("#2");
                         window.location = '../../admin/about?section=faq';
                 };
             }
@@ -854,7 +816,6 @@ function deleteFnc(type){
                 }else{
                     searchBox('faq');
                 }
-                console.log('resultado: '+ evento.target.id);
                 return false;
             }
         });
@@ -883,7 +844,6 @@ function deleteFnc(type){
                 document.getElementById('alertMessage').innerHTML = message;
                 document.getElementById('alertMessage').style.display = 'block';
                 setTimeout(() => {
-                    console.log("Delayed for 1 second.");
                     document.getElementById('alertMessage').style.display = 'none';
                 },5000);
         };

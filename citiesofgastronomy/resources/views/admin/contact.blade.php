@@ -124,7 +124,6 @@
                 document.getElementById('alertMessage').innerHTML = message;
                 document.getElementById('alertMessage').style.display = 'block';
                 setTimeout(() => {
-                    console.log("Delayed for 1 second.");
                     document.getElementById('alertMessage').style.display = 'none';
                 },5000);
         };
@@ -154,7 +153,6 @@
 
 
         function searchBox(){
-            console.log("--> SUBMIT");
 
             let idST = '';let box = '';
             let page = document.getElementById('page').value;
@@ -181,7 +179,6 @@
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
         //search_box
-        //console.log("-->PAG");
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
         if (search != ''){
@@ -191,21 +188,16 @@
 
         let nada = '';
         if(page == 'prev' || page == 'next'){
-                //console.log("#0");
             if(page == 'next' && paginaActual != paginatorCant){
                 page = paginaActual + 1;
-                //console.log("#1");
             }else if(page == 'prev' && paginaActual > 1){
                 page = paginaActual - 1;
-                //console.log("#2");
             }else{
                 nada = 'si';
             };
         }else{
             page= parseInt(page);
         };
-        console.log(paginaActual);
-        console.log(page);
         if(nada == ''){
             document.getElementById('page').value = page;
             searchBox();

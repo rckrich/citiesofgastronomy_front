@@ -150,20 +150,16 @@ var editModalFAQ; var modalToggleFAQ;
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
 
-        //console.log("-->PAG");
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
 
 
         let nada = '';
         if(page == 'prev' || page == 'next'){
-                //console.log("#0");
             if(page == 'next' && paginaActual != paginatorCant){
                 page = paginaActual + 1;
-                //console.log("#1");
             }else if(page == 'prev' && paginaActual > 1){
                 page = paginaActual - 1;
-                //console.log("#2");
             }else{
                 nada = 'si';
             };
@@ -191,7 +187,6 @@ var editModalFAQ; var modalToggleFAQ;
 document.getElementById("validation_faq").style.display = 'none';
 document.getElementById("validation_faqANW").style.display = 'none';
 
-console.log("# modal FAQ UP")
     editModalFAQ.show(modalToggleFAQ);
 
     document.getElementById("data_faq").value = '';
@@ -200,14 +195,11 @@ console.log("# modal FAQ UP")
 
 if(id == '' || id == undefined){
     document.getElementById("btnSaveFaq").innerHTML = '<?= __('admin.btn_create')?>';
-    console.log("CREATE::");
     document.getElementById('createFAQModalLabel').style.display = 'block';
     document.getElementById('editFAQModalLabel').style.display = 'none';
 }else{
 
     document.getElementById("btnSaveFaq").innerHTML = '<?= __('admin.btn_edit')?>';
-    console.log("UPDATE::");
-    console.log(id);
         document.getElementById("loading").style.display = 'block';
     document.getElementById('createFAQModalLabel').style.display = 'none';
     document.getElementById('editFAQModalLabel').style.display = 'block';
@@ -216,8 +208,6 @@ if(id == '' || id == undefined){
     xhttp.onload = function() {
             let res =  JSON.parse(this.responseText);
 
-            console.log(":: respuesta FAQ FIND");
-            console.log(res);
 
             document.getElementById("data_idfaq").value = res["id"];
             document.getElementById("data_faq").value = res["faq"];
@@ -232,7 +222,6 @@ if(id == '' || id == undefined){
 }
 
 function saveFaq(){
-console.log("#-> ingresa al SAVE");
 let guardar = 1;
 document.getElementById("btnSaveFaq").disabled = true;
 
@@ -255,12 +244,10 @@ datos.append('answer', data_answer);
 if(!data_faq){
     document.getElementById("validation_faq").style.display = 'block';
     guardar = 2;
-    console.log("#falta faq");
 };
 if(!data_answer){
     document.getElementById("validation_faqANW").style.display = 'block';
     guardar = 2;
-    console.log("#falta f ini");
 };
 
 //if(false){

@@ -566,14 +566,12 @@ function saveLink(){
 
     //si no hay nombre agrego el link en el nombre
     if(dataLinkName==''){
-        console.log("link SIN NOMBRE");
         dataLinkName = dataLink;
     };
 
 
     if(dataLink!=''){
             if(idLinkGral == ''){
-                console.log("#Agrega");
                 let nuevaid = 'linkTBL'+nuevovalor;
                 let clonedDiv = $('#linkTBL0').clone();
                 clonedDiv.attr("id", nuevaid); // Cambio id

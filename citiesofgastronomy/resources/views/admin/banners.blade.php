@@ -559,8 +559,6 @@
                                          window.location = '/login';
                                      }
                                 else {
-                                    console.log("DATTA:");
-                                    console.log(e);
                                     let datta = e.datta;
                                     addItem(sectionName, sectionId, datta["id"]);
                                     //localStorage.setItem('message', 'Image was successfully added');
