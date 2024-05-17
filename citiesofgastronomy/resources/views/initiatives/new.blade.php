@@ -599,8 +599,6 @@ function saveLink(){
                 document.getElementById("cant_links").value =nuevovalor;
 
             }else{
-                console.log("#Modifica");
-                console.log(idLinkGral);
                 let id1 = 'titleLink' +idLinkGral;
                 document.getElementById(id1).value = dataLinkName;
                 id1 = 'link' +idLinkGral;
@@ -608,15 +606,12 @@ function saveLink(){
             };
             LinkModal.hide(linkModalToggle);
     }else{
-        console.log("#E-0");
         let message = "fill out all the data";
         /*if(dataLinkName==''){
-            console.log("#E-1");
             document.getElementById("data_link_name").className = 'form-control is-invalid';
             //document.getElementById('validation_LinkTitle').style.display = 'block';
         };//*/
         if(dataLink==''){
-            console.log("#E-1");
             document.getElementById("data_link").className = 'form-control is-invalid';
             //document.getElementById('validation_Link').style.display = 'block';
         };
@@ -626,7 +621,6 @@ function saveLink(){
 
 function editLinkFN(id){
     LinkModal.show(linkModalToggle);
-    console.log("-->"+id);
     let id1  = 'titleLink'+id;
     document.getElementById("data_link_name").value = document.getElementById(id1).value;
     id1  = 'link'+id;
@@ -731,11 +725,7 @@ function editFileFN(itemNum){
                     },
                     success: function(msg){
                         let e = JSON.parse(msg);
-                        console.log("el id es :: "+idFileGral);
-                        console.log(msg);
-                        console.log(msg.datta);
                         if(!idFileGral){
-                            console.log("#si paso");
                             addFile(e["datta"]["id"], e["datta"]["title"], e["datta"]["file"]);
                         }else{//titlePDF
                             id1 = 'titlefile' + itemFile;
@@ -754,16 +744,13 @@ function editFileFN(itemNum){
         }else{
             let message = "fill out all the data";
                         document.getElementById("loading").style.display = 'none';
-                        console.log(extencion);
                         if(title==''){
-                            console.log("no tiene titulo");
                             document.getElementById("titlePDF").className = 'form-control is-invalid';
                             document.getElementById('validation_PDFtitle').style.display = 'block';
                         };
                         if(filePDF==''){
                             document.getElementById('validation_PDF').style.display = 'block';
                         }else if(extencion!='pdf'){
-                            console.log("NOT PDF");
                             message = 'wrong file extension, only pdf accepted';
                         };
 
@@ -886,8 +873,6 @@ function searchCheck (classGroup){
             var f1 = new Date(data_startdate);
             var f2 = new Date(data_enddate);
 
-            console.log("f1 > f2");
-            console.log(f1 > f2);
             if(f1 > f2){
                 document.getElementById("validation_dateCompare").style.display = 'block';
                 valida = 'no';
@@ -933,11 +918,7 @@ function searchCheck (classGroup){
                 },
                 success: function(msg){
                     let e = JSON.parse(msg);
-                    console.log("::msg");
-                    console.log(msg);
-                    console.log(e.message);
                     //let e = JSON.parse(msg);
-                    //console.log(e.datta);
                     if(e.status=='200'){
                         <?php if($id){?>
                             localStorage.setItem('messageIniciative', e.message);
@@ -1025,7 +1006,6 @@ function searchCheck (classGroup){
 
             if(data_startdate && data_enddate){
                 if(f1 > f2){
-                console.log("Validacion de fechas");
                     document.getElementById("validation_dateCompare").style.display = 'block';
                     errorMessage = 'Please select an End Date equal or after the Start Date';
                 };

@@ -332,12 +332,7 @@
                         //$('#fupForm').css("opacity",".5");
                     },
                     success: function(msg){
-                        console.log("::msg");
                         let e = JSON.parse(msg);
-                        console.log(e);
-                        console.log(e.message);
-                        console.log(e.status);
-                        //console.log(e.datta);
                         if(e.status===200){
                             <?php if($id){?>
                                 localStorage.setItem('toursMessage', "{{trans('tours.data.edit_success')}}");

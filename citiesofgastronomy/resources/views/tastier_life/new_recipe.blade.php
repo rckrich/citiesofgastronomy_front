@@ -25,7 +25,7 @@
 
                     <div class="form-group py-2">
                         <label class="form-label" for="photo">{{__('tastier_life.recipes.data_photo')}}</label>
-                        
+
                         <!--img obligatoria, si no existe imagen aún (solo aplica aquí)-->
                         <div class="my-3 w-25" id="phototbl" <?php  if(!$photo){echo 'style="display:none"';}?> >
                             <!--<div class="text-right"><img class="delete-img"src="{{asset('assets/icons/delete.png')}}"/></div>-->
@@ -39,7 +39,7 @@
                             </label>
                         </div>
                         <div id="photo_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
-                        
+
                     </div>
 
                     <div class="bb-gray mt-4 mb-2"></div>
@@ -51,16 +51,16 @@
                         </textarea>
                         <div id="data_description_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
-                    
+
                     <div class="form-group py-2">
                         <label class="form-label" for="data_chef">{{__('tastier_life.recipes.data_chef')}}</label>
                         <select id="data_chef" name="data_chef" class="form-control" placeholder="">
-                            <option <?php if($selectedChef=='default'){echo 'selected';}?> 
+                            <option <?php if($selectedChef=='default'){echo 'selected';}?>
                                 value="default">{{__('tastier_life.recipes.ph_chef')}}
                             </option>
                             @foreach($chefsList as $chef)
-                            <option id="filter-{{$chef['id']}}" name="filter-{{$chef['id']}}" 
-                                <?php if($selectedChef==$chef['id']){echo 'selected';}?> 
+                            <option id="filter-{{$chef['id']}}" name="filter-{{$chef['id']}}"
+                                <?php if($selectedChef==$chef['id']){echo 'selected';}?>
                                 value="{{$chef['id']}}">{{$chef['name']}}
                             </option>
                             @endforeach
@@ -70,12 +70,12 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_city">{{__('tastier_life.recipes.data_city')}}</label>
                         <select id="data_city" name="data_city" class="form-control" placeholder="">
-                            <option <?php if($selectedCity=='default'){echo 'selected';}?> 
+                            <option <?php if($selectedCity=='default'){echo 'selected';}?>
                                 value="default">{{__('tastier_life.recipes.ph_city')}}
                             </option>
                             @foreach($citiesList as $city)
-                            <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}" 
-                                <?php if($selectedCity==$city['id']){echo 'selected';}?> 
+                            <option id="filter-{{$city['id']}}" name="filter-{{$city['id']}}"
+                                <?php if($selectedCity==$city['id']){echo 'selected';}?>
                                 value="{{$city['id']}}">{{$city['name']}}
                             </option>
                             @endforeach
@@ -85,19 +85,19 @@
                     <div class="form-group py-2">
                         <label class="form-label" for="data_cat">{{__('tastier_life.recipes.data_cat')}}</label>
                         <select id="data_cat" name="data_cat" class="form-control" placeholder="">
-                            <option <?php if($selectedCat=='default'){echo 'selected';}?> 
+                            <option <?php if($selectedCat=='default'){echo 'selected';}?>
                                 value="default">{{__('tastier_life.recipes.ph_cat')}}
                             </option>
                             @foreach($categoriesList as $cat)
-                            <option id="filter-{{$cat['id']}}" name="filter-{{$cat['id']}}" 
-                                <?php if($selectedCat==$cat['id']){echo 'selected';}?> 
+                            <option id="filter-{{$cat['id']}}" name="filter-{{$cat['id']}}"
+                                <?php if($selectedCat==$cat['id']){echo 'selected';}?>
                                 value="{{$cat['id']}}">{{$cat['name']}}
                             </option>
                             @endforeach
                         </select>
                         <div id="data_cat_validation" class="invalid-feedback" style="display: none;">{{__('admin.obligatory_field')}}</div>
                     </div>
-                    
+
                     <div class="bb-gray mt-4 mb-2"></div>
 
                     <div class="row mx-0 py-2">
@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
 
                     <div class="row form-group py-5">
                         <div class="col-auto ms-auto"><a href="{{route('admin.tastier_life')}}?section=recipes&page=1" class="btn btn-dark w-100">{{__('admin.btn_cancel')}}</a></div>
@@ -320,14 +320,14 @@
         let data_description  = editor_data_description.getData();//document.getElementById("data_description").value;
         let data_ingredients  = editor_data_ingredients.getData();
         let data_preparations  = editor_data_preparations.getData();
-                
+
         let valida = 'si';let errorMessage = '';
-        
+
         //reseteo validaciones
         resetValidations();
 
         //general DATTA
-        if(data_name=='' || data_chef=='' || data_city=='' || data_cat=='' 
+        if(data_name=='' || data_chef=='' || data_city=='' || data_cat==''
         || data_difficulty=='' || data_preptime=='' || data_totaltime=='' || data_servings==''
         || data_description=='' || data_ingredients=='' || data_preparations==''
         ){
@@ -358,11 +358,7 @@
                     //$('#fupForm').css("opacity",".5");
                 },
                 success: function(msg){
-                    console.log("::msg");
-                    console.log(msg);
-                    console.log(msg.message);
                     //let e = JSON.parse(msg);
-                    //console.log(e.datta);
                     if(msg.status=='200'){
                         <?php if($id){?>
                             localStorage.setItem('tastierLifeMessage', "{{trans('tastier_life.recipes.edit_success')}}");
