@@ -146,8 +146,6 @@
                     beforeSend: function(){             },
                     success: function(msg){
                             let e = JSON.parse(msg);
-                            console.log("#_>");
-                            console.log(e);
                         enableBtns();
                         if (e.status===400) {
                             alert("Error: " + e.message);
@@ -201,8 +199,6 @@
                 success: function(msg){
 
                     let e = JSON.parse(msg);
-                    console.log("#_>");
-                    console.log(e);
                     closeModal('deleteTopicModal');
                     if (e.status===400) {
                         alert("Error: " + e.message);

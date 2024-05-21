@@ -185,7 +185,6 @@
                     }else{
                         searchBox('faq');
                     }
-                    console.log('resultado: '+ evento.target.id);
                     return false;
                 }
             });

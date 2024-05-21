@@ -91,7 +91,6 @@
             document.getElementById(showElement).style.display = 'block';
         }
         function saveclusterInfo(){
-            console.log("Save cluster :::");
 
             document.getElementById("saveclusterBTN").disabled = true;
 
@@ -128,11 +127,7 @@
                     } ?>
                      datos.append('indice', '<?= $indice?>');
 
-                    console.log(totDatta);
-                    console.log(incorrectURL);
-                    console.log(incorrectEmail);
                 if(totDatta == 'yes' && incorrectURL != 'si' && incorrectEmail != 'si'){
-                    console.log("--SAVE");
                     $.ajax({
                                     type: 'POST',
                                     url: '/admin/mainSiteContentClusterInfo',
@@ -179,14 +174,12 @@
                     //*/
         }
         function saveLinks(){
-            console.log("#1");
             let objSocialLinks = document.getElementsByClassName("socialLinks");
             let idOwner = document.getElementById("idOwner").value;
             let idSection = document.getElementById("idSection").value;
             let linksTag = document.getElementById("linksTag").value;
 
             if(objSocialLinks.length >0){
-                console.log("#2");
                     let token = document.getElementsByName("_token")[0].value;
                     let datos = new FormData();
                     let linkValue = ''; let linkName = '';

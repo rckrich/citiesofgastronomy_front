@@ -235,24 +235,19 @@
 
     let message = localStorage.getItem('messageIniciative');
     let errorMessage = localStorage.getItem('errorIessageIniciative');
-    //console.log(message);
     if(message){
-        console.log("Local Storage DELETE");
             localStorage.removeItem('messageIniciative');
             document.getElementById('alertMessage').innerHTML = message;
             document.getElementById('alertMessage').style.display = 'block';
             setTimeout(() => {
-                console.log("Delayed for 1 second.");
                 document.getElementById('alertMessage').style.display = 'none';
             },5000);
     };
     if(errorMessage){
-        console.log("Local Storage DELETE");
             localStorage.removeItem('errorIessageIniciative');
             document.getElementById('alertErrorMessage').innerHTML = errorMessage;
             document.getElementById('alertErrorMessage').style.display = 'block';
             setTimeout(() => {
-                console.log("Delayed for 1 second.");
                 document.getElementById('alertErrorMessage').style.display = 'none';
             },5000);
     };
@@ -263,7 +258,6 @@
         let search = $("#search_box").val();
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
-        console.log(paginatorCant)
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
         if (search != ''){
@@ -273,28 +267,21 @@
 
         let nada = '';
         if(page == 'prev' || page == 'next'){
-                //console.log("#0");
             if(page == 'next' && paginaActual != paginatorCant){
                 page = paginaActual + 1;
-                //console.log("#1");
             }else if(page == 'prev' && paginaActual > 1){
                 page = paginaActual - 1;
-                //console.log("#2");
             }else{
                 nada = 'si';
             };
         }else{
             page= parseInt(page);
         };
-        //console.log(paginaActual);
-        //console.log(page);
         if(nada == ''){
             if (search == ''){
-                console.log("#not SEARCH");
                 window.location = '/admin/initiatives?section=in&page='+page;
             }else{
                 //window.location = '/admin/initiatives/?page='+paginaActual;
-                console.log("# SERCH");console.log(search);
                 document.getElementById('page').value = page;
                 document.getElementById('formSearchInitiative').submit();
             };
@@ -324,8 +311,6 @@
                 beforeSend: function(){},
                 success: function(msg){
                     let e = JSON.parse(msg);
-                    console.log("#_>");
-                    console.log(e);
                     closeModal('deleteInitiativeModal');
                     window.scrollTo(0,0)
                     if (e.status===400) {

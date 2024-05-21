@@ -314,7 +314,6 @@ function paginatorRecipes(page){
     let search = $("#search_box_recipe").val();
     let paginatorCant = '<?= $paginatorChefs?>';
     paginatorCant = parseInt(paginatorCant);
-    //console.log(paginatorCant)
     let paginaActual = document.getElementById('pageActual').value;
     paginaActual= parseInt(paginaActual);
     if (search != ''){
@@ -324,13 +323,10 @@ function paginatorRecipes(page){
 
     let nada = '';
     if(page == 'prev' || page == 'next'){
-            //console.log("#0");
         if(page == 'next' && paginaActual != paginatorCant){
             page = paginaActual + 1;
-            //console.log("#1");
         }else if(page == 'prev' && paginaActual > 1){
             page = paginaActual - 1;
-            //console.log("#2");
         }else{
             nada = 'si';
         };
@@ -341,11 +337,9 @@ function paginatorRecipes(page){
     //alert('page:'+page);
     if(nada == ''){
         if (search == ''){
-            console.log("#not SEARCH");
             window.location = '/admin/tastier_life?section=recipes&page='+page;
         }else{
             //window.location = '/admin/initiatives/?page='+paginaActual;
-            console.log("# SEARCH");console.log(search);
             document.getElementById('page').value = page;
             document.getElementById('searchForm_recipe').submit();
         };
@@ -395,7 +389,6 @@ function paginatorChefs(page){
     let search = $("#search_box_chef").val();
     let paginatorCant = '<?= $paginatorChefs?>';
     paginatorCant = parseInt(paginatorCant);
-    //console.log(paginatorCant)
     let paginaActual = document.getElementById('pageActualChef').value;
     paginaActual= parseInt(paginaActual);
     if (search != ''){
@@ -405,13 +398,10 @@ function paginatorChefs(page){
 
     let nada = '';
     if(page == 'prev' || page == 'next'){
-            //console.log("#0");
         if(page == 'next' && paginaActual != paginatorCant){
             page = paginaActual + 1;
-            //console.log("#1");
         }else if(page == 'prev' && paginaActual > 1){
             page = paginaActual - 1;
-            //console.log("#2");
         }else{
             nada = 'si';
         };
@@ -422,11 +412,9 @@ function paginatorChefs(page){
     //alert('page:'+page);
     if(nada == ''){
         if (search == ''){
-            console.log("#not SEARCH");
             window.location = '/admin/tastier_life?section=chefs&pageChef='+page;
         }else{
             //window.location = '/admin/initiatives/?page='+paginaActual;
-            console.log("# SEARCH");console.log(search);
             document.getElementById('pageChef').value = page;
             document.getElementById('searchForm_chef').submit();
         };
@@ -660,7 +648,6 @@ function deleteCategory(){
                 document.getElementById('alertTLMessage').innerHTML = message;
                 document.getElementById('alertTLMessage').style.display = 'block';
                 setTimeout(() => {
-                    console.log("Delayed for 1 second.");
                     document.getElementById('alertTLMessage').style.display = 'none';
                 },5000);
         };

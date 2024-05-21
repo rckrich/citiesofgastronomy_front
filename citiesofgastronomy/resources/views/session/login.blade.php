@@ -82,11 +82,7 @@
                         //$('#fupForm').css("opacity",".5");
                     },
                     success: function(msg){
-                        //console.log("::msg");
-                        //console.log(msg);
-                        console.log(msg.message);
                         //let e = JSON.parse(msg);
-                        //console.log(e.datta);
                         if(msg.status=='200'){
                             //alert("200");
                             window.location ='/admin/cities';

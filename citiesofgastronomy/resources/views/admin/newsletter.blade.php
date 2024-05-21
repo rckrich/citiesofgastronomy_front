@@ -103,28 +103,22 @@ $(document).ready(function(e){
         let paginatorCant = '<?= $paginator?>';
         paginatorCant = parseInt(paginatorCant);
 
-        //console.log("-->PAG");
         let paginaActual = document.getElementById('pageActual').value;
         paginaActual= parseInt(paginaActual);
 
 
         let nada = '';
         if(page == 'prev' || page == 'next'){
-                //console.log("#0");
             if(page == 'next' && paginaActual != paginatorCant){
                 page = paginaActual + 1;
-                //console.log("#1");
             }else if(page == 'prev' && paginaActual > 1){
                 page = paginaActual - 1;
-                //console.log("#2");
             }else{
                 nada = 'si';
             };
         }else{
             page= parseInt(page);
         };
-        //console.log(paginaActual);
-        //console.log(page);
         if(nada == ''){
             window.location = '/admin/newsletter/?page='+page;
         };
@@ -163,12 +157,10 @@ $(document).ready(function(e){
         if(!data_startdate){
             document.getElementById("validation_timelinestartdate").style.display = 'block';
             descargar = 2;
-            console.log("#falta f ini");
         };
         if(!data_enddate){
             document.getElementById("validation_timelineenddate").style.display = 'block';
             descargar = 2;
-            console.log("#falta fin");
         };
 
         //comparar fechas
@@ -176,8 +168,6 @@ $(document).ready(function(e){
             var f1 = new Date(data_startdate);
             var f2 = new Date(data_enddate);
 
-            //console.log("f1 > f2");
-            //console.log(f1 > f2);
             if(f1 > f2){
                 document.getElementById("validation_timelineDateCompare").style.display = 'block';
                 descargar = 2;
@@ -190,7 +180,6 @@ $(document).ready(function(e){
             datos.append('data_startdate', data_startdate);
             datos.append('data_enddate', data_enddate);
 
-            //console.log("::dOWN");
 
             $.ajax({
                                 type: 'POST',
@@ -206,17 +195,12 @@ $(document).ready(function(e){
                                 success: function(msg){
                                     url = '<?= config('app.apiUrl')?>newsletter/Download?data_startdate='+data_startdate+'&data_enddate='+data_enddate;
                                     e = JSON.parse(msg);
-                                    //console.log(e);
                                     if(e.status == 200){
-                                        //console.log("CANT "+ e["newsletter"].length);
-                                        //console.log(url);
                                         if(e["newsletter"] == ''){
                                                 alert("No emails found on this date");
                                         }else{
                                             let news = e["newsletter"];
-                                            //console.log(news);
                                             if(news.length >0){
-                                                //console.log("Si hay mails");
                                                 window.open(url, '_blank');
                                                 CSVModal.hide(modalToggle);
                                                 //window.location = url;
@@ -224,7 +208,6 @@ $(document).ready(function(e){
                                         };
                                     }else{
                                         if(e.status===401){
-                                            console.log("Error 401: " + e.message);
                                             window.location = '/login';
                                         }else if(e.message == undefined){
                                                 alert("No emails found on this date");

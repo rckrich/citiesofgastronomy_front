@@ -162,10 +162,8 @@ function paginator(page){
     //alert('actual page:' + paginaActual + 'page:'+page);
     if(nada == ''){
         if (search == ''){
-            console.log("#not SEARCH");
             window.location = '/admin/users?page='+page;
         }else{
-            console.log("# SEARCH");console.log(search);
             document.getElementById('page').value = page;
             document.getElementById('searchForm_user').submit();
         };
@@ -408,9 +406,7 @@ function resetPassword(){
                 localStorage.removeItem('usersMessage');
                 document.getElementById('alertMessage').innerHTML = message;
                 document.getElementById('alertMessage').style.display = 'block';
-                console.log(message);
                 setTimeout(() => {
-                    console.log("Delayed for 1 second.");
                     document.getElementById('alertMessage').style.display = 'none';
                 },5000);
         };

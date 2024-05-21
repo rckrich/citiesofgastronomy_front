@@ -332,8 +332,6 @@
         // The "change" event is fired whenever a change is made in the editor.
         /*editor.on( 'change', function( evt ) {
             // getData() returns CKEditor's HTML content.
-            console.log( 'Total bytes: ' + evt.editor.getData().length );
-            console.log( evt.editor.getData() );
         });//*/
 
 </script>
@@ -440,14 +438,12 @@ function saveLink(){
 
     //si no hay nombre agrego el link en el nombre
     if(dataLinkName==''){
-        console.log("link SIN NOMBRE");
         dataLinkName = dataLink;
     };
 
 
     if(dataLink!=''){
             if(idLinkGral == ''){
-                console.log("#Agrega");
                 let nuevaid = 'linkTBL'+nuevovalor;
                 let clonedDiv = $('#linkTBL0').clone();
                 clonedDiv.attr("id", nuevaid); // Cambio id
@@ -475,8 +471,6 @@ function saveLink(){
                 document.getElementById("cant_links").value =nuevovalor;
 
             }else{
-                console.log("#Modifica");
-                console.log(idLinkGral);
                 let id1 = 'titleLink' +idLinkGral;
                 document.getElementById(id1).value = dataLinkName;
                 id1 = 'link' +idLinkGral;
@@ -484,15 +478,12 @@ function saveLink(){
             };
             LinkModal.hide(linkModalToggle);
     }else{
-        console.log("#E-0");
         let message = "fill out all the data";
         /*if(dataLinkName==''){
-            console.log("#E-1");
             document.getElementById("data_link_name").className = 'form-control is-invalid';
             //document.getElementById('validation_LinkTitle').style.display = 'block';
         };//*/
         if(dataLink==''){
-            console.log("#E-1");
             document.getElementById("data_link").className = 'form-control is-invalid';
             //document.getElementById('validation_Link').style.display = 'block';
         };
@@ -514,7 +505,6 @@ function addLinkFN(){
 
 function editLinkFN(id){
     LinkModal.show(linkModalToggle);
-console.log("-->"+id);
     let id1  = 'titleLink'+id;
     document.getElementById("data_link_name").value = document.getElementById(id1).value;
     id1  = 'link'+id;
@@ -553,8 +543,6 @@ $("#deepInfoForm").on('submit', function(e){
                 document.getElementById('validation_data_dyear').style.display = 'none';
 
                 let description  = editor.getData();//document.getElementById("description").value;
-                //console.log("---->description");
-                //console.log(description);
             ///////////////////////////////////////
                     let datos = new FormData(this);
                     datos.append('description', description);
@@ -589,17 +577,14 @@ $("#deepInfoForm").on('submit', function(e){
                 });
         }else{
             if(city==''){
-                console.log("no tiene nombre de ciudad");
                 document.getElementById("name").className = 'form-control is-invalid';
                 document.getElementById('validation_name').style.display = 'block';
             };
             if(continent==''){
-                console.log("no tiene seleccionado continent");
                 document.getElementById("idContinent").className = 'form-control is-invalid';
                 document.getElementById('validation_continent').style.display = 'block';
             };
             if(designationYear==''){
-                console.log("no tiene selecconado designationYear");
                 document.getElementById("data_dyear").className = 'form-control is-invalid';
                 document.getElementById('validation_data_dyear').style.display = 'block';
             };
@@ -648,11 +633,7 @@ $("#deepInfoForm").on('submit', function(e){
                     },
                     success: function(msg){
                         let e = JSON.parse(msg);
-                        console.log("el id es :: "+idFileGral);
-                        console.log(msg);
-                        console.log(msg.datta);
                         if(!idFileGral){
-                            console.log("#si paso");
                             addFile(e["datta"]["id"], e["datta"]["title"], e["datta"]["file"]);
                         }else{//titlePDF
                             id1 = 'titlefile' + itemFile;
@@ -670,16 +651,13 @@ $("#deepInfoForm").on('submit', function(e){
         }else{
             let message = "fill out all the data";
                         document.getElementById("loading").style.display = 'none';
-                        console.log(extencion);
                         if(title==''){
-                            console.log("no tiene titulo");
                             document.getElementById("titlePDF").className = 'form-control is-invalid';
                             document.getElementById('validation_PDFtitle').style.display = 'block';
                         };
                         if(filePDF==''){
                             document.getElementById('validation_PDF').style.display = 'block';
                         }else if(extencion!='pdf'){
-                            console.log("NOT PDF");
                             message = 'wrong file extension, only pdf accepted';
                         };
 

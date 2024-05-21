@@ -9,7 +9,7 @@
     <meta name="description" content="UNESCO Creative Cities of Gastronomy">
 
     <meta property="og:title" content="UNESCO Cities of Gastronomy" />
-    <meta property="og:type" content="website" />      
+    <meta property="og:type" content="website" />
     <meta property="og:description" content="UNESCO Creative Cities of Gastronomy" />
     <meta property="og:url" content="https://citiesofgastronomy.com" />
     <meta property="og:image" content="https://citiesofgastronomy.com/assets/img/CITIES OF GASTRONOMY.png" />
@@ -70,7 +70,7 @@
                     <a class="nav-link" href="{{route('landing.contact')}}">{{__('general.nav_contact')}}</a>
                 </li>
             </ul>
-            
+
                 <form id="searchForm" class="d-flex" role="search" action="{{route('search')}}" method="post">
                     @csrf
                     @method('POST')
@@ -79,7 +79,7 @@
                         <input name="search_box" class="form-control me-2" type="search" aria-label="{{__('general.search')}}" aria-describedby="basic-addon1">
                     </div>
                 </form>
-            
+
 
         </div>
 
@@ -142,7 +142,7 @@
                                 <a class="nav-link py-1">{{$info[$i]["value"]}}</a>
                             @endif
                             @endfor
-                        </div>                            
+                        </div>
                         @endif
 
                     </div>
@@ -203,7 +203,6 @@
 
     <script>
         function newsletterSave(){
-            console.log("-->newlwtter");
             document.getElementById("validation_emailNews").style.display = "none";
             document.getElementById("newsletterBTN").disabled = true;
             let newsletter_email = document.getElementById("newsletter_email").value;
